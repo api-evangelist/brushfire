@@ -1,0 +1,115 @@
+aid: brushfire
+name: Brushfire
+review:
+  question: Does Brushfire expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-05'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Brushfire's documented public surface is a
+    request/response REST API at https://api.brushfire.com with an OpenAPI 3.0.1
+    document served from the Swagger UI at api.brushfire.com/swagger. Brushfire's
+    only server-initiated delivery mechanism is Hooks - outbound HTTP webhooks
+    (subscribe / unsubscribe / update / list / ping / sample / poll). Webhooks are
+    server-to-endpoint HTTP callbacks and a client-initiated poll endpoint, not a
+    server-push streaming transport (WebSocket or SSE), so there is nothing on
+    Brushfire's own API to model as AsyncAPI.
+findings:
+  summary: |
+    Brushfire does publish a real, documented public REST API. The base URL is
+    https://api.brushfire.com, authenticated with an App Key sent in the
+    Authorization header (requested free at https://developer.brushfire.com/key),
+    and date-versioned via an api-version request header (for example
+    2025-07-22; a missing version returns 412). A machine-readable OpenAPI 3.0.1
+    document is served from the Swagger UI at https://api.brushfire.com/swagger,
+    exposing 118 paths / 135 operations across AccessCodes, Accounts, Attendees,
+    Cart, Clients, Data, Events, Exchanges, Groups, Hooks, Lookups, Orders,
+    PaymentProfiles, Promotions, Regions, and Sessions. Ticket Types, Sections,
+    and Seats are modeled as nested resources under Events. The API is pure
+    request/response REST over HTTPS. Brushfire does NOT publish any WebSocket
+    (ws:// or wss://) endpoint. Its only event-notification surface is Hooks -
+    HTTP webhooks plus a poll endpoint - which is not a WebSocket.
+  openSource: |
+    Brushfire is a closed-source commercial SaaS platform. The API requires a
+    Brushfire account and an App Key. The OpenAPI description itself is public
+    (served from the Swagger UI without auth), but calling the endpoints requires
+    an authenticated App Key, so endpoint request/response behavior was grounded
+    from the published OpenAPI document rather than by making live authenticated
+    calls.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.brushfire.com
+      documented: true
+      note: OpenAPI 3.0.1 served from api.brushfire.com/swagger; App Key in Authorization header; api-version request header selects the date-based version.
+    - protocol: Webhook
+      scheme: https
+      documented: true
+      note: Hooks - subscribe/unsubscribe/update/list HTTP webhook subscriptions plus ping/sample/poll. Server-to-endpoint HTTP callbacks and client-initiated poll, not WebSocket.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in the Brushfire OpenAPI document, developer portal, or product pages as of the review date.
+  endpointsConfirmedRest:
+    - GET    https://api.brushfire.com/events
+    - POST   https://api.brushfire.com/events
+    - GET    https://api.brushfire.com/events/{eventId}
+    - GET    https://api.brushfire.com/events/{eventId}/types
+    - GET    https://api.brushfire.com/events/{eventId}/sections
+    - GET    https://api.brushfire.com/events/{eventId}/sections/{sectionId}/seats
+    - GET    https://api.brushfire.com/events/{eventId}/bestseats
+    - GET    https://api.brushfire.com/events/{eventId}/orders
+    - GET    https://api.brushfire.com/attendees/{attendeeId}
+    - POST   https://api.brushfire.com/attendees/{attendeeId}/cancel
+    - GET    https://api.brushfire.com/attendees/{attendeeId}/fields
+    - POST   https://api.brushfire.com/attendees/{attendeeId}/type
+    - POST   https://api.brushfire.com/attendees/ids
+    - GET    https://api.brushfire.com/orders
+    - POST   https://api.brushfire.com/orders
+    - GET    https://api.brushfire.com/orders/{orderId}
+    - POST   https://api.brushfire.com/orders/direct
+    - POST   https://api.brushfire.com/orders/pos
+    - POST   https://api.brushfire.com/orders/reader/start
+    - POST   https://api.brushfire.com/orders/sms
+    - GET    https://api.brushfire.com/cart/{cartId}
+    - POST   https://api.brushfire.com/cart/{cartId}/events/{eventId}/attendees
+    - POST   https://api.brushfire.com/cart/{cartId}/promotions
+    - GET    https://api.brushfire.com/sessions/{sessionId}/attendees
+    - POST   https://api.brushfire.com/sessions/{sessionId}/checkin
+    - POST   https://api.brushfire.com/sessions/{sessionId}/checkout
+    - POST   https://api.brushfire.com/groups
+    - GET    https://api.brushfire.com/promotions
+    - GET    https://api.brushfire.com/accesscodes
+    - GET    https://api.brushfire.com/hooks/list
+    - POST   https://api.brushfire.com/hooks/subscribe
+    - POST   https://api.brushfire.com/hooks/unsubscribe
+    - GET    https://api.brushfire.com/hooks/poll
+  endpointsModeled: false
+  endpointsNote: |
+    Endpoints above are taken verbatim from Brushfire's published OpenAPI 3.0.1
+    document (api-version 2025-07-22) served at api.brushfire.com/swagger. They
+    are real, documented paths, not modeled. Request/response schemas were not
+    exercised live because calls require an authenticated App Key.
+sources:
+  - url: https://developer.brushfire.com
+    type: Documentation
+    note: Brushfire developer portal; App Key requested at /key; documents 429 rate limiting with X-Rate-Limit-* headers and 412 on missing api-version.
+  - url: https://api.brushfire.com/swagger/index.html
+    type: APIReference
+    note: Swagger UI listing date-based API versions; latest is 2025-07-22.
+  - url: https://api.brushfire.com/swagger/2025-07-22/swagger.json
+    type: OpenAPI
+    note: OpenAPI 3.0.1 document, 118 paths / 135 operations, apiKey (Authorization header) security scheme. All REST; no WebSocket channel.
+  - url: https://www.brushfire.com/pricing/
+    type: Pricing
+    note: Per-ticket fee model by organization type plus Stripe/Square processing.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    Brushfire's own public API is request/response REST (OpenAPI 3.0.1) with an
+    HTTP webhook (Hooks) notification surface and no WebSocket or SSE server-push
+    transport. No AsyncAPI document was created because there is no streaming
+    transport on Brushfire's own API to model; Hooks are covered as HTTP webhooks
+    within the REST surface.

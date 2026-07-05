@@ -1,0 +1,63 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Brushfire
+providerId: brushfire
+created: '2026-07-05'
+modified: '2026-07-05'
+reconciled: false
+tags:
+- Event Ticketing
+- Registration
+- Rate Limiting
+- Quotas
+description: >-
+  The Brushfire API enforces rate limiting and returns HTTP 429 Too Many Requests
+  when a caller exceeds the allowed number of requests. The developer portal
+  instructs callers to read the X-Rate-Limit-Limit, X-Rate-Limit-Remaining, and
+  X-Rate-Limit-Reset response headers (and the response body) before retrying.
+  The specific numeric request quota per App Key is not published; the mechanism
+  and headers are documented but the exact ceiling is disclosed only through the
+  live headers on your own account.
+notes: >-
+  The 429 response and the three X-Rate-Limit-* headers are confirmed from the
+  Brushfire developer portal; the numeric limit itself is NOT publicly documented
+  and is therefore modeled here as "not published - read from response headers."
+  Callers should track X-Rate-Limit-Remaining and back off until X-Rate-Limit-Reset.
+sources:
+- https://developer.brushfire.com
+- https://api.brushfire.com/swagger/index.html
+responseCodes:
+  throttled: 429
+limits:
+- name: API Requests
+  scope: appKey
+  metric: requests
+  limit: not published (surfaced via X-Rate-Limit-* headers)
+  notes: >-
+    Exceeding the allowance returns 429 Too Many Requests. Read X-Rate-Limit-Limit,
+    X-Rate-Limit-Remaining, and X-Rate-Limit-Reset to observe the live ceiling and
+    reset window for your App Key.
+headers:
+- name: X-Rate-Limit-Limit
+  description: The maximum number of requests permitted in the current window.
+- name: X-Rate-Limit-Remaining
+  description: The number of requests remaining in the current window.
+- name: X-Rate-Limit-Reset
+  description: When the current rate-limit window resets.
+policies:
+- name: Versioning
+  description: >-
+    Requests must specify an API version via the api-version request header (for
+    example, 2025-07-22); a missing version returns 412 Precondition Failed.
+- name: Backoff Strategy
+  description: >-
+    On a 429 response, stop issuing requests until X-Rate-Limit-Reset, and apply
+    exponential backoff with jitter rather than retrying immediately.
+- name: Authentication
+  description: >-
+    Every request must include the App Key in the Authorization header; unauthenticated
+    requests are rejected before rate-limit accounting applies.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,155 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Brushfire
+providerId: brushfire
+created: '2026-07-05'
+modified: '2026-07-05'
+reconciled: false
+tags:
+- Event Ticketing
+- Registration
+- Ticketing
+- Pricing
+- Plans
+description: >-
+  Brushfire does not price the API separately - the REST API at api.brushfire.com
+  is a free capability of a Brushfire account, and an App Key is requested at no
+  charge from developer.brushfire.com/key. Brushfire's commercial model is a
+  per-ticket fee (plus credit-card processing) rather than a subscription, with
+  fees varying by organization type. Published fees at review time - Attractions
+  and Education $0.75 per ticket; general/other events $1.50 per ticket; faith
+  organizations $1 + 1% per ticket; and a $299/mo option for churches under 1,500
+  weekly attendance. Free tickets are typically free to issue. Card processing
+  runs through Stripe or Square at their standard rates on top of the Brushfire
+  fee. Organizations can pass fees to attendees, absorb them, or build a custom
+  structure. No setup fees and no monthly contracts.
+notes: >-
+  Per-ticket fees and processing rates were read from brushfire.com/pricing at
+  review time and can change; reconcile against the live pricing page and a
+  Brushfire quote before relying on exact numbers. The API itself carries no
+  separate metered fee - cost is incurred when paid tickets are sold, regardless
+  of whether the order was created through the UI or the API.
+sources:
+- https://www.brushfire.com/pricing/
+- https://www.brushfire.com/features/
+- https://developer.brushfire.com/key
+plans:
+- id: brushfire-api-access
+  name: API Access (App Key)
+  type: free
+  description: >-
+    Programmatic access to the Brushfire REST API for any Brushfire account. An
+    App Key is requested free from developer.brushfire.com/key and sent in the
+    Authorization header. There is no separate charge or metered fee for API
+    calls; commercial fees are incurred per ticket sold, not per request.
+  entries:
+  - label: API Requests
+    name: api_requests
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: no separate API fee (rate-limited; see rate-limits)
+    userMultiplied: false
+  elements:
+  - name: Events, Types, Sections API
+  - name: Attendees API
+  - name: Orders and Cart API
+  - name: Webhooks (Hooks)
+- id: brushfire-attractions-education
+  name: Attractions & Education
+  type: usage
+  description: >-
+    Per-ticket pricing tier for attractions and education organizations.
+  entries:
+  - label: Per Paid Ticket
+    name: per_ticket
+    type: usage
+    metric: tickets
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0.75 per ticket plus credit-card processing
+    userMultiplied: false
+  elements:
+  - name: Hosted Box Office
+  - name: Embeddable Event Widgets
+  - name: Mobile Check-In
+- id: brushfire-other-events
+  name: Other Events
+  type: usage
+  description: >-
+    Standard per-ticket pricing tier for general events.
+  entries:
+  - label: Per Paid Ticket
+    name: per_ticket
+    type: usage
+    metric: tickets
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $1.50 per ticket plus credit-card processing
+    userMultiplied: false
+  elements:
+  - name: Hosted Box Office
+  - name: Reserved Seating
+  - name: Mobile Check-In
+- id: brushfire-faith
+  name: Churches & Ministries
+  type: usage
+  description: >-
+    Faith-organization pricing. A percentage-plus-flat per-ticket option, or a
+    flat monthly option for churches under 1,500 weekly attendance.
+  entries:
+  - label: Per Paid Ticket
+    name: per_ticket
+    type: usage
+    metric: tickets
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $1 plus 1% per ticket plus credit-card processing
+    userMultiplied: false
+  - label: Flat Monthly (under 1,500 weekly attendance)
+    name: flat_monthly
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $299 per month plus credit-card processing
+    userMultiplied: false
+  elements:
+  - name: Hosted Box Office
+  - name: Groups and Communities
+  - name: Mobile Check-In
+- id: brushfire-custom
+  name: Custom / Enterprise
+  type: enterprise
+  description: >-
+    Custom fee structures for large events and organizations, including passing,
+    absorbing, or splitting fees. Contact Brushfire.
+  entries:
+  - label: Custom Agreement
+    name: custom
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Fee Structure
+  - name: Dedicated Support
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

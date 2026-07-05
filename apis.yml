@@ -1,0 +1,206 @@
+aid: brushfire
+url: https://raw.githubusercontent.com/api-evangelist/brushfire/refs/heads/main/apis.yml
+name: Brushfire
+kind: company
+description: Brushfire is an event ticketing, registration, and virtual event platform
+  used by churches, ministries, conferences, attractions, and large events. Alongside
+  its hosted box office, embeddable event widgets, and mobile check-in apps, Brushfire
+  publishes a documented REST API at api.brushfire.com covering events, ticket types,
+  sections and seats, attendees, orders, the shopping cart and checkout flow, groups,
+  sessions and check-in, promotions and access codes, payment profiles, and webhooks.
+  The API is date-versioned through an api-version request header and authenticated
+  with an App Key requested from developer.brushfire.com.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Event Ticketing
+- Registration
+- Events
+- Ticketing
+- Check-In
+- Churches
+- Payments
+created: '2026-07-05'
+modified: '2026-07-05'
+specificationVersion: '0.19'
+apis:
+- aid: brushfire:brushfire-events-api
+  name: Brushfire Events API
+  tags:
+  - Events
+  - Types
+  - Sections
+  - Seats
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.brushfire.com
+  baseURL: https://api.brushfire.com
+  properties:
+  - url: https://developer.brushfire.com
+    type: Documentation
+  - url: https://api.brushfire.com/swagger/index.html
+    type: APIReference
+  - url: openapi/brushfire-openapi.json
+    type: OpenAPI
+  description: List, create, retrieve, archive, and restore events, and read their
+    nested resources - ticket types, sections, seats, best-available seating, sessions,
+    fields and field metadata, documents, groups, orders, payment methods, theme,
+    and reports. This is the core catalog surface for an event's inventory and configuration.
+- aid: brushfire:brushfire-attendees-api
+  name: Brushfire Attendees API
+  tags:
+  - Attendees
+  - Registration
+  - Check-In
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.brushfire.com
+  baseURL: https://api.brushfire.com
+  properties:
+  - url: https://developer.brushfire.com
+    type: Documentation
+  - url: https://api.brushfire.com/swagger/index.html
+    type: APIReference
+  - url: openapi/brushfire-openapi.json
+    type: OpenAPI
+  description: Retrieve and manage individual attendees - read and update buyer and
+    attendee fields (standard and custom), cancel, reassign ticket type, move between
+    groups and communities, gift or link tickets, record donations, generate access
+    codes, and print or batch-print tickets and badges.
+- aid: brushfire:brushfire-orders-api
+  name: Brushfire Orders API
+  tags:
+  - Orders
+  - Transactions
+  - Point of Sale
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.brushfire.com
+  baseURL: https://api.brushfire.com
+  properties:
+  - url: https://developer.brushfire.com
+    type: Documentation
+  - url: https://api.brushfire.com/swagger/index.html
+    type: APIReference
+  - url: openapi/brushfire-openapi.json
+    type: OpenAPI
+  description: List and retrieve orders, read and update order fields, resend
+    confirmations, and create orders through multiple transaction paths - standard
+    checkout, direct orders, point-of-sale (POS), card-reader (terminal) sales,
+    and SMS orders. This surface carries Brushfire's order and payment transaction
+    processing.
+- aid: brushfire:brushfire-cart-checkout-api
+  name: Brushfire Cart & Checkout API
+  tags:
+  - Cart
+  - Checkout
+  - Transactions
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.brushfire.com
+  baseURL: https://api.brushfire.com
+  properties:
+  - url: https://developer.brushfire.com
+    type: Documentation
+  - url: https://api.brushfire.com/swagger/index.html
+    type: APIReference
+  - url: openapi/brushfire-openapi.json
+    type: OpenAPI
+  description: Build and manage a shopping cart across events and attendees - add and
+    remove events, reserve and configure attendees, complete registration forms,
+    apply and remove promotions, and look up cart state prior to converting a cart
+    into a paid order.
+- aid: brushfire:brushfire-sessions-checkin-api
+  name: Brushfire Sessions & Check-In API
+  tags:
+  - Sessions
+  - Check-In
+  - Attendance
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.brushfire.com
+  baseURL: https://api.brushfire.com
+  properties:
+  - url: https://developer.brushfire.com
+    type: Documentation
+  - url: https://api.brushfire.com/swagger/index.html
+    type: APIReference
+  - url: openapi/brushfire-openapi.json
+    type: OpenAPI
+  description: Drive on-site attendance for a session - list session attendees, look
+    up by email, check attendees in and out, and run flexible (flex) check-in and
+    checkout for groups and individual attendees, orders, and groups within a session.
+- aid: brushfire:brushfire-groups-api
+  name: Brushfire Groups API
+  tags:
+  - Groups
+  - Communities
+  - Registration
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.brushfire.com
+  baseURL: https://api.brushfire.com
+  properties:
+  - url: https://developer.brushfire.com
+    type: Documentation
+  - url: https://api.brushfire.com/swagger/index.html
+    type: APIReference
+  - url: openapi/brushfire-openapi.json
+    type: OpenAPI
+  description: Create and update groups, read and write group fields, assign a group
+    to a community, and print or batch-print the tickets and badges for everyone in
+    a group - the container for family, team, and organization registrations.
+- aid: brushfire:brushfire-promotions-accesscodes-api
+  name: Brushfire Promotions & Access Codes API
+  tags:
+  - Promotions
+  - Access Codes
+  - Discounts
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.brushfire.com
+  baseURL: https://api.brushfire.com
+  properties:
+  - url: https://developer.brushfire.com
+    type: Documentation
+  - url: https://api.brushfire.com/swagger/index.html
+    type: APIReference
+  - url: openapi/brushfire-openapi.json
+    type: OpenAPI
+  description: List and retrieve promotions and access codes, bulk-import promotions,
+    and generate dynamic promotions and access codes - the discounting and gated-access
+    controls layered onto an event's ticket types and sections.
+- aid: brushfire:brushfire-webhooks-api
+  name: Brushfire Webhooks (Hooks) API
+  tags:
+  - Webhooks
+  - Hooks
+  - Events
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.brushfire.com
+  baseURL: https://api.brushfire.com
+  properties:
+  - url: https://developer.brushfire.com
+    type: Documentation
+  - url: https://api.brushfire.com/swagger/index.html
+    type: APIReference
+  - url: openapi/brushfire-openapi.json
+    type: OpenAPI
+  description: Subscribe and unsubscribe HTTP webhook endpoints, update subscriptions,
+    list active hooks, send test pings and sample payloads, and poll for events -
+    Brushfire's outbound event-notification surface delivered as HTTP callbacks, not
+    a WebSocket stream.
+common:
+- type: LinkedIn
+  url: https://www.linkedin.com/company/brushfire-technology
+- type: Website
+  url: https://www.brushfire.com
+- type: Documentation
+  url: https://developer.brushfire.com
+- type: APIReference
+  url: https://api.brushfire.com/swagger/index.html
+- type: SignUp
+  url: https://developer.brushfire.com/key
+- type: Plans
+  url: plans/brushfire-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/brushfire-rate-limits.yml
+- type: FinOps
+  url: finops/brushfire-finops.yml
+- type: X
+  url: https://twitter.com/BrushfireApp
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
