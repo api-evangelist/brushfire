@@ -183,6 +183,10 @@ apis:
     Brushfire's outbound event-notification surface delivered as HTTP callbacks, not
     a WebSocket stream.
 common:
+- type: DomainSecurity
+  url: security/brushfire-domain-security.yml
+- type: Authentication
+  url: authentication/brushfire-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/brushfire-technology
 - type: Website

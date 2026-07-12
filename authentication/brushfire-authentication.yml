@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/brushfire-openapi.json
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: apiKey
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: The App Key you received from https://developer.brushfire.com/key
+  sources:
+  - openapi/brushfire-openapi.json
