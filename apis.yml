@@ -183,6 +183,8 @@ apis:
     Brushfire's outbound event-notification surface delivered as HTTP callbacks, not
     a WebSocket stream.
 common:
+- type: AgenticAccess
+  url: agentic-access/brushfire-agentic-access.yml
 - type: DomainSecurity
   url: security/brushfire-domain-security.yml
 - type: Authentication
