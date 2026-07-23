@@ -1,0 +1,4687 @@
+openapi: 3.0.1
+info:
+  title: 'Brushfire API: Version 2025-07-22 AccessCodes Events API'
+  version: '2025-07-22'
+  description: 'The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform. It covers events, ticket types, sections and seats, attendees, orders, the shopping cart and checkout flow, groups, sessions and check-in, promotions and access codes, payment profiles, and webhooks (Hooks). Authenticate by sending your App Key (requested at https://developer.brushfire.com/key) in the Authorization header. The API is date-versioned: send the desired version in the api-version request header (for example, 2025-07-22). This document is the live specification published at api.brushfire.com/swagger.'
+  contact:
+    name: Brushfire Developers
+    url: https://developer.brushfire.com
+servers:
+- url: https://api.brushfire.com
+  description: Brushfire API (date-versioned via the api-version header)
+tags:
+- name: Events
+paths:
+  /events:
+    get:
+      tags:
+      - Events
+      summary: Get a list of events for the specified user.
+      parameters:
+      - name: accessKey
+        in: query
+        description: The Access Key for the user context
+        schema:
+          type: string
+      - name: search
+        in: query
+        description: A string to filter events
+        schema:
+          type: string
+      - name: inactive
+        in: query
+        description: Boolean pass in true to return inactive events.
+        schema:
+          type: boolean
+          default: false
+      - name: qty
+        in: query
+        description: An integer to limit the number of results returned
+        schema:
+          type: integer
+          format: int32
+      - name: skip
+        in: query
+        description: An integer to skip the first events returned
+        schema:
+          type: integer
+          format: int32
+      - name: archive
+        in: query
+        description: Boolean to return archived or not archvied events
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventListOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventListOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+    post:
+      tags:
+      - Events
+      summary: Create a fully complete event
+      requestBody:
+        description: The request body to create an event
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventCreateInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EventCreateInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EventCreateInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventDetailsOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EventDetailsOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /events/{eventId}:
+    delete:
+      tags:
+      - Events
+      summary: Delete an event
+      parameters:
+      - name: accessKey
+        in: query
+        description: Access Key for user account
+        schema:
+          type: string
+      - name: eventId
+        in: path
+        description: An integer or a GUID that corresponds to the specific event you would like to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+    get:
+      tags:
+      - Events
+      summary: Retrieve information for an event
+      parameters:
+      - name: eventId
+        in: path
+        description: An integer or a GUID that corresponds to a specific event
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventSingleOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EventSingleOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /events/{eventId}/archive:
+    post:
+      tags:
+      - Events
+      summary: Queues the specified event for archiving. Sends an email to user associated with the access key used on completion.
+      parameters:
+      - name: eventId
+        in: path
+        description: An integer or a GUID that corresponds to a specific event
+        required: true
+        schema:
+          type: string
+      - name: accessKey
+        in: query
+        description: The Access Key for the user context
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /events/{eventId}/bestseats:
+    get:
+      tags:
+      - Events
+      summary: Returns the best available seats that match the supplied parameters for an assigned seat event. Does not reserve them.
+      parameters:
+      - name: eventId
+        in: path
+        description: An integer or a GUID that corresponds to a specific event
+        required: true
+        schema:
+          type: string
+      - name: quantity
+        in: query
+        description: Integer to find a quantity of seats
+        schema:
+          maximum: 1000
+          minimum: 1
+          type: integer
+          format: int32
+      - name: sectionId
+        in: query
+        description: An optional string (the exact name) or a GUID representing the section
+        schema:
+          type: string
+      - name: accessKey
+        in: query
+        description: The Access Key for the user context
+        schema:
+          type: string
+      - name: typeId
+        in: query
+        description: Optional GUID to find seats in a particular type
+        schema:
+          type: string
+          format: uuid
+      - name: groupId
+        in: query
+        description: An optional integer or a GUID that corresponds to a specific group
+        schema:
+          type: string
+      - name: seatCode
+        in: query
+        description: An optional seat-level access code to unlock seats
+        schema:
+          type: string
+      - name: nonconsecutive
+        in: query
+        description: Optional boolean to find seats that are non-consecutive
+        schema:
+          type: boolean
+          default: false
+      - name: basePrice
+        in: query
+        description: Optional decimal to find seats in a particular base price
+        schema:
+          type: number
+          format: double
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventSeatOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventSeatOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /events/{eventId}/communities:
+    get:
+      tags:
+      - Events
+      summary: Returns all communities for the specified event
+      parameters:
+      - name: eventId
+        in: path
+        description: An integer or a GUID that corresponds to a specific event
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventCommunityOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventCommunityOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /events/{eventId}/data:
+    get:
+      tags:
+      - Events
+      summary: Returns all data for the specified type
+      parameters:
+      - name: eventId
+        in: path
+        description: An integer or a GUID that corresponds to a specific event
+        required: true
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: A string value of "Attendee", "Order", or "Group"
+        schema:
+          $ref: '#/components/schemas/FieldMetaType'
+      - name: since
+        in: query
+        description: An optional date (UTC) from which to filter data
+        schema:
+          type: string
+          format: date-time
+      - name: includeCancelled
+        in: query
+        description: An optional boolean (default false) to include cancelled attendees
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: {}
+            text/json:
+              schema: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /events/{eventId}/details:
+    get:
+      tags:
+      - Events
+      summary: Retrieve information for an event
+      parameters:
+      - name: eventId
+        in: path
+        description: An integer or a GUID that corresponds to a specific event
+        required: true
+        schema:
+          type: string
+      - name: groupId
+        in: query
+        description: An integer or a GUID that corresponds to a specific group
+        schema:
+          type: string
+      - name: accessKey
+        in: query
+        description: The Access Key for the user context
+        schema:
+          type: string
+      - name: access
+        in: query
+        description: The Access Code for accessing the event
+        schema:
+          type: string
+      - name: exchangeId
+        in: query
+        description: An optional exchange ID if currently exchanging
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventDetailsOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EventDetailsOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /events/{eventId}/documents:
+    get:
+      tags:
+      - Events
+      summary: Get which printing layouts are available for an event
+      parameters:
+      - name: eventId
+        in: path
+        description: An integer or a GUID that corresponds to a specific event
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventDocumentOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EventDocumentOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /events/{eventId}/fieldmetadata:
+    get:
+      tags:
+      - Events
+      summary: Get the meta data for ALL fields for an event including the built-in/system ones
+      parameters:
+      - name: eventId
+        in: path
+        description: An integer or a GUID that corresponds to a specific event
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FieldMetaOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FieldMetaOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /events/{eventId}/fields:
+    get:
+      tags:
+      - Events
+      summary: Get fields for an event
+      parameters:
+      - name: eventId
+        in: path
+        description: An integer or a GUID that corresponds to a specific event
+        required: true
+        schema:
+          type: string
+      - name: fieldType
+        in: query
+        description: One of "Attendees", "Groups", or "Buyers" for the type of fields you want
+        schema:
+          $ref: '#/components/schemas/FieldUpdateType'
+      - name: accessKey
+        in: query
+        description: The Access Key for the user context
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FieldOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FieldOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /events/{eventId}/fields/{fieldId}/remotevalidate:
+    get:
+      tags:
+      - Events
+      summary: Fetch result for given Remote Valid field when value is provided
+      parameters:
+      - name: eventNumber
+        in: query
+        description: An integer that corresponds to a specific event
+        schema:
+          type: integer
+          format: int64
+      - name: fieldId
+        in: path
+        description: A GUID of the Remote Fetch field
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: value
+        in: query
+        description: The string of the value currently used in the attendee's search field. Required.
+        schema:
+          type: string
+      - name: attendeeNumber
+        in: query
+        description: The attendee number for the current attendee. Only applied to attendee fields
+        schema:
+          type: integer
+          format: int64
+      - name: eventId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /events/{eventId}/groups:
+    get:
+      tags:
+      - Events
+      summary: List all groups for an event
+      parameters:
+      - name: eventId
+        in: path
+        description: An integer or a GUID that corresponds to a specific event
+        required: true
+        schema:
+          type: string
+      - name: search
+        in: query
+        description: A string to filter groups
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GroupSummaryOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GroupSummaryOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /events/{eventId}/lookup:
+    get:
+      tags:
+      - Events
+      summary: Look up attendees based upon email for an event
+      parameters:
+      - name: eventId
+        in: path
+        description: An integer or a GUID that corresponds to a specific event
+        required: true
+        schema:
+          type: string
+      - name: email
+        in: query
+        description: The email of the attendee, buyer, or group manager
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LookupAttendeeResultOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LookupAttendeeResultOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /events/{eventId}/move:
+    post:
+      tags:
+      - Events
+      summary: "Move an event to a different client. The event must have no existing orders or emails.\r\nThe calling app must have access to both the source and target clients."
+      parameters:
+      - name: eventId
+        in: path
+        description: An integer or a GUID that corresponds to the specific event you would like to move
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Request body for moving an event to a different client
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventMoveInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EventMoveInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EventMoveInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventSingleOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EventSingleOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /events/{eventId}/orders:
+    get:
+      tags:
+      - Events
+      summary: Gets list of orders for an event with an optional date range.
+      parameters:
+      - name: eventId
+        in: path
+        description: An integer or a GUID that corresponds to a specific event.
+        required: true
+        schema:
+          type: string
+      - name: startsAt
+        in: query
+        description: Optional start date to filter list
+        schema:
+          type: string
+          format: date-time
+      - name: endsAt
+        in: query
+        description: Optional end date to filter list
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrderListOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrderListOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /events/{eventId}/paymentmethods:
+    get:
+      tags:
+      - Events
+      summary: Get which payment methods are available for an event
+      parameters:
+      - name: eventId
+        in: path
+        description: An integer or a GUID that corresponds to a specific event
+        required: true
+        schema:
+          type: string
+      - name: accessKey
+        in: query
+        description: The Access Key for the user context
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventPaymentMethodOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventPaymentMethodOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /events/{eventId}/reports/{reportId}:
+    get:
+      tags:
+      - Events
+      summary: Get report data for a custom or preset event report
+      parameters:
+      - name: eventId
+        in: path
+        description: An integer or a GUID that corresponds to a specific event
+        required: true
+        schema:
+          type: string
+      - name: reportId
+        in: path
+        description: A GUID that corresponds to a specific report or a string that corresponds to a specific report preset
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: {}
+            text/json:
+              schema: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /events/{eventId}/resources:
+    get:
+      tags:
+      - Events
+      summary: Get a list of resource urls corresponding to specific Brushfire pages for the event
+      parameters:
+      - name: eventId
+        in: path
+        description: An integer or a GUID that corresponds to a specific event
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventResourceOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventResourceOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /events/{eventId}/restore:
+    post:
+      tags:
+      - Events
+      summary: Queues the specified event for restoring. Sends an email to user associated with the access key used on completion.
+      parameters:
+      - name: eventId
+        in: path
+        description: An integer or a GUID that corresponds to a specific event
+        required: true
+        schema:
+          type: string
+      - name: accessKey
+        in: query
+        description: The Access Key for the user context
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /events/{eventId}/sections:
+    get:
+      tags:
+      - Events
+      summary: Get the details for all the sections of an event
+      parameters:
+      - name: eventId
+        in: path
+        description: An integer or a GUID that corresponds to a specific event
+        required: true
+        schema:
+          type: string
+      - name: groupId
+        in: query
+        description: An integer or a GUID that corresponds to a specific group
+        schema:
+          type: string
+      - name: seatCode
+        in: query
+        description: A seat-level access code to unlock seats
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventSectionOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventSectionOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /events/{eventId}/sections/{sectionId}:
+    get:
+      tags:
+      - Events
+      summary: Get the details for a specific section
+      parameters:
+      - name: eventId
+        in: path
+        description: An integer or a GUID that corresponds to a specific event
+        required: true
+        schema:
+          type: string
+      - name: sectionId
+        in: path
+        description: A string (the exact name) or a GUID representing the section
+        required: true
+        schema:
+          type: string
+      - name: groupId
+        in: query
+        description: An integer or a GUID that corresponds to a specific group
+        schema:
+          type: string
+      - name: seatCode
+        in: query
+        description: A seat-level access code to unlock seats
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventSectionOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EventSectionOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /events/{eventId}/sections/{sectionId}/seats:
+    get:
+      tags:
+      - Events
+      summary: Get all the seats in a section for a specific event
+      parameters:
+      - name: eventId
+        in: path
+        description: An integer or a GUID that corresponds to a specific event
+        required: true
+        schema:
+          type: string
+      - name: sectionId
+        in: path
+        description: A string (the exact name) or a GUID representing the section
+        required: true
+        schema:
+          type: string
+      - name: groupId
+        in: query
+        description: An integer or a GUID that corresponds to a specific group
+        schema:
+          type: string
+      - name: seatCode
+        in: query
+        description: A seat-level access code to unlock seats
+        schema:
+          type: string
+      - name: accessKey
+        in: query
+        description: The Access Key for the user context
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventSeatOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventSeatOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /events/{eventId}/sessions:
+    get:
+      tags:
+      - Events
+      summary: Get a list of all of the sessions for an event
+      parameters:
+      - name: eventId
+        in: path
+        description: An integer or a GUID that corresponds to a specific event
+        required: true
+        schema:
+          type: string
+      - name: search
+        in: query
+        description: A string to filter sessions
+        schema:
+          type: string
+      - name: includeHidden
+        in: query
+        description: Show hidden sessions
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventSessionOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventSessionOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /events/{eventId}/theme:
+    get:
+      tags:
+      - Events
+      summary: Get the theme for a specific event
+      parameters:
+      - name: eventId
+        in: path
+        description: A string, a GUID, or an integer that corresponds to a specific event
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThemeOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ThemeOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /events/{eventId}/types:
+    get:
+      tags:
+      - Events
+      summary: List all currently available attendee types for a specific event and account (and optionally a specific seat)
+      parameters:
+      - name: eventId
+        in: path
+        description: An integer or a GUID that corresponds to a specific event
+        required: true
+        schema:
+          type: string
+      - name: group
+        in: query
+        description: An integer or a GUID that corresponds to a specific group
+        schema:
+          type: string
+      - name: accessKey
+        in: query
+        description: Access Key for user account
+        schema:
+          type: string
+      - name: access
+        in: query
+        description: The Access Code for accessing the types
+        schema:
+          type: string
+      - name: seat
+        in: query
+        description: A GUID that corresponds to a specific seat, if blank, will return all types for the event
+        schema:
+          type: string
+          format: uuid
+      - name: category
+        in: query
+        description: A string value of "All", "Standard", or "Addon" which determines which type of Attendee Type will be returned. The default is "Standard" which returns only Standard types.
+        schema:
+          $ref: '#/components/schemas/AttendeeTypeCategory'
+      - name: exchangeId
+        in: query
+        description: An optional exchange ID if currently exchanging
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventTypeOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventTypeOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /events/{eventNumber}/fields/{fieldId}/remotefetch:
+    get:
+      tags:
+      - Events
+      summary: Fetch options for given Remote Fetch field when searching a specified value
+      parameters:
+      - name: eventNumber
+        in: path
+        description: An integer that corresponds to a specific event
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: fieldId
+        in: path
+        description: A GUID of the Remote Fetch field
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: attendeeNumber
+        in: query
+        description: The attendee number for the current attendee. Only applied to attendee fields
+        schema:
+          type: integer
+          format: int64
+      - name: value
+        in: query
+        description: The string of the value currently used in the attendee's search field
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RemoteFetchResult'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RemoteFetchResult'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /events/copy:
+    post:
+      tags:
+      - Events
+      summary: Copy an existing event
+      requestBody:
+        description: Request body for copying an event. Leave fields empty if you would like to use the source event's values
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventCopyInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EventCopyInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EventCopyInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventSingleOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EventSingleOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+components:
+  schemas:
+    OrderListOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        OrderKey:
+          type: string
+          nullable: true
+        OrderedAt:
+          type: string
+          format: date-time
+        OrderedAtLocal:
+          type: string
+          format: date-time
+        IsPOS:
+          type: boolean
+        IsKiosk:
+          type: boolean
+        IsApp:
+          type: boolean
+        AcctCode:
+          type: string
+          nullable: true
+        ObjectNumber:
+          type: integer
+          format: int64
+        IsAdjustment:
+          type: boolean
+        BillingFirstName:
+          type: string
+          nullable: true
+        BillingLastName:
+          type: string
+          nullable: true
+        HostAddress:
+          type: string
+          nullable: true
+        ThirdPartyCustomerId:
+          type: string
+          nullable: true
+        SubTotal:
+          type: number
+          format: double
+        UndistributedFees:
+          type: number
+          format: double
+        OrderTotal:
+          type: number
+          format: double
+        AttendeeTotal:
+          type: number
+          format: double
+        DiscountTotal:
+          type: number
+          format: double
+        FeeTotal:
+          type: number
+          format: double
+        TaxTotal:
+          type: number
+          format: double
+        DeliveryTotal:
+          type: number
+          description: Deprecated. Delivery has been folded into API.Models.OrderListOutput.FeeTotal; this property is kept for backwards compatibility but should be ignored.
+          format: double
+        FeesTotal:
+          type: number
+          format: double
+        Payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderListPaymentOutput'
+          nullable: true
+        TransactionTotal:
+          type: number
+          format: double
+          readOnly: true
+        PaymentMethodId:
+          type: string
+          format: uuid
+          readOnly: true
+        PaymentMethod:
+          type: string
+          nullable: true
+          readOnly: true
+        PaymentNumber:
+          type: string
+          nullable: true
+          readOnly: true
+        TransactionId:
+          type: string
+          nullable: true
+          readOnly: true
+        ExternalInvoiceId:
+          type: string
+          nullable: true
+          readOnly: true
+        Summary:
+          type: string
+          nullable: true
+        ContactEmail:
+          type: string
+          nullable: true
+        ContactPhone:
+          type: string
+          nullable: true
+        OrderFee:
+          type: number
+          description: Deprecated. Order fees have been folded into API.Models.OrderListOutput.FeeTotal; this property is kept for backwards compatibility but should be ignored.
+          format: double
+        AttendeeCount:
+          type: integer
+          format: int32
+        PlacedThrough:
+          type: string
+          nullable: true
+        CustomerAccountNumber:
+          type: integer
+          format: int64
+          nullable: true
+        Notes:
+          type: string
+          nullable: true
+        ExternalId:
+          type: string
+          nullable: true
+        PaidInFull:
+          type: boolean
+        ExternalCustomerId:
+          type: string
+          nullable: true
+        FlagState:
+          type: string
+          nullable: true
+      additionalProperties: false
+    FeeMethod:
+      enum:
+      - Pass
+      - Absorb
+      type: string
+    EventDateOutput:
+      type: object
+      properties:
+        DoorsAt:
+          type: string
+          format: date-time
+          nullable: true
+        StartsAt:
+          type: string
+          format: date-time
+        EndsAt:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    FieldMetaOutput:
+      type: object
+      properties:
+        FieldId:
+          type: string
+          nullable: true
+        FieldName:
+          type: string
+          nullable: true
+        Type:
+          type: string
+          nullable: true
+        FieldType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EventSeatOutput:
+      type: object
+      properties:
+        SeatId:
+          type: string
+          format: uuid
+        SectionId:
+          type: string
+          format: uuid
+        SectionName:
+          type: string
+          nullable: true
+        EventId:
+          type: string
+          format: uuid
+        EventNumber:
+          type: integer
+          format: int64
+        RowName:
+          type: string
+          nullable: true
+        SeatNumber:
+          type: integer
+          format: int32
+        SeatLabel:
+          type: string
+          nullable: true
+        SeatType:
+          type: string
+          nullable: true
+        Wheelchair:
+          type: boolean
+        LimitedView:
+          type: boolean
+        Distanced:
+          type: boolean
+        UnitPrice:
+          type: number
+          format: double
+        PriceColor:
+          $ref: '#/components/schemas/ColorOutput'
+        Available:
+          type: boolean
+        ReservedAt:
+          type: string
+          format: date-time
+          nullable: true
+        Notes:
+          type: string
+          nullable: true
+        OrderId:
+          type: string
+          format: uuid
+          nullable: true
+        OrderKey:
+          type: string
+          nullable: true
+        AttendeeId:
+          type: string
+          format: uuid
+          nullable: true
+        AttendeeNumber:
+          type: integer
+          format: int64
+          nullable: true
+        State:
+          $ref: '#/components/schemas/SeatReservedStateOutput'
+        InaccessibleDueToAccessCode:
+          type: boolean
+        Types:
+          type: array
+          items:
+            type: string
+            format: uuid
+          nullable: true
+        Amounts:
+          type: array
+          items:
+            type: number
+            format: double
+          nullable: true
+      additionalProperties: false
+    AttendeeDisplayOutput:
+      type: object
+      properties:
+        Line1:
+          type: string
+          nullable: true
+        Line2:
+          type: string
+          nullable: true
+        Line3:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EventTypeSectionOutput:
+      type: object
+      properties:
+        SectionId:
+          type: string
+          format: uuid
+        SectionName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    FieldOptionFullOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Label:
+          type: string
+          nullable: true
+        Capacity:
+          type: integer
+          format: int32
+          nullable: true
+        Quantity:
+          type: integer
+          format: int32
+        HasUnitPrice:
+          type: boolean
+        UnitPrice:
+          type: number
+          format: double
+          nullable: true
+        UnitTax:
+          type: number
+          format: double
+          nullable: true
+        IsInclusiveTaxes:
+          type: boolean
+        DisplayPrice:
+          type: number
+          format: double
+          nullable: true
+        PriceDescription:
+          type: string
+          nullable: true
+        IsSelected:
+          type: boolean
+        HasCapacity:
+          type: boolean
+        SpotsRemaining:
+          type: integer
+          format: int32
+          nullable: true
+        RemainingText:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EventType:
+      enum:
+      - GeneralAdmission
+      - FlexPass
+      - TimeSlot
+      type: string
+    UnitFeeLineItemOutput:
+      type: object
+      properties:
+        Label:
+          type: string
+          description: Display label (e.g. "Service Fee", "Sales Tax").
+          nullable: true
+        FeeType:
+          $ref: '#/components/schemas/FeeItemType'
+        Amount:
+          type: number
+          description: The evaluated amount for this line item.
+          format: double
+      additionalProperties: false
+      description: "A single fee or tax line item evaluated for an attendee from the attendee\r\ntype's customFees configuration. On cart outputs this is a live evaluation;\r\non order outputs it is the snapshot of what was collected at purchase time."
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        Key:
+          type: string
+          nullable: true
+        Value:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EventSessionOutput:
+      type: object
+      properties:
+        SessionNumber:
+          type: integer
+          format: int64
+        Name:
+          type: string
+          nullable: true
+        AttendeeTotal:
+          type: integer
+          format: int32
+        CheckedInCount:
+          type: integer
+          format: int32
+        Type:
+          type: string
+          nullable: true
+        IsHidden:
+          type: boolean
+        AllowFlex:
+          type: boolean
+          nullable: true
+        FlexPassCount:
+          type: integer
+          format: int32
+        FlexAttendeeTotal:
+          type: integer
+          format: int32
+        IsTimeSlot:
+          type: boolean
+        MinutesBefore:
+          type: integer
+          format: int32
+        MinutesAfter:
+          type: integer
+          format: int32
+        AllowPasses:
+          type: boolean
+      additionalProperties: false
+    EventListOutput:
+      type: object
+      properties:
+        Title:
+          type: string
+          nullable: true
+        Subtitle:
+          type: string
+          nullable: true
+        UrlKey:
+          type: string
+          nullable: true
+        ClientKey:
+          type: string
+          nullable: true
+        ClientName:
+          type: string
+          nullable: true
+        Culture:
+          type: string
+          nullable: true
+        DateInfo:
+          type: string
+          nullable: true
+        DateInfoList:
+          type: array
+          items:
+            type: string
+          nullable: true
+        SoldOut:
+          type: boolean
+        IsSticky:
+          type: boolean
+        EventNumber:
+          type: integer
+          format: int64
+        IsAssigned:
+          type: boolean
+        LocationName:
+          type: string
+          nullable: true
+        SessionCount:
+          type: integer
+          format: int32
+        IsActive:
+          type: boolean
+        DateDisplay:
+          $ref: '#/components/schemas/DateDisplayOutput'
+        Latitude:
+          type: number
+          format: double
+        Longitude:
+          type: number
+          format: double
+        MapUrl:
+          type: string
+          nullable: true
+        PromoImageUrl:
+          type: string
+          nullable: true
+        CategoryId:
+          type: integer
+          format: int32
+        CategoryName:
+          type: string
+          nullable: true
+        SpotsRemaining:
+          type: integer
+          format: int32
+          nullable: true
+        SpotsTaken:
+          type: integer
+          format: int32
+        ShowRemaining:
+          type: boolean
+        RemainingText:
+          type: string
+          nullable: true
+        Verbiage:
+          type: string
+          nullable: true
+        Dates:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventDateOutput'
+          nullable: true
+        AlternateTitle:
+          type: string
+          nullable: true
+          readOnly: true
+        TimeZoneId:
+          type: string
+          nullable: true
+        AreaName:
+          type: string
+          nullable: true
+        AreaKey:
+          type: string
+          nullable: true
+        PaymentProfileId:
+          type: string
+          format: uuid
+          nullable: true
+        AcctCode:
+          type: string
+          nullable: true
+        IsHidden:
+          type: boolean
+        IsFlexPass:
+          type: boolean
+        IsExchangeable:
+          type: boolean
+      additionalProperties: false
+    EventTypeVariationOutput:
+      type: object
+      properties:
+        ItemId:
+          type: string
+          nullable: true
+        Name:
+          type: string
+          nullable: true
+        Price:
+          type: number
+          format: double
+        DisplayPrice:
+          type: number
+          format: double
+          nullable: true
+        PriceDescription:
+          type: string
+          nullable: true
+        SpotsRemaining:
+          type: integer
+          format: int32
+          nullable: true
+        RemainingText:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    RelatedEventOutput:
+      type: object
+      properties:
+        ClientKey:
+          type: string
+          nullable: true
+        UrlKey:
+          type: string
+          nullable: true
+        EventNumber:
+          type: integer
+          format: int64
+        EventTitle:
+          type: string
+          nullable: true
+        Subtitle:
+          type: string
+          nullable: true
+        ImageUrl:
+          type: string
+          nullable: true
+        DateInfo:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EventTypeOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Name:
+          type: string
+          nullable: true
+        Description:
+          type: string
+          nullable: true
+        IsAvailable:
+          type: boolean
+        IsFuture:
+          type: boolean
+        IsPast:
+          type: boolean
+        Available:
+          type: string
+          nullable: true
+        SelectedAmount:
+          type: number
+          format: double
+          nullable: true
+        Amount:
+          type: number
+          format: double
+          nullable: true
+        DisplayAmount:
+          type: number
+          format: double
+        PriceDescription:
+          type: string
+          nullable: true
+        Fee:
+          type: number
+          description: Deprecated. Fees are now set in CustomFees; this property is kept for backwards compatibility but should be ignored.
+          format: double
+        Tax:
+          type: number
+          description: Deprecated. Taxes are now set in CustomFees; this property is kept for backwards compatibility but should be ignored.
+          format: double
+          nullable: true
+        TaxRate:
+          type: number
+          description: Deprecated. Tax rates are now set in CustomFees; this property is kept for backwards compatibility but should be ignored.
+          format: double
+          nullable: true
+        OrderFeePercent:
+          type: number
+          description: Deprecated. Fees are now set in CustomFees; this property is kept for backwards compatibility but should be ignored.
+          format: double
+          nullable: true
+        IsInclusiveFees:
+          type: boolean
+        IsInclusiveTaxes:
+          type: boolean
+        AllowCustomAmount:
+          type: boolean
+        PreRegEnabled:
+          type: boolean
+        GiftingEnabled:
+          type: boolean
+        CopyEnabled:
+          type: boolean
+        AcctCode:
+          type: string
+          nullable: true
+        PaymentAmounts:
+          type: string
+          nullable: true
+        PaymentsDueBy:
+          type: string
+          nullable: true
+        MinQuantity:
+          type: integer
+          format: int32
+        MaxQuantity:
+          type: integer
+          format: int32
+          nullable: true
+        IsGroup:
+          type: boolean
+        SoldOut:
+          type: boolean
+        YourGroup:
+          type: boolean
+        GroupingText:
+          type: string
+          nullable: true
+        QuantityRequirements:
+          type: string
+          nullable: true
+        GroupRequirements:
+          type: string
+          nullable: true
+          readOnly: true
+        IsInaccessibleDueToAccessCode:
+          type: boolean
+        IsAccessibleBecauseOfAccessCode:
+          type: boolean
+        IsAdmin:
+          type: boolean
+        Kind:
+          type: string
+          nullable: true
+        AllowedPayments:
+          type: array
+          items:
+            type: number
+            format: double
+          nullable: true
+        AllowedDisplayPayments:
+          type: array
+          items:
+            type: number
+            format: double
+          nullable: true
+        Sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventTypeSectionOutput'
+          nullable: true
+        Prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventTypePriceOutput'
+          nullable: true
+        SpotsRemaining:
+          type: integer
+          format: int32
+          nullable: true
+        RemainingText:
+          type: string
+          nullable: true
+        SharedCapacityId:
+          type: string
+          format: uuid
+          nullable: true
+        SharedCapacityName:
+          type: string
+          nullable: true
+        SharedCapacityKind:
+          type: string
+          nullable: true
+        TimeSlotStartsAt:
+          type: string
+          format: date-time
+          nullable: true
+        ShareEnabled:
+          type: boolean
+        IsAddon:
+          type: boolean
+        ImageUrl:
+          type: string
+          nullable: true
+        GeneratesTicket:
+          type: boolean
+        ExternalId:
+          type: string
+          nullable: true
+        Variations:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventTypeVariationOutput'
+          nullable: true
+        CustomFees:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomFeeOutput'
+          nullable: true
+        FeeLineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/UnitFeeLineItemOutput'
+          nullable: true
+        FeeBreakdown:
+          type: array
+          items:
+            $ref: '#/components/schemas/UnitFeeLineItemOutput'
+          nullable: true
+          readOnly: true
+        TaxBreakdown:
+          type: array
+          items:
+            $ref: '#/components/schemas/UnitFeeLineItemOutput'
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    EventSectionReservedStateOutput:
+      type: object
+      properties:
+        ReservedState:
+          $ref: '#/components/schemas/SeatReservedStateOutput'
+        SeatCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    ColorOutput:
+      type: object
+      properties:
+        RGB:
+          type: string
+          nullable: true
+        Hex:
+          type: string
+          nullable: true
+        Alpha:
+          type: number
+          format: double
+      additionalProperties: false
+    TypeKind:
+      enum:
+      - InPerson
+      - Donation
+      - Product
+      type: string
+    EventPaymentMethodOutput:
+      type: object
+      properties:
+        Grouping:
+          type: string
+          nullable: true
+        Id:
+          type: string
+          format: uuid
+        Name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EventDateCreateInput:
+      type: object
+      properties:
+        StartsAt:
+          type: string
+          format: date-time
+        EndsAt:
+          type: string
+          format: date-time
+          nullable: true
+        DoorsAt:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    TicketRenderType:
+      enum:
+      - Assigned
+      - AssignedSection
+      - GeneralAdmission
+      - FlexPass
+      - TimeSlot
+      - Groups
+      - Orders
+      type: string
+    GroupSummaryOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        GroupNumber:
+          type: integer
+          format: int64
+        Name:
+          type: string
+          nullable: true
+        Email:
+          type: string
+          nullable: true
+        AttendeeTypeId:
+          type: string
+          format: uuid
+        TypeName:
+          type: string
+          nullable: true
+        AttendeeCount:
+          type: integer
+          format: int32
+        JoinPasscode:
+          type: string
+          nullable: true
+        CommunityId:
+          type: string
+          format: uuid
+          nullable: true
+        CommunityPartition:
+          type: string
+          nullable: true
+        CommunityName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EventFieldOptionCreateInput:
+      type: object
+      properties:
+        Label:
+          type: string
+          nullable: true
+        IsSelected:
+          type: boolean
+        AdminVisible:
+          type: boolean
+        InternetVisible:
+          type: boolean
+        Custom1:
+          type: string
+          nullable: true
+        UnitPrice:
+          type: number
+          format: double
+          nullable: true
+        Capacity:
+          type: integer
+          format: int32
+          nullable: true
+        DependentFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventFieldCreateInput'
+          description: Use this to create fields that are only visible when this option is selected
+          nullable: true
+      additionalProperties: false
+    EventTypePriceOutput:
+      type: object
+      properties:
+        PriceId:
+          type: string
+          format: uuid
+        Name:
+          type: string
+          nullable: true
+        Color:
+          type: string
+          nullable: true
+        BasePrice:
+          type: number
+          format: double
+        Amount:
+          type: number
+          format: double
+        Fee:
+          type: number
+          format: double
+        Tax:
+          type: number
+          format: double
+        IsInclusiveFees:
+          type: boolean
+        IsInclusiveTaxes:
+          type: boolean
+        DisplayAmount:
+          type: number
+          format: double
+        PriceDescription:
+          type: string
+          nullable: true
+        FeeLineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/UnitFeeLineItemOutput'
+          nullable: true
+        FeeBreakdown:
+          type: array
+          items:
+            $ref: '#/components/schemas/UnitFeeLineItemOutput'
+          nullable: true
+          readOnly: true
+        TaxBreakdown:
+          type: array
+          items:
+            $ref: '#/components/schemas/UnitFeeLineItemOutput'
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    SharedCapacityKind:
+      enum:
+      - Default
+      - Time
+      - Pass
+      type: string
+    EventExternalCustomersCreateInput:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: WHether Brushfire should attempt to find/create customersin Square for this event.
+        customerGroups:
+          type: array
+          items:
+            type: string
+          description: A list of Square Customer Group IDs - if provided, Square Customers for this event will be added to all of these groups.
+          nullable: true
+        overwriteProfile:
+          type: boolean
+          description: If true, any personal data collected during checkout will overwrite existing customer data in Square. If false, personal data will be added, but existing Square data will not be overwritten.
+      additionalProperties: false
+    EventHeaderStyle:
+      enum:
+      - HTML
+      - Banner
+      - Logo
+      type: string
+    EventCommunityOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Partition:
+          type: string
+          nullable: true
+        Name:
+          type: string
+          nullable: true
+        Capacity:
+          type: integer
+          format: int32
+        AttendeeCount:
+          type: integer
+          format: int32
+        GroupCount:
+          type: integer
+          format: int32
+        Tags:
+          type: array
+          items:
+            type: string
+          nullable: true
+        RemainingCount:
+          type: integer
+          format: int32
+          readOnly: true
+      additionalProperties: false
+    EventFieldCreateInput:
+      type: object
+      properties:
+        Label:
+          type: string
+          nullable: true
+        FieldType:
+          $ref: '#/components/schemas/FieldType'
+        ValidationExpression:
+          type: string
+          nullable: true
+        StoredValue:
+          type: string
+          nullable: true
+        Notes:
+          type: string
+          nullable: true
+        AdminRequired:
+          type: boolean
+        AdminVisible:
+          type: boolean
+        InternetRequired:
+          type: boolean
+        InternetVisible:
+          type: boolean
+        IsSensitive:
+          type: boolean
+        Options:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventFieldOptionCreateInput'
+          description: Only set for fields of type Checkbox, Dropdown, Radiobuttons, ItemList, or ItemAmount
+          nullable: true
+        RemoteUrl:
+          type: string
+          description: Only set for fields of type RemoteFetch or RemoteValidate
+          nullable: true
+        RequireConfirm:
+          type: boolean
+          description: Only set for fields of type Text, Name, Phone, Email, or Date
+        EmailDomains:
+          type: array
+          items:
+            type: string
+          description: The list of domains you would like to validate for or against for email fields.
+          nullable: true
+        DomainValidation:
+          $ref: '#/components/schemas/DomainValidationType'
+      additionalProperties: false
+    EventCopyInput:
+      required:
+      - AccessKey
+      - CopyFees
+      - SourceEventId
+      - Title
+      - UrlKey
+      type: object
+      properties:
+        AccessKey:
+          minLength: 1
+          type: string
+          description: Your account access key. This is used to authenticate your requests.
+        SourceEventId:
+          type: string
+          format: uuid
+        Title:
+          minLength: 1
+          type: string
+          description: Event title
+          example: My New Event
+        Subtitle:
+          type: string
+          description: Leave null to use the original event's value
+          nullable: true
+        UrlKey:
+          maxLength: 50
+          minLength: 0
+          pattern: ^[0-9A-Za-z_\-]+$
+          type: string
+        AccountingCode:
+          type: string
+          nullable: true
+        LocationName:
+          type: string
+          description: Leave null to use the original event's value
+          nullable: true
+        LocationDetails:
+          type: string
+          description: Leave null to use the original event's value
+          nullable: true
+        Street:
+          type: string
+          description: Leave null to use the original event's value
+          nullable: true
+        City:
+          type: string
+          description: Leave null to use the original event's value
+          nullable: true
+        Region:
+          type: string
+          description: Leave null to use the original event's value
+          nullable: true
+        Country:
+          type: string
+          description: Leave null to use the original event's value
+          nullable: true
+        PostalCode:
+          type: string
+          description: Leave null to use the original event's value
+          nullable: true
+        Coordinates:
+          type: string
+          description: Leave null to use the original event's value
+          nullable: true
+        UseMap:
+          type: boolean
+          nullable: true
+        MapAddress:
+          type: string
+          description: Leave null to use the original event's value
+          nullable: true
+        Dates:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventDateCreateInput'
+          description: Leave null to use the original event's value
+          nullable: true
+        TimeZoneId:
+          type: string
+          description: Leave null to use the original event's value
+          nullable: true
+        CategoryId:
+          type: integer
+          description: Leave null to use the original event's value
+          format: int32
+          nullable: true
+        OverallCapacity:
+          type: integer
+          format: int32
+          nullable: true
+        PaymentProfileId:
+          type: string
+          description: Leave null to use the original event's value
+          nullable: true
+        CopyReports:
+          type: boolean
+        CopyCheckinOptions:
+          type: boolean
+        CopyGroups:
+          type: boolean
+        CopyWebhooks:
+          type: boolean
+        CopySubscriptions:
+          type: boolean
+        CopyAccessCodes:
+          type: boolean
+        CopyCommunities:
+          type: boolean
+        CopyEmails:
+          type: boolean
+        CopyPromoCodes:
+          type: boolean
+        CopyPrintJobs:
+          type: boolean
+        CopySeatLayoutId:
+          type: string
+          description: This is only if the source event is AST. This is either an event id, or layout id. Leave null to use the original event's value
+          nullable: true
+        CopyThemeEventId:
+          type: string
+          description: Leave null to use the original event's value
+          nullable: true
+        CopyFees:
+          $ref: '#/components/schemas/CopyFeesType'
+      additionalProperties: false
+    CopyFeesType:
+      enum:
+      - Client
+      - Original
+      type: string
+    FieldOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Label:
+          type: string
+          nullable: true
+        Type:
+          type: string
+          nullable: true
+        Value:
+          nullable: true
+        DisplayValue:
+          type: string
+          nullable: true
+        ValidationExpression:
+          type: string
+          nullable: true
+        IsRequired:
+          type: boolean
+        Notes:
+          type: string
+          nullable: true
+        ErrorMessage:
+          type: string
+          nullable: true
+        IsDisabled:
+          type: boolean
+        IsSensitive:
+          type: boolean
+        SpecialFieldId:
+          type: string
+          format: uuid
+        ParentOptionId:
+          type: string
+          format: uuid
+          nullable: true
+        ParentFieldId:
+          type: string
+          format: uuid
+          nullable: true
+        FormObjectId:
+          type: string
+          format: uuid
+          nullable: true
+        Options:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldOptionFullOutput'
+          nullable: true
+        ParentOptionIsSelected:
+          type: boolean
+        HasError:
+          type: boolean
+        HasRelevantOutput:
+          type: boolean
+        MinDate:
+          type: string
+          format: date-time
+          nullable: true
+        MaxDate:
+          type: string
+          format: date-time
+          nullable: true
+        AttendeeTypes:
+          type: array
+          items:
+            type: string
+            format: uuid
+          nullable: true
+        RemoteUrl:
+          type: string
+          nullable: true
+        SelectedOptionId:
+          type: string
+          format: uuid
+          nullable: true
+          readOnly: true
+        Confirm:
+          type: boolean
+        DomainValidation:
+          $ref: '#/components/schemas/DomainValidationOutput'
+        DisplayIsPrimary:
+          type: boolean
+      additionalProperties: false
+    CustomFeeOutput:
+      type: object
+      properties:
+        Label:
+          type: string
+          description: Display label shown to attendees (e.g. "Sales Tax", "Service Fee").
+          nullable: true
+        FeeType:
+          $ref: '#/components/schemas/FeeItemType'
+        Flat:
+          type: number
+          description: Flat per-attendee amount, if applicable.
+          format: double
+          nullable: true
+        Percent:
+          type: number
+          description: Percent of base price (0–100). Applies to both Fee and Tax rows.
+          format: double
+          nullable: true
+      additionalProperties: false
+      description: A single custom fee or tax row from an attendee type's CustomFeesJson.
+    ApiModelError:
+      type: object
+      properties:
+        Errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+          nullable: true
+        Message:
+          type: string
+          nullable: true
+        Data:
+          nullable: true
+        StackTrace:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EventSharedCapacityCreateInput:
+      type: object
+      properties:
+        SharedCapacityName:
+          type: string
+          description: For time slot events, if the SharedCapacityKind is "Time", you must provide a time here. i.e. "10:00 AM".
+          nullable: true
+        SharedCapacity:
+          type: integer
+          format: int32
+          nullable: true
+        SharedCapacityKind:
+          $ref: '#/components/schemas/SharedCapacityKind'
+        IsHidden:
+          type: boolean
+          description: Only for time slot events. If true, attendee types connected to this shared capacity will not be visible.
+        ConnectedTypeNames:
+          type: array
+          items:
+            type: string
+          description: List of attendee type names or addons names that are connected to this shared capacity. Must not mix and match. Time Slot events allow for attendee types to be connected across multiple shared capacities.
+          nullable: true
+      additionalProperties: false
+    DomainValidationType:
+      enum:
+      - All
+      - Only
+      - None
+      type: string
+    FeeItemType:
+      enum:
+      - Fee
+      - Tax
+      type: string
+    EventCreateInput:
+      required:
+      - AccessKey
+      - CategoryId
+      - ClientId
+      - OrganizerEmail
+      - TimeZoneId
+      - Title
+      - UrlKey
+      type: object
+      properties:
+        AccessKey:
+          minLength: 1
+          type: string
+          description: Your account access key. This is used to authenticate your requests.
+        ClientId:
+          type: string
+          description: The unique identifier for the client or organization that owns the event.
+          format: uuid
+          example: 24134460-e7ce-4bbd-bed8-df11cdd20d75
+        Title:
+          minLength: 1
+          type: string
+          description: Event title
+          example: My New Event
+        Subtitle:
+          type: string
+          nullable: true
+        UrlKey:
+          maxLength: 50
+          minLength: 0
+          pattern: ^[0-9A-Za-z_\-]+$
+          type: string
+          description: Url Keys help you group similar events and customize the event url
+          example: summer2025
+        EventCode:
+          pattern: ^[0-9A-Za-z]+$
+          type: string
+          description: Event code for the event.
+          nullable: true
+          example: EVT2025
+        VerbiageSetting:
+          $ref: '#/components/schemas/EventVerbiage'
+        CategoryId:
+          type: integer
+          description: 3 - CAMP, 23 - CLASS, SEMINAR OR TRAINING, 14 - CONCERT, PERFORMANCE, PRODUCTION, 5 - CONFERENCE, 12 - OTHER
+          format: int32
+          example: 3
+        OverallCapacity:
+          type: integer
+          description: How many people do you expect to attend this event?
+          format: int32
+          nullable: true
+        EventType:
+          $ref: '#/components/schemas/EventType'
+        IsCapacityManaged:
+          type: boolean
+          description: When this feature is enabled, a 15 minute timer ensures that all spots are held while they are in the cart. General admission events without this turned on will allow attendees to freely register and capacity will be managed at the point of placing an order instead of in the cart
+        IsSticky:
+          type: boolean
+          description: Make this event sticky
+        IsHidden:
+          type: boolean
+          description: Make this event private (only accessible via direct link)?
+        HasTickets:
+          type: boolean
+          description: Enable Ticket links on confirmation emails?
+        AccountingCode:
+          type: string
+          description: This value will appear on reports and will be sent to the payment gateway to help you reconcile.
+          nullable: true
+        ShowRemaining:
+          type: boolean
+          description: If enabled, remaining tickets is shown to customers.
+        ShowSoldOut:
+          type: boolean
+          description: If a given option is not in a selected group, sold out, expired, or future, do you still want the options to appear so your customers know all available options?
+        LockInGroups:
+          type: boolean
+          description: If this is enabled, all attendees who join a group will do so at the same type and rate that the group was created under. This "locks in" the price for all group members regardless of when they sign up.
+        TicketLimit:
+          type: integer
+          format: int32
+          nullable: true
+        AttendeeChangeType:
+          $ref: '#/components/schemas/AttendeeChangeType'
+        IsGroupCentric:
+          type: boolean
+          description: Enable "Groups First" functionality? (only works if group minimums are not enforced)
+        IsGroupPrivate:
+          type: boolean
+          description: Group names should remain private? (only works if IsGroupCentric is true)
+        SendEmails:
+          type: boolean
+        AllowRefundDonation:
+          type: boolean
+          description: Allow tickets to be donated back into available inventory prior to start of event
+        EventInfoTop:
+          type: string
+          nullable: true
+        EventInfoBottom:
+          type: string
+          nullable: true
+        StickyInfo:
+          type: string
+          nullable: true
+        ConfirmationLogoImageUrl:
+          type: string
+          description: The logo that appears on the confirmation page and emails. Must be a valid media library reference. Image should be 1200px x 400px for proper display.
+          nullable: true
+        ConfirmationText:
+          type: string
+          nullable: true
+        PauseText:
+          type: string
+          nullable: true
+        FinishText:
+          type: string
+          nullable: true
+        GroupCentricText:
+          type: string
+          description: Only available for group centric events.
+          nullable: true
+        GroupEmailText:
+          type: string
+          nullable: true
+        AutoRegTC:
+          type: string
+          nullable: true
+        AppImageUrl:
+          type: string
+          description: If supplied this will be used alongside the app interface in all modes. Image should be 1090px (wide) x 1870px (high) for proper display. Must be a valid media library reference.
+          nullable: true
+        LocationName:
+          type: string
+          nullable: true
+        LocationDetails:
+          type: string
+          nullable: true
+        Street:
+          type: string
+          nullable: true
+        City:
+          type: string
+          nullable: true
+        Region:
+          type: string
+          nullable: true
+        Country:
+          type: string
+          nullable: true
+        PostalCode:
+          type: string
+          nullable: true
+        Coordinates:
+          type: string
+          nullable: true
+        UseMap:
+          type: boolean
+        MapAddress:
+          type: string
+          nullable: true
+        ContactPhone:
+          pattern: ^((?:[\.\*\(\)\-\/\s\+]*\d){10,})(.*)$
+          type: string
+          description: The phone number for the event contact person.
+          nullable: true
+          example: +1-555-123-4567
+        OrganizerEmail:
+          minLength: 1
+          pattern: ^([0-9A-Za-zÀ-ÖØ-öø-ÿ']+[-._+&])*[0-9A-Za-zÀ-ÖØ-öø-ÿ_']+@([-0-9A-Za-zÀ-ÖØ-öø-ÿ]+[.])+[a-zA-Z]{2,63}$
+          type: string
+          description: The email address for the event contact person.
+          example: organizer@example.com
+        ManagerEmails:
+          type: array
+          items:
+            type: string
+          description: Once daily, the address(es) provided here will receive an email with registration statistics and links to relevant reports for this event.
+          nullable: true
+        NotifyEmails:
+          type: array
+          items:
+            type: string
+          description: Each time an order is placed or a group notification email is sent, the address(es) provided here will be blind copied on the confirmation email. Separate multiple addresses with a comma.
+          nullable: true
+        EventHomeUrl:
+          pattern: ^(https\:\/\/)[a-zA-Z0-9À-ÖØ-öø-ÿ\-\.]+\.[a-zA-Z]{2,}(/\S*)?$
+          type: string
+          description: Home URL for the event
+          nullable: true
+          example: https://example.com
+        Dates:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventDateCreateInput'
+          nullable: true
+        PublishHideAt:
+          type: string
+          format: date-time
+          nullable: true
+        PublishShowAt:
+          type: string
+          format: date-time
+          nullable: true
+        TimeZoneId:
+          minLength: 1
+          type: string
+        AddonTitle:
+          type: string
+          nullable: true
+        IsInclusiveTaxes:
+          type: boolean
+          description: When enabled, enter the total price including taxes. This price will be displayed as the inclusive price (including taxes and fees) and the tax amount will be calculated automatically for receipts and summaries. Once the event is created this may not be undone.
+        TaxRate:
+          type: number
+          description: Deprecated. Tax is now configured per-attendee-type via customFees; this field is accepted for backwards compatibility but ignored.
+          format: double
+        OrderFeePercent:
+          maximum: 100
+          minimum: 0
+          type: number
+          description: "These service fees are applied once per order, but are displayed in the inclusive fees on each attendee/add-on. They are assessed on the full price of each attendee/add-on inclusive of other fees, tax, discounts, or any other element of the cost, including this fee itself.\r\nDeprecated. Order-level fees have been removed; configure fees per-attendee-type via customFees; this field is accepted for backwards compatibility but ignored."
+          format: double
+        AttendeeTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventAttendeeTypeCreateInput'
+          nullable: true
+        Addons:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventAddonCreateInput'
+          nullable: true
+        SharedCapacities:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventSharedCapacityCreateInput'
+          description: These are your "Time Slots" if this is a time slot event.
+          nullable: true
+        PaymentProfileId:
+          type: string
+          format: uuid
+          nullable: true
+        CreditNumber:
+          type: integer
+          description: The default credit template to use when issuing credits for refunds or exchanges on this event. Leave null to use the organization-level default.
+          format: int64
+          nullable: true
+        HeaderStyle:
+          $ref: '#/components/schemas/EventHeaderStyle'
+        HeaderHtml:
+          type: string
+          nullable: true
+        LogoUrl:
+          pattern: ^(http(s?)\:\/\/)?[a-zA-Z0-9À-ÖØ-öø-ÿ\-\.]+\.[a-zA-Z]{2,}(/\S*)?$
+          type: string
+          description: The logo image URL that appears for this event. Must be a valid media library reference.
+          nullable: true
+          example: https://example.com
+        LogoPosition:
+          type: string
+          description: Left, Center, or Right
+          nullable: true
+        HeaderUrlLarge:
+          pattern: ^(http(s?)\:\/\/)?[a-zA-Z0-9À-ÖØ-öø-ÿ\-\.]+\.[a-zA-Z]{2,}(/\S*)?$
+          type: string
+          description: Only available for HeaderStyle.Banner
+          nullable: true
+          example: https://example.com
+        HeaderUrlMobile:
+          pattern: ^(http(s?)\:\/\/)?[a-zA-Z0-9À-ÖØ-öø-ÿ\-\.]+\.[a-zA-Z]{2,}(/\S*)?$
+          type: string
+          description: Only available for HeaderStyle.Banner
+          nullable: true
+          example: https://example.com
+        SiteBackgroundColor:
+          type: string
+          description: Hex color code for the background
+          nullable: true
+        SiteBackgroundImageUrl:
+          pattern: ^(http(s?)\:\/\/)?[a-zA-Z0-9À-ÖØ-öø-ÿ\-\.]+\.[a-zA-Z]{2,}(/\S*)?$
+          type: string
+          nullable: true
+          example: https://example.com
+        SiteBackgroundSize:
+          type: string
+          nullable: true
+        SiteBackgroundRepeat:
+          type: string
+          description: repeat, no-repeat, repeat-x, repeat-y
+          nullable: true
+        SiteBackgroundAttachment:
+          type: string
+          description: scroll, fixed, local
+          nullable: true
+        SiteBackgroundPosition:
+          type: string
+          nullable: true
+        SiteBackgroundColorText:
+          type: string
+          nullable: true
+        SiteLinkColor:
+          type: string
+          nullable: true
+        BlockedAccounts:
+          type: array
+          items:
+            type: string
+          description: Would you like to block certain accounts from seeing this event? If so, provide a list of account emails to block.
+          nullable: true
+        AllowedAccounts:
+          type: array
+          items:
+            type: string
+          description: Do you need to white list certain accounts to allow them to see this event? If so, provide a list of account emails to allow.
+          nullable: true
+        GoogleAnalytics:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventGoogleAnalyticsCreateInput'
+          nullable: true
+        CustomCode:
+          type: string
+          description: "Manage role only\r\nThis code will be executed in the body of every front-facing page related to this event.\r\nJavascript must be enclosed in script tags and CSS must be enclosed in style tags."
+          nullable: true
+        CustomCodeHead:
+          type: string
+          description: "Manage role only\r\nThis code will be placed once in the head of every front-facing page related to this event.\r\nJavascript must be enclosed in script tags and CSS must be enclosed in style tags."
+          nullable: true
+        CustomTracking:
+          type: string
+          description: "Manage role only\r\nValues are per event: {0} = Order Total, {1} = Order Quantity, {2} = Order Number, {3} = Event Number, {4} = Event Title, {5} = Order Email, {6} = First Name, {7} = Last Name\r\nThis code will be exectuted ONLY on a successful order result."
+          nullable: true
+        ParentEventId:
+          type: string
+          description: A parent is an event that is required in order to register for this event. If you give this event a parent, it will not appear in your store front. It will only be offered to people who purchase the parent.
+          format: uuid
+          nullable: true
+        PreRegEventId:
+          type: string
+          description: When pre-registering via the app or the specialized web interface, attendees can load information from a past event to quickly register. Selecting an event below allows that link to happen without the end-user explicitly specifying the target event (this event). Even if nothing is selected below, auto-registration is available for any event.
+          format: uuid
+          nullable: true
+        WidgetBuyFlowUrl:
+          pattern: ^(http(s?)\:\/\/)?[a-zA-Z0-9À-ÖØ-öø-ÿ\-\.]+\.[a-zA-Z]{2,}(/\S*)?$
+          type: string
+          description: If you are using our embeddable widget, we can redirect attendees to your page instead of Brushfire pages to keep their experience consistent.
+          nullable: true
+          example: https://example.com
+        WidgetPostAttendeeUrl:
+          pattern: ^(http(s?)\:\/\/)?[a-zA-Z0-9À-ÖØ-öø-ÿ\-\.]+\.[a-zA-Z]{2,}(/\S*)?$
+          type: string
+          description: If you are using our embeddable widget, we can redirect attendees to your page instead of Brushfire pages to keep their experience consistent.
+          nullable: true
+          example: https://example.com
+        AttendeeFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventAttendeeFieldCreateInput'
+          description: By default, all attendee fields will be connected to all attendee types.
+          nullable: true
+        BuyerFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventFieldCreateInput'
+          nullable: true
+        GroupFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventGroupFieldCreateInput'
+          nullable: true
+        TicketField1Header:
+          type: string
+          description: This is the header label value for the custom ticket field.
+          nullable: true
+        TicketField1Label:
+          type: string
+          description: Do you need more information on your tickets? You can use any standard field like "Attendee Number" or use one of your attendee/buyer/group field labels.
+          nullable: true
+        TicketField2Header:
+          type: string
+          description: This is the header label value for the custom ticket field.
+          nullable: true
+        TicketField2Label:
+          type: string
+          description: Do you need more information on your tickets? You can use any standard field like "Attendee Number" or use one of your attendee/buyer/group field labels.
+          nullable: true
+        TicketField3Header:
+          type: string
+          description: This is the header label value for the custom ticket field.
+          nullable: true
+        TicketField3Label:
+          type: string
+          description: Do you need more information on your tickets? You can use any standard field like "Attendee Number" or use one of your attendee/buyer/group field labels.
+          nullable: true
+        TicketImageUrl:
+          type: string
+          description: Do you need a custom header image for your tickets? Image should be 1125px x 294px @216dpi for proper display. Must be a valid media library reference.
+          nullable: true
+        TicketBackgroundColor:
+          type: string
+          description: 'Custom background color for your tickets. This should be a valid hex color code (e.g., #FFFFFF for white).'
+          nullable: true
+        TicketNotes:
+          type: string
+          nullable: true
+        TicketAdImageUrl:
+          type: string
+          description: Image should be 2250px x 1125px @ 300dpi (7.5in x 3.75in) for proper display. Must be a valid media library reference.
+          nullable: true
+        ExternalCustomersConfig:
+          $ref: '#/components/schemas/EventExternalCustomersCreateInput'
+        OfferSpot:
+          type: boolean
+          description: Whether to offer Spot refund insurance for this event.
+      additionalProperties: false
+    EventDateItem:
+      type: object
+      properties:
+        DoorsAt:
+          type: string
+          format: date-time
+          nullable: true
+        StartsAt:
+          type: string
+          format: date-time
+        EndsAt:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    FieldMetaType:
+      enum:
+      - Order
+      - Group
+      - Attendee
+      type: string
+    EventDocumentOutput:
+      type: object
+      properties:
+        HasTicket:
+          type: boolean
+        HasETicket:
+          type: boolean
+        HasReceipt:
+          type: boolean
+        HasNamebadge:
+          type: boolean
+        HasCheckIn:
+          type: boolean
+        HasWillCallLabel:
+          type: boolean
+        HasMailLabel:
+          type: boolean
+      additionalProperties: false
+    EventSectionOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Name:
+          type: string
+          nullable: true
+        Alignment:
+          type: string
+          nullable: true
+        AislesAfter:
+          type: array
+          items:
+            type: string
+          nullable: true
+        IsRowAscending:
+          type: boolean
+        IsSeatAscending:
+          type: boolean
+        IsRankAscending:
+          type: boolean
+        IsAssigned:
+          type: boolean
+        Rotation:
+          type: integer
+          format: int32
+        Rank:
+          type: integer
+          format: int32
+        DistanceCount:
+          type: integer
+          format: int32
+        RemainingText:
+          type: string
+          nullable: true
+        SpotsRemaining:
+          type: integer
+          format: int32
+          nullable: true
+        PriceBreakdown:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventSectionPriceOutput'
+          nullable: true
+        ReservedStates:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventSectionReservedStateOutput'
+          nullable: true
+      additionalProperties: false
+    EventResourceOutput:
+      type: object
+      properties:
+        Category:
+          type: string
+          nullable: true
+        Name:
+          type: string
+          nullable: true
+        Url:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EventVerbiage:
+      enum:
+      - Registrations
+      - Tickets
+      type: string
+    PriceMethod:
+      enum:
+      - Set
+      - Custom
+      - Payments
+      type: string
+    AttendeeChangeType:
+      enum:
+      - All
+      - Positive
+      - None
+      type: string
+    EventGroupFieldCreateInput:
+      type: object
+      properties:
+        IsGroup:
+          type: boolean
+          readOnly: true
+        Label:
+          type: string
+          nullable: true
+        FieldType:
+          $ref: '#/components/schemas/FieldType'
+        ValidationExpression:
+          type: string
+          nullable: true
+        StoredValue:
+          type: string
+          nullable: true
+        Notes:
+          type: string
+          nullable: true
+        AdminRequired:
+          type: boolean
+        AdminVisible:
+          type: boolean
+        InternetRequired:
+          type: boolean
+        InternetVisible:
+          type: boolean
+        IsSensitive:
+          type: boolean
+        Options:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventFieldOptionCreateInput'
+          description: Only set for fields of type Checkbox, Dropdown, Radiobuttons, ItemList, or ItemAmount
+          nullable: true
+        RemoteUrl:
+          type: string
+          description: Only set for fields of type RemoteFetch or RemoteValidate
+          nullable: true
+        RequireConfirm:
+          type: boolean
+          description: Only set for fields of type Text, Name, Phone, Email, or Date
+        EmailDomains:
+          type: array
+          items:
+            type: string
+          description: The list of domains you would like to validate for or against for email fields.
+          nullable: true
+        DomainValidation:
+          $ref: '#/components/schemas/DomainValidationType'
+      additionalProperties: false
+    EventAttendeeTypeCreateInput:
+      type: object
+      properties:
+        PriceMethod:
+          $ref: '#/components/schemas/PriceMethod'
+        AllowCustomAmount:
+          type: boolean
+        AllowedPayments:
+          type: array
+          items:
+            type: number
+            format: double
+          nullable: true
+        PaymentsDue:
+          type: string
+          format: date-time
+          nullable: true
+        FeeMethod:
+          $ref: '#/components/schemas/FeeMethod'
+        Fee:
+          type: number
+          description: Deprecated. Fees are now configured via customFees written through the EventCreator UI; this field is accepted for backwards compatibility but ignored.
+          format: double
+          nullable: true
+        FeePercent:
+          maximum: 100
+          minimum: 0
+          type: number
+          description: Deprecated. Fees are now configured via customFees written through the EventCreator UI; this field is accepted for backwards compatibility but ignored.
+          format: double
+          nullable: true
+        GroupsEnabled:
+          type: boolean
+        BypassGroupReq:
+          type: boolean
+        GiftingEnabled:
+          type: boolean
+        PreRegEnabled:
+          type: boolean
+        CopyEnabled:
+          type: boolean
+        AdvertisePrice:
+          type: boolean
+        Name:
+          type: string
+          nullable: true
+        Description:
+          type: string
+          nullable: true
+        AdminShowAt:
+          type: string
+          format: date-time
+          nullable: true
+        AdminHideAt:
+          type: string
+          format: date-time
+          nullable: true
+        InternetShowAt:
+          type: string
+          format: date-time
+          nullable: true
+        InternetHideAt:
+          type: string
+          format: date-time
+          nullable: true
+        IsHidden:
+          type: boolean
+        Capacity:
+          type: integer
+          format: int32
+          nullable: true
+        RoleName:
+          type: string
+          nullable: true
+        Amount:
+          type: number
+          format: double
+        MinQuantity:
+          type: integer
+          format: int32
+          nullable: true
+        MaxQuantity:
+          type: integer
+          format: int32
+          nullable: true
+        NoChangesAfter:
+          type: string
+          format: date-time
+          nullable: true
+        Custom1:
+          type: string
+          nullable: true
+        Custom2:
+          type: string
+          nullable: true
+        Custom3:
+          type: string
+          nullable: true
+        AcctCode:
+          type: string
+          nullable: true
+        GroupingText:
+          type: string
+          nullable: true
+        TypeKind:
+          $ref: '#/components/schemas/TypeKind'
+        FlexTotal:
+          type: integer
+          description: Total number of redemptions. Only applicable for Flex Pass events.
+          format: int32
+          nullable: true
+        FlexPer:
+          type: integer
+          description: Maximum number of redemptions per event. Only applicable for Flex Pass events.
+          format: int32
+          nullable: true
+        FlexStartsAt:
+          type: string
+          description: "When can redemptions start? Only applicable for Flex Pass events without Flex Relative Days.\r\nIf Flex Relative Days is set, this will be ignored."
+          format: date-time
+          nullable: true
+        FlexEndsAt:
+          type: string
+          description: "When will redemptions end? Only applicable for Flex Pass events without Flex Relative Days.\r\nIf Flex Relative Days is set, this will be ignored."
+          format: date-time
+          nullable: true
+        ConnectedFlexEventUrlKeys:
+          type: array
+          items:
+            type: string
+          description: What events can this flex pass be redeemed for? Set "all" to allow all events.
+          nullable: true
+        FlexRelativeDays:
+          type: integer
+          description: "For how many days is the flex pass redeemable after purchase? Only applicable for Flex Pass events.\r\nIf Flex Relative Days is set, FlexStartsAt and FlexEndsAt will be ignored."
+          format: int32
+          nullable: true
+        CustomHtml:
+          type: string
+          nullable: true
+        ShareEnabled:
+          type: boolean
+        GeneratesTicket:
+          type: boolean
+        TypeTicketImageUrl:
+          type: string
+          nullable: true
+        TypeTicketBackgroundColor:
+          type: string
+          nullable: true
+      additionalProperties: false
+    DomainValidationOutput:
+      type: object
+      properties:
+        AllowDomains:
+          type: array
+          items:
+            type: string
+          nullable: true
+        DisallowDomains:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    FlexPassCheckinItem:
+      type: object
+      properties:
+        EventId:
+          type: string
+          format: uuid
+        EventNumber:
+          type: integer
+          format: int64
+        Title:
+          type: string
+          nullable: true
+        CheckedInAt:
+          type: string
+          format: date-time
+        SessionName:
+          type: string
+          nullable: true
+        AttendeeCheckinId:
+          type: string
+          format: uuid
+        EventSessionId:
+          type: string
+          format: uuid
+        SessionNumber:
+          type: integer
+          format: int64
+        TimeZoneId:
+          type: string
+          nullable: true
+        CheckedInAtLocal:
+          type: string
+          format: date-time
+          readOnly: true
+        Culture:
+          type: string
+          nullable: true
+        Dates:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventDateItem'
+          nullable: true
+        StartsAt:
+          type: string
+          format: date-time
+          nullable: true
+          readOnly: true
+        TitleInfo:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    EventGoogleAnalyticsCreateInput:
+      type: object
+      properties:
+        number:
+          pattern: ^((UA|G)-[-0-9A-Za-z]{4,50})+$
+          type: string
+          description: The Google Analytics tracking number for the event.
+          nullable: true
+          example: UA-12345678-1
+        domain:
+          type: string
+          description: The Google Analytics domain
+          nullable: true
+      additionalProperties: false
+    EventSingleOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        EventNumber:
+          type: integer
+          format: int64
+        UrlKey:
+          type: string
+          nullable: true
+        ClientKey:
+          type: string
+          nullable: true
+        ClientName:
+          type: string
+          nullable: true
+        ClientIsDemo:
+          type: boolean
+        IsAssigned:
+          type: boolean
+        CategoryId:
+          type: integer
+          format: int32
+        CategoryName:
+          type: string
+          nullable: true
+        UseMap:
+          type: boolean
+        LocationName:
+          type: string
+          nullable: true
+        Street:
+          type: string
+          nullable: true
+        City:
+          type: string
+          nullable: true
+        Region:
+          type: string
+          nullable: true
+        Country:
+          type: string
+          nullable: true
+        PostalCode:
+          type: string
+          nullable: true
+        LocationDetails:
+          type: string
+          nullable: true
+        MapAddress:
+          type: string
+          nullable: true
+        Address:
+          type: string
+          nullable: true
+        Location:
+          type: string
+          nullable: true
+        ShowSoldOut:
+          type: boolean
+        PaymentProfileId:
+          type: string
+          format: uuid
+          nullable: true
+        TimeZoneId:
+          type: string
+          nullable: true
+        Culture:
+          type: string
+          nullable: true
+        Currency:
+          type: string
+          nullable: true
+        FacebookUrl:
+          type: string
+          nullable: true
+        SessionCount:
+          type: integer
+          format: int32
+        Title:
+          type: string
+          nullable: true
+        AlternateTitle:
+          type: string
+          nullable: true
+          readOnly: true
+        TitleInfo:
+          type: string
+          nullable: true
+        Subtitle:
+          type: string
+          nullable: true
+        IsPublished:
+          type: boolean
+        OverallCapacity:
+          type: integer
+          format: int32
+          nullable: true
+        IsSoldOut:
+          type: boolean
+        SpotsTaken:
+          type: integer
+          format: int32
+          nullable: true
+        SpotsRemaining:
+          type: integer
+          format: int32
+          nullable: true
+        IsHidden:
+          type: boolean
+        Verbiage:
+          type: string
+          nullable: true
+        Dates:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventDateOutput'
+          nullable: true
+        DateInfoList:
+          type: array
+          items:
+            type: string
+          nullable: true
+        DateInfo:
+          type: string
+          nullable: true
+        StartsAt:
+          type: string
+          format: date-time
+          nullable: true
+        DoorsAt:
+          type: string
+          format: date-time
+          nullable: true
+        EndsAt:
+          type: string
+          format: date-time
+          nullable: true
+        HasParent:
+          type: boolean
+        VenueImage:
+          type: string
+          nullable: true
+        EventInfoTop:
+          type: string
+          nullable: true
+        EventInfoBottom:
+          type: string
+          nullable: true
+        StickyInfo:
+          type: string
+          nullable: true
+        EventCode:
+          type: string
+          nullable: true
+        ContactPhone:
+          type: string
+          nullable: true
+        ContactEmail:
+          type: string
+          nullable: true
+        Website:
+          type: string
+          nullable: true
+        CreatedAt:
+          type: string
+          format: date-time
+        SeasonRunAt:
+          type: string
+          format: date-time
+          nullable: true
+        IsSeasonMaster:
+          type: boolean
+        IsSeasonChild:
+          type: boolean
+        IsSeasonRunImmediate:
+          type: boolean
+        AppImageUrl:
+          type: string
+          nullable: true
+        StreamUrl:
+          type: string
+          nullable: true
+        AreaName:
+          type: string
+          nullable: true
+        AreaKey:
+          nullable: true
+        AcctCode:
+          type: string
+          nullable: true
+        ShowStage:
+          type: boolean
+        IsFlexPass:
+          type: boolean
+        AttendeeChanges:
+          $ref: '#/components/schemas/AttendeeChangeType'
+        IsTimeSlot:
+          type: boolean
+        AddonTitle:
+          type: string
+          nullable: true
+        IsExchangeable:
+          type: boolean
+      additionalProperties: false
+    SeatReservedStateOutput:
+      type: object
+      properties:
+        Id:
+          type: integer
+          format: int32
+        Name:
+          type: string
+          nullable: true
+        BackColor:
+          $ref: '#/components/schemas/ColorOutput'
+        ForeColor:
+          $ref: '#/components/schemas/ColorOutput'
+      additionalProperties: false
+    EventDetailsOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        EventNumber:
+          type: integer
+          format: int64
+        PreRegParentId:
+          type: string
+          format: uuid
+          nullable: true
+        PreRegChildId:
+          type: string
+          format: uuid
+          nullable: true
+        UrlKey:
+          type: string
+          nullable: true
+        ClientKey:
+          type: string
+          nullable: true
+        ClientName:
+          type: string
+          nullable: true
+        ClientCountry:
+          type: string
+          nullable: true
+        ClientRegion:
+          type: string
+          nullable: true
+        ClientIsDemo:
+          type: boolean
+        PaymentProfileId:
+          type: string
+          format: uuid
+          nullable: true
+        ClientTheme:
+          type: string
+          nullable: true
+        EventTheme:
+          type: string
+          nullable: true
+        AppImageUrl:
+          type: string
+          nullable: true
+        IsAssigned:
+          type: boolean
+        HasCommunities:
+          type: boolean
+        HasExistingGroups:
+          type: boolean
+        HasGroupTypes:
+          type: boolean
+        LockinGroups:
+          type: boolean
+        IsGroupCentric:
+          type: boolean
+        IsGroupPrivate:
+          type: boolean
+        GroupCentricText:
+          type: string
+          nullable: true
+        ShowSoldOut:
+          type: boolean
+        HasActiveEventCodes:
+          type: boolean
+        HasActiveSeatCodes:
+          type: boolean
+        HasActiveTypeCodes:
+          type: boolean
+        HasPayments:
+          type: boolean
+        PromoImageUrl:
+          type: string
+          nullable: true
+        PromoDescription:
+          type: string
+          nullable: true
+        AccessState:
+          type: string
+          nullable: true
+        AccessMessage:
+          type: string
+          nullable: true
+        PreventChanges:
+          type: boolean
+        AccessCodeIsValid:
+          type: boolean
+        PauseText:
+          type: string
+          nullable: true
+        CategoryId:
+          type: integer
+          format: int32
+        CategoryName:
+          type: string
+          nullable: true
+        UseMap:
+          type: boolean
+        LocationName:
+          type: string
+          nullable: true
+        Street:
+          type: string
+          nullable: true
+        City:
+          type: string
+          nullable: true
+        Region:
+          type: string
+          nullable: true
+        Country:
+          type: string
+          nullable: true
+        PostalCode:
+          type: string
+          nullable: true
+        LocationDetails:
+          type: string
+          nullable: true
+        MapAddress:
+          type: string
+          nullable: true
+        Address:
+          type: string
+          nullable: true
+        Location:
+          type: string
+          nullable: true
+        Latitude:
+          type: number
+          format: double
+        Longitude:
+          type: number
+          format: double
+        TimeZoneId:
+          type: string
+          nullable: true
+        Culture:
+          type: string
+          nullable: true
+        Currency:
+          type: string
+          nullable: true
+        ShareUrl:
+          type: string
+          nullable: true
+        FacebookUrl:
+          type: string
+          nullable: true
+        TwitterUrl:
+          type: string
+          nullable: true
+        TwitterRelated:
+          type: string
+          nullable: true
+        TwitterText:
+          type: string
+          nullable: true
+        SessionCount:
+          type: integer
+          format: int32
+        Title:
+          type: string
+          nullable: true
+        AlternateTitle:
+          type: string
+          nullable: true
+          readOnly: true
+        TitleInfo:
+          type: string
+          nullable: true
+        Subtitle:
+          type: string
+          nullable: true
+        IsPublished:
+          type: boolean
+        IsHidden:
+          type: boolean
+        OverallCapacity:
+          type: integer
+          format: int32
+          nullable: true
+        IsSoldOut:
+          type: boolean
+        SpotsTaken:
+          type: integer
+          format: int32
+          nullable: true
+        SpotsRemaining:
+          type: integer
+          format: int32
+          nullable: true
+        Types:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventTypeOutput'
+          nullable: true
+        Verbiage:
+          type: string
+          nullable: true
+        Dates:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventDateOutput'
+          nullable: true
+        DateInfoList:
+          type: array
+          items:
+            type: string
+          nullable: true
+        DateInfo:
+          type: string
+          nullable: true
+        StartsAt:
+          type: string
+          format: date-time
+          nullable: true
+        DoorsAt:
+          type: string
+          format: date-time
+          nullable: true
+        EndsAt:
+          type: string
+          format: date-time
+          nullable: true
+        HasParent:
+          type: boolean
+        VenueImage:
+          type: string
+          nullable: true
+        EventInfoTop:
+          type: string
+          nullable: true
+        EventInfoBottom:
+          type: string
+          nullable: true
+        StickyInfo:
+          type: string
+          nullable: true
+        EventCode:
+          type: string
+          nullable: true
+        ContactPhone:
+          type: string
+          nullable: true
+        ContactEmail:
+          type: string
+          nullable: true
+        Website:
+          type: string
+          nullable: true
+        CreatedAt:
+          type: string
+          format: date-time
+        SeasonRunAt:
+          type: string
+          format: date-time
+          nullable: true
+        IsSeasonMaster:
+          type: boolean
+        IsSeasonChild:
+          type: boolean
+        IsSeasonRunImmediate:
+          type: boolean
+        Sessions:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventSessionOutput'
+          nullable: true
+        Documents:
+          $ref: '#/components/schemas/EventDocumentOutput'
+        StreamUrl:
+          type: string
+          nullable: true
+        PublishShowAt:
+          type: string
+          format: date-time
+          nullable: true
+        PublishHideAt:
+          type: string
+          format: date-time
+          nullable: true
+        AutoRegTC:
+          type: string
+          nullable: true
+        AreaName:
+          type: string
+          nullable: true
+        AreaKey:
+          type: string
+          nullable: true
+        AreaHeaderLogo:
+          type: string
+          nullable: true
+        AreaHeaderHtml:
+          type: string
+          nullable: true
+        AcctCode:
+          type: string
+          nullable: true
+        ShowStage:
+          type: boolean
+        RelatedEvents:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelatedEventOutput'
+          nullable: true
+        IsFlexPass:
+          type: boolean
+        IsTimeSlot:
+          type: boolean
+        TaxLabel:
+          type: string
+          nullable: true
+        AddonTitle:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TicketInfoOutput:
+      type: object
+      properties:
+        AttendeeTypeName:
+          type: string
+          nullable: true
+        AttendeeName:
+          type: string
+          nullable: true
+        Title:
+          type: string
+          nullable: true
+        Section:
+          type: string
+          nullable: true
+        RowLabel:
+          type: string
+          nullable: true
+        Row:
+          type: string
+          nullable: true
+        Seat:
+          type: string
+          nullable: true
+        FlexSummary:
+          type: string
+          nullable: true
+        Field1Label:
+          type: string
+          nullable: true
+        Field1Value:
+          type: string
+          nullable: true
+        Field2Label:
+          type: string
+          nullable: true
+        Field2Value:
+          type: string
+          nullable: true
+        Field3Label:
+          type: string
+          nullable: true
+        Field3Value:
+          type: string
+          nullable: true
+        ImageUrl:
+          type: string
+          nullable: true
+        TicketRenderType:
+          $ref: '#/components/schemas/TicketRenderType'
+        TicketNotes:
+          type: string
+          nullable: true
+        TicketAd:
+          type: string
+          nullable: true
+        EventDate:
+          type: string
+          nullable: true
+        EventTime:
+          type: string
+          nullable: true
+        EventDoorTime:
+          type: string
+          nullable: true
+        EventTitle:
+          type: string
+          nullable: true
+        QrImageUrl:
+          type: string
+          nullable: true
+        QrText:
+          type: string
+          nullable: true
+        PassUrl:
+          type: string
+          nullable: true
+        WalletUrl:
+          type: string
+          nullable: true
+        BundledPassUrl:
+          type: string
+          nullable: true
+        BundledWalletUrl:
+          type: string
+          nullable: true
+        PrintUrl:
+          type: string
+          nullable: true
+        BundledPrintUrl:
+          type: string
+          nullable: true
+        EditUrl:
+          type: string
+          nullable: true
+        FlexPassRedemptionsUsed:
+          type: string
+          nullable: true
+        FlexPassRedemptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/FlexPassCheckinItem'
+          nullable: true
+        IsFlexOrderOrGroupTicket:
+          type: boolean
+        TicketColor:
+          type: string
+          nullable: true
+        TicketClassName:
+          type: string
+          nullable: true
+        EventContactInfo:
+          type: string
+          nullable: true
+        OrderInfo:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          nullable: true
+        AttendeesDescription:
+          type: string
+          nullable: true
+        TimeSlotName:
+          type: string
+          nullable: true
+        SharedCapacityName:
+          type: string
+          nullable: true
+        LocationInfo:
+          type: string
+          nullable: true
+        DateInfo:
+          type: string
+          nullable: true
+        BundledTicketUrl:
+          type: string
+          nullable: true
+        IsBundledTicket:
+          type: boolean
+        StartsEndsSameDay:
+          type: boolean
+        Coordinates:
+          type: string
+          nullable: true
+        Address:
+          type: string
+          nullable: true
+        MapAddress:
+          type: string
+          nullable: true
+        ContactEmail:
+          type: string
+          nullable: true
+        ContactPhone:
+          type: string
+          nullable: true
+        IsFlexPass:
+          type: boolean
+      additionalProperties: false
+    DateDisplayOutput:
+      type: object
+      properties:
+        Months:
+          type: string
+          nullable: true
+        Dates:
+          type: string
+          nullable: true
+        Days:
+          type: string
+          nullable: true
+        Times:
+          type: string
+          nullable: true
+        IsOngoing:
+          type: boolean
+      additionalProperties: false
+    EventSectionPriceOutput:
+      type: object
+      properties:
+        TypeId:
+          type: string
+          format: uuid
+        Amount:
+          type: number
+          format: double
+        Fee:
+          type: number
+          format: double
+          nullable: true
+        IsInclusiveFees:
+          type: boolean
+        ConsecutiveSeats:
+          type: integer
+          format: int32
+        DisplayAmount:
+          type: number
+          format: double
+        PriceDescription:
+          type: string
+          nullable: true
+        CustomFees:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomFeeOutput'
+          nullable: true
+      additionalProperties: false
+    OrderListPaymentOutput:
+      type: object
+      properties:
+        PaymentMethodId:
+          type: string
+          format: uuid
+        PaymentMethod:
+          type: string
+          nullable: true
+        PaymentNumber:
+          type: string
+          nullable: true
+        TransactionId:
+          type: string
+          nullable: true
+        TransactionTotal:
+          type: number
+          format: double
+        ExternalInvoiceId:
+          type: string
+          nullable: true
+        CreditNumber:
+          type: integer
+          format: int64
+          nullable: true
+        PaidInFull:
+          type: boolean
+          nullable: true
+      additionalProperties: false
+    FieldType:
+      enum:
+      - Text
+      - MultiText
+      - Name
+      - Address
+      - Phone
+      - Email
+      - Dropdown
+      - Checkboxes
+      - Radiobuttons
+      - Date
+      - Accept
+      - ItemList
+      - ItemAmount
+      - Paragraph
+      - SectionHeader
+      - Link
+      - Signature
+      - RemoteValidate
+      - RemoteFetch
+      type: string
+    EventMoveInput:
+      required:
+      - AccessKey
+      - TargetClientId
+      - UrlKey
+      type: object
+      properties:
+        AccessKey:
+          minLength: 1
+          type: string
+          description: Your account access key. This is used to authenticate your requests.
+        TargetClientId:
+          type: string
+          description: The ID of the client to move the event to.
+          format: uuid
+        UrlKey:
+          maxLength: 50
+          minLength: 0
+          pattern: ^[0-9A-Za-z_\-]+$
+          type: string
+          description: The URL key the event will have under the target client.
+        PaymentProfileId:
+          type: string
+          description: The payment profile ID to assign to the event in the target client. Leave null to assign no payment profile.
+          format: uuid
+          nullable: true
+        UseNewClientFeeStructure:
+          type: boolean
+          description: "Whether to replace the event's fee structure with the target client's fee structure. Defaults to true.\r\nSetting this to false is restricted to Brushfire staff."
+      additionalProperties: false
+    EventAddonCreateInput:
+      type: object
+      properties:
+        Name:
+          type: string
+          nullable: true
+        Description:
+          type: string
+          nullable: true
+        AdminShowAt:
+          type: string
+          format: date-time
+          nullable: true
+        AdminHideAt:
+          type: string
+          format: date-time
+          nullable: true
+        InternetShowAt:
+          type: string
+          format: date-time
+          nullable: true
+        InternetHideAt:
+          type: string
+          format: date-time
+          nullable: true
+        IsHidden:
+          type: boolean
+        Capacity:
+          type: integer
+          format: int32
+          nullable: true
+        RoleName:
+          type: string
+          nullable: true
+        Amount:
+          type: number
+          format: double
+        MinQuantity:
+          type: integer
+          format: int32
+          nullable: true
+        MaxQuantity:
+          type: integer
+          format: int32
+          nullable: true
+        NoChangesAfter:
+          type: string
+          format: date-time
+          nullable: true
+        Custom1:
+          type: string
+          nullable: true
+        Custom2:
+          type: string
+          nullable: true
+        Custom3:
+          type: string
+          nullable: true
+        AcctCode:
+          type: string
+          nullable: true
+        GroupingText:
+          type: string
+          nullable: true
+        TypeKind:
+          $ref: '#/components/schemas/TypeKind'
+        FlexTotal:
+          type: integer
+          description: Total number of redemptions. Only applicable for Flex Pass events.
+          format: int32
+          nullable: true
+        FlexPer:
+          type: integer
+          description: Maximum number of redemptions per event. Only applicable for Flex Pass events.
+          format: int32
+          nullable: true
+        FlexStartsAt:
+          type: string
+          description: "When can redemptions start? Only applicable for Flex Pass events without Flex Relative Days.\r\nIf Flex Relative Days is set, this will be ignored."
+          format: date-time
+          nullable: true
+        FlexEndsAt:
+          type: string
+          description: "When will redemptions end? Only applicable for Flex Pass events without Flex Relative Days.\r\nIf Flex Relative Days is set, this will be ignored."
+          format: date-time
+          nullable: true
+        ConnectedFlexEventUrlKeys:
+          type: array
+          items:
+            type: string
+          description: What events can this flex pass be redeemed for? Set "all" to allow all events.
+          nullable: true
+        FlexRelativeDays:
+          type: integer
+          description: "For how many days is the flex pass redeemable after purchase? Only applicable for Flex Pass events.\r\nIf Flex Relative Days is set, FlexStartsAt and FlexEndsAt will be ignored."
+          format: int32
+          nullable: true
+        CustomHtml:
+          type: string
+          nullable: true
+        ShareEnabled:
+          type: boolean
+        GeneratesTicket:
+          type: boolean
+        TypeTicketImageUrl:
+          type: string
+          nullable: true
+        TypeTicketBackgroundColor:
+          type: string
+          nullable: true
+      additionalProperties: false
+    FieldUpdateType:
+      enum:
+      - Attendees
+      - Groups
+      - Buyer
+      type: string
+    AttendeeTypeCategory:
+      enum:
+      - All
+      - Standard
+      - Addon
+      type: string
+    EventAttendeeFieldCreateInput:
+      type: object
+      properties:
+        IsPrimaryEmail:
+          type: boolean
+          description: This is used to mark the field as primary email field for the attendee.
+        Label:
+          type: string
+          nullable: true
+        FieldType:
+          $ref: '#/components/schemas/FieldType'
+        ValidationExpression:
+          type: string
+          nullable: true
+        StoredValue:
+          type: string
+          nullable: true
+        Notes:
+          type: string
+          nullable: true
+        AdminRequired:
+          type: boolean
+        AdminVisible:
+          type: boolean
+        InternetRequired:
+          type: boolean
+        InternetVisible:
+          type: boolean
+        IsSensitive:
+          type: boolean
+        Options:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventFieldOptionCreateInput'
+          description: Only set for fields of type Checkbox, Dropdown, Radiobuttons, ItemList, or ItemAmount
+          nullable: true
+        RemoteUrl:
+          type: string
+          description: Only set for fields of type RemoteFetch or RemoteValidate
+          nullable: true
+        RequireConfirm:
+          type: boolean
+          description: Only set for fields of type Text, Name, Phone, Email, or Date
+        EmailDomains:
+          type: array
+          items:
+            type: string
+          description: The list of domains you would like to validate for or against for email fields.
+          nullable: true
+        DomainValidation:
+          $ref: '#/components/schemas/DomainValidationType'
+      additionalProperties: false
+    RemoteFetchResult:
+      type: object
+      properties:
+        Label:
+          type: string
+          nullable: true
+        Value:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ThemeOutput:
+      type: object
+      properties:
+        LogoUrl:
+          type: string
+          nullable: true
+        LogoPosition:
+          type: string
+          nullable: true
+        HeaderUrlLarge:
+          type: string
+          nullable: true
+        HeaderUrlMobile:
+          type: string
+          nullable: true
+        BackgroundCss:
+          type: string
+          nullable: true
+        TextColor:
+          type: string
+          nullable: true
+        LinkColor:
+          type: string
+          nullable: true
+        HomeUrl:
+          type: string
+          nullable: true
+        HeaderHtml:
+          type: string
+          nullable: true
+        ClientKey:
+          type: string
+          nullable: true
+        ClientName:
+          type: string
+          nullable: true
+        UrlKey:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LookupAttendeeResultOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        AttendeeNumber:
+          type: integer
+          format: int64
+        Status:
+          type: string
+          nullable: true
+        IsCompleted:
+          type: boolean
+        IsGift:
+          type: boolean
+        IsPreRegistered:
+          type: boolean
+        ShareEmail:
+          type: string
+          nullable: true
+        GiftingEnabled:
+          type: boolean
+        GiftLastSentAt:
+          type: string
+          format: date-time
+          nullable: true
+        GiftLastSentAtLocal:
+          type: string
+          format: date-time
+          nullable: true
+          readOnly: true
+        TimeZoneId:
+          type: string
+          nullable: true
+        FirstName:
+          type: string
+          nullable: true
+        LastName:
+          type: string
+          nullable: true
+        Name:
+          type: string
+          nullable: true
+          readOnly: true
+        AttendeeTypeId:
+          type: string
+          format: uuid
+        TypeName:
+          type: string
+          nullable: true
+        TypeAmount:
+          type: number
+          format: double
+        TypeDisplayAmount:
+          type: number
+          format: double
+        SectionName:
+          type: string
+          nullable: true
+        RowName:
+          type: string
+          nullable: true
+        SeatLabel:
+          type: string
+          nullable: true
+        Amount:
+          type: number
+          format: double
+        Addons:
+          type: number
+          format: double
+        Discounts:
+          type: number
+          format: double
+        SeatInfo:
+          type: string
+          nullable: true
+        Culture:
+          type: string
+          nullable: true
+        GroupId:
+          type: string
+          format: uuid
+          nullable: true
+        GroupName:
+          type: string
+          nullable: true
+        GroupEmail:
+          type: string
+          nullable: true
+        AttendeeDisplay:
+          $ref: '#/components/schemas/AttendeeDisplayOutput'
+        AttendeeDisplayLines:
+          $ref: '#/components/schemas/AttendeeDisplayOutput'
+        DisplayPrice:
+          type: number
+          format: double
+          readOnly: true
+        DisplayTotal:
+          type: number
+          format: double
+          readOnly: true
+        PriceDescription:
+          type: string
+          nullable: true
+        HasPaymentsToMake:
+          type: boolean
+        DonatingBackEnabled:
+          type: boolean
+        ChangesAreBlocked:
+          type: boolean
+        ChangesAreBlockedAfter:
+          type: string
+          format: date-time
+          nullable: true
+        HasPendingSignatures:
+          type: boolean
+        AllSignaturesComplete:
+          type: boolean
+        ShareEnabled:
+          type: boolean
+        TicketInfo:
+          $ref: '#/components/schemas/TicketInfoOutput'
+      additionalProperties: false
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      description: The App Key you received from https://developer.brushfire.com/key
+      name: Authorization
+      in: header

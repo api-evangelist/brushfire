@@ -1,0 +1,905 @@
+openapi: 3.0.1
+info:
+  title: 'Brushfire API: Version 2025-07-22 AccessCodes Groups API'
+  version: '2025-07-22'
+  description: 'The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform. It covers events, ticket types, sections and seats, attendees, orders, the shopping cart and checkout flow, groups, sessions and check-in, promotions and access codes, payment profiles, and webhooks (Hooks). Authenticate by sending your App Key (requested at https://developer.brushfire.com/key) in the Authorization header. The API is date-versioned: send the desired version in the api-version request header (for example, 2025-07-22). This document is the live specification published at api.brushfire.com/swagger.'
+  contact:
+    name: Brushfire Developers
+    url: https://developer.brushfire.com
+servers:
+- url: https://api.brushfire.com
+  description: Brushfire API (date-versioned via the api-version header)
+tags:
+- name: Groups
+paths:
+  /groups:
+    post:
+      tags:
+      - Groups
+      summary: Create a group
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupCreateInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GroupCreateInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GroupCreateInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupCreateOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GroupCreateOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+    put:
+      tags:
+      - Groups
+      summary: Update a group
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupUpdateInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GroupUpdateInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GroupUpdateInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupCreateOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GroupCreateOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /groups/{groupId}:
+    get:
+      tags:
+      - Groups
+      summary: Retrieve information about a group
+      parameters:
+      - name: groupId
+        in: path
+        description: A GUID or an integer representing a group
+        required: true
+        schema:
+          type: string
+      - name: accessKey
+        in: query
+        description: The Access Key for the user context
+        schema:
+          type: string
+      - name: qrSize
+        in: query
+        description: The width and height of the QR Code. If blank, no QR will be sent.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupSingleOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GroupSingleOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /groups/{groupId}/community:
+    post:
+      tags:
+      - Groups
+      summary: Set or clear the community for the specified group and all of its attendees
+      parameters:
+      - name: groupId
+        in: path
+        description: A GUID or an integer representing a group
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupCommunityInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GroupCommunityInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GroupCommunityInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupCreateOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GroupCreateOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /groups/{groupId}/fields:
+    get:
+      tags:
+      - Groups
+      summary: Retrieve fields for a group
+      parameters:
+      - name: groupId
+        in: path
+        description: A GUID or an integer representing a group
+        required: true
+        schema:
+          type: string
+      - name: accessKey
+        in: query
+        description: The Access Key for the user context
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FieldOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FieldOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+    post:
+      tags:
+      - Groups
+      summary: Update fields for a group
+      parameters:
+      - name: groupId
+        in: path
+        description: A GUID or an integer representing a group
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FieldUpdateInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FieldUpdateInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FieldUpdateInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FieldOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FieldOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /groups/{groupId}/print:
+    get:
+      tags:
+      - Groups
+      summary: Retrieve the printable resources for a single group
+      parameters:
+      - name: groupId
+        in: path
+        description: A GUID or an integer representing a group
+        required: true
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: A string that is one of "Ticket", "ETicket", or "Namebadge"
+        schema:
+          $ref: '#/components/schemas/PrintType'
+      - name: format
+        in: query
+        description: A string that is one of "PDF", "PNG", "JPG", "GIF", "BMP" or "TIFF"
+        schema:
+          $ref: '#/components/schemas/PrintFormat'
+      - name: imageDpi
+        in: query
+        description: An int representing the dots per inch of the images produced that is 72, 96, 150, 300 or 600. 0 for PDF
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  format: byte
+            text/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  format: byte
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /groups/helpdesk/{email}:
+    get:
+      tags:
+      - Groups
+      summary: Retrieve groups that match provided email
+      parameters:
+      - name: email
+        in: path
+        description: An email to search across group email fields
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GroupHelpdeskOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GroupHelpdeskOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /groups/print:
+    post:
+      tags:
+      - Groups
+      summary: Retrieve the printable resources for multiple groups
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPrintInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GroupPrintInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GroupPrintInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  format: byte
+            text/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  format: byte
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+components:
+  schemas:
+    GroupSingleOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        GroupNumber:
+          type: integer
+          format: int64
+        EventNumber:
+          type: integer
+          format: int64
+        EventId:
+          type: string
+          format: uuid
+        Name:
+          type: string
+          nullable: true
+        Email:
+          type: string
+          nullable: true
+        AttendeeTypeId:
+          type: string
+          format: uuid
+        JoinCode:
+          type: string
+          nullable: true
+        TypeName:
+          type: string
+          nullable: true
+        AttendeeCount:
+          type: integer
+          format: int32
+        CommunityId:
+          type: string
+          format: uuid
+          nullable: true
+        CommunityPartition:
+          type: string
+          nullable: true
+        CommunityName:
+          type: string
+          nullable: true
+        Fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldOutput'
+          nullable: true
+        Attendees:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupAttendeeSummaryOutput'
+          nullable: true
+        QRCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    GroupUpdateInput:
+      required:
+      - Email
+      - GroupId
+      - JoinCode
+      - Name
+      type: object
+      properties:
+        GroupId:
+          type: string
+          format: uuid
+        AttendeeTypeId:
+          type: string
+          format: uuid
+          nullable: true
+        Name:
+          maxLength: 50
+          minLength: 5
+          type: string
+        Email:
+          minLength: 1
+          pattern: ^([0-9A-Za-zÀ-ÖØ-öø-ÿ']+[-._+&])*[0-9A-Za-zÀ-ÖØ-öø-ÿ_']+@([-0-9A-Za-zÀ-ÖØ-öø-ÿ]+[.])+[a-zA-Z]{2,63}$
+          type: string
+        JoinCode:
+          maxLength: 20
+          minLength: 4
+          type: string
+        AccessKey:
+          type: string
+          nullable: true
+        CommunityId:
+          type: string
+          format: uuid
+          nullable: true
+        FieldValues:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldInput'
+          nullable: true
+        UpdateNewOnly:
+          type: boolean
+        OverrideCapacity:
+          type: boolean
+        DontFollowRules:
+          type: boolean
+      additionalProperties: false
+    FieldOptionFullOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Label:
+          type: string
+          nullable: true
+        Capacity:
+          type: integer
+          format: int32
+          nullable: true
+        Quantity:
+          type: integer
+          format: int32
+        HasUnitPrice:
+          type: boolean
+        UnitPrice:
+          type: number
+          format: double
+          nullable: true
+        UnitTax:
+          type: number
+          format: double
+          nullable: true
+        IsInclusiveTaxes:
+          type: boolean
+        DisplayPrice:
+          type: number
+          format: double
+          nullable: true
+        PriceDescription:
+          type: string
+          nullable: true
+        IsSelected:
+          type: boolean
+        HasCapacity:
+          type: boolean
+        SpotsRemaining:
+          type: integer
+          format: int32
+          nullable: true
+        RemainingText:
+          type: string
+          nullable: true
+      additionalProperties: false
+    DomainValidationOutput:
+      type: object
+      properties:
+        AllowDomains:
+          type: array
+          items:
+            type: string
+          nullable: true
+        DisallowDomains:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    GroupCreateOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        GroupNumber:
+          type: integer
+          format: int64
+        Name:
+          type: string
+          nullable: true
+        Email:
+          type: string
+          nullable: true
+        AttendeeTypeId:
+          type: string
+          format: uuid
+        JoinCode:
+          type: string
+          nullable: true
+        TypeName:
+          type: string
+          nullable: true
+        CommunityId:
+          type: string
+          format: uuid
+          nullable: true
+        CommunityPartition:
+          type: string
+          nullable: true
+        CommunityName:
+          type: string
+          nullable: true
+        AttendeeCount:
+          type: integer
+          format: int32
+        Fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldOutput'
+          nullable: true
+      additionalProperties: false
+    GroupCreateInput:
+      required:
+      - AttendeeTypeId
+      - Email
+      - JoinCode
+      - Name
+      type: object
+      properties:
+        AttendeeTypeId:
+          type: string
+          format: uuid
+        Name:
+          maxLength: 50
+          minLength: 5
+          type: string
+        Email:
+          maxLength: 100
+          minLength: 0
+          type: string
+        JoinCode:
+          maxLength: 20
+          minLength: 4
+          type: string
+        AccessKey:
+          type: string
+          nullable: true
+        CommunityId:
+          type: string
+          format: uuid
+          nullable: true
+        FieldValues:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldInput'
+          nullable: true
+      additionalProperties: false
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        Key:
+          type: string
+          nullable: true
+        Value:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PrintType:
+      enum:
+      - Ticket
+      - ETicket
+      - Receipt
+      - MailingLabel
+      - WillCall
+      - NameBadge
+      - Season
+      type: string
+    GroupHelpdeskOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        GroupNumber:
+          type: integer
+          format: int64
+        Name:
+          type: string
+          nullable: true
+        JoinCode:
+          type: string
+          nullable: true
+        AttendeeCount:
+          type: integer
+          format: int32
+        EventNumber:
+          type: integer
+          format: int64
+        EventTitle:
+          type: string
+          nullable: true
+        EventSubtitle:
+          type: string
+          nullable: true
+      additionalProperties: false
+    FieldUpdateInput:
+      type: object
+      properties:
+        AccessKey:
+          type: string
+          nullable: true
+        FieldValues:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldInput'
+          nullable: true
+        UpdateNewOnly:
+          type: boolean
+      additionalProperties: false
+    FieldOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Label:
+          type: string
+          nullable: true
+        Type:
+          type: string
+          nullable: true
+        Value:
+          nullable: true
+        DisplayValue:
+          type: string
+          nullable: true
+        ValidationExpression:
+          type: string
+          nullable: true
+        IsRequired:
+          type: boolean
+        Notes:
+          type: string
+          nullable: true
+        ErrorMessage:
+          type: string
+          nullable: true
+        IsDisabled:
+          type: boolean
+        IsSensitive:
+          type: boolean
+        SpecialFieldId:
+          type: string
+          format: uuid
+        ParentOptionId:
+          type: string
+          format: uuid
+          nullable: true
+        ParentFieldId:
+          type: string
+          format: uuid
+          nullable: true
+        FormObjectId:
+          type: string
+          format: uuid
+          nullable: true
+        Options:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldOptionFullOutput'
+          nullable: true
+        ParentOptionIsSelected:
+          type: boolean
+        HasError:
+          type: boolean
+        HasRelevantOutput:
+          type: boolean
+        MinDate:
+          type: string
+          format: date-time
+          nullable: true
+        MaxDate:
+          type: string
+          format: date-time
+          nullable: true
+        AttendeeTypes:
+          type: array
+          items:
+            type: string
+            format: uuid
+          nullable: true
+        RemoteUrl:
+          type: string
+          nullable: true
+        SelectedOptionId:
+          type: string
+          format: uuid
+          nullable: true
+          readOnly: true
+        Confirm:
+          type: boolean
+        DomainValidation:
+          $ref: '#/components/schemas/DomainValidationOutput'
+        DisplayIsPrimary:
+          type: boolean
+      additionalProperties: false
+    ApiModelError:
+      type: object
+      properties:
+        Errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+          nullable: true
+        Message:
+          type: string
+          nullable: true
+        Data:
+          nullable: true
+        StackTrace:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PrintFormat:
+      enum:
+      - PDF
+      - PNG
+      - JPG
+      - GIF
+      - BMP
+      - TIFF
+      - ZPL
+      type: string
+    GroupCommunityInput:
+      type: object
+      properties:
+        CommunityId:
+          type: string
+          format: uuid
+          nullable: true
+        OverrideCapacity:
+          type: boolean
+        DontFollowRules:
+          type: boolean
+      additionalProperties: false
+    GroupAttendeeSummaryOutput:
+      type: object
+      properties:
+        AttendeeNumber:
+          type: integer
+          format: int64
+        AttendeeCode:
+          type: string
+          nullable: true
+        FirstName:
+          type: string
+          nullable: true
+        LastName:
+          type: string
+          nullable: true
+        SectionName:
+          type: string
+          nullable: true
+        RowName:
+          type: string
+          nullable: true
+        SeatLabel:
+          type: string
+          nullable: true
+        TypeName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    GroupPrintInput:
+      required:
+      - EventId
+      - Groups
+      - Type
+      type: object
+      properties:
+        Type:
+          $ref: '#/components/schemas/PrintType'
+        Groups:
+          type: array
+          items:
+            type: string
+        EventId:
+          minLength: 1
+          type: string
+        Format:
+          $ref: '#/components/schemas/PrintFormat'
+        ImageDpi:
+          type: integer
+          format: int32
+      additionalProperties: false
+    FieldInput:
+      required:
+      - Id
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Value:
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      description: The App Key you received from https://developer.brushfire.com/key
+      name: Authorization
+      in: header

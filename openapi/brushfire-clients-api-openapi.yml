@@ -1,0 +1,340 @@
+openapi: 3.0.1
+info:
+  title: 'Brushfire API: Version 2025-07-22 AccessCodes Clients API'
+  version: '2025-07-22'
+  description: 'The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform. It covers events, ticket types, sections and seats, attendees, orders, the shopping cart and checkout flow, groups, sessions and check-in, promotions and access codes, payment profiles, and webhooks (Hooks). Authenticate by sending your App Key (requested at https://developer.brushfire.com/key) in the Authorization header. The API is date-versioned: send the desired version in the api-version request header (for example, 2025-07-22). This document is the live specification published at api.brushfire.com/swagger.'
+  contact:
+    name: Brushfire Developers
+    url: https://developer.brushfire.com
+servers:
+- url: https://api.brushfire.com
+  description: Brushfire API (date-versioned via the api-version header)
+tags:
+- name: Clients
+paths:
+  /clients:
+    get:
+      tags:
+      - Clients
+      summary: Get a list of all clients available to this application
+      parameters:
+      - name: accessKey
+        in: query
+        description: Optional Access Key for the user context
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClientListOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClientListOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /clients/{clientId}:
+    get:
+      tags:
+      - Clients
+      summary: Get the details for a specific client
+      parameters:
+      - name: clientId
+        in: path
+        description: An string, a GUID, or an integer that corresponds to a specific client
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientSingleOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ClientSingleOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /clients/{clientId}/theme:
+    get:
+      tags:
+      - Clients
+      summary: Get the theme for a specific client
+      parameters:
+      - name: clientId
+        in: path
+        description: A string, a GUID, or an integer that corresponds to a specific client
+        required: true
+        schema:
+          type: string
+      - name: urlKey
+        in: query
+        description: An optional string that corresponds to a specific urlKey
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThemeOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ThemeOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+components:
+  schemas:
+    ClientSingleOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Name:
+          type: string
+          nullable: true
+        City:
+          type: string
+          nullable: true
+        Region:
+          type: string
+          nullable: true
+        Country:
+          type: string
+          nullable: true
+        Coordinates:
+          type: string
+          nullable: true
+        ClientKey:
+          type: string
+          nullable: true
+        ClientNumber:
+          type: integer
+          format: int64
+        OwnerUserId:
+          type: string
+          format: uuid
+        BillingUserId:
+          type: string
+          format: uuid
+        CrmId:
+          type: string
+          nullable: true
+        Culture:
+          type: string
+          nullable: true
+        TimeZoneId:
+          type: string
+          nullable: true
+        LegacyClientId:
+          type: integer
+          format: int64
+          nullable: true
+        PartnerId:
+          type: string
+          format: uuid
+          nullable: true
+        HubSpotCompanyId:
+          type: string
+          nullable: true
+        ChmsVendor:
+          type: string
+          nullable: true
+        ChmsQualifier:
+          type: string
+          nullable: true
+        ChmsAuthToken:
+          type: string
+          nullable: true
+        ChmsAuthSecret:
+          type: string
+          nullable: true
+        ChmsUserToken:
+          type: string
+          nullable: true
+        ChmsUserSecret:
+          type: string
+          nullable: true
+        ChmsServiceName:
+          type: string
+          nullable: true
+        ChmsHtmlTemplate:
+          type: string
+          nullable: true
+        ChmsOauthConnect:
+          type: boolean
+          nullable: true
+        ChmsIsLive:
+          type: boolean
+          nullable: true
+        CreatedAt:
+          type: string
+          format: date-time
+        IsLive:
+          type: boolean
+        PayVia:
+          type: string
+          nullable: true
+        MissingPaymentInfo:
+          type: boolean
+        FailedPaymentDetails:
+          type: string
+          nullable: true
+        CardExpire:
+          type: string
+          nullable: true
+        IsDeleted:
+          type: boolean
+        LastPaidAt:
+          type: string
+          format: date-time
+          nullable: true
+        CurrentBalance:
+          type: number
+          format: double
+        BillingTotal:
+          type: number
+          format: double
+      additionalProperties: false
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        Key:
+          type: string
+          nullable: true
+        Value:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ClientListOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        ClientNumber:
+          type: integer
+          format: int64
+        ClientKey:
+          type: string
+          nullable: true
+        Name:
+          type: string
+          nullable: true
+        CreatedAt:
+          type: string
+          format: date-time
+        City:
+          type: string
+          nullable: true
+        Region:
+          type: string
+          nullable: true
+        Country:
+          type: string
+          nullable: true
+        IsLive:
+          type: boolean
+        IsDeleted:
+          type: boolean
+      additionalProperties: false
+    ApiModelError:
+      type: object
+      properties:
+        Errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+          nullable: true
+        Message:
+          type: string
+          nullable: true
+        Data:
+          nullable: true
+        StackTrace:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ThemeOutput:
+      type: object
+      properties:
+        LogoUrl:
+          type: string
+          nullable: true
+        LogoPosition:
+          type: string
+          nullable: true
+        HeaderUrlLarge:
+          type: string
+          nullable: true
+        HeaderUrlMobile:
+          type: string
+          nullable: true
+        BackgroundCss:
+          type: string
+          nullable: true
+        TextColor:
+          type: string
+          nullable: true
+        LinkColor:
+          type: string
+          nullable: true
+        HomeUrl:
+          type: string
+          nullable: true
+        HeaderHtml:
+          type: string
+          nullable: true
+        ClientKey:
+          type: string
+          nullable: true
+        ClientName:
+          type: string
+          nullable: true
+        UrlKey:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      description: The App Key you received from https://developer.brushfire.com/key
+      name: Authorization
+      in: header

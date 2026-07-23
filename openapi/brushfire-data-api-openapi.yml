@@ -1,0 +1,110 @@
+openapi: 3.0.1
+info:
+  title: 'Brushfire API: Version 2025-07-22 AccessCodes Data API'
+  version: '2025-07-22'
+  description: 'The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform. It covers events, ticket types, sections and seats, attendees, orders, the shopping cart and checkout flow, groups, sessions and check-in, promotions and access codes, payment profiles, and webhooks (Hooks). Authenticate by sending your App Key (requested at https://developer.brushfire.com/key) in the Authorization header. The API is date-versioned: send the desired version in the api-version request header (for example, 2025-07-22). This document is the live specification published at api.brushfire.com/swagger.'
+  contact:
+    name: Brushfire Developers
+    url: https://developer.brushfire.com
+servers:
+- url: https://api.brushfire.com
+  description: Brushfire API (date-versioned via the api-version header)
+tags:
+- name: Data
+paths:
+  /data/{id}:
+    get:
+      tags:
+      - Data
+      summary: Returns specialized data from custom-written queries
+      parameters:
+      - name: id
+        in: path
+        description: The GUID for the query you are running
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: eventNumber
+        in: query
+        description: If present, an integer representing the event number
+        schema:
+          type: integer
+          format: int64
+      - name: granularity
+        in: query
+        description: If present, one of the following string values "hour", "minute", or "day"
+        schema:
+          $ref: '#/components/schemas/CustomQueryGranularity'
+      - name: startsAt
+        in: query
+        description: If present, the date/time in UTC to start data
+        schema:
+          type: string
+          format: date-time
+      - name: endsAt
+        in: query
+        description: If present, the date/time in UTC to end data
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: {}
+            text/json:
+              schema: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+components:
+  schemas:
+    ApiModelError:
+      type: object
+      properties:
+        Errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+          nullable: true
+        Message:
+          type: string
+          nullable: true
+        Data:
+          nullable: true
+        StackTrace:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CustomQueryGranularity:
+      enum:
+      - Minute
+      - Hour
+      - Day
+      type: string
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        Key:
+          type: string
+          nullable: true
+        Value:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      description: The App Key you received from https://developer.brushfire.com/key
+      name: Authorization
+      in: header

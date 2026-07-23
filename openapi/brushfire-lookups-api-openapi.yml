@@ -1,0 +1,922 @@
+openapi: 3.0.1
+info:
+  title: 'Brushfire API: Version 2025-07-22 AccessCodes Lookups API'
+  version: '2025-07-22'
+  description: 'The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform. It covers events, ticket types, sections and seats, attendees, orders, the shopping cart and checkout flow, groups, sessions and check-in, promotions and access codes, payment profiles, and webhooks (Hooks). Authenticate by sending your App Key (requested at https://developer.brushfire.com/key) in the Authorization header. The API is date-versioned: send the desired version in the api-version request header (for example, 2025-07-22). This document is the live specification published at api.brushfire.com/swagger.'
+  contact:
+    name: Brushfire Developers
+    url: https://developer.brushfire.com
+servers:
+- url: https://api.brushfire.com
+  description: Brushfire API (date-versioned via the api-version header)
+tags:
+- name: Lookups
+paths:
+  /lookups:
+    post:
+      tags:
+      - Lookups
+      summary: Submit email to look up and create magic link
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LookupCreateInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/LookupCreateInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/LookupCreateInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /lookups/{lookupId}:
+    get:
+      tags:
+      - Lookups
+      summary: Get matching events for a lookup ID
+      parameters:
+      - name: lookupId
+        in: path
+        description: A Guid retrieved from performing a post to /
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LookupResultOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LookupResultOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /lookups/{lookupId}/events/{eventNumber}:
+    get:
+      tags:
+      - Lookups
+      summary: Get matching single event for a lookup ID and eventNumber
+      parameters:
+      - name: lookupId
+        in: path
+        description: A Guid retrieved from performing a post to /
+        required: true
+        schema:
+          type: string
+      - name: eventNumber
+        in: path
+        description: An integer representing a single event
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LookupResultOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LookupResultOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /lookups/{lookupId}/events/{eventNumber}/attendees:
+    get:
+      tags:
+      - Lookups
+      summary: Get attendees for the selected lookup ID and eventNumber. This optionally looks across groups and orders also
+      parameters:
+      - name: lookupId
+        in: path
+        description: A Guid retrieved from performing a post to /
+        required: true
+        schema:
+          type: string
+      - name: eventNumber
+        in: path
+        description: An integer representing a single event
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: includeGroups
+        in: query
+        description: Boolean to include group emails in search. Defaults to false.
+        schema:
+          type: boolean
+          default: false
+      - name: includeOrders
+        in: query
+        description: Boolean to include buyer emails in search. Defaults to false.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LookupAttendeeResultOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LookupAttendeeResultOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /lookups/{lookupId}/events/{eventNumber}/group:
+    get:
+      tags:
+      - Lookups
+      summary: Get group for the selected lookup ID and eventNumber
+      parameters:
+      - name: lookupId
+        in: path
+        description: A Guid retrieved from performing a post to /
+        required: true
+        schema:
+          type: string
+      - name: eventNumber
+        in: path
+        description: An integer representing a single event
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LookupGroupResultOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LookupGroupResultOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /lookups/{lookupId}/events/{eventNumber}/orders:
+    get:
+      tags:
+      - Lookups
+      summary: Get orders for the selected lookup ID and eventNumber
+      parameters:
+      - name: lookupId
+        in: path
+        description: A Guid retrieved from performing a post to /
+        required: true
+        schema:
+          type: string
+      - name: eventNumber
+        in: path
+        description: An integer representing a single event
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LookupOrderResultOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LookupOrderResultOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+components:
+  schemas:
+    EventDateItem:
+      type: object
+      properties:
+        DoorsAt:
+          type: string
+          format: date-time
+          nullable: true
+        StartsAt:
+          type: string
+          format: date-time
+        EndsAt:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    LookupResultOutput:
+      type: object
+      properties:
+        Upcoming:
+          type: array
+          items:
+            $ref: '#/components/schemas/LookupEventResultOutput'
+          nullable: true
+        Past:
+          type: array
+          items:
+            $ref: '#/components/schemas/LookupEventResultOutput'
+          nullable: true
+        Email:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EventDateOutput:
+      type: object
+      properties:
+        DoorsAt:
+          type: string
+          format: date-time
+          nullable: true
+        StartsAt:
+          type: string
+          format: date-time
+        EndsAt:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    AttendeeDisplayOutput:
+      type: object
+      properties:
+        Line1:
+          type: string
+          nullable: true
+        Line2:
+          type: string
+          nullable: true
+        Line3:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LookupCreateInput:
+      required:
+      - Email
+      type: object
+      properties:
+        Email:
+          minLength: 1
+          pattern: ^([0-9A-Za-zÀ-ÖØ-öø-ÿ']+[-._+&])*[0-9A-Za-zÀ-ÖØ-öø-ÿ_']+@([-0-9A-Za-zÀ-ÖØ-öø-ÿ]+[.])+[a-zA-Z]{2,63}$
+          type: string
+        EventNumber:
+          type: integer
+          format: int64
+          nullable: true
+        VerrisSubdomain:
+          type: string
+          nullable: true
+        VerrisCode:
+          type: string
+          nullable: true
+        VerrisUid:
+          type: string
+          nullable: true
+      additionalProperties: false
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        Key:
+          type: string
+          nullable: true
+        Value:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LookupOrderResultOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        OrderKey:
+          type: string
+          nullable: true
+        OrderedAt:
+          type: string
+          format: date-time
+        OrderedAtLocal:
+          type: string
+          format: date-time
+        TimeZoneId:
+          type: string
+          nullable: true
+        BillingName:
+          type: string
+          nullable: true
+        Amount:
+          type: number
+          format: double
+        IsAdjustment:
+          type: boolean
+        Culture:
+          type: string
+          nullable: true
+        AttendeeCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    EventListOutput:
+      type: object
+      properties:
+        Title:
+          type: string
+          nullable: true
+        Subtitle:
+          type: string
+          nullable: true
+        UrlKey:
+          type: string
+          nullable: true
+        ClientKey:
+          type: string
+          nullable: true
+        ClientName:
+          type: string
+          nullable: true
+        Culture:
+          type: string
+          nullable: true
+        DateInfo:
+          type: string
+          nullable: true
+        DateInfoList:
+          type: array
+          items:
+            type: string
+          nullable: true
+        SoldOut:
+          type: boolean
+        IsSticky:
+          type: boolean
+        EventNumber:
+          type: integer
+          format: int64
+        IsAssigned:
+          type: boolean
+        LocationName:
+          type: string
+          nullable: true
+        SessionCount:
+          type: integer
+          format: int32
+        IsActive:
+          type: boolean
+        DateDisplay:
+          $ref: '#/components/schemas/DateDisplayOutput'
+        Latitude:
+          type: number
+          format: double
+        Longitude:
+          type: number
+          format: double
+        MapUrl:
+          type: string
+          nullable: true
+        PromoImageUrl:
+          type: string
+          nullable: true
+        CategoryId:
+          type: integer
+          format: int32
+        CategoryName:
+          type: string
+          nullable: true
+        SpotsRemaining:
+          type: integer
+          format: int32
+          nullable: true
+        SpotsTaken:
+          type: integer
+          format: int32
+        ShowRemaining:
+          type: boolean
+        RemainingText:
+          type: string
+          nullable: true
+        Verbiage:
+          type: string
+          nullable: true
+        Dates:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventDateOutput'
+          nullable: true
+        AlternateTitle:
+          type: string
+          nullable: true
+          readOnly: true
+        TimeZoneId:
+          type: string
+          nullable: true
+        AreaName:
+          type: string
+          nullable: true
+        AreaKey:
+          type: string
+          nullable: true
+        PaymentProfileId:
+          type: string
+          format: uuid
+          nullable: true
+        AcctCode:
+          type: string
+          nullable: true
+        IsHidden:
+          type: boolean
+        IsFlexPass:
+          type: boolean
+        IsExchangeable:
+          type: boolean
+      additionalProperties: false
+    DateDisplayOutput:
+      type: object
+      properties:
+        Months:
+          type: string
+          nullable: true
+        Dates:
+          type: string
+          nullable: true
+        Days:
+          type: string
+          nullable: true
+        Times:
+          type: string
+          nullable: true
+        IsOngoing:
+          type: boolean
+      additionalProperties: false
+    ApiModelError:
+      type: object
+      properties:
+        Errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+          nullable: true
+        Message:
+          type: string
+          nullable: true
+        Data:
+          nullable: true
+        StackTrace:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LookupGroupResultOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        GroupNumber:
+          type: integer
+          format: int64
+        Name:
+          type: string
+          nullable: true
+        AttendeeCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    LookupEventResultOutput:
+      type: object
+      properties:
+        Event:
+          $ref: '#/components/schemas/EventListOutput'
+        HasGroup:
+          type: boolean
+        HasOrders:
+          type: boolean
+        ShowAttendees:
+          type: boolean
+      additionalProperties: false
+    FlexPassCheckinItem:
+      type: object
+      properties:
+        EventId:
+          type: string
+          format: uuid
+        EventNumber:
+          type: integer
+          format: int64
+        Title:
+          type: string
+          nullable: true
+        CheckedInAt:
+          type: string
+          format: date-time
+        SessionName:
+          type: string
+          nullable: true
+        AttendeeCheckinId:
+          type: string
+          format: uuid
+        EventSessionId:
+          type: string
+          format: uuid
+        SessionNumber:
+          type: integer
+          format: int64
+        TimeZoneId:
+          type: string
+          nullable: true
+        CheckedInAtLocal:
+          type: string
+          format: date-time
+          readOnly: true
+        Culture:
+          type: string
+          nullable: true
+        Dates:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventDateItem'
+          nullable: true
+        StartsAt:
+          type: string
+          format: date-time
+          nullable: true
+          readOnly: true
+        TitleInfo:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    TicketRenderType:
+      enum:
+      - Assigned
+      - AssignedSection
+      - GeneralAdmission
+      - FlexPass
+      - TimeSlot
+      - Groups
+      - Orders
+      type: string
+    TicketInfoOutput:
+      type: object
+      properties:
+        AttendeeTypeName:
+          type: string
+          nullable: true
+        AttendeeName:
+          type: string
+          nullable: true
+        Title:
+          type: string
+          nullable: true
+        Section:
+          type: string
+          nullable: true
+        RowLabel:
+          type: string
+          nullable: true
+        Row:
+          type: string
+          nullable: true
+        Seat:
+          type: string
+          nullable: true
+        FlexSummary:
+          type: string
+          nullable: true
+        Field1Label:
+          type: string
+          nullable: true
+        Field1Value:
+          type: string
+          nullable: true
+        Field2Label:
+          type: string
+          nullable: true
+        Field2Value:
+          type: string
+          nullable: true
+        Field3Label:
+          type: string
+          nullable: true
+        Field3Value:
+          type: string
+          nullable: true
+        ImageUrl:
+          type: string
+          nullable: true
+        TicketRenderType:
+          $ref: '#/components/schemas/TicketRenderType'
+        TicketNotes:
+          type: string
+          nullable: true
+        TicketAd:
+          type: string
+          nullable: true
+        EventDate:
+          type: string
+          nullable: true
+        EventTime:
+          type: string
+          nullable: true
+        EventDoorTime:
+          type: string
+          nullable: true
+        EventTitle:
+          type: string
+          nullable: true
+        QrImageUrl:
+          type: string
+          nullable: true
+        QrText:
+          type: string
+          nullable: true
+        PassUrl:
+          type: string
+          nullable: true
+        WalletUrl:
+          type: string
+          nullable: true
+        BundledPassUrl:
+          type: string
+          nullable: true
+        BundledWalletUrl:
+          type: string
+          nullable: true
+        PrintUrl:
+          type: string
+          nullable: true
+        BundledPrintUrl:
+          type: string
+          nullable: true
+        EditUrl:
+          type: string
+          nullable: true
+        FlexPassRedemptionsUsed:
+          type: string
+          nullable: true
+        FlexPassRedemptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/FlexPassCheckinItem'
+          nullable: true
+        IsFlexOrderOrGroupTicket:
+          type: boolean
+        TicketColor:
+          type: string
+          nullable: true
+        TicketClassName:
+          type: string
+          nullable: true
+        EventContactInfo:
+          type: string
+          nullable: true
+        OrderInfo:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          nullable: true
+        AttendeesDescription:
+          type: string
+          nullable: true
+        TimeSlotName:
+          type: string
+          nullable: true
+        SharedCapacityName:
+          type: string
+          nullable: true
+        LocationInfo:
+          type: string
+          nullable: true
+        DateInfo:
+          type: string
+          nullable: true
+        BundledTicketUrl:
+          type: string
+          nullable: true
+        IsBundledTicket:
+          type: boolean
+        StartsEndsSameDay:
+          type: boolean
+        Coordinates:
+          type: string
+          nullable: true
+        Address:
+          type: string
+          nullable: true
+        MapAddress:
+          type: string
+          nullable: true
+        ContactEmail:
+          type: string
+          nullable: true
+        ContactPhone:
+          type: string
+          nullable: true
+        IsFlexPass:
+          type: boolean
+      additionalProperties: false
+    LookupAttendeeResultOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        AttendeeNumber:
+          type: integer
+          format: int64
+        Status:
+          type: string
+          nullable: true
+        IsCompleted:
+          type: boolean
+        IsGift:
+          type: boolean
+        IsPreRegistered:
+          type: boolean
+        ShareEmail:
+          type: string
+          nullable: true
+        GiftingEnabled:
+          type: boolean
+        GiftLastSentAt:
+          type: string
+          format: date-time
+          nullable: true
+        GiftLastSentAtLocal:
+          type: string
+          format: date-time
+          nullable: true
+          readOnly: true
+        TimeZoneId:
+          type: string
+          nullable: true
+        FirstName:
+          type: string
+          nullable: true
+        LastName:
+          type: string
+          nullable: true
+        Name:
+          type: string
+          nullable: true
+          readOnly: true
+        AttendeeTypeId:
+          type: string
+          format: uuid
+        TypeName:
+          type: string
+          nullable: true
+        TypeAmount:
+          type: number
+          format: double
+        TypeDisplayAmount:
+          type: number
+          format: double
+        SectionName:
+          type: string
+          nullable: true
+        RowName:
+          type: string
+          nullable: true
+        SeatLabel:
+          type: string
+          nullable: true
+        Amount:
+          type: number
+          format: double
+        Addons:
+          type: number
+          format: double
+        Discounts:
+          type: number
+          format: double
+        SeatInfo:
+          type: string
+          nullable: true
+        Culture:
+          type: string
+          nullable: true
+        GroupId:
+          type: string
+          format: uuid
+          nullable: true
+        GroupName:
+          type: string
+          nullable: true
+        GroupEmail:
+          type: string
+          nullable: true
+        AttendeeDisplay:
+          $ref: '#/components/schemas/AttendeeDisplayOutput'
+        AttendeeDisplayLines:
+          $ref: '#/components/schemas/AttendeeDisplayOutput'
+        DisplayPrice:
+          type: number
+          format: double
+          readOnly: true
+        DisplayTotal:
+          type: number
+          format: double
+          readOnly: true
+        PriceDescription:
+          type: string
+          nullable: true
+        HasPaymentsToMake:
+          type: boolean
+        DonatingBackEnabled:
+          type: boolean
+        ChangesAreBlocked:
+          type: boolean
+        ChangesAreBlockedAfter:
+          type: string
+          format: date-time
+          nullable: true
+        HasPendingSignatures:
+          type: boolean
+        AllSignaturesComplete:
+          type: boolean
+        ShareEnabled:
+          type: boolean
+        TicketInfo:
+          $ref: '#/components/schemas/TicketInfoOutput'
+      additionalProperties: false
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      description: The App Key you received from https://developer.brushfire.com/key
+      name: Authorization
+      in: header

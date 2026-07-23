@@ -1,0 +1,432 @@
+openapi: 3.0.1
+info:
+  title: 'Brushfire API: Version 2025-07-22 AccessCodes Promotions API'
+  version: '2025-07-22'
+  description: 'The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform. It covers events, ticket types, sections and seats, attendees, orders, the shopping cart and checkout flow, groups, sessions and check-in, promotions and access codes, payment profiles, and webhooks (Hooks). Authenticate by sending your App Key (requested at https://developer.brushfire.com/key) in the Authorization header. The API is date-versioned: send the desired version in the api-version request header (for example, 2025-07-22). This document is the live specification published at api.brushfire.com/swagger.'
+  contact:
+    name: Brushfire Developers
+    url: https://developer.brushfire.com
+servers:
+- url: https://api.brushfire.com
+  description: Brushfire API (date-versioned via the api-version header)
+tags:
+- name: Promotions
+paths:
+  /promotions:
+    get:
+      tags:
+      - Promotions
+      summary: List all promotions for a specific client (and additional parameters)
+      parameters:
+      - name: clientId
+        in: query
+        description: A string, a GUID, or an integer that corresponds to a specific client
+        schema:
+          type: string
+      - name: kind
+        in: query
+        description: An option string value from "Standard", "Template", or "Dynamic" that represents the kind of promotion
+        schema:
+          $ref: '#/components/schemas/PromotionKind'
+      - name: isRedeemed
+        in: query
+        description: An optional boolean value if the promotion has been redeemed
+        schema:
+          type: boolean
+      - name: search
+        in: query
+        description: An option string to filter promotion codes by name
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PromotionListOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PromotionListOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /promotions/{promotionId}:
+    get:
+      tags:
+      - Promotions
+      summary: Get details of a single promotion
+      parameters:
+      - name: promotionId
+        in: path
+        description: A GUID that corresponds to a specific promotion
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PromotionSingleOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PromotionSingleOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /promotions/dynamic:
+    post:
+      tags:
+      - Promotions
+      summary: Creates the specified quantity of dynamic promotions based upon the provided template code
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PromotionCreateInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PromotionCreateInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PromotionCreateInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PromotionCreateOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PromotionCreateOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /promotions/import:
+    post:
+      tags:
+      - Promotions
+      summary: Support for promotion creation based upon provided list of names
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PromotionCreateImportInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PromotionCreateImportInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PromotionCreateImportInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PromotionCreateOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PromotionCreateOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+components:
+  schemas:
+    PromotionListOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Description:
+          type: string
+          nullable: true
+        StartsAt:
+          type: string
+          format: date-time
+          nullable: true
+        EndsAt:
+          type: string
+          format: date-time
+          nullable: true
+        Group:
+          type: string
+          nullable: true
+        Kind:
+          type: string
+          nullable: true
+        IsSingleUse:
+          type: boolean
+        IsRedeemed:
+          type: boolean
+        AdminVisible:
+          type: boolean
+        InternetVisible:
+          type: boolean
+        Amount:
+          type: number
+          format: double
+        IsPercentage:
+          type: boolean
+        AutoCalculate:
+          type: boolean
+        Names:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    PromotionCreateInput:
+      required:
+      - Prefix
+      - Quantity
+      - TemplateId
+      type: object
+      properties:
+        TemplateId:
+          type: string
+          format: uuid
+        Quantity:
+          maximum: 250
+          minimum: 1
+          type: integer
+          format: int32
+        Prefix:
+          maxLength: 13
+          minLength: 0
+          type: string
+      additionalProperties: false
+    PromotionEventOutput:
+      type: object
+      properties:
+        EventId:
+          type: string
+          format: uuid
+        AttendeeTypes:
+          type: array
+          items:
+            type: string
+            format: uuid
+          nullable: true
+      additionalProperties: false
+    PromotionSingleOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Description:
+          type: string
+          nullable: true
+        StartsAt:
+          type: string
+          format: date-time
+          nullable: true
+        EndsAt:
+          type: string
+          format: date-time
+          nullable: true
+        Group:
+          type: string
+          nullable: true
+        Kind:
+          type: string
+          nullable: true
+        IsSingleUse:
+          type: boolean
+        IsRedeemed:
+          type: boolean
+        AdminVisible:
+          type: boolean
+        InternetVisible:
+          type: boolean
+        Amount:
+          type: number
+          format: double
+        IsPercentage:
+          type: boolean
+        AutoCalculate:
+          type: boolean
+        Quantity:
+          type: integer
+          format: int32
+        Limit:
+          type: integer
+          format: int32
+        Exclude:
+          type: integer
+          format: int32
+        IsMultiple:
+          type: boolean
+        SpanChildren:
+          type: boolean
+        InEachChild:
+          type: boolean
+        IncludeAddons:
+          type: boolean
+        AllInGroup:
+          type: boolean
+        Names:
+          type: array
+          items:
+            type: string
+          nullable: true
+        RelatedPromotions:
+          type: array
+          items:
+            type: string
+            format: uuid
+          nullable: true
+        Events:
+          type: array
+          items:
+            $ref: '#/components/schemas/PromotionEventOutput'
+          nullable: true
+      additionalProperties: false
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        Key:
+          type: string
+          nullable: true
+        Value:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PromotionCreateOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Description:
+          type: string
+          nullable: true
+        StartsAt:
+          type: string
+          format: date-time
+          nullable: true
+        EndsAt:
+          type: string
+          format: date-time
+          nullable: true
+        Group:
+          type: string
+          nullable: true
+        Kind:
+          type: string
+          nullable: true
+        IsSingleUse:
+          type: boolean
+        IsRedeemed:
+          type: boolean
+        AdminVisible:
+          type: boolean
+        InternetVisible:
+          type: boolean
+        Amount:
+          type: number
+          format: double
+        IsPercentage:
+          type: boolean
+        AutoCalculate:
+          type: boolean
+        Names:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    PromotionCreateImportInput:
+      required:
+      - Names
+      - TemplateId
+      type: object
+      properties:
+        TemplateId:
+          type: string
+          format: uuid
+        Names:
+          type: array
+          items:
+            type: string
+      additionalProperties: false
+    ApiModelError:
+      type: object
+      properties:
+        Errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+          nullable: true
+        Message:
+          type: string
+          nullable: true
+        Data:
+          nullable: true
+        StackTrace:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PromotionKind:
+      enum:
+      - Standard
+      - Template
+      - Dynamic
+      type: string
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      description: The App Key you received from https://developer.brushfire.com/key
+      name: Authorization
+      in: header

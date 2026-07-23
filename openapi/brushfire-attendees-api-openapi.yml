@@ -1,0 +1,1789 @@
+openapi: 3.0.1
+info:
+  title: 'Brushfire API: Version 2025-07-22 AccessCodes Attendees API'
+  version: '2025-07-22'
+  description: 'The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform. It covers events, ticket types, sections and seats, attendees, orders, the shopping cart and checkout flow, groups, sessions and check-in, promotions and access codes, payment profiles, and webhooks (Hooks). Authenticate by sending your App Key (requested at https://developer.brushfire.com/key) in the Authorization header. The API is date-versioned: send the desired version in the api-version request header (for example, 2025-07-22). This document is the live specification published at api.brushfire.com/swagger.'
+  contact:
+    name: Brushfire Developers
+    url: https://developer.brushfire.com
+servers:
+- url: https://api.brushfire.com
+  description: Brushfire API (date-versioned via the api-version header)
+tags:
+- name: Attendees
+paths:
+  /attendees/{attendeeId}:
+    get:
+      tags:
+      - Attendees
+      summary: Retrieve all relevant attendee information for the given attendee number
+      parameters:
+      - name: attendeeId
+        in: path
+        description: An integer, GUID, or a string that corresponds to a specific attendee
+        required: true
+        schema:
+          type: string
+      - name: eventId
+        in: query
+        description: An integer or a GUID that corresponds to a specific event (only necessary if sending an attendee code)
+        schema:
+          type: string
+      - name: accessKey
+        in: query
+        description: The Access Key for the user context
+        schema:
+          type: string
+      - name: qrSize
+        in: query
+        description: The width and height of the QR Code. If blank, no QR will be sent.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttendeeDetailsOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AttendeeDetailsOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /attendees/{attendeeId}/cancel:
+    post:
+      tags:
+      - Attendees
+      summary: Cancel an attendee (zero financial change only)
+      parameters:
+      - name: attendeeId
+        in: path
+        description: An integer or a GUID that corresponds to a specific attendee
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttendeeCancelInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AttendeeCancelInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AttendeeCancelInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderCreateOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/OrderCreateOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /attendees/{attendeeId}/code:
+    post:
+      tags:
+      - Attendees
+      summary: Associate an external code with a Brushfire attendee for scanning, etc.
+      parameters:
+      - name: attendeeId
+        in: path
+        description: An integer or a GUID that corresponds to a specific attendee
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttendeeCodeInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AttendeeCodeInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AttendeeCodeInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttendeeDetailsOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AttendeeDetailsOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /attendees/{attendeeId}/communities:
+    get:
+      tags:
+      - Attendees
+      summary: Gets all the available communities for this specific attendee based upon any rules that might be in place
+      parameters:
+      - name: attendeeId
+        in: path
+        description: An integer or a GUID that corresponds to a specific attendee
+        required: true
+        schema:
+          type: string
+      - name: accessKey
+        in: query
+        description: The Access Key for the user context
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AttendeeCommunityOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AttendeeCommunityOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /attendees/{attendeeId}/community:
+    post:
+      tags:
+      - Attendees
+      summary: Set or clear the community for the specified attendee (as long as the group's community doesn't override)
+      parameters:
+      - name: attendeeId
+        in: path
+        description: An integer or a GUID that corresponds to a specific attendee
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttendeeCommunityInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AttendeeCommunityInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AttendeeCommunityInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttendeeDetailsOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AttendeeDetailsOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /attendees/{attendeeId}/completed:
+    post:
+      tags:
+      - Attendees
+      summary: Set a registered attendee's completed state
+      parameters:
+      - name: attendeeId
+        in: path
+        description: An integer or a GUID that corresponds to a specific attendee
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttendeeCompletedInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AttendeeCompletedInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AttendeeCompletedInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttendeeDetailsOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AttendeeDetailsOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /attendees/{attendeeId}/data:
+    get:
+      tags:
+      - Attendees
+      summary: Returns all data for the specified attendee in the same structure as {eventId}/data
+      parameters:
+      - name: attendeeId
+        in: path
+        description: An integer, GUID, or a string that corresponds to a specific attendee
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: {}
+            text/json:
+              schema: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /attendees/{attendeeId}/donate:
+    post:
+      tags:
+      - Attendees
+      summary: Donate back an attendee
+      parameters:
+      - name: attendeeId
+        in: path
+        description: An integer or a GUID that corresponds to a specific attendee
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttendeeDonateInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AttendeeDonateInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AttendeeDonateInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderCreateOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/OrderCreateOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /attendees/{attendeeId}/fields:
+    get:
+      tags:
+      - Attendees
+      summary: Retrieve fields for an attendee
+      parameters:
+      - name: attendeeId
+        in: path
+        description: An integer or a GUID that corresponds to a specific attendee
+        required: true
+        schema:
+          type: string
+      - name: accessKey
+        in: query
+        description: The Access Key for the user context
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FieldOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FieldOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+    post:
+      tags:
+      - Attendees
+      summary: Update fields for an attendee
+      parameters:
+      - name: attendeeId
+        in: path
+        description: An integer or a GUID that corresponds to a specific attendee
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FieldUpdateInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FieldUpdateInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FieldUpdateInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FieldOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FieldOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /attendees/{attendeeId}/fieldscustom:
+    get:
+      tags:
+      - Attendees
+      summary: Retrieve fields for an attendee
+      parameters:
+      - name: attendeeId
+        in: path
+        description: An integer or a GUID that corresponds to a specific attendee
+        required: true
+        schema:
+          type: string
+      - name: fieldsToInclude
+        in: query
+        description: The Id's of the fields you want returned
+        schema:
+          type: array
+          items:
+            type: string
+            format: uuid
+      - name: accessKey
+        in: query
+        description: The Access Key for the user context
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FieldOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FieldOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+    post:
+      tags:
+      - Attendees
+      summary: Update fields for an attendee
+      parameters:
+      - name: attendeeId
+        in: path
+        description: An integer or a GUID that corresponds to a specific attendee
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FieldUpdateInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FieldUpdateInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FieldUpdateInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FieldOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FieldOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /attendees/{attendeeId}/gift:
+    post:
+      tags:
+      - Attendees
+      summary: Set an attendee registration as a gift
+      parameters:
+      - name: attendeeId
+        in: path
+        description: An integer or a GUID that corresponds to a specific attendee
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttendeeUpdateGiftInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AttendeeUpdateGiftInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AttendeeUpdateGiftInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttendeeUpdateGiftOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AttendeeUpdateGiftOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /attendees/{attendeeId}/group:
+    post:
+      tags:
+      - Attendees
+      summary: Set or clear the group (and the associated community) for the specified attendee
+      parameters:
+      - name: attendeeId
+        in: path
+        description: An integer or a GUID that corresponds to a specific attendee
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttendeeGroupInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AttendeeGroupInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AttendeeGroupInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttendeeDetailsOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AttendeeDetailsOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /attendees/{attendeeId}/link:
+    post:
+      tags:
+      - Attendees
+      summary: Copy all fields from the source attendee to the specified attendee and link them together
+      parameters:
+      - name: attendeeId
+        in: path
+        description: An integer or a GUID that corresponds to a specific attendee
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttendeeLinkInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AttendeeLinkInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AttendeeLinkInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttendeeDetailsOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AttendeeDetailsOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /attendees/{attendeeId}/print:
+    get:
+      tags:
+      - Attendees
+      summary: Retrieve the printable resources for a single attendee
+      parameters:
+      - name: attendeeId
+        in: path
+        description: An integer or a GUID that corresponds to a specific attendee
+        required: true
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: A string that is one of "Ticket", "ETicket", or "Namebadge"
+        schema:
+          $ref: '#/components/schemas/PrintType'
+      - name: format
+        in: query
+        description: A string that is one of "PDF", "PNG", "JPG", "GIF", "BMP" or "TIFF"
+        schema:
+          $ref: '#/components/schemas/PrintFormat'
+      - name: imageDpi
+        in: query
+        description: An int representing the dots per inch of the images produced that is 72, 96, 150, 300 or 600. 0 for PDF
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  format: byte
+            text/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  format: byte
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /attendees/{attendeeId}/type:
+    post:
+      tags:
+      - Attendees
+      summary: Change an attendee type (zero financial change only)
+      parameters:
+      - name: attendeeId
+        in: path
+        description: An integer or a GUID that corresponds to a specific attendee
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttendeeUpdateTypeInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AttendeeUpdateTypeInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AttendeeUpdateTypeInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderCreateOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/OrderCreateOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /attendees/helpdesk/{email}:
+    get:
+      tags:
+      - Attendees
+      summary: Retrieve attendees that match provided email
+      parameters:
+      - name: email
+        in: path
+        description: An email to search across attendee email fields
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AttendeeHelpdeskOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AttendeeHelpdeskOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /attendees/ids:
+    post:
+      tags:
+      - Attendees
+      summary: Convert a list of attendee numbers to their corresponding unique IDs, checking permissions for each
+      requestBody:
+        description: Object containing list of attendee numbers to convert
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttendeeNumbersToIdsInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AttendeeNumbersToIdsInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AttendeeNumbersToIdsInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttendeeNumbersToIdsOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AttendeeNumbersToIdsOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /attendees/print:
+    post:
+      tags:
+      - Attendees
+      summary: Retrieve the printable resources for multiple attendees
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttendeePrintInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AttendeePrintInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AttendeePrintInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  format: byte
+            text/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  format: byte
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+components:
+  schemas:
+    AttendeePrintInput:
+      required:
+      - Attendees
+      - EventId
+      - Type
+      type: object
+      properties:
+        Type:
+          $ref: '#/components/schemas/PrintType'
+        Attendees:
+          type: array
+          items:
+            type: integer
+            format: int64
+        EventId:
+          minLength: 1
+          type: string
+        Format:
+          $ref: '#/components/schemas/PrintFormat'
+        ImageDpi:
+          type: integer
+          format: int32
+      additionalProperties: false
+    AttendeeCommunityOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Partition:
+          type: string
+          nullable: true
+        Name:
+          type: string
+          nullable: true
+        Capacity:
+          type: integer
+          format: int32
+        AttendeeCount:
+          type: integer
+          format: int32
+        GroupCount:
+          type: integer
+          format: int32
+        Tags:
+          type: array
+          items:
+            type: string
+          nullable: true
+        RemainingCount:
+          type: integer
+          format: int32
+          readOnly: true
+      additionalProperties: false
+    AttendeeUpdateGiftOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        AttendeeNumber:
+          type: integer
+          format: int64
+        EventId:
+          type: string
+          format: uuid
+        AttendeeTypeId:
+          type: string
+          format: uuid
+        AttendeeCode:
+          type: string
+          nullable: true
+        GroupId:
+          type: string
+          format: uuid
+          nullable: true
+        IsCompleted:
+          type: boolean
+        CurrentOrderId:
+          type: string
+          format: uuid
+          nullable: true
+        OriginalOrderId:
+          type: string
+          format: uuid
+          nullable: true
+        CartId:
+          type: string
+          nullable: true
+        IsGift:
+          type: boolean
+        IsPreRegistered:
+          type: boolean
+        RecipientEmail:
+          type: string
+          nullable: true
+      additionalProperties: false
+    AttendeeDisplayOutput:
+      type: object
+      properties:
+        Line1:
+          type: string
+          nullable: true
+        Line2:
+          type: string
+          nullable: true
+        Line3:
+          type: string
+          nullable: true
+      additionalProperties: false
+    FieldOptionFullOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Label:
+          type: string
+          nullable: true
+        Capacity:
+          type: integer
+          format: int32
+          nullable: true
+        Quantity:
+          type: integer
+          format: int32
+        HasUnitPrice:
+          type: boolean
+        UnitPrice:
+          type: number
+          format: double
+          nullable: true
+        UnitTax:
+          type: number
+          format: double
+          nullable: true
+        IsInclusiveTaxes:
+          type: boolean
+        DisplayPrice:
+          type: number
+          format: double
+          nullable: true
+        PriceDescription:
+          type: string
+          nullable: true
+        IsSelected:
+          type: boolean
+        HasCapacity:
+          type: boolean
+        SpotsRemaining:
+          type: integer
+          format: int32
+          nullable: true
+        RemainingText:
+          type: string
+          nullable: true
+      additionalProperties: false
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        Key:
+          type: string
+          nullable: true
+        Value:
+          type: string
+          nullable: true
+      additionalProperties: false
+    OrderCreateOutput:
+      type: object
+      properties:
+        RequiresAction:
+          type: boolean
+        ActionInfo:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          nullable: true
+        Results:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderResultOutput'
+          nullable: true
+      additionalProperties: false
+    AttendeeCodeInput:
+      type: object
+      properties:
+        AttendeeCode:
+          type: string
+          nullable: true
+        AccessKey:
+          type: string
+          nullable: true
+      additionalProperties: false
+    AttendeeFlexPassCheckinOutput:
+      type: object
+      properties:
+        Name:
+          type: string
+          nullable: true
+        SessionNumber:
+          type: integer
+          format: int64
+        CheckedInAt:
+          type: string
+          format: date-time
+          nullable: true
+        AttendeeCheckinId:
+          type: string
+          format: uuid
+          nullable: true
+        EventNumber:
+          type: integer
+          format: int64
+        TitleInfo:
+          type: string
+          nullable: true
+      additionalProperties: false
+    AttendeeFlexPassOutput:
+      type: object
+      properties:
+        FlexTotal:
+          type: integer
+          format: int32
+          nullable: true
+        FlexPer:
+          type: integer
+          format: int32
+          nullable: true
+        FlexStartsAt:
+          type: string
+          format: date-time
+          nullable: true
+        FlexEndsAt:
+          type: string
+          format: date-time
+          nullable: true
+        FlexSummary:
+          type: string
+          nullable: true
+        FlexRedemptions:
+          type: integer
+          format: int32
+        FlexRedemptionsText:
+          type: string
+          nullable: true
+        FlexRelativeDays:
+          type: integer
+          format: int32
+          nullable: true
+        EventRedemptions:
+          type: integer
+          format: int32
+          nullable: true
+        EventRedemptionsText:
+          type: string
+          nullable: true
+      additionalProperties: false
+    FieldDisplayOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          nullable: true
+        Label:
+          type: string
+          nullable: true
+        Value:
+          type: string
+          nullable: true
+        Type:
+          type: string
+          nullable: true
+        IsSensitive:
+          type: boolean
+        OptionIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          nullable: true
+      additionalProperties: false
+    AttendeeUpdateGiftInput:
+      type: object
+      properties:
+        IsGift:
+          type: boolean
+        FromName:
+          type: string
+          nullable: true
+        FromEmail:
+          pattern: ^([0-9A-Za-zÀ-ÖØ-öø-ÿ']+[-._+&])*[0-9A-Za-zÀ-ÖØ-öø-ÿ_']+@([-0-9A-Za-zÀ-ÖØ-öø-ÿ]+[.])+[a-zA-Z]{2,63}$
+          type: string
+          nullable: true
+        RecipientEmail:
+          pattern: ^([0-9A-Za-zÀ-ÖØ-öø-ÿ']+[-._+&])*[0-9A-Za-zÀ-ÖØ-öø-ÿ_']+@([-0-9A-Za-zÀ-ÖØ-öø-ÿ]+[.])+[a-zA-Z]{2,63}$
+          type: string
+          nullable: true
+        RecipientMessage:
+          type: string
+          nullable: true
+      additionalProperties: false
+    AttendeeNumbersToIdsInput:
+      required:
+      - AttendeeNumbers
+      type: object
+      properties:
+        AttendeeNumbers:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: List of attendee numbers to convert to unique identifiers
+      additionalProperties: false
+      description: Input model for converting attendee numbers to unique identifiers
+    FieldOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Label:
+          type: string
+          nullable: true
+        Type:
+          type: string
+          nullable: true
+        Value:
+          nullable: true
+        DisplayValue:
+          type: string
+          nullable: true
+        ValidationExpression:
+          type: string
+          nullable: true
+        IsRequired:
+          type: boolean
+        Notes:
+          type: string
+          nullable: true
+        ErrorMessage:
+          type: string
+          nullable: true
+        IsDisabled:
+          type: boolean
+        IsSensitive:
+          type: boolean
+        SpecialFieldId:
+          type: string
+          format: uuid
+        ParentOptionId:
+          type: string
+          format: uuid
+          nullable: true
+        ParentFieldId:
+          type: string
+          format: uuid
+          nullable: true
+        FormObjectId:
+          type: string
+          format: uuid
+          nullable: true
+        Options:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldOptionFullOutput'
+          nullable: true
+        ParentOptionIsSelected:
+          type: boolean
+        HasError:
+          type: boolean
+        HasRelevantOutput:
+          type: boolean
+        MinDate:
+          type: string
+          format: date-time
+          nullable: true
+        MaxDate:
+          type: string
+          format: date-time
+          nullable: true
+        AttendeeTypes:
+          type: array
+          items:
+            type: string
+            format: uuid
+          nullable: true
+        RemoteUrl:
+          type: string
+          nullable: true
+        SelectedOptionId:
+          type: string
+          format: uuid
+          nullable: true
+          readOnly: true
+        Confirm:
+          type: boolean
+        DomainValidation:
+          $ref: '#/components/schemas/DomainValidationOutput'
+        DisplayIsPrimary:
+          type: boolean
+      additionalProperties: false
+    AttendeeHelpdeskOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        AttendeeNumber:
+          type: integer
+          format: int64
+        EventNumber:
+          type: integer
+          format: int64
+        EventTitle:
+          type: string
+          nullable: true
+        EventSubtitle:
+          type: string
+          nullable: true
+        Status:
+          type: string
+          nullable: true
+        FirstName:
+          type: string
+          nullable: true
+        LastName:
+          type: string
+          nullable: true
+        TypeName:
+          type: string
+          nullable: true
+        Amount:
+          type: number
+          format: double
+        SeatInfo:
+          type: string
+          nullable: true
+        Culture:
+          type: string
+          nullable: true
+      additionalProperties: false
+    FieldUpdateInput:
+      type: object
+      properties:
+        AccessKey:
+          type: string
+          nullable: true
+        FieldValues:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldInput'
+          nullable: true
+        UpdateNewOnly:
+          type: boolean
+      additionalProperties: false
+    ApiModelError:
+      type: object
+      properties:
+        Errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+          nullable: true
+        Message:
+          type: string
+          nullable: true
+        Data:
+          nullable: true
+        StackTrace:
+          type: string
+          nullable: true
+      additionalProperties: false
+    AttendeeNumbersToIdsOutput:
+      type: object
+      properties:
+        Results:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttendeeConversionResult'
+          description: List of results for each requested attendee number
+          nullable: true
+      additionalProperties: false
+      description: Output model containing converted attendee identifiers and status information
+    AttendeeCommunityInput:
+      type: object
+      properties:
+        CommunityId:
+          type: string
+          format: uuid
+          nullable: true
+        AccessKey:
+          type: string
+          nullable: true
+        OverrideCapacity:
+          type: boolean
+        OverrideGroup:
+          type: boolean
+      additionalProperties: false
+    AttendeeUpdateTypeInput:
+      required:
+      - AttendeeTypeId
+      type: object
+      properties:
+        AccessKey:
+          type: string
+          nullable: true
+        AttendeeTypeId:
+          type: string
+          format: uuid
+        Amount:
+          type: number
+          format: double
+          nullable: true
+        SendEmail:
+          type: boolean
+        Via:
+          type: string
+          nullable: true
+        ExternalDescription:
+          type: string
+          nullable: true
+      additionalProperties: false
+    AttendeeDetailsOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        AttendeeNumber:
+          type: integer
+          format: int64
+        AttendeeCode:
+          type: string
+          nullable: true
+        EventId:
+          type: string
+          format: uuid
+        EventNumber:
+          type: integer
+          format: int64
+        Status:
+          type: string
+          nullable: true
+        IsCompleted:
+          type: boolean
+        IsGift:
+          type: boolean
+        IsPreRegistered:
+          type: boolean
+        IsPrinted:
+          type: boolean
+        ShareEmail:
+          type: string
+          nullable: true
+        GiftLastSentAt:
+          type: string
+          format: date-time
+          nullable: true
+        FirstName:
+          type: string
+          nullable: true
+        LastName:
+          type: string
+          nullable: true
+        Phone:
+          type: string
+          nullable: true
+        Email:
+          type: string
+          nullable: true
+        Street1:
+          type: string
+          nullable: true
+        Street2:
+          type: string
+          nullable: true
+        City:
+          type: string
+          nullable: true
+        Region:
+          type: string
+          nullable: true
+        Country:
+          type: string
+          nullable: true
+        PostalCode:
+          type: string
+          nullable: true
+        TypeId:
+          type: string
+          format: uuid
+        TypeName:
+          type: string
+          nullable: true
+        SectionName:
+          type: string
+          nullable: true
+        RowName:
+          type: string
+          nullable: true
+        SeatLabel:
+          type: string
+          nullable: true
+        Wheelchair:
+          type: boolean
+          nullable: true
+        LimitedView:
+          type: boolean
+          nullable: true
+        Amount:
+          type: number
+          format: double
+        SeatInfo:
+          type: string
+          nullable: true
+          readOnly: true
+        CommunityId:
+          type: string
+          format: uuid
+          nullable: true
+        CommunityName:
+          type: string
+          nullable: true
+        CommunityPartition:
+          type: string
+          nullable: true
+        GroupId:
+          type: string
+          format: uuid
+          nullable: true
+        GroupName:
+          type: string
+          nullable: true
+        GroupEmail:
+          type: string
+          nullable: true
+        Fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldDisplayOutput'
+          nullable: true
+        OrderFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldDisplayOutput'
+          nullable: true
+        GroupFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldDisplayOutput'
+          nullable: true
+        Checkins:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttendeeCheckinOutput'
+          nullable: true
+        FlexPassCheckins:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttendeeFlexPassCheckinOutput'
+          nullable: true
+        QRCode:
+          type: string
+          nullable: true
+        IsAnonymized:
+          type: boolean
+        FlexPass:
+          $ref: '#/components/schemas/AttendeeFlexPassOutput'
+        IsFlexPass:
+          type: boolean
+        AttendeeDisplay:
+          $ref: '#/components/schemas/AttendeeDisplayOutput'
+        AttendeeDisplayLines:
+          $ref: '#/components/schemas/AttendeeDisplayOutput'
+        OrderedAt:
+          type: string
+          format: date-time
+          nullable: true
+        ShareEnabled:
+          type: boolean
+        IsAddon:
+          type: boolean
+        GeneratesTicket:
+          type: boolean
+        OrderKey:
+          type: string
+          nullable: true
+      additionalProperties: false
+    AttendeeCheckinOutput:
+      type: object
+      properties:
+        Name:
+          type: string
+          nullable: true
+        SessionNumber:
+          type: integer
+          format: int64
+        CheckedInAt:
+          type: string
+          format: date-time
+          nullable: true
+        CheckedIn:
+          type: boolean
+        IsHidden:
+          type: boolean
+      additionalProperties: false
+    AttendeeConversionResult:
+      type: object
+      properties:
+        AttendeeNumber:
+          type: integer
+          description: The original attendee number requested
+          format: int64
+        AttendeeId:
+          type: string
+          description: The unique identifier if conversion was successful
+          format: uuid
+          nullable: true
+        Success:
+          type: boolean
+          description: Whether the conversion was successful
+        Message:
+          type: string
+          description: Reason for failure if unsuccessful
+          nullable: true
+      additionalProperties: false
+      description: Result of converting an attendee number to a unique identifier
+    PrintType:
+      enum:
+      - Ticket
+      - ETicket
+      - Receipt
+      - MailingLabel
+      - WillCall
+      - NameBadge
+      - Season
+      type: string
+    AttendeeCompletedInput:
+      required:
+      - IsCompleted
+      type: object
+      properties:
+        AccessKey:
+          type: string
+          nullable: true
+        IsCompleted:
+          type: boolean
+      additionalProperties: false
+    AttendeeDonateInput:
+      type: object
+      properties:
+        AccessKey:
+          type: string
+          nullable: true
+        SendEmail:
+          type: boolean
+        ReservedStateId:
+          type: integer
+          format: int32
+          nullable: true
+        Via:
+          type: string
+          nullable: true
+      additionalProperties: false
+    DomainValidationOutput:
+      type: object
+      properties:
+        AllowDomains:
+          type: array
+          items:
+            type: string
+          nullable: true
+        DisallowDomains:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    AttendeeCancelInput:
+      type: object
+      properties:
+        Penalty:
+          type: number
+          format: double
+        AccessKey:
+          type: string
+          nullable: true
+        SendEmail:
+          type: boolean
+        ReservedStateId:
+          type: integer
+          format: int32
+          nullable: true
+        Via:
+          type: string
+          nullable: true
+      additionalProperties: false
+    AttendeeGroupInput:
+      type: object
+      properties:
+        GroupId:
+          type: string
+          nullable: true
+        OverrideCommunityCapacity:
+          type: boolean
+        AccessKey:
+          type: string
+          nullable: true
+      additionalProperties: false
+    OrderResultOutput:
+      type: object
+      properties:
+        OrderKey:
+          type: string
+          nullable: true
+        OrderId:
+          type: string
+          format: uuid
+        ObjectNumber:
+          type: integer
+          format: int64
+        OrderTotal:
+          type: number
+          format: double
+        Quantity:
+          type: integer
+          format: int32
+        AttendeeCount:
+          type: integer
+          format: int32
+        AddonCount:
+          type: integer
+          format: int32
+        Summary:
+          type: string
+          nullable: true
+        Type:
+          type: string
+          nullable: true
+        ContactEmail:
+          type: string
+          nullable: true
+        AnyGeneratesTicket:
+          type: boolean
+      additionalProperties: false
+    PrintFormat:
+      enum:
+      - PDF
+      - PNG
+      - JPG
+      - GIF
+      - BMP
+      - TIFF
+      - ZPL
+      type: string
+    FieldInput:
+      required:
+      - Id
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Value:
+          nullable: true
+      additionalProperties: false
+    AttendeeLinkInput:
+      type: object
+      properties:
+        SourceAttendeeId:
+          type: string
+          nullable: true
+        AccessKey:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      description: The App Key you received from https://developer.brushfire.com/key
+      name: Authorization
+      in: header

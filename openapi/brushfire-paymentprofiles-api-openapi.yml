@@ -1,0 +1,449 @@
+openapi: 3.0.1
+info:
+  title: 'Brushfire API: Version 2025-07-22 AccessCodes PaymentProfiles API'
+  version: '2025-07-22'
+  description: 'The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform. It covers events, ticket types, sections and seats, attendees, orders, the shopping cart and checkout flow, groups, sessions and check-in, promotions and access codes, payment profiles, and webhooks (Hooks). Authenticate by sending your App Key (requested at https://developer.brushfire.com/key) in the Authorization header. The API is date-versioned: send the desired version in the api-version request header (for example, 2025-07-22). This document is the live specification published at api.brushfire.com/swagger.'
+  contact:
+    name: Brushfire Developers
+    url: https://developer.brushfire.com
+servers:
+- url: https://api.brushfire.com
+  description: Brushfire API (date-versioned via the api-version header)
+tags:
+- name: PaymentProfiles
+paths:
+  /paymentprofiles:
+    get:
+      tags:
+      - PaymentProfiles
+      summary: Returns all payment profiles for the specified client
+      parameters:
+      - name: clientId
+        in: query
+        description: A string, a GUID, or an integer that corresponds to a specific client
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PaymentProfileListOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PaymentProfileListOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /paymentprofiles/{paymentProfileId}:
+    get:
+      tags:
+      - PaymentProfiles
+      summary: Returns the details of the specified payment profile
+      parameters:
+      - name: paymentProfileId
+        in: path
+        description: A GUID that corresponds to a specific payment profile
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentProfileSingleOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PaymentProfileSingleOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /paymentprofiles/{paymentProfileId}/locations:
+    get:
+      tags:
+      - PaymentProfiles
+      summary: Returns the locations associated with the merchant ID of a given payment profile.
+      parameters:
+      - name: paymentProfileId
+        in: path
+        description: A GUID that corresponds to a specific payment profile
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LocationSingleOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LocationSingleOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+  /paymentprofiles/{paymentProfileId}/terminals:
+    get:
+      tags:
+      - PaymentProfiles
+      summary: Returns all terminals registered to the account associated with the supplied payment profile
+      parameters:
+      - name: paymentProfileId
+        in: path
+        description: A GUID that corresponds to a specific payment profile
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TerminalOutput'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TerminalOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+    post:
+      tags:
+      - PaymentProfiles
+      summary: Add a terminal to the supplied payment profile
+      parameters:
+      - name: paymentProfileId
+        in: path
+        description: A GUID that corresponds to a specific payment profile
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TerminalCreateInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/TerminalCreateInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TerminalCreateInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TerminalCreateOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TerminalCreateOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+      security:
+      - apiKey: []
+components:
+  schemas:
+    PaymentMethodListOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Name:
+          type: string
+          nullable: true
+        IsEnabled:
+          type: boolean
+      additionalProperties: false
+    PaymentProfileConfigOutput:
+      type: object
+      properties:
+        LocationId:
+          type: string
+          nullable: true
+        LocationName:
+          type: string
+          nullable: true
+        MerchantId:
+          type: string
+          nullable: true
+        MerchantName:
+          type: string
+          nullable: true
+        AccessToken:
+          type: string
+          nullable: true
+        Currency:
+          type: string
+          nullable: true
+        InternalDescription:
+          type: string
+          nullable: true
+        Invoice:
+          $ref: '#/components/schemas/PaymentProfileConfigInvoiceItem'
+        Scopes:
+          type: array
+          items:
+            type: string
+          nullable: true
+        Status:
+          type: string
+          nullable: true
+        AllowCards:
+          type: boolean
+        AllowWallets:
+          type: boolean
+        AllowAch:
+          type: boolean
+        AllowAfterpay:
+          type: boolean
+        AllowCashApp:
+          type: boolean
+        AllowGiftCards:
+          type: boolean
+      additionalProperties: false
+    TerminalOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          nullable: true
+        SerialNumber:
+          type: string
+          nullable: true
+        Name:
+          type: string
+          nullable: true
+        Display:
+          type: string
+          nullable: true
+      additionalProperties: false
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        Key:
+          type: string
+          nullable: true
+        Value:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TerminalCreateOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          nullable: true
+        SerialNumber:
+          type: string
+          nullable: true
+        PairingCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TerminalCreateInput:
+      type: object
+      properties:
+        LocationId:
+          type: string
+          nullable: true
+        PairingCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PaymentProfileSingleOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Name:
+          type: string
+          nullable: true
+        AccountName:
+          type: string
+          nullable: true
+        GatewayId:
+          type: string
+          format: uuid
+        GatewayName:
+          type: string
+          nullable: true
+        SupportsAutoFees:
+          type: boolean
+        SupportsSideloading:
+          type: boolean
+        AllowsReferenceSales:
+          type: boolean
+        AllowsStandaloneCredits:
+          type: boolean
+        ReferenceDayLimit:
+          type: integer
+          format: int32
+        Options:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          nullable: true
+        ElectronicPaymentMethods:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentMethodListOutput'
+          nullable: true
+        Config:
+          $ref: '#/components/schemas/PaymentProfileConfigOutput'
+      additionalProperties: false
+    ApiModelError:
+      type: object
+      properties:
+        Errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+          nullable: true
+        Message:
+          type: string
+          nullable: true
+        Data:
+          nullable: true
+        StackTrace:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PaymentProfileConfigInvoiceItem:
+      type: object
+      properties:
+        AllowAdmin:
+          type: boolean
+        AllowInternet:
+          type: boolean
+        RelativeDays:
+          type: integer
+          format: int32
+      additionalProperties: false
+    LocationSingleOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          nullable: true
+        Name:
+          type: string
+          nullable: true
+        Address:
+          type: string
+          nullable: true
+          readOnly: true
+        IsSelected:
+          type: boolean
+        IsActive:
+          type: boolean
+      additionalProperties: false
+    PaymentProfileListOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Name:
+          type: string
+          nullable: true
+        AccountName:
+          type: string
+          nullable: true
+        GatewayId:
+          type: string
+          format: uuid
+        GatewayName:
+          type: string
+          nullable: true
+        SupportsAutoFees:
+          type: boolean
+        SupportsSideloading:
+          type: boolean
+        AllowsReferenceSales:
+          type: boolean
+        AllowsStandaloneCredits:
+          type: boolean
+        ReferenceDayLimit:
+          type: integer
+          format: int32
+        Options:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          nullable: true
+        ElectronicPaymentMethods:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentMethodListOutput'
+          nullable: true
+        Config:
+          $ref: '#/components/schemas/PaymentProfileConfigOutput'
+      additionalProperties: false
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      description: The App Key you received from https://developer.brushfire.com/key
+      name: Authorization
+      in: header

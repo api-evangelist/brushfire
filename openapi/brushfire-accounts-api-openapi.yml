@@ -1,0 +1,396 @@
+openapi: 3.0.1
+info:
+  title: 'Brushfire API: Version 2025-07-22 AccessCodes Accounts API'
+  version: '2025-07-22'
+  description: 'The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform. It covers events, ticket types, sections and seats, attendees, orders, the shopping cart and checkout flow, groups, sessions and check-in, promotions and access codes, payment profiles, and webhooks (Hooks). Authenticate by sending your App Key (requested at https://developer.brushfire.com/key) in the Authorization header. The API is date-versioned: send the desired version in the api-version request header (for example, 2025-07-22). This document is the live specification published at api.brushfire.com/swagger.'
+  contact:
+    name: Brushfire Developers
+    url: https://developer.brushfire.com
+servers:
+- url: https://api.brushfire.com
+  description: Brushfire API (date-versioned via the api-version header)
+tags:
+- name: Accounts
+paths:
+  /accounts/{accountId}:
+    get:
+      tags:
+      - Accounts
+      summary: Retrieve information for a specific account
+      parameters:
+      - name: accountId
+        in: path
+        description: An Email, a GUID, an Access Key, or an integer that corresponds to a specific account
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountSingleOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AccountSingleOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      security:
+      - apiKey: []
+  /accounts/auth:
+    post:
+      tags:
+      - Accounts
+      summary: Authenticate a user via email and password or social service to get Access Key
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountAuthInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AccountAuthInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AccountAuthInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountAuthOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AccountAuthOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      security:
+      - apiKey: []
+  /accounts/helpdesk/{email}:
+    get:
+      tags:
+      - Accounts
+      summary: Retrieve an account that matches the provided email
+      parameters:
+      - name: email
+        in: path
+        description: An Email that corresponds to a specific account
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountHelpdeskOutput'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AccountHelpdeskOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiModelError'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      security:
+      - apiKey: []
+components:
+  schemas:
+    AccountAuthOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        FirstName:
+          type: string
+          nullable: true
+        LastName:
+          type: string
+          nullable: true
+        Email:
+          type: string
+          nullable: true
+        AccountNumber:
+          type: integer
+          format: int64
+        AccessKey:
+          type: string
+          nullable: true
+        IsUser:
+          type: boolean
+        AvatarUrl:
+          type: string
+          nullable: true
+        IsBrushfireStaff:
+          type: boolean
+      additionalProperties: false
+    AccountRoleOutput:
+      type: object
+      properties:
+        ClientId:
+          type: string
+          format: uuid
+        ClientKey:
+          type: string
+          nullable: true
+        ClientNumber:
+          type: integer
+          format: int64
+        ClientName:
+          type: string
+          nullable: true
+        ClientCity:
+          type: string
+          nullable: true
+        ClientRegion:
+          type: string
+          nullable: true
+        ClientCountry:
+          type: string
+          nullable: true
+        Level:
+          type: string
+          nullable: true
+      additionalProperties: false
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        Key:
+          type: string
+          nullable: true
+        Value:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ApiError:
+      type: object
+      properties:
+        Message:
+          type: string
+          nullable: true
+        Data:
+          nullable: true
+        StackTrace:
+          type: string
+          nullable: true
+      additionalProperties: false
+    AccountSingleOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        AccountNumber:
+          type: integer
+          format: int64
+        Email:
+          type: string
+          nullable: true
+        FirstName:
+          type: string
+          nullable: true
+        LastName:
+          type: string
+          nullable: true
+        Street1:
+          type: string
+          nullable: true
+        Street2:
+          type: string
+          nullable: true
+        City:
+          type: string
+          nullable: true
+        Region:
+          type: string
+          nullable: true
+        Country:
+          type: string
+          nullable: true
+        PostalCode:
+          type: string
+          nullable: true
+        Phone:
+          type: string
+          nullable: true
+        Address:
+          type: string
+          nullable: true
+        CreatedAt:
+          type: string
+          format: date-time
+        IsUser:
+          type: boolean
+        AvatarUrl:
+          type: string
+          nullable: true
+        IsBrushfireStaff:
+          type: boolean
+      additionalProperties: false
+    ApiModelError:
+      type: object
+      properties:
+        Errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+          nullable: true
+        Message:
+          type: string
+          nullable: true
+        Data:
+          nullable: true
+        StackTrace:
+          type: string
+          nullable: true
+      additionalProperties: false
+    AccountAuthInput:
+      required:
+      - Email
+      - Password
+      type: object
+      properties:
+        Email:
+          minLength: 1
+          type: string
+        Password:
+          maxLength: 64
+          minLength: 8
+          type: string
+      additionalProperties: false
+    AccountHelpdeskOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        AccountNumber:
+          type: integer
+          format: int64
+        Email:
+          type: string
+          nullable: true
+        FirstName:
+          type: string
+          nullable: true
+        LastName:
+          type: string
+          nullable: true
+        IsUser:
+          type: boolean
+        ClientRoles:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountRoleOutput'
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      description: The App Key you received from https://developer.brushfire.com/key
+      name: Authorization
+      in: header
