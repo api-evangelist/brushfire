@@ -1,0 +1,2085 @@
+{
+  "item": [
+    {
+      "id": "1641db25-32e9-4e70-8c8b-52a5d61b4b05",
+      "name": "Sessions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d4f4dc7b-3c0c-45d6-8859-5619cfc3c33c",
+          "name": "Get detailed information about a given session",
+          "request": {
+            "name": "Get detailed information about a given session",
+            "description": {},
+            "url": {
+              "path": [
+                "sessions",
+                ":sessionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sessionId",
+                  "description": "(Required) An integer that corresponds to a specific session"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "52ed96fa-e076-4a8d-bffa-c0de7ecaeec8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) An integer that corresponds to a specific session"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"SessionNumber\": 1126,\n  \"Name\": \"string\",\n  \"AttendeeTotal\": 9815,\n  \"CheckedInCount\": 14,\n  \"Type\": \"string\",\n  \"IsHidden\": true,\n  \"AllowFlex\": true,\n  \"FlexPassCount\": 1995,\n  \"FlexAttendeeTotal\": 5573,\n  \"IsTimeSlot\": true,\n  \"MinutesBefore\": 7142,\n  \"MinutesAfter\": 558,\n  \"AllowPasses\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c20ec483-2691-40e8-9129-8b242c08824d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) An integer that corresponds to a specific session"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "96e00b4f-7ef6-4eaa-8de6-2c5090dfd4bb",
+          "name": "Get a list of all of the attendees for a given check-in session",
+          "request": {
+            "name": "Get a list of all of the attendees for a given check-in session",
+            "description": {},
+            "url": {
+              "path": [
+                "sessions",
+                ":sessionId",
+                "attendees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "",
+                  "description": "An optional search string for filtering attendees"
+                },
+                {
+                  "disabled": false,
+                  "key": "qty",
+                  "value": "<integer>",
+                  "description": "An integer to limit the number of results returned"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "An integer to skip the first attendees returned"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sessionId",
+                  "description": "(Required) The session number for which to retrieve attendees"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5414ec8a-4450-41b1-846d-275f8babe577",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":sessionId",
+                    "attendees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": ""
+                    },
+                    {
+                      "key": "qty",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) The session number for which to retrieve attendees"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"SessionAttendees\": [\n    {\n      \"AttendeeNumber\": 980,\n      \"FirstName\": \"string\",\n      \"LastName\": \"string\",\n      \"SectionName\": \"string\",\n      \"RowName\": \"string\",\n      \"SeatLabel\": \"string\",\n      \"TypeName\": \"string\",\n      \"CheckedIn\": false,\n      \"CheckedInAt\": \"1978-07-19T08:32:59.474Z\",\n      \"SeatInfo\": \"string\",\n      \"IsAddon\": false\n    },\n    {\n      \"AttendeeNumber\": 1245,\n      \"FirstName\": \"string\",\n      \"LastName\": \"string\",\n      \"SectionName\": \"string\",\n      \"RowName\": \"string\",\n      \"SeatLabel\": \"string\",\n      \"TypeName\": \"string\",\n      \"CheckedIn\": false,\n      \"CheckedInAt\": \"1980-03-11T20:25:42.982Z\",\n      \"SeatInfo\": \"string\",\n      \"IsAddon\": false\n    }\n  ],\n  \"FlexAttendees\": [\n    {\n      \"AttendeeNumber\": 4641,\n      \"FirstName\": \"string\",\n      \"LastName\": \"string\",\n      \"TypeName\": \"string\",\n      \"CheckedIn\": false,\n      \"FlexPass\": {\n        \"FlexTotal\": 9178,\n        \"FlexPer\": 6102,\n        \"FlexStartsAt\": \"1951-06-05T18:44:56.547Z\",\n        \"FlexEndsAt\": \"2022-11-05T05:51:14.513Z\",\n        \"FlexSummary\": \"string\",\n        \"FlexRedemptions\": 1985,\n        \"FlexRedemptionsText\": \"string\",\n        \"FlexRelativeDays\": 1284,\n        \"EventRedemptions\": 3115,\n        \"EventRedemptionsText\": \"string\"\n      },\n      \"IsAddon\": false\n    },\n    {\n      \"AttendeeNumber\": 3753,\n      \"FirstName\": \"string\",\n      \"LastName\": \"string\",\n      \"TypeName\": \"string\",\n      \"CheckedIn\": false,\n      \"FlexPass\": {\n        \"FlexTotal\": 8713,\n        \"FlexPer\": 6015,\n        \"FlexStartsAt\": \"2017-10-24T18:00:14.216Z\",\n        \"FlexEndsAt\": \"1964-05-23T05:24:18.089Z\",\n        \"FlexSummary\": \"string\",\n        \"FlexRedemptions\": 5120,\n        \"FlexRedemptionsText\": \"string\",\n        \"FlexRelativeDays\": 9920,\n        \"EventRedemptions\": 9790,\n        \"EventRedemptionsText\": \"string\"\n      },\n      \"IsAddon\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa27a783-1a9c-47a2-ac2c-a7e3818dc3e9",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":sessionId",
+                    "attendees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": ""
+                    },
+                    {
+                      "key": "qty",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) The session number for which to retrieve attendees"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1c8a2da-2d6f-4b07-be3e-93a684f8d79e",
+          "name": "Check in one or more attendees for a specific session",
+          "request": {
+            "name": "Check in one or more attendees for a specific session",
+            "description": {},
+            "url": {
+              "path": [
+                "sessions",
+                ":sessionId",
+                "checkin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sessionId",
+                  "description": "(Required) An integer representing the session to check into"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "Codes",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "Codes",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "Entries",
+                  "value": "{\"CheckedInAt\":\"<dateTime>\",\"Code\":\"<string>\"}"
+                },
+                {
+                  "disabled": false,
+                  "key": "Entries",
+                  "value": "{\"CheckedInAt\":\"<dateTime>\",\"Code\":\"<string>\"}"
+                },
+                {
+                  "disabled": false,
+                  "key": "IsVerified",
+                  "value": "<boolean>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1b4efca3-d45c-4190-946d-e5f532cd8ac1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":sessionId",
+                    "checkin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) An integer representing the session to check into"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "Codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Entries",
+                      "value": "{\"CheckedInAt\":\"<dateTime>\",\"Code\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Entries",
+                      "value": "{\"CheckedInAt\":\"<dateTime>\",\"Code\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "IsVerified",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Success\": true,\n    \"CheckedInAt\": \"1995-01-07T04:19:02.652Z\",\n    \"Message\": \"string\",\n    \"Code\": \"string\",\n    \"RequiresVerification\": true\n  },\n  {\n    \"Success\": false,\n    \"CheckedInAt\": \"2000-03-23T06:00:36.857Z\",\n    \"Message\": \"string\",\n    \"Code\": \"string\",\n    \"RequiresVerification\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c63115b8-429c-4298-bf7a-d6733712e45a",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":sessionId",
+                    "checkin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) An integer representing the session to check into"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "Codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Entries",
+                      "value": "{\"CheckedInAt\":\"<dateTime>\",\"Code\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Entries",
+                      "value": "{\"CheckedInAt\":\"<dateTime>\",\"Code\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "IsVerified",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fbdfde6f-e07f-4344-9835-7e4bde22d419",
+          "name": "Check out one or more attendees for a specific session",
+          "request": {
+            "name": "Check out one or more attendees for a specific session",
+            "description": {},
+            "url": {
+              "path": [
+                "sessions",
+                ":sessionId",
+                "checkout"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sessionId",
+                  "description": "(Required) An integer representing the session to check out of"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "Codes",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "Codes",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c1ac54af-b3ba-4d85-9657-fe514c695529",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":sessionId",
+                    "checkout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) An integer representing the session to check out of"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "Codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Codes",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Success\": true,\n    \"CheckedInAt\": \"2017-03-09T01:51:49.957Z\",\n    \"Message\": \"string\",\n    \"Code\": \"string\"\n  },\n  {\n    \"Success\": false,\n    \"CheckedInAt\": \"1992-06-22T11:31:36.793Z\",\n    \"Message\": \"string\",\n    \"Code\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b3ea70c-703b-48f0-b1d5-095669961957",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":sessionId",
+                    "checkout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) An integer representing the session to check out of"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "Codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Codes",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "889216d0-a4a6-44af-af3d-13eaf4a086f1",
+          "name": "Retrieve attendee data from a specific email and session",
+          "request": {
+            "name": "Retrieve attendee data from a specific email and session",
+            "description": {},
+            "url": {
+              "path": [
+                "sessions",
+                ":sessionId",
+                "email",
+                ":email"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "email",
+                  "description": "(Required) A string representing an email address"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "sessionId",
+                  "description": "(Required) An integer representing a specific session"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "43149d49-bf89-4bf9-a171-64d8a57c70af",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":sessionId",
+                    "email",
+                    ":email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "email",
+                      "description": "(Required) A string representing an email address"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "sessionId",
+                      "description": "(Required) An integer representing a specific session"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"AttendeeNumber\": 7640,\n    \"FirstName\": \"string\",\n    \"LastName\": \"string\",\n    \"SectionName\": \"string\",\n    \"RowName\": \"string\",\n    \"SeatLabel\": \"string\",\n    \"TypeName\": \"string\",\n    \"CheckedIn\": true,\n    \"CheckedInAt\": \"2020-12-18T05:13:21.660Z\",\n    \"SeatInfo\": \"string\",\n    \"IsAddon\": true\n  },\n  {\n    \"AttendeeNumber\": 7742,\n    \"FirstName\": \"string\",\n    \"LastName\": \"string\",\n    \"SectionName\": \"string\",\n    \"RowName\": \"string\",\n    \"SeatLabel\": \"string\",\n    \"TypeName\": \"string\",\n    \"CheckedIn\": false,\n    \"CheckedInAt\": \"1982-09-05T22:58:34.945Z\",\n    \"SeatInfo\": \"string\",\n    \"IsAddon\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d5140d2-96e4-421d-ac7b-de6b76b0b547",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":sessionId",
+                    "email",
+                    ":email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "email",
+                      "description": "(Required) A string representing an email address"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "sessionId",
+                      "description": "(Required) An integer representing a specific session"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "51cca1c2-d08e-45ab-a424-269041239e2d",
+          "name": "Get detailed information about a given flex attendee in a specific session",
+          "request": {
+            "name": "Get detailed information about a given flex attendee in a specific session",
+            "description": {},
+            "url": {
+              "path": [
+                "sessions",
+                ":sessionId",
+                "flex",
+                ":attendeeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sessionId",
+                  "description": "(Required) An integer that corresponds to a specific session"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "attendeeId",
+                  "description": "(Required) An integer that corresponds to a specific attendee"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2447a06c-447e-4e13-83de-7c0d5edc098b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":sessionId",
+                    "flex",
+                    ":attendeeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) An integer that corresponds to a specific session"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "attendeeId",
+                      "description": "(Required) An integer that corresponds to a specific attendee"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"95181f9c-9764-9a09-ae83-51d29669d27f\",\n  \"AttendeeNumber\": 2414,\n  \"AttendeeCode\": \"string\",\n  \"EventId\": \"a176dbcb-57df-6d6c-8732-5e8c589c52b9\",\n  \"EventNumber\": 709,\n  \"Status\": \"string\",\n  \"IsCompleted\": true,\n  \"IsGift\": false,\n  \"IsPreRegistered\": false,\n  \"IsPrinted\": true,\n  \"ShareEmail\": \"string\",\n  \"GiftLastSentAt\": \"2021-01-02T01:35:42.401Z\",\n  \"FirstName\": \"string\",\n  \"LastName\": \"string\",\n  \"Phone\": \"string\",\n  \"Email\": \"string\",\n  \"Street1\": \"string\",\n  \"Street2\": \"string\",\n  \"City\": \"string\",\n  \"Region\": \"string\",\n  \"Country\": \"string\",\n  \"PostalCode\": \"string\",\n  \"TypeId\": \"69f92e53-0086-778b-d50b-765914bc4607\",\n  \"TypeName\": \"string\",\n  \"SectionName\": \"string\",\n  \"RowName\": \"string\",\n  \"SeatLabel\": \"string\",\n  \"Wheelchair\": true,\n  \"LimitedView\": true,\n  \"Amount\": 5435.526206202527,\n  \"SeatInfo\": \"string\",\n  \"CommunityId\": \"e1307c63-60b4-70bc-5603-94b8ded3a639\",\n  \"CommunityName\": \"string\",\n  \"CommunityPartition\": \"string\",\n  \"GroupId\": \"a523948d-6e92-232c-3262-c5b92a913772\",\n  \"GroupName\": \"string\",\n  \"GroupEmail\": \"string\",\n  \"Fields\": [\n    {\n      \"Id\": \"string\",\n      \"Label\": \"string\",\n      \"Value\": \"string\",\n      \"Type\": \"string\",\n      \"IsSensitive\": false,\n      \"OptionIds\": [\n        \"cdd05d22-3778-ae31-a526-d10ef52db85c\",\n        \"d903b348-86c2-46d4-451a-22db2fc825f2\"\n      ]\n    },\n    {\n      \"Id\": \"string\",\n      \"Label\": \"string\",\n      \"Value\": \"string\",\n      \"Type\": \"string\",\n      \"IsSensitive\": false,\n      \"OptionIds\": [\n        \"b5c76aa9-31bb-fa9e-7ed3-a3c45fc2fc2a\",\n        \"d7ee885b-abd6-cdb7-bcab-fb155a8fe800\"\n      ]\n    }\n  ],\n  \"OrderFields\": [\n    {\n      \"Id\": \"string\",\n      \"Label\": \"string\",\n      \"Value\": \"string\",\n      \"Type\": \"string\",\n      \"IsSensitive\": true,\n      \"OptionIds\": [\n        \"12325aa9-3638-97ca-08db-f9435b457548\",\n        \"b0eec974-3001-d467-76b1-54d1ef34d98b\"\n      ]\n    },\n    {\n      \"Id\": \"string\",\n      \"Label\": \"string\",\n      \"Value\": \"string\",\n      \"Type\": \"string\",\n      \"IsSensitive\": true,\n      \"OptionIds\": [\n        \"23b44a20-948e-f168-8866-b69bd11f7d28\",\n        \"51c3794d-021b-344d-200a-5bc01e10f87f\"\n      ]\n    }\n  ],\n  \"GroupFields\": [\n    {\n      \"Id\": \"string\",\n      \"Label\": \"string\",\n      \"Value\": \"string\",\n      \"Type\": \"string\",\n      \"IsSensitive\": false,\n      \"OptionIds\": [\n        \"2a14a621-8774-cd32-212f-080529ca5b63\",\n        \"3fc97418-7353-4c08-6bb8-f353780bd456\"\n      ]\n    },\n    {\n      \"Id\": \"string\",\n      \"Label\": \"string\",\n      \"Value\": \"string\",\n      \"Type\": \"string\",\n      \"IsSensitive\": false,\n      \"OptionIds\": [\n        \"2d00cce1-ed87-a2cd-176d-f4edc0829918\",\n        \"0c47784b-2245-ec70-8733-9dfe2a9b38fc\"\n      ]\n    }\n  ],\n  \"Checkins\": [\n    {\n      \"Name\": \"string\",\n      \"SessionNumber\": 4918,\n      \"CheckedInAt\": \"1973-06-20T07:25:32.649Z\",\n      \"CheckedIn\": false,\n      \"IsHidden\": true\n    },\n    {\n      \"Name\": \"string\",\n      \"SessionNumber\": 8156,\n      \"CheckedInAt\": \"1993-04-03T11:53:49.700Z\",\n      \"CheckedIn\": false,\n      \"IsHidden\": false\n    }\n  ],\n  \"FlexPassCheckins\": [\n    {\n      \"Name\": \"string\",\n      \"SessionNumber\": 4637,\n      \"CheckedInAt\": \"2003-01-29T07:31:00.827Z\",\n      \"AttendeeCheckinId\": \"6a9ca00e-cca7-d7d3-3067-dab872259a40\",\n      \"EventNumber\": 7512,\n      \"TitleInfo\": \"string\"\n    },\n    {\n      \"Name\": \"string\",\n      \"SessionNumber\": 510,\n      \"CheckedInAt\": \"1996-10-25T02:41:02.825Z\",\n      \"AttendeeCheckinId\": \"c4e52039-cf46-55aa-a2e7-3685be277075\",\n      \"EventNumber\": 1660,\n      \"TitleInfo\": \"string\"\n    }\n  ],\n  \"QRCode\": \"string\",\n  \"IsAnonymized\": false,\n  \"FlexPass\": {\n    \"FlexTotal\": 9672,\n    \"FlexPer\": 5610,\n    \"FlexStartsAt\": \"1995-04-29T12:54:57.835Z\",\n    \"FlexEndsAt\": \"1999-06-09T05:42:49.526Z\",\n    \"FlexSummary\": \"string\",\n    \"FlexRedemptions\": 2075,\n    \"FlexRedemptionsText\": \"string\",\n    \"FlexRelativeDays\": 9903,\n    \"EventRedemptions\": 7228,\n    \"EventRedemptionsText\": \"string\"\n  },\n  \"IsFlexPass\": true,\n  \"AttendeeDisplay\": {\n    \"Line1\": \"string\",\n    \"Line2\": \"string\",\n    \"Line3\": \"string\"\n  },\n  \"AttendeeDisplayLines\": {\n    \"Line1\": \"string\",\n    \"Line2\": \"string\",\n    \"Line3\": \"string\"\n  },\n  \"OrderedAt\": \"1949-11-12T14:33:58.580Z\",\n  \"ShareEnabled\": false,\n  \"IsAddon\": false,\n  \"GeneratesTicket\": false,\n  \"OrderKey\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5de2fde8-e595-4a9d-af38-1938df5be8e3",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":sessionId",
+                    "flex",
+                    ":attendeeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) An integer that corresponds to a specific session"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "attendeeId",
+                      "description": "(Required) An integer that corresponds to a specific attendee"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5d4c8897-2bfe-4eec-b67d-fd26057ba1e5",
+          "name": "Checkin a flex pass attendee for a specific session",
+          "request": {
+            "name": "Checkin a flex pass attendee for a specific session",
+            "description": {},
+            "url": {
+              "path": [
+                "sessions",
+                ":sessionId",
+                "flex",
+                "checkin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "sessionId",
+                  "description": "(Required) An integer representing the session to check into"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "AttendeeId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Quantity",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c65878df-f30e-4692-ba73-a037931de7d8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":sessionId",
+                    "flex",
+                    "checkin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "sessionId",
+                      "description": "(Required) An integer representing the session to check into"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AttendeeId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Quantity",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Success\": false,\n  \"Message\": \"string\",\n  \"CheckedInAt\": \"1994-02-17T04:04:31.773Z\",\n  \"AttendeeCheckinIds\": [\n    \"44623e08-09a5-6873-69bf-5a17099313e4\",\n    \"7ddabca7-9346-3b71-783a-dbb62f76203c\"\n  ],\n  \"FlexRedemptions\": 2383,\n  \"FlexRedemptionsText\": \"string\",\n  \"EventRedemptions\": 2312,\n  \"EventRedemptionsText\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a621de6-ac83-4b8b-a0f3-689eeb540ea0",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":sessionId",
+                    "flex",
+                    "checkin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "sessionId",
+                      "description": "(Required) An integer representing the session to check into"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AttendeeId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Quantity",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65737c28-6b74-4e67-a0ed-87662a5a6764",
+          "name": "Check out a flex pass attendee for a specific session",
+          "request": {
+            "name": "Check out a flex pass attendee for a specific session",
+            "description": {},
+            "url": {
+              "path": [
+                "sessions",
+                ":sessionId",
+                "flex",
+                "checkout"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "sessionId",
+                  "description": "(Required) An integer representing the session to check out of"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "AttendeeCheckinId",
+                  "value": "<uuid>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "AttendeeId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "51ceb73c-620f-40ff-9957-1f02845ec242",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":sessionId",
+                    "flex",
+                    "checkout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "sessionId",
+                      "description": "(Required) An integer representing the session to check out of"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AttendeeCheckinId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AttendeeId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Success\": true,\n  \"Message\": \"string\",\n  \"FlexRedemptions\": 4593,\n  \"FlexRedemptionsText\": \"string\",\n  \"EventRedemptions\": 6690,\n  \"EventRedemptionsText\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5acae606-629e-48bb-8cb2-49e63bdb1737",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":sessionId",
+                    "flex",
+                    "checkout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "sessionId",
+                      "description": "(Required) An integer representing the session to check out of"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AttendeeCheckinId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AttendeeId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f404344e-67ef-4c79-ae77-dff8a2f453af",
+          "name": "Get all details, including checkin info for a group in a given session",
+          "request": {
+            "name": "Get all details, including checkin info for a group in a given session",
+            "description": {},
+            "url": {
+              "path": [
+                "sessions",
+                ":sessionId",
+                "groups",
+                ":groupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "groupId",
+                  "description": "(Required) An integer or GUID representing a specific group"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "sessionId",
+                  "description": "(Required) An integer representing a specific session"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "51704b13-8bd7-4a53-8d7a-d998341d42f1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":sessionId",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) An integer or GUID representing a specific group"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "sessionId",
+                      "description": "(Required) An integer representing a specific session"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"GroupNumber\": 5776,\n  \"EventId\": \"3abf6769-81d9-0c89-104c-ee8bf3bd9cc4\",\n  \"AttendeeTypeId\": \"73b22500-c47b-ac0d-ec6f-29da53943f0c\",\n  \"TypeName\": \"string\",\n  \"Name\": \"string\",\n  \"Email\": \"string\",\n  \"AttendeeCount\": 6447,\n  \"CommunityId\": \"ca2d78c8-2724-06dd-58fa-4913994483d6\",\n  \"CommunityPartition\": \"string\",\n  \"CommunityName\": \"string\",\n  \"Fields\": [\n    {\n      \"Id\": \"string\",\n      \"Label\": \"string\",\n      \"Value\": \"string\",\n      \"Type\": \"string\",\n      \"IsSensitive\": false,\n      \"OptionIds\": [\n        \"5ff18eca-61db-5923-7d52-37f79d054ce8\",\n        \"c697cff1-c95b-2d6e-c7a7-bc2ad957a819\"\n      ]\n    },\n    {\n      \"Id\": \"string\",\n      \"Label\": \"string\",\n      \"Value\": \"string\",\n      \"Type\": \"string\",\n      \"IsSensitive\": true,\n      \"OptionIds\": [\n        \"ef896a9c-b00c-9570-dded-6646de9f8be9\",\n        \"cee0fea1-ba64-dda4-e797-fdf7e87b5f2a\"\n      ]\n    }\n  ],\n  \"Attendees\": [\n    {\n      \"AttendeeNumber\": 8937,\n      \"FirstName\": \"string\",\n      \"LastName\": \"string\",\n      \"SectionName\": \"string\",\n      \"RowName\": \"string\",\n      \"SeatLabel\": \"string\",\n      \"TypeName\": \"string\",\n      \"CheckedIn\": true,\n      \"CheckedInAt\": \"2014-04-23T23:20:13.745Z\",\n      \"SeatInfo\": \"string\",\n      \"IsAddon\": false\n    },\n    {\n      \"AttendeeNumber\": 9217,\n      \"FirstName\": \"string\",\n      \"LastName\": \"string\",\n      \"SectionName\": \"string\",\n      \"RowName\": \"string\",\n      \"SeatLabel\": \"string\",\n      \"TypeName\": \"string\",\n      \"CheckedIn\": true,\n      \"CheckedInAt\": \"2024-01-02T11:55:59.399Z\",\n      \"SeatInfo\": \"string\",\n      \"IsAddon\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "791b7fa1-40bf-4275-9f80-e10573eb1b44",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":sessionId",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) An integer or GUID representing a specific group"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "sessionId",
+                      "description": "(Required) An integer representing a specific session"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "33470b64-1195-4e75-8b21-430591ebd0da",
+          "name": "Retrieve Order and Buyer data from a specific order and session",
+          "request": {
+            "name": "Retrieve Order and Buyer data from a specific order and session",
+            "description": {},
+            "url": {
+              "path": [
+                "sessions",
+                ":sessionId",
+                "orders",
+                ":orderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) A string (orderKey) or a GUID representing a specific order"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "sessionId",
+                  "description": "(Required) An integer representing a specific session"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8839262c-1ca3-4c43-935d-9737185bf5e2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":sessionId",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) A string (orderKey) or a GUID representing a specific order"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "sessionId",
+                      "description": "(Required) An integer representing a specific session"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"OrderKey\": \"string\",\n  \"ObjectNumber\": 2757,\n  \"AttendeeCount\": 9312,\n  \"OrderedAt\": \"1988-05-08T16:09:43.200Z\",\n  \"BillingName\": \"string\",\n  \"BillingAddress\": \"string\",\n  \"BillingFirstName\": \"string\",\n  \"BillingLastName\": \"string\",\n  \"BillingOrganization\": \"string\",\n  \"BillingStreet1\": \"string\",\n  \"BillingStreet2\": \"string\",\n  \"BillingCity\": \"string\",\n  \"BillingRegion\": \"string\",\n  \"BillingPostal\": \"string\",\n  \"BillingCountry\": \"string\",\n  \"ContactPhone\": \"string\",\n  \"ContactEmail\": \"string\",\n  \"PaymentMethods\": [\n    \"string\",\n    \"string\"\n  ],\n  \"PaymentMethod\": \"string\",\n  \"DeliveryMethod\": \"string\",\n  \"Fields\": [\n    {\n      \"Id\": \"string\",\n      \"Label\": \"string\",\n      \"Value\": \"string\",\n      \"Type\": \"string\",\n      \"IsSensitive\": false,\n      \"OptionIds\": [\n        \"df6e604a-1613-e1e7-b4eb-a700122683ef\",\n        \"d98589ec-569c-c58a-a06c-d84e7a6e2b13\"\n      ]\n    },\n    {\n      \"Id\": \"string\",\n      \"Label\": \"string\",\n      \"Value\": \"string\",\n      \"Type\": \"string\",\n      \"IsSensitive\": true,\n      \"OptionIds\": [\n        \"f5929bf6-be1b-d097-f0e4-b661c41a30db\",\n        \"d8907fe9-66ff-7d34-92c7-95e0311c93db\"\n      ]\n    }\n  ],\n  \"Attendees\": [\n    {\n      \"AttendeeNumber\": 2945,\n      \"FirstName\": \"string\",\n      \"LastName\": \"string\",\n      \"SectionName\": \"string\",\n      \"RowName\": \"string\",\n      \"SeatLabel\": \"string\",\n      \"TypeName\": \"string\",\n      \"CheckedIn\": true,\n      \"CheckedInAt\": \"1999-03-17T20:21:28.554Z\",\n      \"SeatInfo\": \"string\",\n      \"IsAddon\": true\n    },\n    {\n      \"AttendeeNumber\": 5093,\n      \"FirstName\": \"string\",\n      \"LastName\": \"string\",\n      \"SectionName\": \"string\",\n      \"RowName\": \"string\",\n      \"SeatLabel\": \"string\",\n      \"TypeName\": \"string\",\n      \"CheckedIn\": false,\n      \"CheckedInAt\": \"2010-09-13T23:21:48.221Z\",\n      \"SeatInfo\": \"string\",\n      \"IsAddon\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae1f2352-caa8-4673-a2a2-1255c825dc47",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":sessionId",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) A string (orderKey) or a GUID representing a specific order"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "sessionId",
+                      "description": "(Required) An integer representing a specific session"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.brushfire.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f03a0c94-e4c2-4d71-9352-62529fb62722",
+    "name": "Brushfire API: Version 2025-07-22 AccessCodes Sessions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform. It covers events, ticket types, sections and seats, attendees, orders, the shopping cart and checkout flow, groups, sessions and check-in, promotions and access codes, payment profiles, and webhooks (Hooks). Authenticate by sending your App Key (requested at https://developer.brushfire.com/key) in the Authorization header. The API is date-versioned: send the desired version in the api-version request header (for example, 2025-07-22). This document is the live specification published at api.brushfire.com/swagger.\n\nContact Support:\n Name: Brushfire Developers",
+      "type": "text/plain"
+    }
+  }
+}

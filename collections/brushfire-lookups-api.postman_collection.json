@@ -1,0 +1,1220 @@
+{
+  "item": [
+    {
+      "id": "0a452082-8774-4478-898e-19f3542e0dae",
+      "name": "Lookups",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "801f2468-414c-4613-932d-28664d19729c",
+          "name": "Submit email to look up and create magic link",
+          "request": {
+            "name": "Submit email to look up and create magic link",
+            "description": {},
+            "url": {
+              "path": [
+                "lookups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "Email",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "EventNumber",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "VerrisSubdomain",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "VerrisCode",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "VerrisUid",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "10dd4184-cb44-43b3-96c9-251ab06957ea",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Email",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "EventNumber",
+                      "value": "<long>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "VerrisSubdomain",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "VerrisCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "VerrisUid",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "false",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff572379-6a48-4ea1-97a2-38e135ad540a",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Email",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "EventNumber",
+                      "value": "<long>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "VerrisSubdomain",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "VerrisCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "VerrisUid",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "69f5822c-8850-425b-9569-44965e03c029",
+          "name": "Get matching events for a lookup ID",
+          "request": {
+            "name": "Get matching events for a lookup ID",
+            "description": {},
+            "url": {
+              "path": [
+                "lookups",
+                ":lookupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lookupId",
+                  "description": "(Required) A Guid retrieved from performing a post to /"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "75ce9d03-a332-429a-82fe-42e4f9e61a6a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookups",
+                    ":lookupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lookupId",
+                      "description": "(Required) A Guid retrieved from performing a post to /"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Upcoming\": [\n    {\n      \"Event\": {\n        \"Title\": \"string\",\n        \"Subtitle\": \"string\",\n        \"UrlKey\": \"string\",\n        \"ClientKey\": \"string\",\n        \"ClientName\": \"string\",\n        \"Culture\": \"string\",\n        \"DateInfo\": \"string\",\n        \"DateInfoList\": [\n          \"string\",\n          \"string\"\n        ],\n        \"SoldOut\": false,\n        \"IsSticky\": false,\n        \"EventNumber\": 7611,\n        \"IsAssigned\": true,\n        \"LocationName\": \"string\",\n        \"SessionCount\": 6043,\n        \"IsActive\": false,\n        \"DateDisplay\": {\n          \"Months\": \"string\",\n          \"Dates\": \"string\",\n          \"Days\": \"string\",\n          \"Times\": \"string\",\n          \"IsOngoing\": false\n        },\n        \"Latitude\": 4164.451004602616,\n        \"Longitude\": 6721.1157178772555,\n        \"MapUrl\": \"string\",\n        \"PromoImageUrl\": \"string\",\n        \"CategoryId\": 6239,\n        \"CategoryName\": \"string\",\n        \"SpotsRemaining\": 3500,\n        \"SpotsTaken\": 5933,\n        \"ShowRemaining\": false,\n        \"RemainingText\": \"string\",\n        \"Verbiage\": \"string\",\n        \"Dates\": [\n          {\n            \"DoorsAt\": \"1962-03-28T00:07:44.740Z\",\n            \"StartsAt\": \"1955-12-22T04:07:55.285Z\",\n            \"EndsAt\": \"1996-04-27T00:41:12.553Z\"\n          },\n          {\n            \"DoorsAt\": \"2018-11-30T17:50:41.067Z\",\n            \"StartsAt\": \"2006-10-15T14:22:32.484Z\",\n            \"EndsAt\": \"2014-06-28T18:05:18.170Z\"\n          }\n        ],\n        \"AlternateTitle\": \"string\",\n        \"TimeZoneId\": \"string\",\n        \"AreaName\": \"string\",\n        \"AreaKey\": \"string\",\n        \"PaymentProfileId\": \"6e09757a-ae26-55bc-8644-cff5ce79eaa9\",\n        \"AcctCode\": \"string\",\n        \"IsHidden\": true,\n        \"IsFlexPass\": true,\n        \"IsExchangeable\": true\n      },\n      \"HasGroup\": true,\n      \"HasOrders\": true,\n      \"ShowAttendees\": true\n    },\n    {\n      \"Event\": {\n        \"Title\": \"string\",\n        \"Subtitle\": \"string\",\n        \"UrlKey\": \"string\",\n        \"ClientKey\": \"string\",\n        \"ClientName\": \"string\",\n        \"Culture\": \"string\",\n        \"DateInfo\": \"string\",\n        \"DateInfoList\": [\n          \"string\",\n          \"string\"\n        ],\n        \"SoldOut\": true,\n        \"IsSticky\": false,\n        \"EventNumber\": 3887,\n        \"IsAssigned\": false,\n        \"LocationName\": \"string\",\n        \"SessionCount\": 5899,\n        \"IsActive\": true,\n        \"DateDisplay\": {\n          \"Months\": \"string\",\n          \"Dates\": \"string\",\n          \"Days\": \"string\",\n          \"Times\": \"string\",\n          \"IsOngoing\": true\n        },\n        \"Latitude\": 592.8994951633115,\n        \"Longitude\": 3003.3202097507196,\n        \"MapUrl\": \"string\",\n        \"PromoImageUrl\": \"string\",\n        \"CategoryId\": 4392,\n        \"CategoryName\": \"string\",\n        \"SpotsRemaining\": 4312,\n        \"SpotsTaken\": 8425,\n        \"ShowRemaining\": true,\n        \"RemainingText\": \"string\",\n        \"Verbiage\": \"string\",\n        \"Dates\": [\n          {\n            \"DoorsAt\": \"2025-02-14T12:11:19.267Z\",\n            \"StartsAt\": \"1987-11-23T05:28:14.455Z\",\n            \"EndsAt\": \"2019-08-08T05:49:22.030Z\"\n          },\n          {\n            \"DoorsAt\": \"1964-01-24T01:03:42.210Z\",\n            \"StartsAt\": \"2020-11-14T22:26:27.941Z\",\n            \"EndsAt\": \"1995-10-03T12:57:04.301Z\"\n          }\n        ],\n        \"AlternateTitle\": \"string\",\n        \"TimeZoneId\": \"string\",\n        \"AreaName\": \"string\",\n        \"AreaKey\": \"string\",\n        \"PaymentProfileId\": \"85047c7e-20a8-3f2c-a0b3-0180c27f6338\",\n        \"AcctCode\": \"string\",\n        \"IsHidden\": true,\n        \"IsFlexPass\": false,\n        \"IsExchangeable\": true\n      },\n      \"HasGroup\": true,\n      \"HasOrders\": false,\n      \"ShowAttendees\": false\n    }\n  ],\n  \"Past\": [\n    {\n      \"Event\": {\n        \"Title\": \"string\",\n        \"Subtitle\": \"string\",\n        \"UrlKey\": \"string\",\n        \"ClientKey\": \"string\",\n        \"ClientName\": \"string\",\n        \"Culture\": \"string\",\n        \"DateInfo\": \"string\",\n        \"DateInfoList\": [\n          \"string\",\n          \"string\"\n        ],\n        \"SoldOut\": true,\n        \"IsSticky\": true,\n        \"EventNumber\": 7112,\n        \"IsAssigned\": false,\n        \"LocationName\": \"string\",\n        \"SessionCount\": 5321,\n        \"IsActive\": false,\n        \"DateDisplay\": {\n          \"Months\": \"string\",\n          \"Dates\": \"string\",\n          \"Days\": \"string\",\n          \"Times\": \"string\",\n          \"IsOngoing\": true\n        },\n        \"Latitude\": 7226.410941499183,\n        \"Longitude\": 8424.033464283231,\n        \"MapUrl\": \"string\",\n        \"PromoImageUrl\": \"string\",\n        \"CategoryId\": 5448,\n        \"CategoryName\": \"string\",\n        \"SpotsRemaining\": 9978,\n        \"SpotsTaken\": 8487,\n        \"ShowRemaining\": true,\n        \"RemainingText\": \"string\",\n        \"Verbiage\": \"string\",\n        \"Dates\": [\n          {\n            \"DoorsAt\": \"1962-07-22T01:23:01.930Z\",\n            \"StartsAt\": \"1987-07-28T23:11:22.160Z\",\n            \"EndsAt\": \"1986-02-02T15:03:06.026Z\"\n          },\n          {\n            \"DoorsAt\": \"1997-08-04T04:25:08.170Z\",\n            \"StartsAt\": \"2023-03-11T10:00:02.241Z\",\n            \"EndsAt\": \"2006-07-30T17:55:49.403Z\"\n          }\n        ],\n        \"AlternateTitle\": \"string\",\n        \"TimeZoneId\": \"string\",\n        \"AreaName\": \"string\",\n        \"AreaKey\": \"string\",\n        \"PaymentProfileId\": \"ae053cfa-f652-4007-36f3-d4ebe099c563\",\n        \"AcctCode\": \"string\",\n        \"IsHidden\": true,\n        \"IsFlexPass\": false,\n        \"IsExchangeable\": false\n      },\n      \"HasGroup\": true,\n      \"HasOrders\": false,\n      \"ShowAttendees\": false\n    },\n    {\n      \"Event\": {\n        \"Title\": \"string\",\n        \"Subtitle\": \"string\",\n        \"UrlKey\": \"string\",\n        \"ClientKey\": \"string\",\n        \"ClientName\": \"string\",\n        \"Culture\": \"string\",\n        \"DateInfo\": \"string\",\n        \"DateInfoList\": [\n          \"string\",\n          \"string\"\n        ],\n        \"SoldOut\": false,\n        \"IsSticky\": true,\n        \"EventNumber\": 7869,\n        \"IsAssigned\": false,\n        \"LocationName\": \"string\",\n        \"SessionCount\": 2033,\n        \"IsActive\": false,\n        \"DateDisplay\": {\n          \"Months\": \"string\",\n          \"Dates\": \"string\",\n          \"Days\": \"string\",\n          \"Times\": \"string\",\n          \"IsOngoing\": false\n        },\n        \"Latitude\": 412.7903292415014,\n        \"Longitude\": 7984.236845493367,\n        \"MapUrl\": \"string\",\n        \"PromoImageUrl\": \"string\",\n        \"CategoryId\": 7939,\n        \"CategoryName\": \"string\",\n        \"SpotsRemaining\": 4107,\n        \"SpotsTaken\": 8843,\n        \"ShowRemaining\": true,\n        \"RemainingText\": \"string\",\n        \"Verbiage\": \"string\",\n        \"Dates\": [\n          {\n            \"DoorsAt\": \"1979-10-25T01:44:50.046Z\",\n            \"StartsAt\": \"2013-02-22T14:44:57.806Z\",\n            \"EndsAt\": \"2001-08-29T02:59:01.303Z\"\n          },\n          {\n            \"DoorsAt\": \"2004-08-31T06:04:58.998Z\",\n            \"StartsAt\": \"2002-07-19T23:45:02.380Z\",\n            \"EndsAt\": \"2014-08-22T01:40:37.356Z\"\n          }\n        ],\n        \"AlternateTitle\": \"string\",\n        \"TimeZoneId\": \"string\",\n        \"AreaName\": \"string\",\n        \"AreaKey\": \"string\",\n        \"PaymentProfileId\": \"27b5d086-63e5-b64a-fc4c-3d8a11693740\",\n        \"AcctCode\": \"string\",\n        \"IsHidden\": true,\n        \"IsFlexPass\": false,\n        \"IsExchangeable\": false\n      },\n      \"HasGroup\": true,\n      \"HasOrders\": false,\n      \"ShowAttendees\": false\n    }\n  ],\n  \"Email\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f60d0c41-9da4-46d4-b1ac-d8515decaeec",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookups",
+                    ":lookupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lookupId",
+                      "description": "(Required) A Guid retrieved from performing a post to /"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2209abe2-70d1-40d8-a4ef-aa7ba6834b2f",
+          "name": "Get matching single event for a lookup ID and eventNumber",
+          "request": {
+            "name": "Get matching single event for a lookup ID and eventNumber",
+            "description": {},
+            "url": {
+              "path": [
+                "lookups",
+                ":lookupId",
+                "events",
+                ":eventNumber"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lookupId",
+                  "description": "(Required) A Guid retrieved from performing a post to /"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "eventNumber",
+                  "description": "(Required) An integer representing a single event"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fe1414b3-6d85-46f3-ab80-c85feb7965f4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookups",
+                    ":lookupId",
+                    "events",
+                    ":eventNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lookupId",
+                      "description": "(Required) A Guid retrieved from performing a post to /"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "eventNumber",
+                      "description": "(Required) An integer representing a single event"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Upcoming\": [\n    {\n      \"Event\": {\n        \"Title\": \"string\",\n        \"Subtitle\": \"string\",\n        \"UrlKey\": \"string\",\n        \"ClientKey\": \"string\",\n        \"ClientName\": \"string\",\n        \"Culture\": \"string\",\n        \"DateInfo\": \"string\",\n        \"DateInfoList\": [\n          \"string\",\n          \"string\"\n        ],\n        \"SoldOut\": true,\n        \"IsSticky\": false,\n        \"EventNumber\": 4573,\n        \"IsAssigned\": true,\n        \"LocationName\": \"string\",\n        \"SessionCount\": 3129,\n        \"IsActive\": false,\n        \"DateDisplay\": {\n          \"Months\": \"string\",\n          \"Dates\": \"string\",\n          \"Days\": \"string\",\n          \"Times\": \"string\",\n          \"IsOngoing\": false\n        },\n        \"Latitude\": 2277.832203070649,\n        \"Longitude\": 6560.017810921623,\n        \"MapUrl\": \"string\",\n        \"PromoImageUrl\": \"string\",\n        \"CategoryId\": 5420,\n        \"CategoryName\": \"string\",\n        \"SpotsRemaining\": 9954,\n        \"SpotsTaken\": 2802,\n        \"ShowRemaining\": true,\n        \"RemainingText\": \"string\",\n        \"Verbiage\": \"string\",\n        \"Dates\": [\n          {\n            \"DoorsAt\": \"1948-04-23T12:32:51.222Z\",\n            \"StartsAt\": \"1968-04-10T15:11:01.883Z\",\n            \"EndsAt\": \"1959-05-13T20:33:23.107Z\"\n          },\n          {\n            \"DoorsAt\": \"1973-11-16T11:54:10.161Z\",\n            \"StartsAt\": \"2013-02-10T13:59:13.310Z\",\n            \"EndsAt\": \"1959-07-30T03:19:02.069Z\"\n          }\n        ],\n        \"AlternateTitle\": \"string\",\n        \"TimeZoneId\": \"string\",\n        \"AreaName\": \"string\",\n        \"AreaKey\": \"string\",\n        \"PaymentProfileId\": \"05c5d963-3425-1f66-2dfe-f5d90dc01f06\",\n        \"AcctCode\": \"string\",\n        \"IsHidden\": true,\n        \"IsFlexPass\": false,\n        \"IsExchangeable\": false\n      },\n      \"HasGroup\": false,\n      \"HasOrders\": true,\n      \"ShowAttendees\": true\n    },\n    {\n      \"Event\": {\n        \"Title\": \"string\",\n        \"Subtitle\": \"string\",\n        \"UrlKey\": \"string\",\n        \"ClientKey\": \"string\",\n        \"ClientName\": \"string\",\n        \"Culture\": \"string\",\n        \"DateInfo\": \"string\",\n        \"DateInfoList\": [\n          \"string\",\n          \"string\"\n        ],\n        \"SoldOut\": true,\n        \"IsSticky\": true,\n        \"EventNumber\": 9685,\n        \"IsAssigned\": true,\n        \"LocationName\": \"string\",\n        \"SessionCount\": 9129,\n        \"IsActive\": false,\n        \"DateDisplay\": {\n          \"Months\": \"string\",\n          \"Dates\": \"string\",\n          \"Days\": \"string\",\n          \"Times\": \"string\",\n          \"IsOngoing\": true\n        },\n        \"Latitude\": 7966.378535580912,\n        \"Longitude\": 8319.673928603963,\n        \"MapUrl\": \"string\",\n        \"PromoImageUrl\": \"string\",\n        \"CategoryId\": 3530,\n        \"CategoryName\": \"string\",\n        \"SpotsRemaining\": 3701,\n        \"SpotsTaken\": 8571,\n        \"ShowRemaining\": true,\n        \"RemainingText\": \"string\",\n        \"Verbiage\": \"string\",\n        \"Dates\": [\n          {\n            \"DoorsAt\": \"2009-03-09T17:01:36.055Z\",\n            \"StartsAt\": \"1957-07-11T22:11:03.817Z\",\n            \"EndsAt\": \"1999-02-27T05:52:45.440Z\"\n          },\n          {\n            \"DoorsAt\": \"1947-05-12T04:46:35.228Z\",\n            \"StartsAt\": \"1951-12-07T20:46:49.456Z\",\n            \"EndsAt\": \"1977-01-17T16:42:29.497Z\"\n          }\n        ],\n        \"AlternateTitle\": \"string\",\n        \"TimeZoneId\": \"string\",\n        \"AreaName\": \"string\",\n        \"AreaKey\": \"string\",\n        \"PaymentProfileId\": \"c5b82f10-20b2-01df-6ee4-fa00fa6a2ffc\",\n        \"AcctCode\": \"string\",\n        \"IsHidden\": true,\n        \"IsFlexPass\": true,\n        \"IsExchangeable\": true\n      },\n      \"HasGroup\": false,\n      \"HasOrders\": false,\n      \"ShowAttendees\": true\n    }\n  ],\n  \"Past\": [\n    {\n      \"Event\": {\n        \"Title\": \"string\",\n        \"Subtitle\": \"string\",\n        \"UrlKey\": \"string\",\n        \"ClientKey\": \"string\",\n        \"ClientName\": \"string\",\n        \"Culture\": \"string\",\n        \"DateInfo\": \"string\",\n        \"DateInfoList\": [\n          \"string\",\n          \"string\"\n        ],\n        \"SoldOut\": false,\n        \"IsSticky\": false,\n        \"EventNumber\": 172,\n        \"IsAssigned\": true,\n        \"LocationName\": \"string\",\n        \"SessionCount\": 1526,\n        \"IsActive\": false,\n        \"DateDisplay\": {\n          \"Months\": \"string\",\n          \"Dates\": \"string\",\n          \"Days\": \"string\",\n          \"Times\": \"string\",\n          \"IsOngoing\": false\n        },\n        \"Latitude\": 8556.624431439514,\n        \"Longitude\": 9328.50957150833,\n        \"MapUrl\": \"string\",\n        \"PromoImageUrl\": \"string\",\n        \"CategoryId\": 1630,\n        \"CategoryName\": \"string\",\n        \"SpotsRemaining\": 3462,\n        \"SpotsTaken\": 8585,\n        \"ShowRemaining\": true,\n        \"RemainingText\": \"string\",\n        \"Verbiage\": \"string\",\n        \"Dates\": [\n          {\n            \"DoorsAt\": \"2008-04-03T09:18:46.550Z\",\n            \"StartsAt\": \"1959-08-06T02:51:16.370Z\",\n            \"EndsAt\": \"1979-05-23T01:36:17.928Z\"\n          },\n          {\n            \"DoorsAt\": \"1964-10-13T11:53:05.021Z\",\n            \"StartsAt\": \"1954-09-19T11:16:17.641Z\",\n            \"EndsAt\": \"1972-12-18T18:47:11.420Z\"\n          }\n        ],\n        \"AlternateTitle\": \"string\",\n        \"TimeZoneId\": \"string\",\n        \"AreaName\": \"string\",\n        \"AreaKey\": \"string\",\n        \"PaymentProfileId\": \"55cbbad6-39e2-9c10-5563-5150eeee0db6\",\n        \"AcctCode\": \"string\",\n        \"IsHidden\": false,\n        \"IsFlexPass\": false,\n        \"IsExchangeable\": true\n      },\n      \"HasGroup\": true,\n      \"HasOrders\": false,\n      \"ShowAttendees\": true\n    },\n    {\n      \"Event\": {\n        \"Title\": \"string\",\n        \"Subtitle\": \"string\",\n        \"UrlKey\": \"string\",\n        \"ClientKey\": \"string\",\n        \"ClientName\": \"string\",\n        \"Culture\": \"string\",\n        \"DateInfo\": \"string\",\n        \"DateInfoList\": [\n          \"string\",\n          \"string\"\n        ],\n        \"SoldOut\": true,\n        \"IsSticky\": true,\n        \"EventNumber\": 5467,\n        \"IsAssigned\": true,\n        \"LocationName\": \"string\",\n        \"SessionCount\": 4318,\n        \"IsActive\": true,\n        \"DateDisplay\": {\n          \"Months\": \"string\",\n          \"Dates\": \"string\",\n          \"Days\": \"string\",\n          \"Times\": \"string\",\n          \"IsOngoing\": true\n        },\n        \"Latitude\": 6158.987720742683,\n        \"Longitude\": 6109.903185099369,\n        \"MapUrl\": \"string\",\n        \"PromoImageUrl\": \"string\",\n        \"CategoryId\": 806,\n        \"CategoryName\": \"string\",\n        \"SpotsRemaining\": 8359,\n        \"SpotsTaken\": 4649,\n        \"ShowRemaining\": false,\n        \"RemainingText\": \"string\",\n        \"Verbiage\": \"string\",\n        \"Dates\": [\n          {\n            \"DoorsAt\": \"1969-10-15T14:28:18.558Z\",\n            \"StartsAt\": \"1972-11-04T15:44:47.958Z\",\n            \"EndsAt\": \"1960-10-15T21:47:16.943Z\"\n          },\n          {\n            \"DoorsAt\": \"1991-11-16T16:54:23.210Z\",\n            \"StartsAt\": \"2004-06-05T06:25:22.096Z\",\n            \"EndsAt\": \"1988-10-24T00:57:15.183Z\"\n          }\n        ],\n        \"AlternateTitle\": \"string\",\n        \"TimeZoneId\": \"string\",\n        \"AreaName\": \"string\",\n        \"AreaKey\": \"string\",\n        \"PaymentProfileId\": \"c139afda-f89f-9784-19f4-a6654af2287b\",\n        \"AcctCode\": \"string\",\n        \"IsHidden\": false,\n        \"IsFlexPass\": false,\n        \"IsExchangeable\": false\n      },\n      \"HasGroup\": false,\n      \"HasOrders\": false,\n      \"ShowAttendees\": true\n    }\n  ],\n  \"Email\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e628eb1b-8956-4c2d-ad8d-d1afceed76c3",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookups",
+                    ":lookupId",
+                    "events",
+                    ":eventNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lookupId",
+                      "description": "(Required) A Guid retrieved from performing a post to /"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "eventNumber",
+                      "description": "(Required) An integer representing a single event"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8b4561c-74af-4405-978e-9b145a00d2ca",
+          "name": "Get attendees for the selected lookup ID and eventNumber. This optionally looks across groups and orders also",
+          "request": {
+            "name": "Get attendees for the selected lookup ID and eventNumber. This optionally looks across groups and orders also",
+            "description": {},
+            "url": {
+              "path": [
+                "lookups",
+                ":lookupId",
+                "events",
+                ":eventNumber",
+                "attendees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeGroups",
+                  "value": "false",
+                  "description": "Boolean to include group emails in search. Defaults to false."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeOrders",
+                  "value": "false",
+                  "description": "Boolean to include buyer emails in search. Defaults to false."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lookupId",
+                  "description": "(Required) A Guid retrieved from performing a post to /"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "eventNumber",
+                  "description": "(Required) An integer representing a single event"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d44558d4-9edc-48f6-804a-78c1a006c944",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookups",
+                    ":lookupId",
+                    "events",
+                    ":eventNumber",
+                    "attendees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeGroups",
+                      "value": "false"
+                    },
+                    {
+                      "key": "includeOrders",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lookupId",
+                      "description": "(Required) A Guid retrieved from performing a post to /"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "eventNumber",
+                      "description": "(Required) An integer representing a single event"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": \"64b700e3-22d6-58fa-f783-7ab49b78bd44\",\n    \"AttendeeNumber\": 4735,\n    \"Status\": \"string\",\n    \"IsCompleted\": true,\n    \"IsGift\": true,\n    \"IsPreRegistered\": false,\n    \"ShareEmail\": \"string\",\n    \"GiftingEnabled\": false,\n    \"GiftLastSentAt\": \"2006-08-29T21:56:16.466Z\",\n    \"GiftLastSentAtLocal\": \"1951-07-22T18:32:09.337Z\",\n    \"TimeZoneId\": \"string\",\n    \"FirstName\": \"string\",\n    \"LastName\": \"string\",\n    \"Name\": \"string\",\n    \"AttendeeTypeId\": \"922ead86-60eb-cfbf-ccac-0419fff0d5e3\",\n    \"TypeName\": \"string\",\n    \"TypeAmount\": 7954.38478757066,\n    \"TypeDisplayAmount\": 4780.149290558872,\n    \"SectionName\": \"string\",\n    \"RowName\": \"string\",\n    \"SeatLabel\": \"string\",\n    \"Amount\": 7610.242717217295,\n    \"Addons\": 2979.24081240184,\n    \"Discounts\": 8820.62926002967,\n    \"SeatInfo\": \"string\",\n    \"Culture\": \"string\",\n    \"GroupId\": \"392066b7-f8ed-e76b-18fb-6ca163c0042c\",\n    \"GroupName\": \"string\",\n    \"GroupEmail\": \"string\",\n    \"AttendeeDisplay\": {\n      \"Line1\": \"string\",\n      \"Line2\": \"string\",\n      \"Line3\": \"string\"\n    },\n    \"AttendeeDisplayLines\": {\n      \"Line1\": \"string\",\n      \"Line2\": \"string\",\n      \"Line3\": \"string\"\n    },\n    \"DisplayPrice\": 9931.748371530266,\n    \"DisplayTotal\": 9050.031762750523,\n    \"PriceDescription\": \"string\",\n    \"HasPaymentsToMake\": false,\n    \"DonatingBackEnabled\": true,\n    \"ChangesAreBlocked\": false,\n    \"ChangesAreBlockedAfter\": \"2026-01-10T02:49:38.926Z\",\n    \"HasPendingSignatures\": false,\n    \"AllSignaturesComplete\": false,\n    \"ShareEnabled\": true,\n    \"TicketInfo\": {\n      \"AttendeeTypeName\": \"string\",\n      \"AttendeeName\": \"string\",\n      \"Title\": \"string\",\n      \"Section\": \"string\",\n      \"RowLabel\": \"string\",\n      \"Row\": \"string\",\n      \"Seat\": \"string\",\n      \"FlexSummary\": \"string\",\n      \"Field1Label\": \"string\",\n      \"Field1Value\": \"string\",\n      \"Field2Label\": \"string\",\n      \"Field2Value\": \"string\",\n      \"Field3Label\": \"string\",\n      \"Field3Value\": \"string\",\n      \"ImageUrl\": \"string\",\n      \"TicketRenderType\": \"GeneralAdmission\",\n      \"TicketNotes\": \"string\",\n      \"TicketAd\": \"string\",\n      \"EventDate\": \"string\",\n      \"EventTime\": \"string\",\n      \"EventDoorTime\": \"string\",\n      \"EventTitle\": \"string\",\n      \"QrImageUrl\": \"string\",\n      \"QrText\": \"string\",\n      \"PassUrl\": \"string\",\n      \"WalletUrl\": \"string\",\n      \"BundledPassUrl\": \"string\",\n      \"BundledWalletUrl\": \"string\",\n      \"PrintUrl\": \"string\",\n      \"BundledPrintUrl\": \"string\",\n      \"EditUrl\": \"string\",\n      \"FlexPassRedemptionsUsed\": \"string\",\n      \"FlexPassRedemptions\": [\n        {\n          \"EventId\": \"f2fded70-ab01-effe-caf1-cffe40fa7dc1\",\n          \"EventNumber\": 3385,\n          \"Title\": \"string\",\n          \"CheckedInAt\": \"1991-03-11T14:15:18.628Z\",\n          \"SessionName\": \"string\",\n          \"AttendeeCheckinId\": \"28ccde84-3970-42b2-d702-e353f1f27b2a\",\n          \"EventSessionId\": \"1837206f-d2db-7f13-4228-dfb460c7988a\",\n          \"SessionNumber\": 8197,\n          \"TimeZoneId\": \"string\",\n          \"CheckedInAtLocal\": \"1981-11-25T18:00:44.048Z\",\n          \"Culture\": \"string\",\n          \"Dates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"StartsAt\": \"1981-12-11T21:12:34.017Z\",\n          \"TitleInfo\": \"string\"\n        },\n        {\n          \"EventId\": \"29544c8c-3d70-c43d-6e19-4ca3392ce590\",\n          \"EventNumber\": 4920,\n          \"Title\": \"string\",\n          \"CheckedInAt\": \"2008-01-21T20:10:20.678Z\",\n          \"SessionName\": \"string\",\n          \"AttendeeCheckinId\": \"74fd0134-e42d-28b1-1eba-ce2c503c7994\",\n          \"EventSessionId\": \"3286354b-13bc-a1ea-8e09-f214f111d88e\",\n          \"SessionNumber\": 9327,\n          \"TimeZoneId\": \"string\",\n          \"CheckedInAtLocal\": \"2008-09-13T22:30:26.018Z\",\n          \"Culture\": \"string\",\n          \"Dates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"StartsAt\": \"1956-11-07T18:59:13.337Z\",\n          \"TitleInfo\": \"string\"\n        }\n      ],\n      \"IsFlexOrderOrGroupTicket\": false,\n      \"TicketColor\": \"string\",\n      \"TicketClassName\": \"string\",\n      \"EventContactInfo\": \"string\",\n      \"OrderInfo\": {\n        \"key_0\": \"string\"\n      },\n      \"AttendeesDescription\": \"string\",\n      \"TimeSlotName\": \"string\",\n      \"SharedCapacityName\": \"string\",\n      \"LocationInfo\": \"string\",\n      \"DateInfo\": \"string\",\n      \"BundledTicketUrl\": \"string\",\n      \"IsBundledTicket\": false,\n      \"StartsEndsSameDay\": false,\n      \"Coordinates\": \"string\",\n      \"Address\": \"string\",\n      \"MapAddress\": \"string\",\n      \"ContactEmail\": \"string\",\n      \"ContactPhone\": \"string\",\n      \"IsFlexPass\": true\n    }\n  },\n  {\n    \"Id\": \"12f1bb45-9312-81a8-c025-ecb2bf72163c\",\n    \"AttendeeNumber\": 275,\n    \"Status\": \"string\",\n    \"IsCompleted\": true,\n    \"IsGift\": false,\n    \"IsPreRegistered\": true,\n    \"ShareEmail\": \"string\",\n    \"GiftingEnabled\": false,\n    \"GiftLastSentAt\": \"1968-04-21T10:10:44.462Z\",\n    \"GiftLastSentAtLocal\": \"1950-10-08T08:03:13.203Z\",\n    \"TimeZoneId\": \"string\",\n    \"FirstName\": \"string\",\n    \"LastName\": \"string\",\n    \"Name\": \"string\",\n    \"AttendeeTypeId\": \"8c1c690b-bcb6-1d1e-f1f5-16707736f745\",\n    \"TypeName\": \"string\",\n    \"TypeAmount\": 629.9040415258028,\n    \"TypeDisplayAmount\": 6839.124177628539,\n    \"SectionName\": \"string\",\n    \"RowName\": \"string\",\n    \"SeatLabel\": \"string\",\n    \"Amount\": 1015.2648001930087,\n    \"Addons\": 9920.925213266422,\n    \"Discounts\": 2352.8939889096923,\n    \"SeatInfo\": \"string\",\n    \"Culture\": \"string\",\n    \"GroupId\": \"b38e9c2d-e561-7485-9e9e-53c14a01d1ae\",\n    \"GroupName\": \"string\",\n    \"GroupEmail\": \"string\",\n    \"AttendeeDisplay\": {\n      \"Line1\": \"string\",\n      \"Line2\": \"string\",\n      \"Line3\": \"string\"\n    },\n    \"AttendeeDisplayLines\": {\n      \"Line1\": \"string\",\n      \"Line2\": \"string\",\n      \"Line3\": \"string\"\n    },\n    \"DisplayPrice\": 485.30944037834644,\n    \"DisplayTotal\": 2122.9558910778223,\n    \"PriceDescription\": \"string\",\n    \"HasPaymentsToMake\": true,\n    \"DonatingBackEnabled\": true,\n    \"ChangesAreBlocked\": false,\n    \"ChangesAreBlockedAfter\": \"1998-12-18T02:17:47.657Z\",\n    \"HasPendingSignatures\": true,\n    \"AllSignaturesComplete\": false,\n    \"ShareEnabled\": true,\n    \"TicketInfo\": {\n      \"AttendeeTypeName\": \"string\",\n      \"AttendeeName\": \"string\",\n      \"Title\": \"string\",\n      \"Section\": \"string\",\n      \"RowLabel\": \"string\",\n      \"Row\": \"string\",\n      \"Seat\": \"string\",\n      \"FlexSummary\": \"string\",\n      \"Field1Label\": \"string\",\n      \"Field1Value\": \"string\",\n      \"Field2Label\": \"string\",\n      \"Field2Value\": \"string\",\n      \"Field3Label\": \"string\",\n      \"Field3Value\": \"string\",\n      \"ImageUrl\": \"string\",\n      \"TicketRenderType\": \"FlexPass\",\n      \"TicketNotes\": \"string\",\n      \"TicketAd\": \"string\",\n      \"EventDate\": \"string\",\n      \"EventTime\": \"string\",\n      \"EventDoorTime\": \"string\",\n      \"EventTitle\": \"string\",\n      \"QrImageUrl\": \"string\",\n      \"QrText\": \"string\",\n      \"PassUrl\": \"string\",\n      \"WalletUrl\": \"string\",\n      \"BundledPassUrl\": \"string\",\n      \"BundledWalletUrl\": \"string\",\n      \"PrintUrl\": \"string\",\n      \"BundledPrintUrl\": \"string\",\n      \"EditUrl\": \"string\",\n      \"FlexPassRedemptionsUsed\": \"string\",\n      \"FlexPassRedemptions\": [\n        {\n          \"EventId\": \"4d40a10f-c4d4-55b7-797e-c22967459e88\",\n          \"EventNumber\": 3264,\n          \"Title\": \"string\",\n          \"CheckedInAt\": \"1980-03-29T06:52:35.848Z\",\n          \"SessionName\": \"string\",\n          \"AttendeeCheckinId\": \"3b276519-d11e-310f-351a-e18344a10164\",\n          \"EventSessionId\": \"5775a41e-d332-b0d4-8d4a-821623813ec5\",\n          \"SessionNumber\": 6944,\n          \"TimeZoneId\": \"string\",\n          \"CheckedInAtLocal\": \"1977-07-19T16:22:58.402Z\",\n          \"Culture\": \"string\",\n          \"Dates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"StartsAt\": \"1996-10-24T18:53:50.905Z\",\n          \"TitleInfo\": \"string\"\n        },\n        {\n          \"EventId\": \"0fea16d1-eadf-dde3-8a62-15c29d805fdc\",\n          \"EventNumber\": 855,\n          \"Title\": \"string\",\n          \"CheckedInAt\": \"2020-07-23T03:58:10.962Z\",\n          \"SessionName\": \"string\",\n          \"AttendeeCheckinId\": \"5ddb7c03-83e5-076b-71fe-60639ff68b12\",\n          \"EventSessionId\": \"ad71700e-1e32-f305-e1af-9af3ca46fc5b\",\n          \"SessionNumber\": 5838,\n          \"TimeZoneId\": \"string\",\n          \"CheckedInAtLocal\": \"1949-10-29T16:33:16.482Z\",\n          \"Culture\": \"string\",\n          \"Dates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"StartsAt\": \"1974-03-22T04:15:49.219Z\",\n          \"TitleInfo\": \"string\"\n        }\n      ],\n      \"IsFlexOrderOrGroupTicket\": false,\n      \"TicketColor\": \"string\",\n      \"TicketClassName\": \"string\",\n      \"EventContactInfo\": \"string\",\n      \"OrderInfo\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\",\n        \"key_3\": \"string\"\n      },\n      \"AttendeesDescription\": \"string\",\n      \"TimeSlotName\": \"string\",\n      \"SharedCapacityName\": \"string\",\n      \"LocationInfo\": \"string\",\n      \"DateInfo\": \"string\",\n      \"BundledTicketUrl\": \"string\",\n      \"IsBundledTicket\": true,\n      \"StartsEndsSameDay\": true,\n      \"Coordinates\": \"string\",\n      \"Address\": \"string\",\n      \"MapAddress\": \"string\",\n      \"ContactEmail\": \"string\",\n      \"ContactPhone\": \"string\",\n      \"IsFlexPass\": false\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3d237db-f207-4acd-b097-872c95414b5d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookups",
+                    ":lookupId",
+                    "events",
+                    ":eventNumber",
+                    "attendees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeGroups",
+                      "value": "false"
+                    },
+                    {
+                      "key": "includeOrders",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lookupId",
+                      "description": "(Required) A Guid retrieved from performing a post to /"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "eventNumber",
+                      "description": "(Required) An integer representing a single event"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b2b180e8-05c9-4bc2-9930-11c99ef400b9",
+          "name": "Get group for the selected lookup ID and eventNumber",
+          "request": {
+            "name": "Get group for the selected lookup ID and eventNumber",
+            "description": {},
+            "url": {
+              "path": [
+                "lookups",
+                ":lookupId",
+                "events",
+                ":eventNumber",
+                "group"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lookupId",
+                  "description": "(Required) A Guid retrieved from performing a post to /"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "eventNumber",
+                  "description": "(Required) An integer representing a single event"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3b3badc9-e30e-410e-bf8a-50d6f50acd14",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookups",
+                    ":lookupId",
+                    "events",
+                    ":eventNumber",
+                    "group"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lookupId",
+                      "description": "(Required) A Guid retrieved from performing a post to /"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "eventNumber",
+                      "description": "(Required) An integer representing a single event"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"eff2c445-c39a-976c-bae0-a37b540877f5\",\n  \"GroupNumber\": 6023,\n  \"Name\": \"string\",\n  \"AttendeeCount\": 2689\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5fffeaee-180d-4d8b-82eb-c2cd23f36583",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookups",
+                    ":lookupId",
+                    "events",
+                    ":eventNumber",
+                    "group"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lookupId",
+                      "description": "(Required) A Guid retrieved from performing a post to /"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "eventNumber",
+                      "description": "(Required) An integer representing a single event"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "96f3692b-f9ac-4cb2-a638-8e3b269e93c1",
+          "name": "Get orders for the selected lookup ID and eventNumber",
+          "request": {
+            "name": "Get orders for the selected lookup ID and eventNumber",
+            "description": {},
+            "url": {
+              "path": [
+                "lookups",
+                ":lookupId",
+                "events",
+                ":eventNumber",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lookupId",
+                  "description": "(Required) A Guid retrieved from performing a post to /"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "eventNumber",
+                  "description": "(Required) An integer representing a single event"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ed76b94d-fdb3-473d-b2f9-0c8893e01617",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookups",
+                    ":lookupId",
+                    "events",
+                    ":eventNumber",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lookupId",
+                      "description": "(Required) A Guid retrieved from performing a post to /"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "eventNumber",
+                      "description": "(Required) An integer representing a single event"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": \"47ccfb77-1ccb-4117-2660-713741e5cc98\",\n    \"OrderKey\": \"string\",\n    \"OrderedAt\": \"2023-12-31T05:02:28.365Z\",\n    \"OrderedAtLocal\": \"2022-09-10T15:49:00.473Z\",\n    \"TimeZoneId\": \"string\",\n    \"BillingName\": \"string\",\n    \"Amount\": 8108.071619263342,\n    \"IsAdjustment\": false,\n    \"Culture\": \"string\",\n    \"AttendeeCount\": 3025\n  },\n  {\n    \"Id\": \"05e6d3ef-91d7-ed28-6b12-0cdc88faa8f8\",\n    \"OrderKey\": \"string\",\n    \"OrderedAt\": \"2015-08-24T19:02:22.358Z\",\n    \"OrderedAtLocal\": \"1949-12-01T10:29:07.701Z\",\n    \"TimeZoneId\": \"string\",\n    \"BillingName\": \"string\",\n    \"Amount\": 1334.0352164011094,\n    \"IsAdjustment\": false,\n    \"Culture\": \"string\",\n    \"AttendeeCount\": 8201\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a93b741-8abc-468a-b1c0-5bab975a4e28",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookups",
+                    ":lookupId",
+                    "events",
+                    ":eventNumber",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lookupId",
+                      "description": "(Required) A Guid retrieved from performing a post to /"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "eventNumber",
+                      "description": "(Required) An integer representing a single event"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.brushfire.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d8e0d3c1-1baa-45f7-a19e-1aa085e7ac75",
+    "name": "Brushfire API: Version 2025-07-22 AccessCodes Lookups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform. It covers events, ticket types, sections and seats, attendees, orders, the shopping cart and checkout flow, groups, sessions and check-in, promotions and access codes, payment profiles, and webhooks (Hooks). Authenticate by sending your App Key (requested at https://developer.brushfire.com/key) in the Authorization header. The API is date-versioned: send the desired version in the api-version request header (for example, 2025-07-22). This document is the live specification published at api.brushfire.com/swagger.\n\nContact Support:\n Name: Brushfire Developers",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,1068 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brushfire API: Version 2025-07-22 AccessCodes Events API",
+    "version": "2025-07-22"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of events for the specified user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/events",
+            "params": [
+              {
+                "name": "accessKey",
+                "value": "",
+                "type": "query",
+                "description": "The Access Key for the user context"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A string to filter events"
+              },
+              {
+                "name": "inactive",
+                "value": "",
+                "type": "query",
+                "description": "Boolean pass in true to return inactive events."
+              },
+              {
+                "name": "qty",
+                "value": "",
+                "type": "query",
+                "description": "An integer to limit the number of results returned"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "An integer to skip the first events returned"
+              },
+              {
+                "name": "archive",
+                "value": "",
+                "type": "query",
+                "description": "Boolean to return archived or not archvied events"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a list of events for the specified user."
+        },
+        {
+          "info": {
+            "name": "Create a fully complete event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/events",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a fully complete event"
+        },
+        {
+          "info": {
+            "name": "Retrieve information for an event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/events/:eventId",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific event"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve information for an event"
+        },
+        {
+          "info": {
+            "name": "Delete an event",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.brushfire.com/events/:eventId",
+            "params": [
+              {
+                "name": "accessKey",
+                "value": "",
+                "type": "query",
+                "description": "Access Key for user account"
+              },
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to the specific event you would like to delete"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete an event"
+        },
+        {
+          "info": {
+            "name": "Queues the specified event for archiving. Sends an email to user associated with the access key used on completion.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/events/:eventId/archive",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific event"
+              },
+              {
+                "name": "accessKey",
+                "value": "",
+                "type": "query",
+                "description": "The Access Key for the user context"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Queues the specified event for archiving. Sends an email to user associated with the access key used on completion."
+        },
+        {
+          "info": {
+            "name": "Returns the best available seats that match the supplied parameters for an assigned seat event. Does not reserve them.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/events/:eventId/bestseats",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific event"
+              },
+              {
+                "name": "quantity",
+                "value": "",
+                "type": "query",
+                "description": "Integer to find a quantity of seats"
+              },
+              {
+                "name": "sectionId",
+                "value": "",
+                "type": "query",
+                "description": "An optional string (the exact name) or a GUID representing the section"
+              },
+              {
+                "name": "accessKey",
+                "value": "",
+                "type": "query",
+                "description": "The Access Key for the user context"
+              },
+              {
+                "name": "typeId",
+                "value": "",
+                "type": "query",
+                "description": "Optional GUID to find seats in a particular type"
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "query",
+                "description": "An optional integer or a GUID that corresponds to a specific group"
+              },
+              {
+                "name": "seatCode",
+                "value": "",
+                "type": "query",
+                "description": "An optional seat-level access code to unlock seats"
+              },
+              {
+                "name": "nonconsecutive",
+                "value": "",
+                "type": "query",
+                "description": "Optional boolean to find seats that are non-consecutive"
+              },
+              {
+                "name": "basePrice",
+                "value": "",
+                "type": "query",
+                "description": "Optional decimal to find seats in a particular base price"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the best available seats that match the supplied parameters for an assigned seat event. Does not reserve them."
+        },
+        {
+          "info": {
+            "name": "Returns all communities for the specified event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/events/:eventId/communities",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific event"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all communities for the specified event"
+        },
+        {
+          "info": {
+            "name": "Returns all data for the specified type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/events/:eventId/data",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific event"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "A string value of \"Attendee\", \"Order\", or \"Group\""
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "An optional date (UTC) from which to filter data"
+              },
+              {
+                "name": "includeCancelled",
+                "value": "",
+                "type": "query",
+                "description": "An optional boolean (default false) to include cancelled attendees"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all data for the specified type"
+        },
+        {
+          "info": {
+            "name": "Retrieve information for an event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/events/:eventId/details",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific event"
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "query",
+                "description": "An integer or a GUID that corresponds to a specific group"
+              },
+              {
+                "name": "accessKey",
+                "value": "",
+                "type": "query",
+                "description": "The Access Key for the user context"
+              },
+              {
+                "name": "access",
+                "value": "",
+                "type": "query",
+                "description": "The Access Code for accessing the event"
+              },
+              {
+                "name": "exchangeId",
+                "value": "",
+                "type": "query",
+                "description": "An optional exchange ID if currently exchanging"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve information for an event"
+        },
+        {
+          "info": {
+            "name": "Get which printing layouts are available for an event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/events/:eventId/documents",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific event"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get which printing layouts are available for an event"
+        },
+        {
+          "info": {
+            "name": "Get the meta data for ALL fields for an event including the built-in/system ones",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/events/:eventId/fieldmetadata",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific event"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get the meta data for ALL fields for an event including the built-in/system ones"
+        },
+        {
+          "info": {
+            "name": "Get fields for an event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/events/:eventId/fields",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific event"
+              },
+              {
+                "name": "fieldType",
+                "value": "",
+                "type": "query",
+                "description": "One of \"Attendees\", \"Groups\", or \"Buyers\" for the type of fields you want"
+              },
+              {
+                "name": "accessKey",
+                "value": "",
+                "type": "query",
+                "description": "The Access Key for the user context"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get fields for an event"
+        },
+        {
+          "info": {
+            "name": "Fetch result for given Remote Valid field when value is provided",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/events/:eventId/fields/:fieldId/remotevalidate",
+            "params": [
+              {
+                "name": "eventNumber",
+                "value": "",
+                "type": "query",
+                "description": "An integer that corresponds to a specific event"
+              },
+              {
+                "name": "fieldId",
+                "value": "",
+                "type": "path",
+                "description": "A GUID of the Remote Fetch field"
+              },
+              {
+                "name": "value",
+                "value": "",
+                "type": "query",
+                "description": "The string of the value currently used in the attendee's search field. Required."
+              },
+              {
+                "name": "attendeeNumber",
+                "value": "",
+                "type": "query",
+                "description": "The attendee number for the current attendee. Only applied to attendee fields"
+              },
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Fetch result for given Remote Valid field when value is provided"
+        },
+        {
+          "info": {
+            "name": "List all groups for an event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/events/:eventId/groups",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific event"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A string to filter groups"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List all groups for an event"
+        },
+        {
+          "info": {
+            "name": "Look up attendees based upon email for an event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/events/:eventId/lookup",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific event"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "The email of the attendee, buyer, or group manager"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Look up attendees based upon email for an event"
+        },
+        {
+          "info": {
+            "name": "Move an event to a different client. The event must have no existing orders or emails.\r\nThe calling app must have access to both the source and target clients.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/events/:eventId/move",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to the specific event you would like to move"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Move an event to a different client. The event must have no existing orders or emails.\r\nThe calling app must have access to both the source and target clients."
+        },
+        {
+          "info": {
+            "name": "Gets list of orders for an event with an optional date range.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/events/:eventId/orders",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific event."
+              },
+              {
+                "name": "startsAt",
+                "value": "",
+                "type": "query",
+                "description": "Optional start date to filter list"
+              },
+              {
+                "name": "endsAt",
+                "value": "",
+                "type": "query",
+                "description": "Optional end date to filter list"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Gets list of orders for an event with an optional date range."
+        },
+        {
+          "info": {
+            "name": "Get which payment methods are available for an event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/events/:eventId/paymentmethods",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific event"
+              },
+              {
+                "name": "accessKey",
+                "value": "",
+                "type": "query",
+                "description": "The Access Key for the user context"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get which payment methods are available for an event"
+        },
+        {
+          "info": {
+            "name": "Get report data for a custom or preset event report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/events/:eventId/reports/:reportId",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific event"
+              },
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "A GUID that corresponds to a specific report or a string that corresponds to a specific report preset"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get report data for a custom or preset event report"
+        },
+        {
+          "info": {
+            "name": "Get a list of resource urls corresponding to specific Brushfire pages for the event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/events/:eventId/resources",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific event"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a list of resource urls corresponding to specific Brushfire pages for the event"
+        },
+        {
+          "info": {
+            "name": "Queues the specified event for restoring. Sends an email to user associated with the access key used on completion.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/events/:eventId/restore",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific event"
+              },
+              {
+                "name": "accessKey",
+                "value": "",
+                "type": "query",
+                "description": "The Access Key for the user context"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Queues the specified event for restoring. Sends an email to user associated with the access key used on completion."
+        },
+        {
+          "info": {
+            "name": "Get the details for all the sections of an event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/events/:eventId/sections",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific event"
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "query",
+                "description": "An integer or a GUID that corresponds to a specific group"
+              },
+              {
+                "name": "seatCode",
+                "value": "",
+                "type": "query",
+                "description": "A seat-level access code to unlock seats"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get the details for all the sections of an event"
+        },
+        {
+          "info": {
+            "name": "Get the details for a specific section",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/events/:eventId/sections/:sectionId",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific event"
+              },
+              {
+                "name": "sectionId",
+                "value": "",
+                "type": "path",
+                "description": "A string (the exact name) or a GUID representing the section"
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "query",
+                "description": "An integer or a GUID that corresponds to a specific group"
+              },
+              {
+                "name": "seatCode",
+                "value": "",
+                "type": "query",
+                "description": "A seat-level access code to unlock seats"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get the details for a specific section"
+        },
+        {
+          "info": {
+            "name": "Get all the seats in a section for a specific event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/events/:eventId/sections/:sectionId/seats",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific event"
+              },
+              {
+                "name": "sectionId",
+                "value": "",
+                "type": "path",
+                "description": "A string (the exact name) or a GUID representing the section"
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "query",
+                "description": "An integer or a GUID that corresponds to a specific group"
+              },
+              {
+                "name": "seatCode",
+                "value": "",
+                "type": "query",
+                "description": "A seat-level access code to unlock seats"
+              },
+              {
+                "name": "accessKey",
+                "value": "",
+                "type": "query",
+                "description": "The Access Key for the user context"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get all the seats in a section for a specific event"
+        },
+        {
+          "info": {
+            "name": "Get a list of all of the sessions for an event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/events/:eventId/sessions",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific event"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A string to filter sessions"
+              },
+              {
+                "name": "includeHidden",
+                "value": "",
+                "type": "query",
+                "description": "Show hidden sessions"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a list of all of the sessions for an event"
+        },
+        {
+          "info": {
+            "name": "Get the theme for a specific event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/events/:eventId/theme",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "A string, a GUID, or an integer that corresponds to a specific event"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get the theme for a specific event"
+        },
+        {
+          "info": {
+            "name": "List all currently available attendee types for a specific event and account (and optionally a specific seat)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/events/:eventId/types",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific event"
+              },
+              {
+                "name": "group",
+                "value": "",
+                "type": "query",
+                "description": "An integer or a GUID that corresponds to a specific group"
+              },
+              {
+                "name": "accessKey",
+                "value": "",
+                "type": "query",
+                "description": "Access Key for user account"
+              },
+              {
+                "name": "access",
+                "value": "",
+                "type": "query",
+                "description": "The Access Code for accessing the types"
+              },
+              {
+                "name": "seat",
+                "value": "",
+                "type": "query",
+                "description": "A GUID that corresponds to a specific seat, if blank, will return all types for the event"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "A string value of \"All\", \"Standard\", or \"Addon\" which determines which type of Attendee Type will be returned. The default is \"Standard\" which returns only Standard types."
+              },
+              {
+                "name": "exchangeId",
+                "value": "",
+                "type": "query",
+                "description": "An optional exchange ID if currently exchanging"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List all currently available attendee types for a specific event and account (and optionally a specific seat)"
+        },
+        {
+          "info": {
+            "name": "Fetch options for given Remote Fetch field when searching a specified value",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/events/:eventNumber/fields/:fieldId/remotefetch",
+            "params": [
+              {
+                "name": "eventNumber",
+                "value": "",
+                "type": "path",
+                "description": "An integer that corresponds to a specific event"
+              },
+              {
+                "name": "fieldId",
+                "value": "",
+                "type": "path",
+                "description": "A GUID of the Remote Fetch field"
+              },
+              {
+                "name": "attendeeNumber",
+                "value": "",
+                "type": "query",
+                "description": "The attendee number for the current attendee. Only applied to attendee fields"
+              },
+              {
+                "name": "value",
+                "value": "",
+                "type": "query",
+                "description": "The string of the value currently used in the attendee's search field"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Fetch options for given Remote Fetch field when searching a specified value"
+        },
+        {
+          "info": {
+            "name": "Copy an existing event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/events/copy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Copy an existing event"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brushfire API: Version 2025-07-22 AccessCodes Promotions API",
+    "version": "2025-07-22"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Promotions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all promotions for a specific client (and additional parameters)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/promotions",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "query",
+                "description": "A string, a GUID, or an integer that corresponds to a specific client"
+              },
+              {
+                "name": "kind",
+                "value": "",
+                "type": "query",
+                "description": "An option string value from \"Standard\", \"Template\", or \"Dynamic\" that represents the kind of promotion"
+              },
+              {
+                "name": "isRedeemed",
+                "value": "",
+                "type": "query",
+                "description": "An optional boolean value if the promotion has been redeemed"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "An option string to filter promotion codes by name"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List all promotions for a specific client (and additional parameters)"
+        },
+        {
+          "info": {
+            "name": "Get details of a single promotion",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/promotions/:promotionId",
+            "params": [
+              {
+                "name": "promotionId",
+                "value": "",
+                "type": "path",
+                "description": "A GUID that corresponds to a specific promotion"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get details of a single promotion"
+        },
+        {
+          "info": {
+            "name": "Creates the specified quantity of dynamic promotions based upon the provided template code",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/promotions/dynamic",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates the specified quantity of dynamic promotions based upon the provided template code"
+        },
+        {
+          "info": {
+            "name": "Support for promotion creation based upon provided list of names",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/promotions/import",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Support for promotion creation based upon provided list of names"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,118 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brushfire API: Version 2025-07-22 AccessCodes Exchanges API",
+    "version": "2025-07-22"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Exchanges",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an exchange",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/exchanges",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create an exchange"
+        },
+        {
+          "info": {
+            "name": "Get full details of an exchange",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/exchanges/:exchangeId",
+            "params": [
+              {
+                "name": "exchangeId",
+                "value": "",
+                "type": "path",
+                "description": "A valid ExchangeId"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get full details of an exchange"
+        },
+        {
+          "info": {
+            "name": "Update an exchange",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.brushfire.com/exchanges/:exchangeId",
+            "params": [
+              {
+                "name": "exchangeId",
+                "value": "",
+                "type": "path",
+                "description": "A valid ExchangeId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update an exchange"
+        },
+        {
+          "info": {
+            "name": "Deletes an exchange based on the provided exchange ID and client key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.brushfire.com/exchanges/:exchangeId",
+            "params": [
+              {
+                "name": "exchangeId",
+                "value": "",
+                "type": "path",
+                "description": "A valid ExchangeId"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes an exchange based on the provided exchange ID and client key."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,326 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brushfire API: Version 2025-07-22 AccessCodes Sessions API",
+    "version": "2025-07-22"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get detailed information about a given session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/sessions/:sessionId",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path",
+                "description": "An integer that corresponds to a specific session"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get detailed information about a given session"
+        },
+        {
+          "info": {
+            "name": "Get a list of all of the attendees for a given check-in session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/sessions/:sessionId/attendees",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path",
+                "description": "The session number for which to retrieve attendees"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "An optional search string for filtering attendees"
+              },
+              {
+                "name": "qty",
+                "value": "",
+                "type": "query",
+                "description": "An integer to limit the number of results returned"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "An integer to skip the first attendees returned"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a list of all of the attendees for a given check-in session"
+        },
+        {
+          "info": {
+            "name": "Check in one or more attendees for a specific session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/sessions/:sessionId/checkin",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path",
+                "description": "An integer representing the session to check into"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Check in one or more attendees for a specific session"
+        },
+        {
+          "info": {
+            "name": "Check out one or more attendees for a specific session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/sessions/:sessionId/checkout",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path",
+                "description": "An integer representing the session to check out of"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Check out one or more attendees for a specific session"
+        },
+        {
+          "info": {
+            "name": "Retrieve attendee data from a specific email and session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/sessions/:sessionId/email/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path",
+                "description": "A string representing an email address"
+              },
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path",
+                "description": "An integer representing a specific session"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve attendee data from a specific email and session"
+        },
+        {
+          "info": {
+            "name": "Get detailed information about a given flex attendee in a specific session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/sessions/:sessionId/flex/:attendeeId",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path",
+                "description": "An integer that corresponds to a specific session"
+              },
+              {
+                "name": "attendeeId",
+                "value": "",
+                "type": "path",
+                "description": "An integer that corresponds to a specific attendee"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get detailed information about a given flex attendee in a specific session"
+        },
+        {
+          "info": {
+            "name": "Checkin a flex pass attendee for a specific session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/sessions/:sessionId/flex/checkin",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path",
+                "description": "An integer representing the session to check into"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Checkin a flex pass attendee for a specific session"
+        },
+        {
+          "info": {
+            "name": "Check out a flex pass attendee for a specific session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/sessions/:sessionId/flex/checkout",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path",
+                "description": "An integer representing the session to check out of"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Check out a flex pass attendee for a specific session"
+        },
+        {
+          "info": {
+            "name": "Get all details, including checkin info for a group in a given session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/sessions/:sessionId/groups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or GUID representing a specific group"
+              },
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path",
+                "description": "An integer representing a specific session"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get all details, including checkin info for a group in a given session"
+        },
+        {
+          "info": {
+            "name": "Retrieve Order and Buyer data from a specific order and session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/sessions/:sessionId/orders/:orderId",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "A string (orderKey) or a GUID representing a specific order"
+              },
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path",
+                "description": "An integer representing a specific session"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve Order and Buyer data from a specific order and session"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,612 @@
+{
+  "item": [
+    {
+      "id": "a6d794cc-24a6-49a3-839f-8a970fa4e6ff",
+      "name": "AccessCodes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6159952b-f0ee-486a-a1c6-e55f08181ccb",
+          "name": "List all access codes for a specific client (and additional parameters)",
+          "request": {
+            "name": "List all access codes for a specific client (and additional parameters)",
+            "description": {},
+            "url": {
+              "path": [
+                "accesscodes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "clientId",
+                  "value": "<string>",
+                  "description": "A string, a GUID, or an integer that corresponds to a specific client"
+                },
+                {
+                  "disabled": false,
+                  "key": "kind",
+                  "value": "<string>",
+                  "description": "An option string value from \"Standard\", \"Template\", or \"Dynamic\" that represents the kind of access code"
+                },
+                {
+                  "disabled": false,
+                  "key": "isRedeemed",
+                  "value": "<boolean>",
+                  "description": "An optional boolean value if the access code has been redeemed"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "An option string to filter access codes by name"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "baf5759c-7f03-4b04-aed8-2220fa5d5a99",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accesscodes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "kind",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "isRedeemed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": \"9625b0e1-aba9-89bc-9c8b-cc3d5f51276d\",\n    \"Description\": \"string\",\n    \"StartsAt\": \"1974-07-24T19:16:09.870Z\",\n    \"EndsAt\": \"1987-11-14T05:02:33.125Z\",\n    \"Kind\": \"string\",\n    \"IsSingleUse\": true,\n    \"IsRedeemed\": true,\n    \"Names\": [\n      \"string\",\n      \"string\"\n    ],\n    \"Events\": [\n      \"8e05d1c8-fa81-58af-47e7-12d7833305e6\",\n      \"7557b965-37b7-4bf5-3b0d-a3920b692098\"\n    ],\n    \"AttendeeTypes\": [\n      \"c97650a4-d174-7066-31a9-515ec68ac5e2\",\n      \"96853498-78d8-0c08-c7ab-a9c73778fe23\"\n    ],\n    \"Seats\": [\n      \"a33ca761-79b3-1d52-bab2-a94461964f63\",\n      \"7158bd2d-e4ee-c67a-2dbe-f7bb927899e8\"\n    ]\n  },\n  {\n    \"Id\": \"50429b9a-24f7-ad62-9b03-4c40471a5d7c\",\n    \"Description\": \"string\",\n    \"StartsAt\": \"2012-04-06T09:06:18.200Z\",\n    \"EndsAt\": \"1982-07-06T23:36:34.512Z\",\n    \"Kind\": \"string\",\n    \"IsSingleUse\": true,\n    \"IsRedeemed\": false,\n    \"Names\": [\n      \"string\",\n      \"string\"\n    ],\n    \"Events\": [\n      \"6936bf5c-7968-e8b7-497f-321fdcde093f\",\n      \"c0a14588-6856-d1e0-a874-064dbfc48a0f\"\n    ],\n    \"AttendeeTypes\": [\n      \"cd5fdfe3-3892-7bb7-938b-1a7ddcc0decb\",\n      \"f0200bcc-2b3d-b429-daa4-d648b3b29a13\"\n    ],\n    \"Seats\": [\n      \"58ea5ee9-9f36-a767-ed4a-4f5995473590\",\n      \"1f14d2b2-417a-8ff2-603b-50810b4fd6ec\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3db9c382-0e7a-4f15-b661-c800945250d4",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accesscodes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "kind",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "isRedeemed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "89eda4f2-bc1b-4572-8d82-bdd245a4a726",
+          "name": "Get details of a single access code",
+          "request": {
+            "name": "Get details of a single access code",
+            "description": {},
+            "url": {
+              "path": [
+                "accesscodes",
+                ":accessCodeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accessCodeId",
+                  "description": "(Required) A GUID that corresponds to a specific access code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3c6ac30d-8d21-469e-a641-4d08f18b1883",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accesscodes",
+                    ":accessCodeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accessCodeId",
+                      "description": "(Required) A GUID that corresponds to a specific access code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"ef2e8d57-e287-051a-13d0-d6f5fdc50cd3\",\n  \"Description\": \"string\",\n  \"StartsAt\": \"1997-02-18T19:32:36.067Z\",\n  \"EndsAt\": \"1957-09-29T22:19:26.461Z\",\n  \"Kind\": \"string\",\n  \"IsSingleUse\": true,\n  \"IsRedeemed\": true,\n  \"Names\": [\n    \"string\",\n    \"string\"\n  ],\n  \"Events\": [\n    \"7b03db6d-b37c-45f0-a581-903fc62a2857\",\n    \"c4d4410a-d1ba-8632-5f4a-92b3f117d85d\"\n  ],\n  \"AttendeeTypes\": [\n    \"b52d2da6-8468-a8bf-f072-c72f6c22d2c6\",\n    \"331ba857-7cc2-66d4-a883-bc06264aab97\"\n  ],\n  \"Seats\": [\n    \"0de057ca-d77e-c5a6-5250-6a2b4e77f924\",\n    \"88be16f1-b60c-2131-5990-846dfc8594b4\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca010ff6-04eb-414d-9821-8854ec219c9a",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accesscodes",
+                    ":accessCodeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accessCodeId",
+                      "description": "(Required) A GUID that corresponds to a specific access code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7f49a640-823f-4f6a-929f-c2839bccf9a7",
+          "name": "Creates the specified quantity of dynamic access codes based upon the provided template code",
+          "request": {
+            "name": "Creates the specified quantity of dynamic access codes based upon the provided template code",
+            "description": {},
+            "url": {
+              "path": [
+                "accesscodes",
+                "dynamic"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "Prefix",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Quantity",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "TemplateId",
+                  "value": "<uuid>",
+                  "description": "(Required) "
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e211756d-53b2-45be-979a-5b28f60f6bda",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accesscodes",
+                    "dynamic"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Prefix",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Quantity",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "TemplateId",
+                      "value": "<uuid>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": \"9625b0e1-aba9-89bc-9c8b-cc3d5f51276d\",\n    \"Description\": \"string\",\n    \"StartsAt\": \"1974-07-24T19:16:09.870Z\",\n    \"EndsAt\": \"1987-11-14T05:02:33.125Z\",\n    \"Kind\": \"string\",\n    \"IsSingleUse\": true,\n    \"IsRedeemed\": true,\n    \"Names\": [\n      \"string\",\n      \"string\"\n    ],\n    \"Events\": [\n      \"8e05d1c8-fa81-58af-47e7-12d7833305e6\",\n      \"7557b965-37b7-4bf5-3b0d-a3920b692098\"\n    ],\n    \"AttendeeTypes\": [\n      \"c97650a4-d174-7066-31a9-515ec68ac5e2\",\n      \"96853498-78d8-0c08-c7ab-a9c73778fe23\"\n    ],\n    \"Seats\": [\n      \"a33ca761-79b3-1d52-bab2-a94461964f63\",\n      \"7158bd2d-e4ee-c67a-2dbe-f7bb927899e8\"\n    ]\n  },\n  {\n    \"Id\": \"50429b9a-24f7-ad62-9b03-4c40471a5d7c\",\n    \"Description\": \"string\",\n    \"StartsAt\": \"2012-04-06T09:06:18.200Z\",\n    \"EndsAt\": \"1982-07-06T23:36:34.512Z\",\n    \"Kind\": \"string\",\n    \"IsSingleUse\": true,\n    \"IsRedeemed\": false,\n    \"Names\": [\n      \"string\",\n      \"string\"\n    ],\n    \"Events\": [\n      \"6936bf5c-7968-e8b7-497f-321fdcde093f\",\n      \"c0a14588-6856-d1e0-a874-064dbfc48a0f\"\n    ],\n    \"AttendeeTypes\": [\n      \"cd5fdfe3-3892-7bb7-938b-1a7ddcc0decb\",\n      \"f0200bcc-2b3d-b429-daa4-d648b3b29a13\"\n    ],\n    \"Seats\": [\n      \"58ea5ee9-9f36-a767-ed4a-4f5995473590\",\n      \"1f14d2b2-417a-8ff2-603b-50810b4fd6ec\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dbc3ffbc-793f-4579-99b6-e9d0dbeb0338",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accesscodes",
+                    "dynamic"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Prefix",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Quantity",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "TemplateId",
+                      "value": "<uuid>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.brushfire.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "88d72a05-da6f-4313-9e9b-41d01f3db757",
+    "name": "Brushfire API: Version 2025-07-22 AccessCodes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform. It covers events, ticket types, sections and seats, attendees, orders, the shopping cart and checkout flow, groups, sessions and check-in, promotions and access codes, payment profiles, and webhooks (Hooks). Authenticate by sending your App Key (requested at https://developer.brushfire.com/key) in the Authorization header. The API is date-versioned: send the desired version in the api-version request header (for example, 2025-07-22). This document is the live specification published at api.brushfire.com/swagger.\n\nContact Support:\n Name: Brushfire Developers",
+      "type": "text/plain"
+    }
+  }
+}

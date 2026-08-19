@@ -1,0 +1,2199 @@
+{
+  "item": [
+    {
+      "id": "061ca157-f9a1-49b5-bbd2-d35de0aab93a",
+      "name": "Groups",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c74b84d0-48c4-46ec-935f-771a288b91cc",
+          "name": "Create a group",
+          "request": {
+            "name": "Create a group",
+            "description": {},
+            "url": {
+              "path": [
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "AttendeeTypeId",
+                  "value": "<uuid>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Email",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "JoinCode",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Name",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "AccessKey",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "CommunityId",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "FieldValues",
+                  "value": "{\"Id\":\"<uuid>\",\"Value\":{}}"
+                },
+                {
+                  "disabled": false,
+                  "key": "FieldValues",
+                  "value": "{\"Id\":\"<uuid>\",\"Value\":{}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d8f47938-73f3-4f5e-986a-028f27f70b9a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AttendeeTypeId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Email",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "JoinCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "AccessKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CommunityId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "FieldValues",
+                      "value": "{\"Id\":\"<uuid>\",\"Value\":{}}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "FieldValues",
+                      "value": "{\"Id\":\"<uuid>\",\"Value\":{}}"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"cbcb2b1a-cfa9-aa3d-8e6c-770d95178d84\",\n  \"GroupNumber\": 5997,\n  \"Name\": \"string\",\n  \"Email\": \"string\",\n  \"AttendeeTypeId\": \"825aad24-cca7-c76f-738e-7a8db11d70ba\",\n  \"JoinCode\": \"string\",\n  \"TypeName\": \"string\",\n  \"CommunityId\": \"802e4472-bef6-6179-cfee-2cca21f3d545\",\n  \"CommunityPartition\": \"string\",\n  \"CommunityName\": \"string\",\n  \"AttendeeCount\": 4820,\n  \"Fields\": [\n    {\n      \"Id\": \"f6338743-a766-9271-289f-32c3c5c4b48d\",\n      \"Label\": \"string\",\n      \"Type\": \"string\",\n      \"Value\": {},\n      \"DisplayValue\": \"string\",\n      \"ValidationExpression\": \"string\",\n      \"IsRequired\": false,\n      \"Notes\": \"string\",\n      \"ErrorMessage\": \"string\",\n      \"IsDisabled\": true,\n      \"IsSensitive\": false,\n      \"SpecialFieldId\": \"39216840-ec75-3d5b-c331-4476cffa28b5\",\n      \"ParentOptionId\": \"23fb9b9e-3375-1a5b-ec98-66596290f51c\",\n      \"ParentFieldId\": \"0fe7b2a8-1f44-9514-6c98-cf45143c954c\",\n      \"FormObjectId\": \"ba7d7de7-d068-023a-80d6-6d32790cc6fc\",\n      \"Options\": [\n        {\n          \"Id\": \"90ab121d-fa47-64b5-5b73-8b8800d61d0e\",\n          \"Label\": \"string\",\n          \"Capacity\": 5243,\n          \"Quantity\": 9657,\n          \"HasUnitPrice\": true,\n          \"UnitPrice\": 2215.3571160871875,\n          \"UnitTax\": 2567.7446920289126,\n          \"IsInclusiveTaxes\": false,\n          \"DisplayPrice\": 4281.060049921886,\n          \"PriceDescription\": \"string\",\n          \"IsSelected\": false,\n          \"HasCapacity\": true,\n          \"SpotsRemaining\": 2937,\n          \"RemainingText\": \"string\"\n        },\n        {\n          \"Id\": \"73846e35-8e26-3720-e9bc-31874e19ef93\",\n          \"Label\": \"string\",\n          \"Capacity\": 4230,\n          \"Quantity\": 7811,\n          \"HasUnitPrice\": false,\n          \"UnitPrice\": 9354.734423989963,\n          \"UnitTax\": 9138.420003541542,\n          \"IsInclusiveTaxes\": true,\n          \"DisplayPrice\": 591.648574648933,\n          \"PriceDescription\": \"string\",\n          \"IsSelected\": true,\n          \"HasCapacity\": true,\n          \"SpotsRemaining\": 761,\n          \"RemainingText\": \"string\"\n        }\n      ],\n      \"ParentOptionIsSelected\": false,\n      \"HasError\": true,\n      \"HasRelevantOutput\": true,\n      \"MinDate\": \"1955-04-13T10:10:05.170Z\",\n      \"MaxDate\": \"1965-12-28T15:25:57.085Z\",\n      \"AttendeeTypes\": [\n        \"2e5743a1-aeb1-1d1d-89ca-0f5a63381444\",\n        \"a4d58242-1431-95ac-1207-abdb8255018e\"\n      ],\n      \"RemoteUrl\": \"string\",\n      \"SelectedOptionId\": \"b7938c10-8c39-a589-2bf3-cf8ef4c9dd8a\",\n      \"Confirm\": true,\n      \"DomainValidation\": {\n        \"AllowDomains\": [\n          \"string\",\n          \"string\"\n        ],\n        \"DisallowDomains\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"DisplayIsPrimary\": false\n    },\n    {\n      \"Id\": \"02f24cc1-34e7-6361-c393-74f2ab349c1d\",\n      \"Label\": \"string\",\n      \"Type\": \"string\",\n      \"Value\": {},\n      \"DisplayValue\": \"string\",\n      \"ValidationExpression\": \"string\",\n      \"IsRequired\": false,\n      \"Notes\": \"string\",\n      \"ErrorMessage\": \"string\",\n      \"IsDisabled\": true,\n      \"IsSensitive\": true,\n      \"SpecialFieldId\": \"bb69c7be-9225-0513-980f-2d347c3da1c7\",\n      \"ParentOptionId\": \"e8d2febe-e858-c310-7ad3-5d088700eb8e\",\n      \"ParentFieldId\": \"90e7be73-80a6-4765-e645-457d31a909d7\",\n      \"FormObjectId\": \"930296da-25d8-a011-9a54-22fdde5e2d3f\",\n      \"Options\": [\n        {\n          \"Id\": \"7c6ffad9-f030-299b-4aa7-b3aecff7012e\",\n          \"Label\": \"string\",\n          \"Capacity\": 5683,\n          \"Quantity\": 243,\n          \"HasUnitPrice\": true,\n          \"UnitPrice\": 4288.4631232017855,\n          \"UnitTax\": 4490.881411273427,\n          \"IsInclusiveTaxes\": false,\n          \"DisplayPrice\": 5731.331580213835,\n          \"PriceDescription\": \"string\",\n          \"IsSelected\": true,\n          \"HasCapacity\": true,\n          \"SpotsRemaining\": 1735,\n          \"RemainingText\": \"string\"\n        },\n        {\n          \"Id\": \"c029abd1-83bf-c24b-3d28-990f47b13345\",\n          \"Label\": \"string\",\n          \"Capacity\": 7373,\n          \"Quantity\": 8845,\n          \"HasUnitPrice\": true,\n          \"UnitPrice\": 5177.578859690406,\n          \"UnitTax\": 1440.4704873566266,\n          \"IsInclusiveTaxes\": true,\n          \"DisplayPrice\": 7442.7923400085365,\n          \"PriceDescription\": \"string\",\n          \"IsSelected\": false,\n          \"HasCapacity\": true,\n          \"SpotsRemaining\": 9435,\n          \"RemainingText\": \"string\"\n        }\n      ],\n      \"ParentOptionIsSelected\": false,\n      \"HasError\": false,\n      \"HasRelevantOutput\": false,\n      \"MinDate\": \"1986-01-27T18:02:44.471Z\",\n      \"MaxDate\": \"1947-02-09T21:18:01.004Z\",\n      \"AttendeeTypes\": [\n        \"da063438-a628-1f52-e0d1-9218a4024df5\",\n        \"9c8845e6-19c6-aae0-62e9-3355df219abe\"\n      ],\n      \"RemoteUrl\": \"string\",\n      \"SelectedOptionId\": \"863abfd7-05e0-73e2-626f-3d462928a786\",\n      \"Confirm\": true,\n      \"DomainValidation\": {\n        \"AllowDomains\": [\n          \"string\",\n          \"string\"\n        ],\n        \"DisallowDomains\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"DisplayIsPrimary\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5d223e2-c75f-4eaf-8ca9-ad559b4cb6da",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AttendeeTypeId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Email",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "JoinCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "AccessKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CommunityId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "FieldValues",
+                      "value": "{\"Id\":\"<uuid>\",\"Value\":{}}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "FieldValues",
+                      "value": "{\"Id\":\"<uuid>\",\"Value\":{}}"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5922a0bf-54c0-4b75-852a-ea73db9803db",
+          "name": "Update a group",
+          "request": {
+            "name": "Update a group",
+            "description": {},
+            "url": {
+              "path": [
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "Email",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "GroupId",
+                  "value": "<uuid>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "JoinCode",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Name",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "AttendeeTypeId",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "AccessKey",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "CommunityId",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "FieldValues",
+                  "value": "{\"Id\":\"<uuid>\",\"Value\":{}}"
+                },
+                {
+                  "disabled": false,
+                  "key": "FieldValues",
+                  "value": "{\"Id\":\"<uuid>\",\"Value\":{}}"
+                },
+                {
+                  "disabled": false,
+                  "key": "UpdateNewOnly",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "OverrideCapacity",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "DontFollowRules",
+                  "value": "<boolean>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d22f6417-17d2-4906-afec-6ed3e45b701f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Email",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "GroupId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "JoinCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "AttendeeTypeId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "AccessKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CommunityId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "FieldValues",
+                      "value": "{\"Id\":\"<uuid>\",\"Value\":{}}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "FieldValues",
+                      "value": "{\"Id\":\"<uuid>\",\"Value\":{}}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "UpdateNewOnly",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "OverrideCapacity",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "DontFollowRules",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"8955cd85-7801-56eb-61ad-4f6313a49db2\",\n  \"GroupNumber\": 2447,\n  \"Name\": \"string\",\n  \"Email\": \"string\",\n  \"AttendeeTypeId\": \"26d8a179-f558-ef4a-afbc-c39917181672\",\n  \"JoinCode\": \"string\",\n  \"TypeName\": \"string\",\n  \"CommunityId\": \"d5fd008e-518c-5076-5320-df418d8940a6\",\n  \"CommunityPartition\": \"string\",\n  \"CommunityName\": \"string\",\n  \"AttendeeCount\": 7039,\n  \"Fields\": [\n    {\n      \"Id\": \"4aa83da5-2a2d-e52e-35fa-98703d06c99a\",\n      \"Label\": \"string\",\n      \"Type\": \"string\",\n      \"Value\": {},\n      \"DisplayValue\": \"string\",\n      \"ValidationExpression\": \"string\",\n      \"IsRequired\": true,\n      \"Notes\": \"string\",\n      \"ErrorMessage\": \"string\",\n      \"IsDisabled\": false,\n      \"IsSensitive\": false,\n      \"SpecialFieldId\": \"c3a44eac-698e-def3-6667-d0b411cd81c6\",\n      \"ParentOptionId\": \"99d2adbd-762b-c6e7-11e5-19141ed40d64\",\n      \"ParentFieldId\": \"3a9a4a19-7be3-11f8-fdb6-b9ffeb611f44\",\n      \"FormObjectId\": \"da2bbfdc-a256-765a-ac37-6b1be974519e\",\n      \"Options\": [\n        {\n          \"Id\": \"79422560-d33b-6439-98ec-781929eeb08a\",\n          \"Label\": \"string\",\n          \"Capacity\": 2592,\n          \"Quantity\": 1846,\n          \"HasUnitPrice\": true,\n          \"UnitPrice\": 1847.8597041695666,\n          \"UnitTax\": 3314.691040471868,\n          \"IsInclusiveTaxes\": true,\n          \"DisplayPrice\": 5451.082121475017,\n          \"PriceDescription\": \"string\",\n          \"IsSelected\": false,\n          \"HasCapacity\": false,\n          \"SpotsRemaining\": 9270,\n          \"RemainingText\": \"string\"\n        },\n        {\n          \"Id\": \"6dcb5ea3-3d79-1284-ab35-64d0d3311f8d\",\n          \"Label\": \"string\",\n          \"Capacity\": 7417,\n          \"Quantity\": 4894,\n          \"HasUnitPrice\": false,\n          \"UnitPrice\": 652.3637229767065,\n          \"UnitTax\": 651.5133782587156,\n          \"IsInclusiveTaxes\": false,\n          \"DisplayPrice\": 1605.5931948510672,\n          \"PriceDescription\": \"string\",\n          \"IsSelected\": false,\n          \"HasCapacity\": true,\n          \"SpotsRemaining\": 6281,\n          \"RemainingText\": \"string\"\n        }\n      ],\n      \"ParentOptionIsSelected\": false,\n      \"HasError\": true,\n      \"HasRelevantOutput\": true,\n      \"MinDate\": \"1963-03-23T14:09:57.878Z\",\n      \"MaxDate\": \"2020-02-23T02:10:05.482Z\",\n      \"AttendeeTypes\": [\n        \"f65532b9-4b83-95db-2276-6329122ad821\",\n        \"13367f45-f5ba-5b83-750f-ce6107512dfc\"\n      ],\n      \"RemoteUrl\": \"string\",\n      \"SelectedOptionId\": \"dba29878-c471-2cdc-f73f-cda69531012f\",\n      \"Confirm\": false,\n      \"DomainValidation\": {\n        \"AllowDomains\": [\n          \"string\",\n          \"string\"\n        ],\n        \"DisallowDomains\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"DisplayIsPrimary\": false\n    },\n    {\n      \"Id\": \"30604138-61dd-b7ac-5509-3ca2ffd7cb5d\",\n      \"Label\": \"string\",\n      \"Type\": \"string\",\n      \"Value\": {},\n      \"DisplayValue\": \"string\",\n      \"ValidationExpression\": \"string\",\n      \"IsRequired\": false,\n      \"Notes\": \"string\",\n      \"ErrorMessage\": \"string\",\n      \"IsDisabled\": true,\n      \"IsSensitive\": true,\n      \"SpecialFieldId\": \"1272786e-74ed-5594-932a-1ec1dfbef1fd\",\n      \"ParentOptionId\": \"fb879601-14c3-93f9-7dd1-03fc5bc3fc45\",\n      \"ParentFieldId\": \"9df31b79-9b3e-bd6e-96b9-7a47bb90cff3\",\n      \"FormObjectId\": \"f42c95b5-4a06-c017-3905-c6fb479e348e\",\n      \"Options\": [\n        {\n          \"Id\": \"92256414-d694-0e07-50a2-ded79d5f328b\",\n          \"Label\": \"string\",\n          \"Capacity\": 4368,\n          \"Quantity\": 1273,\n          \"HasUnitPrice\": true,\n          \"UnitPrice\": 6994.620707901241,\n          \"UnitTax\": 424.5564719388772,\n          \"IsInclusiveTaxes\": true,\n          \"DisplayPrice\": 9726.402601154276,\n          \"PriceDescription\": \"string\",\n          \"IsSelected\": false,\n          \"HasCapacity\": true,\n          \"SpotsRemaining\": 6043,\n          \"RemainingText\": \"string\"\n        },\n        {\n          \"Id\": \"e8669812-04c0-1788-d4e5-9a2a01545c67\",\n          \"Label\": \"string\",\n          \"Capacity\": 7061,\n          \"Quantity\": 921,\n          \"HasUnitPrice\": true,\n          \"UnitPrice\": 4299.985388420844,\n          \"UnitTax\": 269.2150902985402,\n          \"IsInclusiveTaxes\": false,\n          \"DisplayPrice\": 4990.991692403187,\n          \"PriceDescription\": \"string\",\n          \"IsSelected\": true,\n          \"HasCapacity\": false,\n          \"SpotsRemaining\": 6717,\n          \"RemainingText\": \"string\"\n        }\n      ],\n      \"ParentOptionIsSelected\": true,\n      \"HasError\": true,\n      \"HasRelevantOutput\": true,\n      \"MinDate\": \"2003-08-05T08:26:46.536Z\",\n      \"MaxDate\": \"1967-06-22T06:21:34.479Z\",\n      \"AttendeeTypes\": [\n        \"a924c8b2-3d7c-4132-c9e1-a06f9e57e315\",\n        \"78219235-d355-9e7f-6913-3b8692e42688\"\n      ],\n      \"RemoteUrl\": \"string\",\n      \"SelectedOptionId\": \"5e5794f4-b064-f05e-f393-85b815af862f\",\n      \"Confirm\": true,\n      \"DomainValidation\": {\n        \"AllowDomains\": [\n          \"string\",\n          \"string\"\n        ],\n        \"DisallowDomains\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"DisplayIsPrimary\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e0e8fed-26f7-43a3-9b0a-28e5b37faae3",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Email",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "GroupId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "JoinCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "AttendeeTypeId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "AccessKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CommunityId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "FieldValues",
+                      "value": "{\"Id\":\"<uuid>\",\"Value\":{}}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "FieldValues",
+                      "value": "{\"Id\":\"<uuid>\",\"Value\":{}}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "UpdateNewOnly",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "OverrideCapacity",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "DontFollowRules",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8de50213-2800-4a72-93dd-65564c119049",
+          "name": "Retrieve information about a group",
+          "request": {
+            "name": "Retrieve information about a group",
+            "description": {},
+            "url": {
+              "path": [
+                "groups",
+                ":groupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "accessKey",
+                  "value": "<string>",
+                  "description": "The Access Key for the user context"
+                },
+                {
+                  "disabled": false,
+                  "key": "qrSize",
+                  "value": "<integer>",
+                  "description": "The width and height of the QR Code. If blank, no QR will be sent."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "groupId",
+                  "description": "(Required) A GUID or an integer representing a group"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fc247ad3-4471-47b2-95e5-650ccb8f2151",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accessKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "qrSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) A GUID or an integer representing a group"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"016604e3-fc72-d89d-a16c-e78ade1d7108\",\n  \"GroupNumber\": 6599,\n  \"EventNumber\": 3776,\n  \"EventId\": \"e3372f9b-85e4-9e84-e13a-15b410c6a2d7\",\n  \"Name\": \"string\",\n  \"Email\": \"string\",\n  \"AttendeeTypeId\": \"9bd02b0a-34dc-c878-ff73-d3b4ec948058\",\n  \"JoinCode\": \"string\",\n  \"TypeName\": \"string\",\n  \"AttendeeCount\": 5895,\n  \"CommunityId\": \"c076294f-ed44-0070-e44f-6cdbd8fc870d\",\n  \"CommunityPartition\": \"string\",\n  \"CommunityName\": \"string\",\n  \"Fields\": [\n    {\n      \"Id\": \"aeca733d-64df-4bfb-185f-7de9e9e25e3c\",\n      \"Label\": \"string\",\n      \"Type\": \"string\",\n      \"Value\": {},\n      \"DisplayValue\": \"string\",\n      \"ValidationExpression\": \"string\",\n      \"IsRequired\": false,\n      \"Notes\": \"string\",\n      \"ErrorMessage\": \"string\",\n      \"IsDisabled\": true,\n      \"IsSensitive\": false,\n      \"SpecialFieldId\": \"1aa199c9-a46a-99df-13b5-75157828eb56\",\n      \"ParentOptionId\": \"c3aa557a-2cb7-5d80-9b3c-2f932bb88cd2\",\n      \"ParentFieldId\": \"686a7dbc-39b1-d231-383b-e8cd269a5e59\",\n      \"FormObjectId\": \"20e4be29-5829-3b00-fc10-2e1948a0872f\",\n      \"Options\": [\n        {\n          \"Id\": \"ca6a48fa-486f-2424-f63c-736f59e17795\",\n          \"Label\": \"string\",\n          \"Capacity\": 7700,\n          \"Quantity\": 129,\n          \"HasUnitPrice\": true,\n          \"UnitPrice\": 2264.08727896478,\n          \"UnitTax\": 4753.804701228059,\n          \"IsInclusiveTaxes\": true,\n          \"DisplayPrice\": 382.77683727775513,\n          \"PriceDescription\": \"string\",\n          \"IsSelected\": false,\n          \"HasCapacity\": false,\n          \"SpotsRemaining\": 637,\n          \"RemainingText\": \"string\"\n        },\n        {\n          \"Id\": \"bb221164-9195-49c2-d365-143bdfa9b231\",\n          \"Label\": \"string\",\n          \"Capacity\": 5874,\n          \"Quantity\": 4885,\n          \"HasUnitPrice\": false,\n          \"UnitPrice\": 2955.253374447151,\n          \"UnitTax\": 5100.271907653026,\n          \"IsInclusiveTaxes\": true,\n          \"DisplayPrice\": 8284.17044547175,\n          \"PriceDescription\": \"string\",\n          \"IsSelected\": true,\n          \"HasCapacity\": true,\n          \"SpotsRemaining\": 6526,\n          \"RemainingText\": \"string\"\n        }\n      ],\n      \"ParentOptionIsSelected\": true,\n      \"HasError\": true,\n      \"HasRelevantOutput\": false,\n      \"MinDate\": \"1968-05-19T08:42:33.361Z\",\n      \"MaxDate\": \"1946-08-14T09:50:35.482Z\",\n      \"AttendeeTypes\": [\n        \"77643811-d5d3-bd22-86f7-1c915f2df533\",\n        \"063cdb17-d5df-0e2a-f054-24f030230666\"\n      ],\n      \"RemoteUrl\": \"string\",\n      \"SelectedOptionId\": \"884f6d0a-2247-01b5-dd44-7aeca21d4720\",\n      \"Confirm\": true,\n      \"DomainValidation\": {\n        \"AllowDomains\": [\n          \"string\",\n          \"string\"\n        ],\n        \"DisallowDomains\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"DisplayIsPrimary\": false\n    },\n    {\n      \"Id\": \"c169887b-f878-3a57-4d8e-d53fc8974f68\",\n      \"Label\": \"string\",\n      \"Type\": \"string\",\n      \"Value\": {},\n      \"DisplayValue\": \"string\",\n      \"ValidationExpression\": \"string\",\n      \"IsRequired\": true,\n      \"Notes\": \"string\",\n      \"ErrorMessage\": \"string\",\n      \"IsDisabled\": false,\n      \"IsSensitive\": true,\n      \"SpecialFieldId\": \"9abf34f1-1dfa-6b37-62d5-36dffb38975f\",\n      \"ParentOptionId\": \"b5240da2-c1b0-3137-ed5e-4634a3356ba7\",\n      \"ParentFieldId\": \"cc0106cc-7dcb-0bc8-06ec-d6edecc9d135\",\n      \"FormObjectId\": \"eaee119c-794d-1dce-f441-e3d351ba59ba\",\n      \"Options\": [\n        {\n          \"Id\": \"b4de6acb-d0bf-9c70-8a84-6b4c8f6b071f\",\n          \"Label\": \"string\",\n          \"Capacity\": 1035,\n          \"Quantity\": 9333,\n          \"HasUnitPrice\": false,\n          \"UnitPrice\": 90.7883649933039,\n          \"UnitTax\": 2122.6729201663975,\n          \"IsInclusiveTaxes\": true,\n          \"DisplayPrice\": 5554.067952517423,\n          \"PriceDescription\": \"string\",\n          \"IsSelected\": true,\n          \"HasCapacity\": true,\n          \"SpotsRemaining\": 1852,\n          \"RemainingText\": \"string\"\n        },\n        {\n          \"Id\": \"4bec22a3-7a89-37a1-c49c-64a0dd03bf36\",\n          \"Label\": \"string\",\n          \"Capacity\": 2730,\n          \"Quantity\": 4205,\n          \"HasUnitPrice\": true,\n          \"UnitPrice\": 7724.694196980066,\n          \"UnitTax\": 1095.6495150120127,\n          \"IsInclusiveTaxes\": true,\n          \"DisplayPrice\": 9515.565122660699,\n          \"PriceDescription\": \"string\",\n          \"IsSelected\": false,\n          \"HasCapacity\": false,\n          \"SpotsRemaining\": 1002,\n          \"RemainingText\": \"string\"\n        }\n      ],\n      \"ParentOptionIsSelected\": false,\n      \"HasError\": true,\n      \"HasRelevantOutput\": true,\n      \"MinDate\": \"1988-01-25T06:53:55.634Z\",\n      \"MaxDate\": \"1991-04-16T21:10:18.790Z\",\n      \"AttendeeTypes\": [\n        \"65b9fd37-4042-893a-6831-c370a65f9d0e\",\n        \"41ca65e2-b6ca-2243-fced-3b6ba09d9d0c\"\n      ],\n      \"RemoteUrl\": \"string\",\n      \"SelectedOptionId\": \"f50bc0c2-80b2-092e-e79b-fa582c4b384d\",\n      \"Confirm\": true,\n      \"DomainValidation\": {\n        \"AllowDomains\": [\n          \"string\",\n          \"string\"\n        ],\n        \"DisallowDomains\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"DisplayIsPrimary\": false\n    }\n  ],\n  \"Attendees\": [\n    {\n      \"AttendeeNumber\": 609,\n      \"AttendeeCode\": \"string\",\n      \"FirstName\": \"string\",\n      \"LastName\": \"string\",\n      \"SectionName\": \"string\",\n      \"RowName\": \"string\",\n      \"SeatLabel\": \"string\",\n      \"TypeName\": \"string\"\n    },\n    {\n      \"AttendeeNumber\": 8319,\n      \"AttendeeCode\": \"string\",\n      \"FirstName\": \"string\",\n      \"LastName\": \"string\",\n      \"SectionName\": \"string\",\n      \"RowName\": \"string\",\n      \"SeatLabel\": \"string\",\n      \"TypeName\": \"string\"\n    }\n  ],\n  \"QRCode\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f6018268-9d38-4dee-9773-f3c123f8ea6b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accessKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "qrSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) A GUID or an integer representing a group"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0e1b915d-91ca-4998-b966-14f5a09fe433",
+          "name": "Set or clear the community for the specified group and all of its attendees",
+          "request": {
+            "name": "Set or clear the community for the specified group and all of its attendees",
+            "description": {},
+            "url": {
+              "path": [
+                "groups",
+                ":groupId",
+                "community"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "groupId",
+                  "description": "(Required) A GUID or an integer representing a group"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "CommunityId",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "OverrideCapacity",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "DontFollowRules",
+                  "value": "<boolean>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ebacce3b-27aa-4652-8227-d9b0331efb55",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":groupId",
+                    "community"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) A GUID or an integer representing a group"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "CommunityId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "OverrideCapacity",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "DontFollowRules",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"8955cd85-7801-56eb-61ad-4f6313a49db2\",\n  \"GroupNumber\": 2447,\n  \"Name\": \"string\",\n  \"Email\": \"string\",\n  \"AttendeeTypeId\": \"26d8a179-f558-ef4a-afbc-c39917181672\",\n  \"JoinCode\": \"string\",\n  \"TypeName\": \"string\",\n  \"CommunityId\": \"d5fd008e-518c-5076-5320-df418d8940a6\",\n  \"CommunityPartition\": \"string\",\n  \"CommunityName\": \"string\",\n  \"AttendeeCount\": 7039,\n  \"Fields\": [\n    {\n      \"Id\": \"4aa83da5-2a2d-e52e-35fa-98703d06c99a\",\n      \"Label\": \"string\",\n      \"Type\": \"string\",\n      \"Value\": {},\n      \"DisplayValue\": \"string\",\n      \"ValidationExpression\": \"string\",\n      \"IsRequired\": true,\n      \"Notes\": \"string\",\n      \"ErrorMessage\": \"string\",\n      \"IsDisabled\": false,\n      \"IsSensitive\": false,\n      \"SpecialFieldId\": \"c3a44eac-698e-def3-6667-d0b411cd81c6\",\n      \"ParentOptionId\": \"99d2adbd-762b-c6e7-11e5-19141ed40d64\",\n      \"ParentFieldId\": \"3a9a4a19-7be3-11f8-fdb6-b9ffeb611f44\",\n      \"FormObjectId\": \"da2bbfdc-a256-765a-ac37-6b1be974519e\",\n      \"Options\": [\n        {\n          \"Id\": \"79422560-d33b-6439-98ec-781929eeb08a\",\n          \"Label\": \"string\",\n          \"Capacity\": 2592,\n          \"Quantity\": 1846,\n          \"HasUnitPrice\": true,\n          \"UnitPrice\": 1847.8597041695666,\n          \"UnitTax\": 3314.691040471868,\n          \"IsInclusiveTaxes\": true,\n          \"DisplayPrice\": 5451.082121475017,\n          \"PriceDescription\": \"string\",\n          \"IsSelected\": false,\n          \"HasCapacity\": false,\n          \"SpotsRemaining\": 9270,\n          \"RemainingText\": \"string\"\n        },\n        {\n          \"Id\": \"6dcb5ea3-3d79-1284-ab35-64d0d3311f8d\",\n          \"Label\": \"string\",\n          \"Capacity\": 7417,\n          \"Quantity\": 4894,\n          \"HasUnitPrice\": false,\n          \"UnitPrice\": 652.3637229767065,\n          \"UnitTax\": 651.5133782587156,\n          \"IsInclusiveTaxes\": false,\n          \"DisplayPrice\": 1605.5931948510672,\n          \"PriceDescription\": \"string\",\n          \"IsSelected\": false,\n          \"HasCapacity\": true,\n          \"SpotsRemaining\": 6281,\n          \"RemainingText\": \"string\"\n        }\n      ],\n      \"ParentOptionIsSelected\": false,\n      \"HasError\": true,\n      \"HasRelevantOutput\": true,\n      \"MinDate\": \"1963-03-23T14:09:57.878Z\",\n      \"MaxDate\": \"2020-02-23T02:10:05.482Z\",\n      \"AttendeeTypes\": [\n        \"f65532b9-4b83-95db-2276-6329122ad821\",\n        \"13367f45-f5ba-5b83-750f-ce6107512dfc\"\n      ],\n      \"RemoteUrl\": \"string\",\n      \"SelectedOptionId\": \"dba29878-c471-2cdc-f73f-cda69531012f\",\n      \"Confirm\": false,\n      \"DomainValidation\": {\n        \"AllowDomains\": [\n          \"string\",\n          \"string\"\n        ],\n        \"DisallowDomains\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"DisplayIsPrimary\": false\n    },\n    {\n      \"Id\": \"30604138-61dd-b7ac-5509-3ca2ffd7cb5d\",\n      \"Label\": \"string\",\n      \"Type\": \"string\",\n      \"Value\": {},\n      \"DisplayValue\": \"string\",\n      \"ValidationExpression\": \"string\",\n      \"IsRequired\": false,\n      \"Notes\": \"string\",\n      \"ErrorMessage\": \"string\",\n      \"IsDisabled\": true,\n      \"IsSensitive\": true,\n      \"SpecialFieldId\": \"1272786e-74ed-5594-932a-1ec1dfbef1fd\",\n      \"ParentOptionId\": \"fb879601-14c3-93f9-7dd1-03fc5bc3fc45\",\n      \"ParentFieldId\": \"9df31b79-9b3e-bd6e-96b9-7a47bb90cff3\",\n      \"FormObjectId\": \"f42c95b5-4a06-c017-3905-c6fb479e348e\",\n      \"Options\": [\n        {\n          \"Id\": \"92256414-d694-0e07-50a2-ded79d5f328b\",\n          \"Label\": \"string\",\n          \"Capacity\": 4368,\n          \"Quantity\": 1273,\n          \"HasUnitPrice\": true,\n          \"UnitPrice\": 6994.620707901241,\n          \"UnitTax\": 424.5564719388772,\n          \"IsInclusiveTaxes\": true,\n          \"DisplayPrice\": 9726.402601154276,\n          \"PriceDescription\": \"string\",\n          \"IsSelected\": false,\n          \"HasCapacity\": true,\n          \"SpotsRemaining\": 6043,\n          \"RemainingText\": \"string\"\n        },\n        {\n          \"Id\": \"e8669812-04c0-1788-d4e5-9a2a01545c67\",\n          \"Label\": \"string\",\n          \"Capacity\": 7061,\n          \"Quantity\": 921,\n          \"HasUnitPrice\": true,\n          \"UnitPrice\": 4299.985388420844,\n          \"UnitTax\": 269.2150902985402,\n          \"IsInclusiveTaxes\": false,\n          \"DisplayPrice\": 4990.991692403187,\n          \"PriceDescription\": \"string\",\n          \"IsSelected\": true,\n          \"HasCapacity\": false,\n          \"SpotsRemaining\": 6717,\n          \"RemainingText\": \"string\"\n        }\n      ],\n      \"ParentOptionIsSelected\": true,\n      \"HasError\": true,\n      \"HasRelevantOutput\": true,\n      \"MinDate\": \"2003-08-05T08:26:46.536Z\",\n      \"MaxDate\": \"1967-06-22T06:21:34.479Z\",\n      \"AttendeeTypes\": [\n        \"a924c8b2-3d7c-4132-c9e1-a06f9e57e315\",\n        \"78219235-d355-9e7f-6913-3b8692e42688\"\n      ],\n      \"RemoteUrl\": \"string\",\n      \"SelectedOptionId\": \"5e5794f4-b064-f05e-f393-85b815af862f\",\n      \"Confirm\": true,\n      \"DomainValidation\": {\n        \"AllowDomains\": [\n          \"string\",\n          \"string\"\n        ],\n        \"DisallowDomains\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"DisplayIsPrimary\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c3507ff-5b4b-4695-b088-58b937eee9b6",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":groupId",
+                    "community"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) A GUID or an integer representing a group"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "CommunityId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "OverrideCapacity",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "DontFollowRules",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab866f73-ba34-460c-a382-70a5756d294e",
+          "name": "Retrieve fields for a group",
+          "request": {
+            "name": "Retrieve fields for a group",
+            "description": {},
+            "url": {
+              "path": [
+                "groups",
+                ":groupId",
+                "fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "accessKey",
+                  "value": "<string>",
+                  "description": "The Access Key for the user context"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "groupId",
+                  "description": "(Required) A GUID or an integer representing a group"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e6025997-0e3a-4d06-9a1b-8d3d328fb508",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":groupId",
+                    "fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accessKey",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) A GUID or an integer representing a group"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": \"d5c522a4-ab16-8b44-6ed5-7c2df236ea88\",\n    \"Label\": \"string\",\n    \"Type\": \"string\",\n    \"Value\": {},\n    \"DisplayValue\": \"string\",\n    \"ValidationExpression\": \"string\",\n    \"IsRequired\": false,\n    \"Notes\": \"string\",\n    \"ErrorMessage\": \"string\",\n    \"IsDisabled\": true,\n    \"IsSensitive\": true,\n    \"SpecialFieldId\": \"3f88f055-ff26-545d-ac1b-edb685658d41\",\n    \"ParentOptionId\": \"d8587f0c-908e-a9c3-720c-e2ebc72505df\",\n    \"ParentFieldId\": \"9db8999c-3f5a-e4c3-66df-45a142265d12\",\n    \"FormObjectId\": \"5ec04f41-535b-9732-0674-6f7d4b610564\",\n    \"Options\": [\n      {\n        \"Id\": \"c6335752-af46-2b07-840a-89785d4d1aca\",\n        \"Label\": \"string\",\n        \"Capacity\": 6187,\n        \"Quantity\": 8157,\n        \"HasUnitPrice\": false,\n        \"UnitPrice\": 6704.324111319575,\n        \"UnitTax\": 558.4307974834745,\n        \"IsInclusiveTaxes\": false,\n        \"DisplayPrice\": 2676.273048669652,\n        \"PriceDescription\": \"string\",\n        \"IsSelected\": false,\n        \"HasCapacity\": true,\n        \"SpotsRemaining\": 8291,\n        \"RemainingText\": \"string\"\n      },\n      {\n        \"Id\": \"97f40216-8f53-2800-35c7-aba895dc8cc1\",\n        \"Label\": \"string\",\n        \"Capacity\": 8763,\n        \"Quantity\": 4305,\n        \"HasUnitPrice\": false,\n        \"UnitPrice\": 7721.714291244116,\n        \"UnitTax\": 9174.233414362465,\n        \"IsInclusiveTaxes\": false,\n        \"DisplayPrice\": 2190.9303578613435,\n        \"PriceDescription\": \"string\",\n        \"IsSelected\": true,\n        \"HasCapacity\": true,\n        \"SpotsRemaining\": 4041,\n        \"RemainingText\": \"string\"\n      }\n    ],\n    \"ParentOptionIsSelected\": false,\n    \"HasError\": true,\n    \"HasRelevantOutput\": false,\n    \"MinDate\": \"1999-12-13T03:59:05.974Z\",\n    \"MaxDate\": \"2014-06-29T23:42:13.246Z\",\n    \"AttendeeTypes\": [\n      \"e05cfa46-1485-dfd9-76d5-2abc50274e9e\",\n      \"998c6a66-4371-a607-7ca0-8cec211219b2\"\n    ],\n    \"RemoteUrl\": \"string\",\n    \"SelectedOptionId\": \"32b03252-04eb-752b-1699-3ed11f8317aa\",\n    \"Confirm\": false,\n    \"DomainValidation\": {\n      \"AllowDomains\": [\n        \"string\",\n        \"string\"\n      ],\n      \"DisallowDomains\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"DisplayIsPrimary\": true\n  },\n  {\n    \"Id\": \"0e4596d5-b1a6-cfd9-4011-095444a96f7c\",\n    \"Label\": \"string\",\n    \"Type\": \"string\",\n    \"Value\": {},\n    \"DisplayValue\": \"string\",\n    \"ValidationExpression\": \"string\",\n    \"IsRequired\": false,\n    \"Notes\": \"string\",\n    \"ErrorMessage\": \"string\",\n    \"IsDisabled\": false,\n    \"IsSensitive\": false,\n    \"SpecialFieldId\": \"d956a543-cd86-6fa7-c221-7e868f5659b0\",\n    \"ParentOptionId\": \"73fcb919-e49b-59df-72df-bddb425c8354\",\n    \"ParentFieldId\": \"02173bd7-f1c5-12a1-9d31-a3ff46b90146\",\n    \"FormObjectId\": \"4364d221-bc27-b792-cbad-25e717cc9940\",\n    \"Options\": [\n      {\n        \"Id\": \"533a9828-d24a-7c51-a070-2e4728fdd8bc\",\n        \"Label\": \"string\",\n        \"Capacity\": 8649,\n        \"Quantity\": 9355,\n        \"HasUnitPrice\": true,\n        \"UnitPrice\": 107.55322488892661,\n        \"UnitTax\": 8974.445645626609,\n        \"IsInclusiveTaxes\": false,\n        \"DisplayPrice\": 9651.058365162502,\n        \"PriceDescription\": \"string\",\n        \"IsSelected\": false,\n        \"HasCapacity\": true,\n        \"SpotsRemaining\": 1921,\n        \"RemainingText\": \"string\"\n      },\n      {\n        \"Id\": \"e67c6411-6012-7f8b-d9d7-d8042355a966\",\n        \"Label\": \"string\",\n        \"Capacity\": 3697,\n        \"Quantity\": 7185,\n        \"HasUnitPrice\": true,\n        \"UnitPrice\": 3683.7458332554797,\n        \"UnitTax\": 6519.2444045053335,\n        \"IsInclusiveTaxes\": true,\n        \"DisplayPrice\": 9116.073493687149,\n        \"PriceDescription\": \"string\",\n        \"IsSelected\": false,\n        \"HasCapacity\": false,\n        \"SpotsRemaining\": 4060,\n        \"RemainingText\": \"string\"\n      }\n    ],\n    \"ParentOptionIsSelected\": false,\n    \"HasError\": false,\n    \"HasRelevantOutput\": true,\n    \"MinDate\": \"1967-03-21T23:20:41.627Z\",\n    \"MaxDate\": \"2009-03-06T11:27:14.506Z\",\n    \"AttendeeTypes\": [\n      \"babf4126-37c1-8c7e-4bd6-adc398556589\",\n      \"dbcabafd-884a-500e-5ec1-f6e116b31877\"\n    ],\n    \"RemoteUrl\": \"string\",\n    \"SelectedOptionId\": \"c6f99140-3c78-211d-1cf8-cb03af7103f9\",\n    \"Confirm\": true,\n    \"DomainValidation\": {\n      \"AllowDomains\": [\n        \"string\",\n        \"string\"\n      ],\n      \"DisallowDomains\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"DisplayIsPrimary\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1ba9339-0f0e-4245-a446-2bb56fbe0d51",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":groupId",
+                    "fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accessKey",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) A GUID or an integer representing a group"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "716c9532-f38a-4908-99f9-d3ae195de625",
+          "name": "Update fields for a group",
+          "request": {
+            "name": "Update fields for a group",
+            "description": {},
+            "url": {
+              "path": [
+                "groups",
+                ":groupId",
+                "fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "groupId",
+                  "description": "(Required) A GUID or an integer representing a group"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "AccessKey",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "FieldValues",
+                  "value": "{\"Id\":\"<uuid>\",\"Value\":{}}"
+                },
+                {
+                  "disabled": false,
+                  "key": "FieldValues",
+                  "value": "{\"Id\":\"<uuid>\",\"Value\":{}}"
+                },
+                {
+                  "disabled": false,
+                  "key": "UpdateNewOnly",
+                  "value": "<boolean>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "eada4058-e913-4b32-8217-c137d4ab1838",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":groupId",
+                    "fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) A GUID or an integer representing a group"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "AccessKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "FieldValues",
+                      "value": "{\"Id\":\"<uuid>\",\"Value\":{}}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "FieldValues",
+                      "value": "{\"Id\":\"<uuid>\",\"Value\":{}}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "UpdateNewOnly",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": \"d5c522a4-ab16-8b44-6ed5-7c2df236ea88\",\n    \"Label\": \"string\",\n    \"Type\": \"string\",\n    \"Value\": {},\n    \"DisplayValue\": \"string\",\n    \"ValidationExpression\": \"string\",\n    \"IsRequired\": false,\n    \"Notes\": \"string\",\n    \"ErrorMessage\": \"string\",\n    \"IsDisabled\": true,\n    \"IsSensitive\": true,\n    \"SpecialFieldId\": \"3f88f055-ff26-545d-ac1b-edb685658d41\",\n    \"ParentOptionId\": \"d8587f0c-908e-a9c3-720c-e2ebc72505df\",\n    \"ParentFieldId\": \"9db8999c-3f5a-e4c3-66df-45a142265d12\",\n    \"FormObjectId\": \"5ec04f41-535b-9732-0674-6f7d4b610564\",\n    \"Options\": [\n      {\n        \"Id\": \"c6335752-af46-2b07-840a-89785d4d1aca\",\n        \"Label\": \"string\",\n        \"Capacity\": 6187,\n        \"Quantity\": 8157,\n        \"HasUnitPrice\": false,\n        \"UnitPrice\": 6704.324111319575,\n        \"UnitTax\": 558.4307974834745,\n        \"IsInclusiveTaxes\": false,\n        \"DisplayPrice\": 2676.273048669652,\n        \"PriceDescription\": \"string\",\n        \"IsSelected\": false,\n        \"HasCapacity\": true,\n        \"SpotsRemaining\": 8291,\n        \"RemainingText\": \"string\"\n      },\n      {\n        \"Id\": \"97f40216-8f53-2800-35c7-aba895dc8cc1\",\n        \"Label\": \"string\",\n        \"Capacity\": 8763,\n        \"Quantity\": 4305,\n        \"HasUnitPrice\": false,\n        \"UnitPrice\": 7721.714291244116,\n        \"UnitTax\": 9174.233414362465,\n        \"IsInclusiveTaxes\": false,\n        \"DisplayPrice\": 2190.9303578613435,\n        \"PriceDescription\": \"string\",\n        \"IsSelected\": true,\n        \"HasCapacity\": true,\n        \"SpotsRemaining\": 4041,\n        \"RemainingText\": \"string\"\n      }\n    ],\n    \"ParentOptionIsSelected\": false,\n    \"HasError\": true,\n    \"HasRelevantOutput\": false,\n    \"MinDate\": \"1999-12-13T03:59:05.974Z\",\n    \"MaxDate\": \"2014-06-29T23:42:13.246Z\",\n    \"AttendeeTypes\": [\n      \"e05cfa46-1485-dfd9-76d5-2abc50274e9e\",\n      \"998c6a66-4371-a607-7ca0-8cec211219b2\"\n    ],\n    \"RemoteUrl\": \"string\",\n    \"SelectedOptionId\": \"32b03252-04eb-752b-1699-3ed11f8317aa\",\n    \"Confirm\": false,\n    \"DomainValidation\": {\n      \"AllowDomains\": [\n        \"string\",\n        \"string\"\n      ],\n      \"DisallowDomains\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"DisplayIsPrimary\": true\n  },\n  {\n    \"Id\": \"0e4596d5-b1a6-cfd9-4011-095444a96f7c\",\n    \"Label\": \"string\",\n    \"Type\": \"string\",\n    \"Value\": {},\n    \"DisplayValue\": \"string\",\n    \"ValidationExpression\": \"string\",\n    \"IsRequired\": false,\n    \"Notes\": \"string\",\n    \"ErrorMessage\": \"string\",\n    \"IsDisabled\": false,\n    \"IsSensitive\": false,\n    \"SpecialFieldId\": \"d956a543-cd86-6fa7-c221-7e868f5659b0\",\n    \"ParentOptionId\": \"73fcb919-e49b-59df-72df-bddb425c8354\",\n    \"ParentFieldId\": \"02173bd7-f1c5-12a1-9d31-a3ff46b90146\",\n    \"FormObjectId\": \"4364d221-bc27-b792-cbad-25e717cc9940\",\n    \"Options\": [\n      {\n        \"Id\": \"533a9828-d24a-7c51-a070-2e4728fdd8bc\",\n        \"Label\": \"string\",\n        \"Capacity\": 8649,\n        \"Quantity\": 9355,\n        \"HasUnitPrice\": true,\n        \"UnitPrice\": 107.55322488892661,\n        \"UnitTax\": 8974.445645626609,\n        \"IsInclusiveTaxes\": false,\n        \"DisplayPrice\": 9651.058365162502,\n        \"PriceDescription\": \"string\",\n        \"IsSelected\": false,\n        \"HasCapacity\": true,\n        \"SpotsRemaining\": 1921,\n        \"RemainingText\": \"string\"\n      },\n      {\n        \"Id\": \"e67c6411-6012-7f8b-d9d7-d8042355a966\",\n        \"Label\": \"string\",\n        \"Capacity\": 3697,\n        \"Quantity\": 7185,\n        \"HasUnitPrice\": true,\n        \"UnitPrice\": 3683.7458332554797,\n        \"UnitTax\": 6519.2444045053335,\n        \"IsInclusiveTaxes\": true,\n        \"DisplayPrice\": 9116.073493687149,\n        \"PriceDescription\": \"string\",\n        \"IsSelected\": false,\n        \"HasCapacity\": false,\n        \"SpotsRemaining\": 4060,\n        \"RemainingText\": \"string\"\n      }\n    ],\n    \"ParentOptionIsSelected\": false,\n    \"HasError\": false,\n    \"HasRelevantOutput\": true,\n    \"MinDate\": \"1967-03-21T23:20:41.627Z\",\n    \"MaxDate\": \"2009-03-06T11:27:14.506Z\",\n    \"AttendeeTypes\": [\n      \"babf4126-37c1-8c7e-4bd6-adc398556589\",\n      \"dbcabafd-884a-500e-5ec1-f6e116b31877\"\n    ],\n    \"RemoteUrl\": \"string\",\n    \"SelectedOptionId\": \"c6f99140-3c78-211d-1cf8-cb03af7103f9\",\n    \"Confirm\": true,\n    \"DomainValidation\": {\n      \"AllowDomains\": [\n        \"string\",\n        \"string\"\n      ],\n      \"DisallowDomains\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"DisplayIsPrimary\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8782a594-4f24-42db-b3b6-109cb674d5f6",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":groupId",
+                    "fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) A GUID or an integer representing a group"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "AccessKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "FieldValues",
+                      "value": "{\"Id\":\"<uuid>\",\"Value\":{}}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "FieldValues",
+                      "value": "{\"Id\":\"<uuid>\",\"Value\":{}}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "UpdateNewOnly",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e65915d0-9a89-44d1-915f-dd0cda4075a7",
+          "name": "Retrieve the printable resources for a single group",
+          "request": {
+            "name": "Retrieve the printable resources for a single group",
+            "description": {},
+            "url": {
+              "path": [
+                "groups",
+                ":groupId",
+                "print"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "A string that is one of \"Ticket\", \"ETicket\", or \"Namebadge\""
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "A string that is one of \"PDF\", \"PNG\", \"JPG\", \"GIF\", \"BMP\" or \"TIFF\""
+                },
+                {
+                  "disabled": false,
+                  "key": "imageDpi",
+                  "value": "0",
+                  "description": "An int representing the dots per inch of the images produced that is 72, 96, 150, 300 or 600. 0 for PDF"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "groupId",
+                  "description": "(Required) A GUID or an integer representing a group"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4de54d47-8150-43cd-8cd2-cc3b9f85eca6",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":groupId",
+                    "print"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "imageDpi",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) A GUID or an integer representing a group"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5174710-35bb-4e9e-9e7b-adaf0a081ecf",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":groupId",
+                    "print"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "imageDpi",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) A GUID or an integer representing a group"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9922ad7-4bdd-436e-a907-16706678c8cb",
+          "name": "Retrieve groups that match provided email",
+          "request": {
+            "name": "Retrieve groups that match provided email",
+            "description": {},
+            "url": {
+              "path": [
+                "groups",
+                "helpdesk",
+                ":email"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "email",
+                  "description": "(Required) An email to search across group email fields"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b8af5869-1dee-4e15-aa43-635cbd73dd3a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    "helpdesk",
+                    ":email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "email",
+                      "description": "(Required) An email to search across group email fields"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": \"fb57392f-7cbb-d152-e4d7-afeae4eac120\",\n    \"GroupNumber\": 7517,\n    \"Name\": \"string\",\n    \"JoinCode\": \"string\",\n    \"AttendeeCount\": 2386,\n    \"EventNumber\": 5498,\n    \"EventTitle\": \"string\",\n    \"EventSubtitle\": \"string\"\n  },\n  {\n    \"Id\": \"fd6c1c10-392f-5a22-c08b-4f8f367acb39\",\n    \"GroupNumber\": 1075,\n    \"Name\": \"string\",\n    \"JoinCode\": \"string\",\n    \"AttendeeCount\": 4978,\n    \"EventNumber\": 8099,\n    \"EventTitle\": \"string\",\n    \"EventSubtitle\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "900ace03-c29c-4453-9d60-26f7d97f729d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    "helpdesk",
+                    ":email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "email",
+                      "description": "(Required) An email to search across group email fields"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "052cea2c-f244-46d1-9803-77c39bced5cc",
+          "name": "Retrieve the printable resources for multiple groups",
+          "request": {
+            "name": "Retrieve the printable resources for multiple groups",
+            "description": {},
+            "url": {
+              "path": [
+                "groups",
+                "print"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "EventId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Groups",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Groups",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Type",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Format",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ImageDpi",
+                  "value": "<integer>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a75fb671-f622-4b3e-9925-a768bcf3d3ed",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    "print"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "EventId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Groups",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Groups",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Format",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ImageDpi",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "902d972c-5579-4e55-b2b4-38706256039d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    "print"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "EventId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Groups",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Groups",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Format",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ImageDpi",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.brushfire.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "110e8ac5-befd-4213-bb2d-866bbecf85dc",
+    "name": "Brushfire API: Version 2025-07-22 AccessCodes Groups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform. It covers events, ticket types, sections and seats, attendees, orders, the shopping cart and checkout flow, groups, sessions and check-in, promotions and access codes, payment profiles, and webhooks (Hooks). Authenticate by sending your App Key (requested at https://developer.brushfire.com/key) in the Authorization header. The API is date-versioned: send the desired version in the api-version request header (for example, 2025-07-22). This document is the live specification published at api.brushfire.com/swagger.\n\nContact Support:\n Name: Brushfire Developers",
+      "type": "text/plain"
+    }
+  }
+}

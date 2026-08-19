@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brushfire API: Version 2025-07-22 AccessCodes Accounts API",
+    "version": "2025-07-22"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve information for a specific account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/accounts/:accountId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "An Email, a GUID, an Access Key, or an integer that corresponds to a specific account"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve information for a specific account"
+        },
+        {
+          "info": {
+            "name": "Authenticate a user via email and password or social service to get Access Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/accounts/auth",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Authenticate a user via email and password or social service to get Access Key"
+        },
+        {
+          "info": {
+            "name": "Retrieve an account that matches the provided email",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/accounts/helpdesk/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path",
+                "description": "An Email that corresponds to a specific account"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve an account that matches the provided email"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

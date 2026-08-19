@@ -1,0 +1,147 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brushfire API: Version 2025-07-22 AccessCodes PaymentProfiles API",
+    "version": "2025-07-22"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "PaymentProfiles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns all payment profiles for the specified client",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/paymentprofiles",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "query",
+                "description": "A string, a GUID, or an integer that corresponds to a specific client"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all payment profiles for the specified client"
+        },
+        {
+          "info": {
+            "name": "Returns the details of the specified payment profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/paymentprofiles/:paymentProfileId",
+            "params": [
+              {
+                "name": "paymentProfileId",
+                "value": "",
+                "type": "path",
+                "description": "A GUID that corresponds to a specific payment profile"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the details of the specified payment profile"
+        },
+        {
+          "info": {
+            "name": "Returns the locations associated with the merchant ID of a given payment profile.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/paymentprofiles/:paymentProfileId/locations",
+            "params": [
+              {
+                "name": "paymentProfileId",
+                "value": "",
+                "type": "path",
+                "description": "A GUID that corresponds to a specific payment profile"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the locations associated with the merchant ID of a given payment profile."
+        },
+        {
+          "info": {
+            "name": "Returns all terminals registered to the account associated with the supplied payment profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/paymentprofiles/:paymentProfileId/terminals",
+            "params": [
+              {
+                "name": "paymentProfileId",
+                "value": "",
+                "type": "path",
+                "description": "A GUID that corresponds to a specific payment profile"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all terminals registered to the account associated with the supplied payment profile"
+        },
+        {
+          "info": {
+            "name": "Add a terminal to the supplied payment profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/paymentprofiles/:paymentProfileId/terminals",
+            "params": [
+              {
+                "name": "paymentProfileId",
+                "value": "",
+                "type": "path",
+                "description": "A GUID that corresponds to a specific payment profile"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Add a terminal to the supplied payment profile"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

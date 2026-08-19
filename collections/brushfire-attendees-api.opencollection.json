@@ -1,0 +1,614 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brushfire API: Version 2025-07-22 AccessCodes Attendees API",
+    "version": "2025-07-22"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Attendees",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve all relevant attendee information for the given attendee number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/attendees/:attendeeId",
+            "params": [
+              {
+                "name": "attendeeId",
+                "value": "",
+                "type": "path",
+                "description": "An integer, GUID, or a string that corresponds to a specific attendee"
+              },
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "query",
+                "description": "An integer or a GUID that corresponds to a specific event (only necessary if sending an attendee code)"
+              },
+              {
+                "name": "accessKey",
+                "value": "",
+                "type": "query",
+                "description": "The Access Key for the user context"
+              },
+              {
+                "name": "qrSize",
+                "value": "",
+                "type": "query",
+                "description": "The width and height of the QR Code. If blank, no QR will be sent."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve all relevant attendee information for the given attendee number"
+        },
+        {
+          "info": {
+            "name": "Cancel an attendee (zero financial change only)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/attendees/:attendeeId/cancel",
+            "params": [
+              {
+                "name": "attendeeId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific attendee"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Cancel an attendee (zero financial change only)"
+        },
+        {
+          "info": {
+            "name": "Associate an external code with a Brushfire attendee for scanning, etc.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/attendees/:attendeeId/code",
+            "params": [
+              {
+                "name": "attendeeId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific attendee"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Associate an external code with a Brushfire attendee for scanning, etc."
+        },
+        {
+          "info": {
+            "name": "Gets all the available communities for this specific attendee based upon any rules that might be in place",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/attendees/:attendeeId/communities",
+            "params": [
+              {
+                "name": "attendeeId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific attendee"
+              },
+              {
+                "name": "accessKey",
+                "value": "",
+                "type": "query",
+                "description": "The Access Key for the user context"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Gets all the available communities for this specific attendee based upon any rules that might be in place"
+        },
+        {
+          "info": {
+            "name": "Set or clear the community for the specified attendee (as long as the group's community doesn't override)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/attendees/:attendeeId/community",
+            "params": [
+              {
+                "name": "attendeeId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific attendee"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Set or clear the community for the specified attendee (as long as the group's community doesn't override)"
+        },
+        {
+          "info": {
+            "name": "Set a registered attendee's completed state",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/attendees/:attendeeId/completed",
+            "params": [
+              {
+                "name": "attendeeId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific attendee"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Set a registered attendee's completed state"
+        },
+        {
+          "info": {
+            "name": "Returns all data for the specified attendee in the same structure as {eventId}/data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/attendees/:attendeeId/data",
+            "params": [
+              {
+                "name": "attendeeId",
+                "value": "",
+                "type": "path",
+                "description": "An integer, GUID, or a string that corresponds to a specific attendee"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all data for the specified attendee in the same structure as {eventId}/data"
+        },
+        {
+          "info": {
+            "name": "Donate back an attendee",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/attendees/:attendeeId/donate",
+            "params": [
+              {
+                "name": "attendeeId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific attendee"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Donate back an attendee"
+        },
+        {
+          "info": {
+            "name": "Retrieve fields for an attendee",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/attendees/:attendeeId/fields",
+            "params": [
+              {
+                "name": "attendeeId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific attendee"
+              },
+              {
+                "name": "accessKey",
+                "value": "",
+                "type": "query",
+                "description": "The Access Key for the user context"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve fields for an attendee"
+        },
+        {
+          "info": {
+            "name": "Update fields for an attendee",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/attendees/:attendeeId/fields",
+            "params": [
+              {
+                "name": "attendeeId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific attendee"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update fields for an attendee"
+        },
+        {
+          "info": {
+            "name": "Retrieve fields for an attendee",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/attendees/:attendeeId/fieldscustom",
+            "params": [
+              {
+                "name": "attendeeId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific attendee"
+              },
+              {
+                "name": "fieldsToInclude",
+                "value": "",
+                "type": "query",
+                "description": "The Id's of the fields you want returned"
+              },
+              {
+                "name": "accessKey",
+                "value": "",
+                "type": "query",
+                "description": "The Access Key for the user context"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve fields for an attendee"
+        },
+        {
+          "info": {
+            "name": "Update fields for an attendee",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/attendees/:attendeeId/fieldscustom",
+            "params": [
+              {
+                "name": "attendeeId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific attendee"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update fields for an attendee"
+        },
+        {
+          "info": {
+            "name": "Set an attendee registration as a gift",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/attendees/:attendeeId/gift",
+            "params": [
+              {
+                "name": "attendeeId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific attendee"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Set an attendee registration as a gift"
+        },
+        {
+          "info": {
+            "name": "Set or clear the group (and the associated community) for the specified attendee",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/attendees/:attendeeId/group",
+            "params": [
+              {
+                "name": "attendeeId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific attendee"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Set or clear the group (and the associated community) for the specified attendee"
+        },
+        {
+          "info": {
+            "name": "Copy all fields from the source attendee to the specified attendee and link them together",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/attendees/:attendeeId/link",
+            "params": [
+              {
+                "name": "attendeeId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific attendee"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Copy all fields from the source attendee to the specified attendee and link them together"
+        },
+        {
+          "info": {
+            "name": "Retrieve the printable resources for a single attendee",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/attendees/:attendeeId/print",
+            "params": [
+              {
+                "name": "attendeeId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific attendee"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "A string that is one of \"Ticket\", \"ETicket\", or \"Namebadge\""
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "A string that is one of \"PDF\", \"PNG\", \"JPG\", \"GIF\", \"BMP\" or \"TIFF\""
+              },
+              {
+                "name": "imageDpi",
+                "value": "",
+                "type": "query",
+                "description": "An int representing the dots per inch of the images produced that is 72, 96, 150, 300 or 600. 0 for PDF"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve the printable resources for a single attendee"
+        },
+        {
+          "info": {
+            "name": "Change an attendee type (zero financial change only)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/attendees/:attendeeId/type",
+            "params": [
+              {
+                "name": "attendeeId",
+                "value": "",
+                "type": "path",
+                "description": "An integer or a GUID that corresponds to a specific attendee"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Change an attendee type (zero financial change only)"
+        },
+        {
+          "info": {
+            "name": "Retrieve attendees that match provided email",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/attendees/helpdesk/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path",
+                "description": "An email to search across attendee email fields"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve attendees that match provided email"
+        },
+        {
+          "info": {
+            "name": "Convert a list of attendee numbers to their corresponding unique IDs, checking permissions for each",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/attendees/ids",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Convert a list of attendee numbers to their corresponding unique IDs, checking permissions for each"
+        },
+        {
+          "info": {
+            "name": "Retrieve the printable resources for multiple attendees",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/attendees/print",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve the printable resources for multiple attendees"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

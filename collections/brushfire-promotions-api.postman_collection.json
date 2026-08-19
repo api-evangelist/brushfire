@@ -1,0 +1,838 @@
+{
+  "item": [
+    {
+      "id": "ee1bcdc5-6572-47e2-be14-f6ac13471a28",
+      "name": "Promotions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "50035926-1c8f-4703-95a2-df56cf1d830d",
+          "name": "List all promotions for a specific client (and additional parameters)",
+          "request": {
+            "name": "List all promotions for a specific client (and additional parameters)",
+            "description": {},
+            "url": {
+              "path": [
+                "promotions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "clientId",
+                  "value": "<string>",
+                  "description": "A string, a GUID, or an integer that corresponds to a specific client"
+                },
+                {
+                  "disabled": false,
+                  "key": "kind",
+                  "value": "<string>",
+                  "description": "An option string value from \"Standard\", \"Template\", or \"Dynamic\" that represents the kind of promotion"
+                },
+                {
+                  "disabled": false,
+                  "key": "isRedeemed",
+                  "value": "<boolean>",
+                  "description": "An optional boolean value if the promotion has been redeemed"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "An option string to filter promotion codes by name"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "982d9bbc-9c4e-44c2-9dce-4a96f8aa3db5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "promotions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "kind",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "isRedeemed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": \"9e104b4e-5198-ccc4-256a-c10d4591c565\",\n    \"Description\": \"string\",\n    \"StartsAt\": \"2000-01-24T11:45:54.744Z\",\n    \"EndsAt\": \"1963-08-28T03:15:34.750Z\",\n    \"Group\": \"string\",\n    \"Kind\": \"string\",\n    \"IsSingleUse\": true,\n    \"IsRedeemed\": false,\n    \"AdminVisible\": false,\n    \"InternetVisible\": true,\n    \"Amount\": 5371.611613324821,\n    \"IsPercentage\": false,\n    \"AutoCalculate\": false,\n    \"Names\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"Id\": \"84450841-e672-c3de-8b91-b3e33dd6ffa1\",\n    \"Description\": \"string\",\n    \"StartsAt\": \"2006-09-10T05:27:01.994Z\",\n    \"EndsAt\": \"1996-05-09T23:43:31.832Z\",\n    \"Group\": \"string\",\n    \"Kind\": \"string\",\n    \"IsSingleUse\": true,\n    \"IsRedeemed\": false,\n    \"AdminVisible\": true,\n    \"InternetVisible\": false,\n    \"Amount\": 8705.454964434146,\n    \"IsPercentage\": true,\n    \"AutoCalculate\": false,\n    \"Names\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8841885f-8c68-490d-8889-5f71620d05e8",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "promotions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "kind",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "isRedeemed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6fb791ac-ebe3-4a7b-89c6-22e4c5bd7c84",
+          "name": "Get details of a single promotion",
+          "request": {
+            "name": "Get details of a single promotion",
+            "description": {},
+            "url": {
+              "path": [
+                "promotions",
+                ":promotionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "promotionId",
+                  "description": "(Required) A GUID that corresponds to a specific promotion"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0ae614da-b56f-4591-8477-6889f2e4ba53",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "promotions",
+                    ":promotionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promotionId",
+                      "description": "(Required) A GUID that corresponds to a specific promotion"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"b65b314f-4626-09ef-8807-1f1427148b50\",\n  \"Description\": \"string\",\n  \"StartsAt\": \"1948-04-21T16:13:08.145Z\",\n  \"EndsAt\": \"2025-04-03T11:38:02.976Z\",\n  \"Group\": \"string\",\n  \"Kind\": \"string\",\n  \"IsSingleUse\": false,\n  \"IsRedeemed\": false,\n  \"AdminVisible\": false,\n  \"InternetVisible\": true,\n  \"Amount\": 4144.061803831886,\n  \"IsPercentage\": true,\n  \"AutoCalculate\": true,\n  \"Quantity\": 306,\n  \"Limit\": 1843,\n  \"Exclude\": 2494,\n  \"IsMultiple\": false,\n  \"SpanChildren\": true,\n  \"InEachChild\": false,\n  \"IncludeAddons\": false,\n  \"AllInGroup\": true,\n  \"Names\": [\n    \"string\",\n    \"string\"\n  ],\n  \"RelatedPromotions\": [\n    \"2c50ef25-2efb-a3e8-8bee-a2ccd9693ace\",\n    \"b9c730f9-b1b4-2a97-5414-ef8327a11e56\"\n  ],\n  \"Events\": [\n    {\n      \"EventId\": \"333acf2d-aef6-df04-f8b6-c57aa4150a9f\",\n      \"AttendeeTypes\": [\n        \"58a4f9d9-50d3-af3f-5fb0-57f812c6b109\",\n        \"904c65ac-6c8b-dd44-9b6f-a3521e744404\"\n      ]\n    },\n    {\n      \"EventId\": \"d51d23e9-7f9a-9377-29af-68a590c3cb8d\",\n      \"AttendeeTypes\": [\n        \"79c4b302-692f-48bc-3947-734c74ed0b26\",\n        \"dd31ccb7-5d85-8e06-78a3-9da8943b99f5\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0cebecc2-ee2b-417b-8277-a4489b660ea6",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "promotions",
+                    ":promotionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promotionId",
+                      "description": "(Required) A GUID that corresponds to a specific promotion"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2abc7bbb-7ccf-4413-9438-083f1b8ca3bd",
+          "name": "Creates the specified quantity of dynamic promotions based upon the provided template code",
+          "request": {
+            "name": "Creates the specified quantity of dynamic promotions based upon the provided template code",
+            "description": {},
+            "url": {
+              "path": [
+                "promotions",
+                "dynamic"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "Prefix",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Quantity",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "TemplateId",
+                  "value": "<uuid>",
+                  "description": "(Required) "
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b4bccc95-9d2e-4f5c-a209-3eb6203071d3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "promotions",
+                    "dynamic"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Prefix",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Quantity",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "TemplateId",
+                      "value": "<uuid>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": \"9e104b4e-5198-ccc4-256a-c10d4591c565\",\n    \"Description\": \"string\",\n    \"StartsAt\": \"2000-01-24T11:45:54.744Z\",\n    \"EndsAt\": \"1963-08-28T03:15:34.750Z\",\n    \"Group\": \"string\",\n    \"Kind\": \"string\",\n    \"IsSingleUse\": true,\n    \"IsRedeemed\": false,\n    \"AdminVisible\": false,\n    \"InternetVisible\": true,\n    \"Amount\": 5371.611613324821,\n    \"IsPercentage\": false,\n    \"AutoCalculate\": false,\n    \"Names\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"Id\": \"84450841-e672-c3de-8b91-b3e33dd6ffa1\",\n    \"Description\": \"string\",\n    \"StartsAt\": \"2006-09-10T05:27:01.994Z\",\n    \"EndsAt\": \"1996-05-09T23:43:31.832Z\",\n    \"Group\": \"string\",\n    \"Kind\": \"string\",\n    \"IsSingleUse\": true,\n    \"IsRedeemed\": false,\n    \"AdminVisible\": true,\n    \"InternetVisible\": false,\n    \"Amount\": 8705.454964434146,\n    \"IsPercentage\": true,\n    \"AutoCalculate\": false,\n    \"Names\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "148797bf-ed58-4c0e-9e71-867d8ce4dae4",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "promotions",
+                    "dynamic"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Prefix",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Quantity",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "TemplateId",
+                      "value": "<uuid>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "98fa9937-f3e8-407c-ab24-318785380ed8",
+          "name": "Support for promotion creation based upon provided list of names",
+          "request": {
+            "name": "Support for promotion creation based upon provided list of names",
+            "description": {},
+            "url": {
+              "path": [
+                "promotions",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "Names",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Names",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "TemplateId",
+                  "value": "<uuid>",
+                  "description": "(Required) "
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2a79620a-93c4-46c3-a0b9-a6a56852946a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "promotions",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Names",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Names",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "TemplateId",
+                      "value": "<uuid>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": \"3c378f27-62e5-8389-9ae7-84b04e227101\",\n    \"Description\": \"string\",\n    \"StartsAt\": \"1982-11-25T15:13:32.283Z\",\n    \"EndsAt\": \"1990-12-23T18:13:51.699Z\",\n    \"Group\": \"string\",\n    \"Kind\": \"string\",\n    \"IsSingleUse\": true,\n    \"IsRedeemed\": false,\n    \"AdminVisible\": false,\n    \"InternetVisible\": false,\n    \"Amount\": 353.55914768065986,\n    \"IsPercentage\": false,\n    \"AutoCalculate\": true,\n    \"Names\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"Id\": \"8494cd66-e7bc-ae61-f0a5-1971dfccb3f7\",\n    \"Description\": \"string\",\n    \"StartsAt\": \"1999-08-31T07:48:34.409Z\",\n    \"EndsAt\": \"1957-02-25T02:34:17.560Z\",\n    \"Group\": \"string\",\n    \"Kind\": \"string\",\n    \"IsSingleUse\": true,\n    \"IsRedeemed\": false,\n    \"AdminVisible\": true,\n    \"InternetVisible\": false,\n    \"Amount\": 9759.68169735272,\n    \"IsPercentage\": true,\n    \"AutoCalculate\": false,\n    \"Names\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ddd20368-2e43-4070-b891-06e3317e5f54",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "promotions",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Names",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Names",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "TemplateId",
+                      "value": "<uuid>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.brushfire.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1e24dfe6-bcc9-412b-a21c-20be91ae7fd0",
+    "name": "Brushfire API: Version 2025-07-22 AccessCodes Promotions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform. It covers events, ticket types, sections and seats, attendees, orders, the shopping cart and checkout flow, groups, sessions and check-in, promotions and access codes, payment profiles, and webhooks (Hooks). Authenticate by sending your App Key (requested at https://developer.brushfire.com/key) in the Authorization header. The API is date-versioned: send the desired version in the api-version request header (for example, 2025-07-22). This document is the live specification published at api.brushfire.com/swagger.\n\nContact Support:\n Name: Brushfire Developers",
+      "type": "text/plain"
+    }
+  }
+}

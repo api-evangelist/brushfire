@@ -1,0 +1,971 @@
+{
+  "item": [
+    {
+      "id": "0dcf9ad3-bc4f-4aa7-9ba7-228317350735",
+      "name": "Exchanges",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0b7d0063-56ea-45fa-a6f6-8db41f62ee60",
+          "name": "Create an exchange",
+          "request": {
+            "name": "Create an exchange",
+            "description": {},
+            "url": {
+              "path": [
+                "exchanges"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "AccessKey",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "AttendeeNumbers",
+                  "value": "<long>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "AttendeeNumbers",
+                  "value": "<long>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "ClientKey",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "ExchangeMethod",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "SourceEventId",
+                  "value": "<uuid>",
+                  "description": "(Required) "
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0a55a05d-9b96-4353-9c71-6a1d4c2c8d08",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exchanges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AccessKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AttendeeNumbers",
+                      "value": "<long>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AttendeeNumbers",
+                      "value": "<long>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "ClientKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "ExchangeMethod",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "SourceEventId",
+                      "value": "<uuid>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ExchangeId\": \"f7a85ec0-5e79-5896-980f-475659f1b6dc\",\n  \"ExchangeMethod\": \"<string>\",\n  \"ClientKey\": \"string\",\n  \"ExchangeAttendees\": [\n    {\n      \"AttendeeId\": \"165769a3-b82e-67b2-38eb-c80e8387bfa2\",\n      \"AttendeeNumber\": 9278,\n      \"EventId\": \"8a8a4f59-6fff-cf74-7659-6313b5bb9935\",\n      \"AttendeeTypeId\": \"20ebe11c-1ff0-4c6b-3602-cb2eaf1e3a07\",\n      \"TypeName\": \"string\",\n      \"Amount\": 1364.1574570830273,\n      \"Addons\": 8265.642302394695,\n      \"Discounts\": 6538.438584289715,\n      \"Fees\": 7200.285364927598,\n      \"Taxes\": 6971.127109581782,\n      \"Deliveries\": 8658.1133899916,\n      \"Status\": \"string\",\n      \"IsCompleted\": true,\n      \"ExternalId\": \"string\",\n      \"ExternalDescription\": \"string\",\n      \"IsAddon\": true,\n      \"Total\": 5038.362546992469\n    },\n    {\n      \"AttendeeId\": \"121183bc-ab83-f7ac-6255-56f7a8bb3f0d\",\n      \"AttendeeNumber\": 7622,\n      \"EventId\": \"665c9c0b-5291-179e-f1ff-a17674634ae3\",\n      \"AttendeeTypeId\": \"07184b0c-4158-46b8-9a5e-271bc9c616a7\",\n      \"TypeName\": \"string\",\n      \"Amount\": 342.26840748709185,\n      \"Addons\": 866.0933940153503,\n      \"Discounts\": 4876.61079775164,\n      \"Fees\": 6951.010700555977,\n      \"Taxes\": 8753.054780910146,\n      \"Deliveries\": 2620.0538079516555,\n      \"Status\": \"string\",\n      \"IsCompleted\": false,\n      \"ExternalId\": \"string\",\n      \"ExternalDescription\": \"string\",\n      \"IsAddon\": true,\n      \"Total\": 2710.8395756402206\n    }\n  ],\n  \"LastModifiedAt\": \"1983-04-18T09:12:18.286Z\",\n  \"SourceEventId\": \"d6601845-71d4-3d8b-3398-c677caf02b8d\",\n  \"IsExchangeRefundAllowed\": true,\n  \"ExchangeAttendeesTotal\": 6149.239583161051\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c00c1392-ac9b-471a-955a-32cf0304fd35",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exchanges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AccessKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AttendeeNumbers",
+                      "value": "<long>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AttendeeNumbers",
+                      "value": "<long>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "ClientKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "ExchangeMethod",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "SourceEventId",
+                      "value": "<uuid>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "147df872-c37c-497b-9ee1-55dff69dc9f3",
+          "name": "Deletes an exchange based on the provided exchange ID and client key.",
+          "request": {
+            "name": "Deletes an exchange based on the provided exchange ID and client key.",
+            "description": {},
+            "url": {
+              "path": [
+                "exchanges",
+                ":exchangeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "exchangeId",
+                  "description": "(Required) A valid ExchangeId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "51fc929a-a951-4eee-80c6-2c611fa2b361",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exchanges",
+                    ":exchangeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "exchangeId",
+                      "description": "(Required) A valid ExchangeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "false",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c76a2c7-0942-4510-b2ed-1f112f4cefbf",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exchanges",
+                    ":exchangeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "exchangeId",
+                      "description": "(Required) A valid ExchangeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b3e89e26-847b-41cb-b3b4-51d0b31d7b10",
+          "name": "Get full details of an exchange",
+          "request": {
+            "name": "Get full details of an exchange",
+            "description": {},
+            "url": {
+              "path": [
+                "exchanges",
+                ":exchangeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "exchangeId",
+                  "description": "(Required) A valid ExchangeId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "30932414-15d4-4725-8291-d464a5e9dc5b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exchanges",
+                    ":exchangeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "exchangeId",
+                      "description": "(Required) A valid ExchangeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ExchangeId\": \"c685cbf5-f675-e45e-670b-0a2ddf1a0bbc\",\n  \"ExchangeMethod\": \"<string>\",\n  \"ClientKey\": \"string\",\n  \"ExchangeAttendees\": [\n    {\n      \"AttendeeId\": \"3103450e-fd7f-48bc-f0af-28be06a43d31\",\n      \"AttendeeNumber\": 5475,\n      \"EventId\": \"95f10ec3-c4db-bf12-e637-6eca73cc3be9\",\n      \"AttendeeTypeId\": \"e147f11f-1ffa-9ad6-836d-bb6d5637cc30\",\n      \"TypeName\": \"string\",\n      \"Amount\": 3107.664865457952,\n      \"Addons\": 4921.354004039204,\n      \"Discounts\": 6255.902487276306,\n      \"Fees\": 5794.922097534024,\n      \"Taxes\": 8669.272535408185,\n      \"Deliveries\": 1781.9263680519925,\n      \"Status\": \"string\",\n      \"IsCompleted\": false,\n      \"ExternalId\": \"string\",\n      \"ExternalDescription\": \"string\",\n      \"IsAddon\": false,\n      \"Total\": 8195.33941433534\n    },\n    {\n      \"AttendeeId\": \"6a881375-c36d-e021-46cc-9876635776fe\",\n      \"AttendeeNumber\": 2390,\n      \"EventId\": \"4b30a448-56e9-9e4e-7e69-20083ec0fe20\",\n      \"AttendeeTypeId\": \"e6dc4708-da8d-78d1-764d-bf435583d586\",\n      \"TypeName\": \"string\",\n      \"Amount\": 9317.488242650537,\n      \"Addons\": 5803.889077204696,\n      \"Discounts\": 7375.056740993984,\n      \"Fees\": 5706.871356740041,\n      \"Taxes\": 9067.596850543363,\n      \"Deliveries\": 6428.978343087309,\n      \"Status\": \"string\",\n      \"IsCompleted\": true,\n      \"ExternalId\": \"string\",\n      \"ExternalDescription\": \"string\",\n      \"IsAddon\": false,\n      \"Total\": 5127.188007413285\n    }\n  ],\n  \"LastModifiedAt\": \"1965-09-03T18:11:32.524Z\",\n  \"SourceEventId\": \"074586fc-8f2c-6f51-67ed-90bc5a8e73be\",\n  \"IsExchangeRefundAllowed\": true,\n  \"ExchangeAttendeesTotal\": 5150.354719408746\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a5ce295-92f9-4c51-9f88-435cdf5268da",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exchanges",
+                    ":exchangeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "exchangeId",
+                      "description": "(Required) A valid ExchangeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "70fa2eae-2be4-4ecf-8407-04a5ab691bc5",
+          "name": "Update an exchange",
+          "request": {
+            "name": "Update an exchange",
+            "description": {},
+            "url": {
+              "path": [
+                "exchanges",
+                ":exchangeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "exchangeId",
+                  "description": "(Required) A valid ExchangeId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "AccessKey",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "AttendeeNumbers",
+                  "value": "<long>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "AttendeeNumbers",
+                  "value": "<long>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "ClientKey",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "ExchangeMethod",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "SourceEventId",
+                  "value": "<uuid>",
+                  "description": "(Required) "
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c09dfdc5-0d92-4319-a8ad-e56ce3ea636a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exchanges",
+                    ":exchangeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "exchangeId",
+                      "description": "(Required) A valid ExchangeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AccessKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AttendeeNumbers",
+                      "value": "<long>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AttendeeNumbers",
+                      "value": "<long>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "ClientKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "ExchangeMethod",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "SourceEventId",
+                      "value": "<uuid>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ExchangeId\": \"c685cbf5-f675-e45e-670b-0a2ddf1a0bbc\",\n  \"ExchangeMethod\": \"<string>\",\n  \"ClientKey\": \"string\",\n  \"ExchangeAttendees\": [\n    {\n      \"AttendeeId\": \"3103450e-fd7f-48bc-f0af-28be06a43d31\",\n      \"AttendeeNumber\": 5475,\n      \"EventId\": \"95f10ec3-c4db-bf12-e637-6eca73cc3be9\",\n      \"AttendeeTypeId\": \"e147f11f-1ffa-9ad6-836d-bb6d5637cc30\",\n      \"TypeName\": \"string\",\n      \"Amount\": 3107.664865457952,\n      \"Addons\": 4921.354004039204,\n      \"Discounts\": 6255.902487276306,\n      \"Fees\": 5794.922097534024,\n      \"Taxes\": 8669.272535408185,\n      \"Deliveries\": 1781.9263680519925,\n      \"Status\": \"string\",\n      \"IsCompleted\": false,\n      \"ExternalId\": \"string\",\n      \"ExternalDescription\": \"string\",\n      \"IsAddon\": false,\n      \"Total\": 8195.33941433534\n    },\n    {\n      \"AttendeeId\": \"6a881375-c36d-e021-46cc-9876635776fe\",\n      \"AttendeeNumber\": 2390,\n      \"EventId\": \"4b30a448-56e9-9e4e-7e69-20083ec0fe20\",\n      \"AttendeeTypeId\": \"e6dc4708-da8d-78d1-764d-bf435583d586\",\n      \"TypeName\": \"string\",\n      \"Amount\": 9317.488242650537,\n      \"Addons\": 5803.889077204696,\n      \"Discounts\": 7375.056740993984,\n      \"Fees\": 5706.871356740041,\n      \"Taxes\": 9067.596850543363,\n      \"Deliveries\": 6428.978343087309,\n      \"Status\": \"string\",\n      \"IsCompleted\": true,\n      \"ExternalId\": \"string\",\n      \"ExternalDescription\": \"string\",\n      \"IsAddon\": false,\n      \"Total\": 5127.188007413285\n    }\n  ],\n  \"LastModifiedAt\": \"1965-09-03T18:11:32.524Z\",\n  \"SourceEventId\": \"074586fc-8f2c-6f51-67ed-90bc5a8e73be\",\n  \"IsExchangeRefundAllowed\": true,\n  \"ExchangeAttendeesTotal\": 5150.354719408746\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0db03520-83d1-4717-b2e8-0c532a3db336",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exchanges",
+                    ":exchangeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "exchangeId",
+                      "description": "(Required) A valid ExchangeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AccessKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AttendeeNumbers",
+                      "value": "<long>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AttendeeNumbers",
+                      "value": "<long>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "ClientKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "ExchangeMethod",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "SourceEventId",
+                      "value": "<uuid>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.brushfire.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "170f0215-4909-42f0-9b9c-5f244fbdc08c",
+    "name": "Brushfire API: Version 2025-07-22 AccessCodes Exchanges API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform. It covers events, ticket types, sections and seats, attendees, orders, the shopping cart and checkout flow, groups, sessions and check-in, promotions and access codes, payment profiles, and webhooks (Hooks). Authenticate by sending your App Key (requested at https://developer.brushfire.com/key) in the Authorization header. The API is date-versioned: send the desired version in the api-version request header (for example, 2025-07-22). This document is the live specification published at api.brushfire.com/swagger.\n\nContact Support:\n Name: Brushfire Developers",
+      "type": "text/plain"
+    }
+  }
+}

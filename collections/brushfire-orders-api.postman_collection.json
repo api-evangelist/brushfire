@@ -1,0 +1,4028 @@
+{
+  "item": [
+    {
+      "id": "82271609-44c4-46fb-aa45-84862a663968",
+      "name": "Orders",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f3d6237c-7c12-45b6-bcc2-e550a3cb0d7c",
+          "name": "Gets list of orders by eventId and/or a date range.",
+          "request": {
+            "name": "Gets list of orders by eventId and/or a date range.",
+            "description": {},
+            "url": {
+              "path": [
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "eventId",
+                  "value": "<string>",
+                  "description": "An integer or a GUID that corresponds to a specific event. Only required if there is no startsAt or endsAt."
+                },
+                {
+                  "disabled": false,
+                  "key": "startsAt",
+                  "value": "<dateTime>",
+                  "description": "Optional start date to filter list"
+                },
+                {
+                  "disabled": false,
+                  "key": "endsAt",
+                  "value": "<dateTime>",
+                  "description": "Optional end date to filter list"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "61f8c076-f47e-49b3-9e51-e25a0ceb7bf1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "eventId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startsAt",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endsAt",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": \"0f40fabb-e1dd-e188-0b91-8748c59e74a8\",\n    \"OrderKey\": \"string\",\n    \"OrderedAt\": \"1993-01-14T16:14:57.319Z\",\n    \"OrderedAtLocal\": \"1979-10-08T18:29:58.716Z\",\n    \"IsPOS\": false,\n    \"IsKiosk\": true,\n    \"IsApp\": true,\n    \"AcctCode\": \"string\",\n    \"ObjectNumber\": 5280,\n    \"IsAdjustment\": true,\n    \"BillingFirstName\": \"string\",\n    \"BillingLastName\": \"string\",\n    \"HostAddress\": \"string\",\n    \"ThirdPartyCustomerId\": \"string\",\n    \"SubTotal\": 2933.2137816874515,\n    \"UndistributedFees\": 3156.902678509499,\n    \"OrderTotal\": 8497.065577905283,\n    \"AttendeeTotal\": 2670.6885231279784,\n    \"DiscountTotal\": 4366.285815297567,\n    \"FeeTotal\": 6600.073626811864,\n    \"TaxTotal\": 1661.774031084442,\n    \"DeliveryTotal\": 6701.323601135215,\n    \"FeesTotal\": 6655.520024983619,\n    \"Payments\": [\n      {\n        \"PaymentMethodId\": \"c71dd379-0694-7136-3e18-0b9618479a82\",\n        \"PaymentMethod\": \"string\",\n        \"PaymentNumber\": \"string\",\n        \"TransactionId\": \"string\",\n        \"TransactionTotal\": 5205.524668946534,\n        \"ExternalInvoiceId\": \"string\",\n        \"CreditNumber\": 1957,\n        \"PaidInFull\": true\n      },\n      {\n        \"PaymentMethodId\": \"8e46341a-b82d-7d3b-cf1c-9f0aa0740fed\",\n        \"PaymentMethod\": \"string\",\n        \"PaymentNumber\": \"string\",\n        \"TransactionId\": \"string\",\n        \"TransactionTotal\": 1149.4200612717786,\n        \"ExternalInvoiceId\": \"string\",\n        \"CreditNumber\": 3488,\n        \"PaidInFull\": false\n      }\n    ],\n    \"TransactionTotal\": 153.89517148459376,\n    \"PaymentMethodId\": \"7700fc0d-6ee6-42be-9e32-629ac2c45762\",\n    \"PaymentMethod\": \"string\",\n    \"PaymentNumber\": \"string\",\n    \"TransactionId\": \"string\",\n    \"ExternalInvoiceId\": \"string\",\n    \"Summary\": \"string\",\n    \"ContactEmail\": \"string\",\n    \"ContactPhone\": \"string\",\n    \"OrderFee\": 6826.498743560303,\n    \"AttendeeCount\": 7507,\n    \"PlacedThrough\": \"string\",\n    \"CustomerAccountNumber\": 5392,\n    \"Notes\": \"string\",\n    \"ExternalId\": \"string\",\n    \"PaidInFull\": false,\n    \"ExternalCustomerId\": \"string\",\n    \"FlagState\": \"string\"\n  },\n  {\n    \"Id\": \"ae817aa9-a112-23dd-83eb-762a8d35c228\",\n    \"OrderKey\": \"string\",\n    \"OrderedAt\": \"1997-11-01T19:49:35.482Z\",\n    \"OrderedAtLocal\": \"1995-12-04T14:52:49.404Z\",\n    \"IsPOS\": true,\n    \"IsKiosk\": false,\n    \"IsApp\": false,\n    \"AcctCode\": \"string\",\n    \"ObjectNumber\": 5211,\n    \"IsAdjustment\": false,\n    \"BillingFirstName\": \"string\",\n    \"BillingLastName\": \"string\",\n    \"HostAddress\": \"string\",\n    \"ThirdPartyCustomerId\": \"string\",\n    \"SubTotal\": 1413.8460382079777,\n    \"UndistributedFees\": 5109.175779713161,\n    \"OrderTotal\": 353.9582526419005,\n    \"AttendeeTotal\": 7864.031550757321,\n    \"DiscountTotal\": 7982.4141549519345,\n    \"FeeTotal\": 4732.364204015716,\n    \"TaxTotal\": 9080.764957578569,\n    \"DeliveryTotal\": 8728.628625779542,\n    \"FeesTotal\": 3438.454257100321,\n    \"Payments\": [\n      {\n        \"PaymentMethodId\": \"f04f7657-10a6-f766-ab3f-44937b50e20c\",\n        \"PaymentMethod\": \"string\",\n        \"PaymentNumber\": \"string\",\n        \"TransactionId\": \"string\",\n        \"TransactionTotal\": 5876.888933455986,\n        \"ExternalInvoiceId\": \"string\",\n        \"CreditNumber\": 5184,\n        \"PaidInFull\": false\n      },\n      {\n        \"PaymentMethodId\": \"e526e7c1-09f5-9078-28be-9d324a24cdf3\",\n        \"PaymentMethod\": \"string\",\n        \"PaymentNumber\": \"string\",\n        \"TransactionId\": \"string\",\n        \"TransactionTotal\": 8393.432013462363,\n        \"ExternalInvoiceId\": \"string\",\n        \"CreditNumber\": 4707,\n        \"PaidInFull\": true\n      }\n    ],\n    \"TransactionTotal\": 4561.656893208325,\n    \"PaymentMethodId\": \"54b48bb9-1cc9-170c-4d0c-0abdd4fbcdcd\",\n    \"PaymentMethod\": \"string\",\n    \"PaymentNumber\": \"string\",\n    \"TransactionId\": \"string\",\n    \"ExternalInvoiceId\": \"string\",\n    \"Summary\": \"string\",\n    \"ContactEmail\": \"string\",\n    \"ContactPhone\": \"string\",\n    \"OrderFee\": 1995.0481917489615,\n    \"AttendeeCount\": 3920,\n    \"PlacedThrough\": \"string\",\n    \"CustomerAccountNumber\": 969,\n    \"Notes\": \"string\",\n    \"ExternalId\": \"string\",\n    \"PaidInFull\": true,\n    \"ExternalCustomerId\": \"string\",\n    \"FlagState\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a166e6af-e724-4a7a-9897-9567aad1c2b2",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "eventId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startsAt",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endsAt",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "60e89b66-04cd-4e20-b8f7-3d846f5c9aab",
+          "name": "Create an order from an existing cart",
+          "request": {
+            "name": "Create an order from an existing cart",
+            "description": {},
+            "url": {
+              "path": [
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "BillingCity",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "BillingCountry",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "BillingFirstName",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "BillingLastName",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "BillingPostalCode",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "BillingRegion",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "BillingStreet1",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "CartId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "ContactPhone",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "AccessKey",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "CustomerAccountNumber",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "BillingStreet2",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ContactEmail",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "PaymentMethodId",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "TransactionId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_0",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_1",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_2",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "CardName",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "CardNumber",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "CardCsc",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "CardMonth",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "CardYear",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "RoutingNumber",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "AccountNumber",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "CheckPONumber",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "PaidInFull",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "CreditCode",
+                  "value": "<string>",
+                  "description": "The event credit code to apply to the order."
+                },
+                {
+                  "disabled": false,
+                  "key": "Notes",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "IsKiosk",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "SendEmail",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "Via",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "IsInvoice",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "InvoiceDue",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ExchangeId",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "OriginalOrderId",
+                  "value": "<uuid>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "83ad8752-f364-4dc2-83e7-45b825037f0d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "BillingCity",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "BillingCountry",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "BillingFirstName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "BillingLastName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "BillingPostalCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "BillingRegion",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "BillingStreet1",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "CartId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "ContactPhone",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "AccessKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CustomerAccountNumber",
+                      "value": "<long>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "BillingStreet2",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ContactEmail",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "PaymentMethodId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "TransactionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_0",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_1",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CardName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CardNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CardCsc",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CardMonth",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CardYear",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "RoutingNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "AccountNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CheckPONumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "PaidInFull",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The event credit code to apply to the order.",
+                        "type": "text/plain"
+                      },
+                      "key": "CreditCode",
+                      "value": "1234-5678-9012"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Notes",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "IsKiosk",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "SendEmail",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Via",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "IsInvoice",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "InvoiceDue",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ExchangeId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "OriginalOrderId",
+                      "value": "<uuid>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"RequiresAction\": true,\n  \"ActionInfo\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\",\n    \"key_3\": \"string\"\n  },\n  \"Results\": [\n    {\n      \"OrderKey\": \"string\",\n      \"OrderId\": \"c348b5f2-f09e-1e77-4c27-68f8027ae212\",\n      \"ObjectNumber\": 1117,\n      \"OrderTotal\": 3089.2036333023852,\n      \"Quantity\": 5475,\n      \"AttendeeCount\": 9730,\n      \"AddonCount\": 1682,\n      \"Summary\": \"string\",\n      \"Type\": \"string\",\n      \"ContactEmail\": \"string\",\n      \"AnyGeneratesTicket\": true\n    },\n    {\n      \"OrderKey\": \"string\",\n      \"OrderId\": \"b15b15ff-a3b2-65d8-f4fb-a7b96cefa29d\",\n      \"ObjectNumber\": 3642,\n      \"OrderTotal\": 7098.725130855963,\n      \"Quantity\": 1793,\n      \"AttendeeCount\": 4478,\n      \"AddonCount\": 1959,\n      \"Summary\": \"string\",\n      \"Type\": \"string\",\n      \"ContactEmail\": \"string\",\n      \"AnyGeneratesTicket\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a23d3069-cd72-489e-965a-5d735c2d5648",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "BillingCity",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "BillingCountry",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "BillingFirstName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "BillingLastName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "BillingPostalCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "BillingRegion",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "BillingStreet1",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "CartId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "ContactPhone",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "AccessKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CustomerAccountNumber",
+                      "value": "<long>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "BillingStreet2",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ContactEmail",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "PaymentMethodId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "TransactionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_0",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_1",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CardName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CardNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CardCsc",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CardMonth",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CardYear",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "RoutingNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "AccountNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CheckPONumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "PaidInFull",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The event credit code to apply to the order.",
+                        "type": "text/plain"
+                      },
+                      "key": "CreditCode",
+                      "value": "1234-5678-9012"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Notes",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "IsKiosk",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "SendEmail",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Via",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "IsInvoice",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "InvoiceDue",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ExchangeId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "OriginalOrderId",
+                      "value": "<uuid>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c827d025-a05d-4942-9a1b-cded877827ac",
+          "name": "Retrieve a single order",
+          "request": {
+            "name": "Retrieve a single order",
+            "description": {},
+            "url": {
+              "path": [
+                "orders",
+                ":orderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "accessKey",
+                  "value": "<string>",
+                  "description": "The Access Key for the user context"
+                },
+                {
+                  "disabled": false,
+                  "key": "qrSize",
+                  "value": "<integer>",
+                  "description": "The width and height of the QR Code. If blank, no QR will be sent."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) A string (orderKey) or a GUID representing a specific order"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "90abe31a-8233-4fc3-ac72-c7015900f14c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accessKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "qrSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) A string (orderKey) or a GUID representing a specific order"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"1eb04d0b-a51c-caee-b149-681f2c571453\",\n  \"OrderKey\": \"string\",\n  \"ObjectNumber\": 3593,\n  \"AttendeeCount\": 8808,\n  \"OrderedAt\": \"1989-11-24T13:24:30.374Z\",\n  \"OrderedAtLocal\": \"2017-03-16T17:06:29.796Z\",\n  \"IsAdjustment\": false,\n  \"IsPOS\": false,\n  \"IsKiosk\": true,\n  \"IsApp\": true,\n  \"AcctCode\": \"string\",\n  \"BillingName\": \"string\",\n  \"BillingAddress\": \"string\",\n  \"BillingFirstName\": \"string\",\n  \"BillingLastName\": \"string\",\n  \"BillingOrganization\": \"string\",\n  \"BillingStreet1\": \"string\",\n  \"BillingStreet2\": \"string\",\n  \"BillingCity\": \"string\",\n  \"BillingRegion\": \"string\",\n  \"BillingPostal\": \"string\",\n  \"BillingCountry\": \"string\",\n  \"ContactPhone\": \"string\",\n  \"ContactEmail\": \"string\",\n  \"DeliveryMethod\": \"string\",\n  \"HostAddress\": \"string\",\n  \"ThirdPartyCustomerId\": \"string\",\n  \"SubTotal\": 1373.7822981648317,\n  \"Total\": 4644.091581453253,\n  \"Summary\": \"string\",\n  \"IsAttendeeTypeAdjustment\": false,\n  \"AttendeeTotal\": 9753.939682428538,\n  \"DiscountTotal\": 3396.138754182958,\n  \"OrderFee\": 9289.430641105575,\n  \"FeeTotal\": 1515.6605965372548,\n  \"TaxTotal\": 6136.8588244086795,\n  \"DeliveryTotal\": 1553.4816671314734,\n  \"TaxLabel\": \"string\",\n  \"UndistributedFees\": 9664.117422213518,\n  \"FeesTotal\": 7178.859458340924,\n  \"Fields\": [\n    {\n      \"Id\": \"14e6a9d2-acf2-e241-bb2a-18785590aaab\",\n      \"Label\": \"string\",\n      \"Type\": \"string\",\n      \"Value\": {},\n      \"DisplayValue\": \"string\",\n      \"ValidationExpression\": \"string\",\n      \"IsRequired\": true,\n      \"Notes\": \"string\",\n      \"ErrorMessage\": \"string\",\n      \"IsDisabled\": true,\n      \"IsSensitive\": true,\n      \"SpecialFieldId\": \"7efa42e2-381f-f0a8-86bf-89adac5e1eb6\",\n      \"ParentOptionId\": \"7d8fa500-c7c9-4aef-a7af-8fb7f92f5cb3\",\n      \"ParentFieldId\": \"28395228-517a-9bf1-4144-fed80c60bcb7\",\n      \"FormObjectId\": \"3bfa28e0-dec3-a4cc-2a13-ae21e2ed5acb\",\n      \"Options\": [\n        {\n          \"Id\": \"281265fd-8915-b686-0871-8f03dcdb8045\",\n          \"Label\": \"string\",\n          \"Capacity\": 5362,\n          \"Quantity\": 6832,\n          \"HasUnitPrice\": false,\n          \"UnitPrice\": 6023.198338800372,\n          \"UnitTax\": 1032.6688940970007,\n          \"IsInclusiveTaxes\": true,\n          \"DisplayPrice\": 8403.514777214663,\n          \"PriceDescription\": \"string\",\n          \"IsSelected\": true,\n          \"HasCapacity\": true,\n          \"SpotsRemaining\": 4541,\n          \"RemainingText\": \"string\"\n        },\n        {\n          \"Id\": \"0b0c0072-bfbe-b523-40bd-a979d1e16c88\",\n          \"Label\": \"string\",\n          \"Capacity\": 1642,\n          \"Quantity\": 2455,\n          \"HasUnitPrice\": true,\n          \"UnitPrice\": 9489.729258461046,\n          \"UnitTax\": 8948.17725704964,\n          \"IsInclusiveTaxes\": false,\n          \"DisplayPrice\": 533.2690882937752,\n          \"PriceDescription\": \"string\",\n          \"IsSelected\": true,\n          \"HasCapacity\": true,\n          \"SpotsRemaining\": 2338,\n          \"RemainingText\": \"string\"\n        }\n      ],\n      \"ParentOptionIsSelected\": false,\n      \"HasError\": false,\n      \"HasRelevantOutput\": false,\n      \"MinDate\": \"2020-11-17T20:50:15.170Z\",\n      \"MaxDate\": \"1960-11-17T16:05:02.709Z\",\n      \"AttendeeTypes\": [\n        \"df8f561a-b627-79c6-2056-39a081859375\",\n        \"ce3d34f9-b27e-fb51-9644-297214941bf1\"\n      ],\n      \"RemoteUrl\": \"string\",\n      \"SelectedOptionId\": \"f2604fe4-ce17-e10c-cf2e-af408bed42db\",\n      \"Confirm\": true,\n      \"DomainValidation\": {\n        \"AllowDomains\": [\n          \"string\",\n          \"string\"\n        ],\n        \"DisallowDomains\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"DisplayIsPrimary\": false\n    },\n    {\n      \"Id\": \"21c1e759-f67b-0072-31ad-0d6e5fba0537\",\n      \"Label\": \"string\",\n      \"Type\": \"string\",\n      \"Value\": {},\n      \"DisplayValue\": \"string\",\n      \"ValidationExpression\": \"string\",\n      \"IsRequired\": false,\n      \"Notes\": \"string\",\n      \"ErrorMessage\": \"string\",\n      \"IsDisabled\": true,\n      \"IsSensitive\": true,\n      \"SpecialFieldId\": \"dda5f642-173a-0ece-4508-6cb1c8ea25bd\",\n      \"ParentOptionId\": \"9e84a171-48aa-7040-ebb5-af145fff0917\",\n      \"ParentFieldId\": \"bdb2c394-3754-93ab-0b3c-82886434f23d\",\n      \"FormObjectId\": \"ae6ce215-c877-273e-44c9-fbcc885369dc\",\n      \"Options\": [\n        {\n          \"Id\": \"6e6af1f5-4b9d-b8e7-f065-e8b5536656cf\",\n          \"Label\": \"string\",\n          \"Capacity\": 5707,\n          \"Quantity\": 6284,\n          \"HasUnitPrice\": false,\n          \"UnitPrice\": 4200.059342342342,\n          \"UnitTax\": 6914.744085996389,\n          \"IsInclusiveTaxes\": false,\n          \"DisplayPrice\": 2443.4903508436923,\n          \"PriceDescription\": \"string\",\n          \"IsSelected\": false,\n          \"HasCapacity\": false,\n          \"SpotsRemaining\": 7359,\n          \"RemainingText\": \"string\"\n        },\n        {\n          \"Id\": \"a28c541b-4896-4303-9421-f427bba14ebd\",\n          \"Label\": \"string\",\n          \"Capacity\": 9408,\n          \"Quantity\": 2758,\n          \"HasUnitPrice\": false,\n          \"UnitPrice\": 3671.296807794214,\n          \"UnitTax\": 7196.359516999299,\n          \"IsInclusiveTaxes\": true,\n          \"DisplayPrice\": 920.246903145271,\n          \"PriceDescription\": \"string\",\n          \"IsSelected\": true,\n          \"HasCapacity\": false,\n          \"SpotsRemaining\": 9496,\n          \"RemainingText\": \"string\"\n        }\n      ],\n      \"ParentOptionIsSelected\": false,\n      \"HasError\": true,\n      \"HasRelevantOutput\": true,\n      \"MinDate\": \"2018-02-04T12:11:41.957Z\",\n      \"MaxDate\": \"1973-11-09T01:06:53.791Z\",\n      \"AttendeeTypes\": [\n        \"bb9e56ab-4795-f178-cdf3-4fa8001daded\",\n        \"0c7b4087-865c-1301-cee3-fc2a1d0dd394\"\n      ],\n      \"RemoteUrl\": \"string\",\n      \"SelectedOptionId\": \"dc5bfcec-5078-04c9-b678-9a31b74ef261\",\n      \"Confirm\": false,\n      \"DomainValidation\": {\n        \"AllowDomains\": [\n          \"string\",\n          \"string\"\n        ],\n        \"DisallowDomains\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"DisplayIsPrimary\": false\n    }\n  ],\n  \"Attendees\": [\n    {\n      \"AttendeeId\": \"d158b70f-c477-f93e-82a6-4c2cc611015a\",\n      \"AttendeeNumber\": 6804,\n      \"AttendeeCode\": \"string\",\n      \"AcctCode\": \"string\",\n      \"HasName\": false,\n      \"FirstName\": \"string\",\n      \"LastName\": \"string\",\n      \"SectionName\": \"string\",\n      \"RowName\": \"string\",\n      \"SeatLabel\": \"string\",\n      \"CreatedAt\": \"2002-11-04T05:38:28.722Z\",\n      \"TypeId\": \"49665374-dbb3-d98d-15ff-eb067d21464f\",\n      \"TypeName\": \"string\",\n      \"GroupId\": \"e2ce1d32-95ef-024b-c907-39a0d8c847c7\",\n      \"GroupName\": \"string\",\n      \"OrderQuantity\": 4068,\n      \"Status\": \"string\",\n      \"IsCompleted\": true,\n      \"IsPreRegistered\": true,\n      \"IsGift\": false,\n      \"ShareEmail\": \"string\",\n      \"GiftingEnabled\": false,\n      \"GiftLastSentAt\": \"1980-01-01T20:32:18.223Z\",\n      \"UnitPrice\": 5749.639858661496,\n      \"UnitDiscount\": 6277.943451264043,\n      \"UnitAddons\": 9593.796165194715,\n      \"UnitFee\": 1413.710023182736,\n      \"UnitTax\": 2448.978504535272,\n      \"UnitDelivery\": 4153.978726888596,\n      \"UnitChange\": 2576.1344917479855,\n      \"UnitTotal\": 2460.1172575731534,\n      \"UnitFees\": [\n        {\n          \"Label\": \"string\",\n          \"FeeType\": \"Fee\",\n          \"Amount\": 7127.38369525203\n        },\n        {\n          \"Label\": \"string\",\n          \"FeeType\": \"Fee\",\n          \"Amount\": 5497.800789324534\n        }\n      ],\n      \"DisplayPrice\": 2700.270796840852,\n      \"DisplayTotal\": 6337.563311891111,\n      \"PriceDescription\": \"string\",\n      \"IsInclusiveFees\": true,\n      \"IsInclusiveTaxes\": false,\n      \"Refundable\": true,\n      \"Promotions\": [\n        {\n          \"PromotionId\": \"f8df755c-fd6b-cf19-38fd-f2b8baf96b3b\",\n          \"DiscountAmount\": 9463.575986365593\n        },\n        {\n          \"PromotionId\": \"f10a81f5-706a-a097-57b6-991a9225ff9e\",\n          \"DiscountAmount\": 826.9679779302074\n        }\n      ],\n      \"IsAddon\": false,\n      \"ExternalId\": \"string\",\n      \"ExternalDescription\": \"string\"\n    },\n    {\n      \"AttendeeId\": \"5d98af18-b115-d15b-a1b6-a69267fd186d\",\n      \"AttendeeNumber\": 9198,\n      \"AttendeeCode\": \"string\",\n      \"AcctCode\": \"string\",\n      \"HasName\": true,\n      \"FirstName\": \"string\",\n      \"LastName\": \"string\",\n      \"SectionName\": \"string\",\n      \"RowName\": \"string\",\n      \"SeatLabel\": \"string\",\n      \"CreatedAt\": \"1959-12-12T11:44:54.195Z\",\n      \"TypeId\": \"4b073c10-26b1-bdff-6e63-1cddb6e52d43\",\n      \"TypeName\": \"string\",\n      \"GroupId\": \"ff421630-f983-80ea-b7d9-7da5d0f88622\",\n      \"GroupName\": \"string\",\n      \"OrderQuantity\": 7638,\n      \"Status\": \"string\",\n      \"IsCompleted\": false,\n      \"IsPreRegistered\": true,\n      \"IsGift\": false,\n      \"ShareEmail\": \"string\",\n      \"GiftingEnabled\": true,\n      \"GiftLastSentAt\": \"1951-08-31T17:55:22.416Z\",\n      \"UnitPrice\": 225.40150534573255,\n      \"UnitDiscount\": 2277.5204955489216,\n      \"UnitAddons\": 3050.534009194261,\n      \"UnitFee\": 741.4858590110196,\n      \"UnitTax\": 1287.8425457110698,\n      \"UnitDelivery\": 3012.850623045025,\n      \"UnitChange\": 2932.4401734331072,\n      \"UnitTotal\": 4321.02880733988,\n      \"UnitFees\": [\n        {\n          \"Label\": \"string\",\n          \"FeeType\": \"Fee\",\n          \"Amount\": 900.8244761080631\n        },\n        {\n          \"Label\": \"string\",\n          \"FeeType\": \"Tax\",\n          \"Amount\": 562.3961847366354\n        }\n      ],\n      \"DisplayPrice\": 3545.530391851256,\n      \"DisplayTotal\": 4088.4222542462776,\n      \"PriceDescription\": \"string\",\n      \"IsInclusiveFees\": true,\n      \"IsInclusiveTaxes\": true,\n      \"Refundable\": true,\n      \"Promotions\": [\n        {\n          \"PromotionId\": \"176d8926-d696-9578-f7d5-3b926ed430db\",\n          \"DiscountAmount\": 7023.10674094903\n        },\n        {\n          \"PromotionId\": \"d34a1a97-7e74-ca6e-2c04-a3a35e9502bc\",\n          \"DiscountAmount\": 6865.481606645943\n        }\n      ],\n      \"IsAddon\": false,\n      \"ExternalId\": \"string\",\n      \"ExternalDescription\": \"string\"\n    }\n  ],\n  \"RelatedOrders\": [\n    {\n      \"Id\": \"3f2e9642-f67c-c143-6b20-0572ea4925e8\",\n      \"OrderKey\": \"string\",\n      \"OrderedAt\": \"2021-04-02T11:19:05.154Z\",\n      \"IsAdjustment\": false,\n      \"Payments\": [\n        {\n          \"TransactionId\": \"string\",\n          \"TransactionTotal\": 9027.558559763458,\n          \"ExternalInvoiceId\": \"string\"\n        },\n        {\n          \"TransactionId\": \"string\",\n          \"TransactionTotal\": 1470.9253000514334,\n          \"ExternalInvoiceId\": \"string\"\n        }\n      ],\n      \"TransactionId\": \"string\",\n      \"TransactionTotal\": 9145.314082772282\n    },\n    {\n      \"Id\": \"2f78abe9-a043-e52e-32dd-adc515eb619f\",\n      \"OrderKey\": \"string\",\n      \"OrderedAt\": \"1966-05-01T07:07:55.387Z\",\n      \"IsAdjustment\": false,\n      \"Payments\": [\n        {\n          \"TransactionId\": \"string\",\n          \"TransactionTotal\": 2895.906637139293,\n          \"ExternalInvoiceId\": \"string\"\n        },\n        {\n          \"TransactionId\": \"string\",\n          \"TransactionTotal\": 6321.334197637377,\n          \"ExternalInvoiceId\": \"string\"\n        }\n      ],\n      \"TransactionId\": \"string\",\n      \"TransactionTotal\": 965.8724375241667\n    }\n  ],\n  \"Payments\": [\n    {\n      \"PaymentMethodId\": \"c224174e-19ac-a79c-0378-e7cb38368e5d\",\n      \"PaymentMethod\": \"string\",\n      \"PaymentNumber\": \"string\",\n      \"TransactionId\": \"string\",\n      \"TransactionTotal\": 6560.12564647141,\n      \"ExternalInvoiceId\": \"string\",\n      \"CreditNumber\": 9818,\n      \"PaidInFull\": true\n    },\n    {\n      \"PaymentMethodId\": \"99f3a73c-73e4-b759-d37f-c16771bb6c61\",\n      \"PaymentMethod\": \"string\",\n      \"PaymentNumber\": \"string\",\n      \"TransactionId\": \"string\",\n      \"TransactionTotal\": 112.9314503475709,\n      \"ExternalInvoiceId\": \"string\",\n      \"CreditNumber\": 9090,\n      \"PaidInFull\": true\n    }\n  ],\n  \"PaymentMethod\": \"string\",\n  \"TransactionId\": \"string\",\n  \"TransactionTotal\": 6814.33814186517,\n  \"ExternalInvoiceId\": \"string\",\n  \"QRCode\": \"string\",\n  \"Notes\": \"string\",\n  \"ExternalId\": \"string\",\n  \"PaidInFull\": false,\n  \"ExternalCustomerId\": \"string\",\n  \"FlagState\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f304e48-eeb2-40c1-9cab-0b8c1da2f72e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accessKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "qrSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) A string (orderKey) or a GUID representing a specific order"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a03f3fa1-41a0-44c8-8c40-996da9f30d6e",
+          "name": "Retrieve fields for an order",
+          "request": {
+            "name": "Retrieve fields for an order",
+            "description": {},
+            "url": {
+              "path": [
+                "orders",
+                ":orderId",
+                "fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "accessKey",
+                  "value": "<string>",
+                  "description": "The Access Key for the user context"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) A string (orderKey) or a GUID representing a specific order"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "29d3b39c-b385-43ad-9d15-6f15046145a3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId",
+                    "fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accessKey",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) A string (orderKey) or a GUID representing a specific order"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": \"2d4cd07c-1dd7-85db-a4e6-f249635c5566\",\n    \"Label\": \"string\",\n    \"Type\": \"string\",\n    \"Value\": {},\n    \"DisplayValue\": \"string\",\n    \"ValidationExpression\": \"string\",\n    \"IsRequired\": true,\n    \"Notes\": \"string\",\n    \"ErrorMessage\": \"string\",\n    \"IsDisabled\": true,\n    \"IsSensitive\": true,\n    \"SpecialFieldId\": \"a25074e5-5050-e1a8-c5a5-84878ad1062f\",\n    \"ParentOptionId\": \"2c117bdf-46ea-243c-1481-f26e72a27b8c\",\n    \"ParentFieldId\": \"7d37fc25-5392-3fe0-dfc2-90c261bb50c7\",\n    \"FormObjectId\": \"5cd5263b-9bcb-5323-804f-e9fe917bf446\",\n    \"Options\": [\n      {\n        \"Id\": \"2a83686f-84bb-cfa3-cfeb-f9ad1d498509\",\n        \"Label\": \"string\",\n        \"Capacity\": 1814,\n        \"Quantity\": 8174,\n        \"HasUnitPrice\": false,\n        \"UnitPrice\": 9143.990216726006,\n        \"UnitTax\": 7883.178217011673,\n        \"IsInclusiveTaxes\": false,\n        \"DisplayPrice\": 4188.273203128864,\n        \"PriceDescription\": \"string\",\n        \"IsSelected\": false,\n        \"HasCapacity\": true,\n        \"SpotsRemaining\": 1750,\n        \"RemainingText\": \"string\"\n      },\n      {\n        \"Id\": \"1819c166-9545-471f-6a78-dcb4e11d1831\",\n        \"Label\": \"string\",\n        \"Capacity\": 4619,\n        \"Quantity\": 3915,\n        \"HasUnitPrice\": false,\n        \"UnitPrice\": 8825.13691455369,\n        \"UnitTax\": 9813.52640592187,\n        \"IsInclusiveTaxes\": true,\n        \"DisplayPrice\": 3268.636426568127,\n        \"PriceDescription\": \"string\",\n        \"IsSelected\": true,\n        \"HasCapacity\": false,\n        \"SpotsRemaining\": 1457,\n        \"RemainingText\": \"string\"\n      }\n    ],\n    \"ParentOptionIsSelected\": true,\n    \"HasError\": false,\n    \"HasRelevantOutput\": false,\n    \"MinDate\": \"1960-10-29T03:47:25.617Z\",\n    \"MaxDate\": \"1961-12-28T12:50:32.661Z\",\n    \"AttendeeTypes\": [\n      \"0a9cf683-d500-4f8e-16e9-b947d84e67f7\",\n      \"4993d559-6f8a-8741-4ca7-16988fa90f7b\"\n    ],\n    \"RemoteUrl\": \"string\",\n    \"SelectedOptionId\": \"d18b2c79-5dce-2763-1d27-f36c5085f321\",\n    \"Confirm\": false,\n    \"DomainValidation\": {\n      \"AllowDomains\": [\n        \"string\",\n        \"string\"\n      ],\n      \"DisallowDomains\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"DisplayIsPrimary\": false\n  },\n  {\n    \"Id\": \"535fd875-3406-ff54-94d2-21df38b5d6fc\",\n    \"Label\": \"string\",\n    \"Type\": \"string\",\n    \"Value\": {},\n    \"DisplayValue\": \"string\",\n    \"ValidationExpression\": \"string\",\n    \"IsRequired\": false,\n    \"Notes\": \"string\",\n    \"ErrorMessage\": \"string\",\n    \"IsDisabled\": false,\n    \"IsSensitive\": true,\n    \"SpecialFieldId\": \"e1dca7da-544c-b71c-5fc8-45e97d8dc2e8\",\n    \"ParentOptionId\": \"28a2d5a5-7901-58d4-e1f4-070e7ac2a3d0\",\n    \"ParentFieldId\": \"20187385-72f6-e319-fff9-36a8ada624af\",\n    \"FormObjectId\": \"614a754a-82e3-10ff-1850-6849536c6676\",\n    \"Options\": [\n      {\n        \"Id\": \"908584cb-a736-cdec-c4a4-025698bb2dd7\",\n        \"Label\": \"string\",\n        \"Capacity\": 715,\n        \"Quantity\": 3789,\n        \"HasUnitPrice\": true,\n        \"UnitPrice\": 7121.528101960653,\n        \"UnitTax\": 2487.4848242126955,\n        \"IsInclusiveTaxes\": false,\n        \"DisplayPrice\": 7585.979273457652,\n        \"PriceDescription\": \"string\",\n        \"IsSelected\": true,\n        \"HasCapacity\": false,\n        \"SpotsRemaining\": 9387,\n        \"RemainingText\": \"string\"\n      },\n      {\n        \"Id\": \"71cd122f-fff9-288f-5ce5-1a48ac6dfd54\",\n        \"Label\": \"string\",\n        \"Capacity\": 1384,\n        \"Quantity\": 696,\n        \"HasUnitPrice\": true,\n        \"UnitPrice\": 8489.559450131641,\n        \"UnitTax\": 8940.12532927419,\n        \"IsInclusiveTaxes\": true,\n        \"DisplayPrice\": 3795.70514051501,\n        \"PriceDescription\": \"string\",\n        \"IsSelected\": false,\n        \"HasCapacity\": true,\n        \"SpotsRemaining\": 7106,\n        \"RemainingText\": \"string\"\n      }\n    ],\n    \"ParentOptionIsSelected\": true,\n    \"HasError\": false,\n    \"HasRelevantOutput\": false,\n    \"MinDate\": \"1971-12-30T07:10:23.872Z\",\n    \"MaxDate\": \"1979-07-20T12:03:06.691Z\",\n    \"AttendeeTypes\": [\n      \"2329a903-37a2-2995-5128-ac2d69a078f6\",\n      \"7c5653db-230f-baae-f581-9117e394ae4d\"\n    ],\n    \"RemoteUrl\": \"string\",\n    \"SelectedOptionId\": \"61f7c51d-3c32-fb0c-899f-f58d3faa5802\",\n    \"Confirm\": false,\n    \"DomainValidation\": {\n      \"AllowDomains\": [\n        \"string\",\n        \"string\"\n      ],\n      \"DisallowDomains\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"DisplayIsPrimary\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6eeabf5c-a21d-41dc-8c45-720cc3f485d7",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId",
+                    "fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accessKey",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) A string (orderKey) or a GUID representing a specific order"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "15b57016-e19b-4c66-905c-0bd76fa70e2a",
+          "name": "Update fields for an order",
+          "request": {
+            "name": "Update fields for an order",
+            "description": {},
+            "url": {
+              "path": [
+                "orders",
+                ":orderId",
+                "fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) A string (orderKey) or a GUID representing a specific order"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "AccessKey",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "FieldValues",
+                  "value": "{\"Id\":\"<uuid>\",\"Value\":{}}"
+                },
+                {
+                  "disabled": false,
+                  "key": "FieldValues",
+                  "value": "{\"Id\":\"<uuid>\",\"Value\":{}}"
+                },
+                {
+                  "disabled": false,
+                  "key": "UpdateNewOnly",
+                  "value": "<boolean>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "beeace03-6bfb-4f38-82ab-6a771d9609f3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId",
+                    "fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) A string (orderKey) or a GUID representing a specific order"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "AccessKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "FieldValues",
+                      "value": "{\"Id\":\"<uuid>\",\"Value\":{}}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "FieldValues",
+                      "value": "{\"Id\":\"<uuid>\",\"Value\":{}}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "UpdateNewOnly",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": \"2d4cd07c-1dd7-85db-a4e6-f249635c5566\",\n    \"Label\": \"string\",\n    \"Type\": \"string\",\n    \"Value\": {},\n    \"DisplayValue\": \"string\",\n    \"ValidationExpression\": \"string\",\n    \"IsRequired\": true,\n    \"Notes\": \"string\",\n    \"ErrorMessage\": \"string\",\n    \"IsDisabled\": true,\n    \"IsSensitive\": true,\n    \"SpecialFieldId\": \"a25074e5-5050-e1a8-c5a5-84878ad1062f\",\n    \"ParentOptionId\": \"2c117bdf-46ea-243c-1481-f26e72a27b8c\",\n    \"ParentFieldId\": \"7d37fc25-5392-3fe0-dfc2-90c261bb50c7\",\n    \"FormObjectId\": \"5cd5263b-9bcb-5323-804f-e9fe917bf446\",\n    \"Options\": [\n      {\n        \"Id\": \"2a83686f-84bb-cfa3-cfeb-f9ad1d498509\",\n        \"Label\": \"string\",\n        \"Capacity\": 1814,\n        \"Quantity\": 8174,\n        \"HasUnitPrice\": false,\n        \"UnitPrice\": 9143.990216726006,\n        \"UnitTax\": 7883.178217011673,\n        \"IsInclusiveTaxes\": false,\n        \"DisplayPrice\": 4188.273203128864,\n        \"PriceDescription\": \"string\",\n        \"IsSelected\": false,\n        \"HasCapacity\": true,\n        \"SpotsRemaining\": 1750,\n        \"RemainingText\": \"string\"\n      },\n      {\n        \"Id\": \"1819c166-9545-471f-6a78-dcb4e11d1831\",\n        \"Label\": \"string\",\n        \"Capacity\": 4619,\n        \"Quantity\": 3915,\n        \"HasUnitPrice\": false,\n        \"UnitPrice\": 8825.13691455369,\n        \"UnitTax\": 9813.52640592187,\n        \"IsInclusiveTaxes\": true,\n        \"DisplayPrice\": 3268.636426568127,\n        \"PriceDescription\": \"string\",\n        \"IsSelected\": true,\n        \"HasCapacity\": false,\n        \"SpotsRemaining\": 1457,\n        \"RemainingText\": \"string\"\n      }\n    ],\n    \"ParentOptionIsSelected\": true,\n    \"HasError\": false,\n    \"HasRelevantOutput\": false,\n    \"MinDate\": \"1960-10-29T03:47:25.617Z\",\n    \"MaxDate\": \"1961-12-28T12:50:32.661Z\",\n    \"AttendeeTypes\": [\n      \"0a9cf683-d500-4f8e-16e9-b947d84e67f7\",\n      \"4993d559-6f8a-8741-4ca7-16988fa90f7b\"\n    ],\n    \"RemoteUrl\": \"string\",\n    \"SelectedOptionId\": \"d18b2c79-5dce-2763-1d27-f36c5085f321\",\n    \"Confirm\": false,\n    \"DomainValidation\": {\n      \"AllowDomains\": [\n        \"string\",\n        \"string\"\n      ],\n      \"DisallowDomains\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"DisplayIsPrimary\": false\n  },\n  {\n    \"Id\": \"535fd875-3406-ff54-94d2-21df38b5d6fc\",\n    \"Label\": \"string\",\n    \"Type\": \"string\",\n    \"Value\": {},\n    \"DisplayValue\": \"string\",\n    \"ValidationExpression\": \"string\",\n    \"IsRequired\": false,\n    \"Notes\": \"string\",\n    \"ErrorMessage\": \"string\",\n    \"IsDisabled\": false,\n    \"IsSensitive\": true,\n    \"SpecialFieldId\": \"e1dca7da-544c-b71c-5fc8-45e97d8dc2e8\",\n    \"ParentOptionId\": \"28a2d5a5-7901-58d4-e1f4-070e7ac2a3d0\",\n    \"ParentFieldId\": \"20187385-72f6-e319-fff9-36a8ada624af\",\n    \"FormObjectId\": \"614a754a-82e3-10ff-1850-6849536c6676\",\n    \"Options\": [\n      {\n        \"Id\": \"908584cb-a736-cdec-c4a4-025698bb2dd7\",\n        \"Label\": \"string\",\n        \"Capacity\": 715,\n        \"Quantity\": 3789,\n        \"HasUnitPrice\": true,\n        \"UnitPrice\": 7121.528101960653,\n        \"UnitTax\": 2487.4848242126955,\n        \"IsInclusiveTaxes\": false,\n        \"DisplayPrice\": 7585.979273457652,\n        \"PriceDescription\": \"string\",\n        \"IsSelected\": true,\n        \"HasCapacity\": false,\n        \"SpotsRemaining\": 9387,\n        \"RemainingText\": \"string\"\n      },\n      {\n        \"Id\": \"71cd122f-fff9-288f-5ce5-1a48ac6dfd54\",\n        \"Label\": \"string\",\n        \"Capacity\": 1384,\n        \"Quantity\": 696,\n        \"HasUnitPrice\": true,\n        \"UnitPrice\": 8489.559450131641,\n        \"UnitTax\": 8940.12532927419,\n        \"IsInclusiveTaxes\": true,\n        \"DisplayPrice\": 3795.70514051501,\n        \"PriceDescription\": \"string\",\n        \"IsSelected\": false,\n        \"HasCapacity\": true,\n        \"SpotsRemaining\": 7106,\n        \"RemainingText\": \"string\"\n      }\n    ],\n    \"ParentOptionIsSelected\": true,\n    \"HasError\": false,\n    \"HasRelevantOutput\": false,\n    \"MinDate\": \"1971-12-30T07:10:23.872Z\",\n    \"MaxDate\": \"1979-07-20T12:03:06.691Z\",\n    \"AttendeeTypes\": [\n      \"2329a903-37a2-2995-5128-ac2d69a078f6\",\n      \"7c5653db-230f-baae-f581-9117e394ae4d\"\n    ],\n    \"RemoteUrl\": \"string\",\n    \"SelectedOptionId\": \"61f7c51d-3c32-fb0c-899f-f58d3faa5802\",\n    \"Confirm\": false,\n    \"DomainValidation\": {\n      \"AllowDomains\": [\n        \"string\",\n        \"string\"\n      ],\n      \"DisallowDomains\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"DisplayIsPrimary\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28d9adf3-13d5-47a6-bafa-77bd4f53ed6f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId",
+                    "fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) A string (orderKey) or a GUID representing a specific order"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "AccessKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "FieldValues",
+                      "value": "{\"Id\":\"<uuid>\",\"Value\":{}}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "FieldValues",
+                      "value": "{\"Id\":\"<uuid>\",\"Value\":{}}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "UpdateNewOnly",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8926f62e-2f20-4837-a818-59aa4e38be73",
+          "name": "Retrieve the printable resources for a single order",
+          "request": {
+            "name": "Retrieve the printable resources for a single order",
+            "description": {},
+            "url": {
+              "path": [
+                "orders",
+                ":orderId",
+                "print"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "A string that is one of \"Ticket\", \"ETicket\", or \"Namebadge\""
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "A string that is one of \"PDF\", \"PNG\", \"JPG\", \"GIF\", \"BMP\" or \"TIFF\""
+                },
+                {
+                  "disabled": false,
+                  "key": "imageDpi",
+                  "value": "0",
+                  "description": "An int representing the dots per inch of the images produced that is 72, 96, 150, 300 or 600. 0 for PDF"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) A string (orderKey) or a GUID representing a specific order"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4bb84212-7b4d-491f-b5ca-3b1262b5a7c2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId",
+                    "print"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "imageDpi",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) A string (orderKey) or a GUID representing a specific order"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "45b6d190-6660-4817-a9fc-086cd2dce12c",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId",
+                    "print"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "imageDpi",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) A string (orderKey) or a GUID representing a specific order"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "152dad9d-562d-42f5-aac4-b2e2694eecd1",
+          "name": "Resend a confirmation for a single order",
+          "request": {
+            "name": "Resend a confirmation for a single order",
+            "description": {},
+            "url": {
+              "path": [
+                "orders",
+                ":orderId",
+                "resend"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) A string (orderKey) or a GUID representing a specific order"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "AccessKey",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b06776cb-bcb7-49e8-84c0-c450f535d1ce",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId",
+                    "resend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) A string (orderKey) or a GUID representing a specific order"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "AccessKey",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "true",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5340ea06-4856-4256-bc90-e018a775afc1",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId",
+                    "resend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) A string (orderKey) or a GUID representing a specific order"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "AccessKey",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dd6b38cf-538d-4d69-bcff-a68d5869dd59",
+          "name": "Create cart-less order for free, general admission events with no fields.",
+          "request": {
+            "name": "Create cart-less order for free, general admission events with no fields.",
+            "description": {},
+            "url": {
+              "path": [
+                "orders",
+                "direct"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "EventNumber",
+                  "value": "<long>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "FirstName",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "LastName",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "NumberOfTickets",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "AccessKey",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "Organization",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "Street1",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "Street2",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "City",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "Region",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "Country",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "PostalCode",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "Phone",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "Email",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "IsPOS",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "Notes",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "SendEmail",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ShipMethod",
+                  "value": "<string>",
+                  "description": "Deprecated. Delivery methods are no longer supported; this field is accepted for backwards compatibility but ignored."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "45fde902-bece-4358-97cd-3f755647de88",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "direct"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "EventNumber",
+                      "value": "<long>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "FirstName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "LastName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "NumberOfTickets",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "AccessKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Organization",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Street1",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Street2",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "City",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Region",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Country",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "PostalCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Phone",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Email",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "IsPOS",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Notes",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "SendEmail",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Deprecated. Delivery methods are no longer supported; this field is accepted for backwards compatibility but ignored.",
+                        "type": "text/plain"
+                      },
+                      "key": "ShipMethod",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"OrderKey\": \"string\",\n  \"OrderId\": \"dd5c2979-c628-62d8-ceb3-40af1bb8540d\",\n  \"ObjectNumber\": 8842,\n  \"OrderTotal\": 417.55316273098697,\n  \"Quantity\": 1696,\n  \"AttendeeCount\": 5719,\n  \"AddonCount\": 9495,\n  \"Summary\": \"string\",\n  \"Type\": \"string\",\n  \"ContactEmail\": \"string\",\n  \"AnyGeneratesTicket\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b99b2010-dd70-4177-ba1c-8aec0fba1bc5",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "direct"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "EventNumber",
+                      "value": "<long>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "FirstName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "LastName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "NumberOfTickets",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "AccessKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Organization",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Street1",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Street2",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "City",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Region",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Country",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "PostalCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Phone",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Email",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "IsPOS",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Notes",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "SendEmail",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Deprecated. Delivery methods are no longer supported; this field is accepted for backwards compatibility but ignored.",
+                        "type": "text/plain"
+                      },
+                      "key": "ShipMethod",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "17adefce-aed6-48d0-a0fd-11d321ef2d48",
+          "name": "Retrieve orders that match provided email",
+          "request": {
+            "name": "Retrieve orders that match provided email",
+            "description": {},
+            "url": {
+              "path": [
+                "orders",
+                "helpdesk",
+                ":email"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "email",
+                  "description": "(Required) An email to search across order email fields"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9e25ce56-0df0-49b9-a0fa-53fed26d1513",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "helpdesk",
+                    ":email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "email",
+                      "description": "(Required) An email to search across order email fields"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": \"a9afdf68-5004-e026-937a-871f5d5e40a2\",\n    \"OrderKey\": \"string\",\n    \"ObjectNumber\": 1736,\n    \"ObjectTitle\": \"string\",\n    \"ObjectSubtitle\": \"string\",\n    \"OrderedAt\": \"2007-12-28T23:18:50.568Z\",\n    \"OrderedAtLocal\": \"2018-04-25T11:22:59.463Z\",\n    \"FirstName\": \"string\",\n    \"LastName\": \"string\",\n    \"Amount\": 4213.452596981091,\n    \"IsAdjustment\": true,\n    \"Culture\": \"string\",\n    \"FlagState\": \"string\"\n  },\n  {\n    \"Id\": \"fda95e87-a157-9c77-3d58-c7a12a30d306\",\n    \"OrderKey\": \"string\",\n    \"ObjectNumber\": 6752,\n    \"ObjectTitle\": \"string\",\n    \"ObjectSubtitle\": \"string\",\n    \"OrderedAt\": \"1951-02-14T01:56:33.686Z\",\n    \"OrderedAtLocal\": \"1959-10-26T22:09:36.132Z\",\n    \"FirstName\": \"string\",\n    \"LastName\": \"string\",\n    \"Amount\": 6029.287220130871,\n    \"IsAdjustment\": false,\n    \"Culture\": \"string\",\n    \"FlagState\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "570c6087-3461-41fd-9af3-d83f3978294b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "helpdesk",
+                    ":email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "email",
+                      "description": "(Required) An email to search across order email fields"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c774f4a4-6bf6-4836-b21f-517541dfb379",
+          "name": "Create a point of sale order from an existing cart",
+          "request": {
+            "name": "Create a point of sale order from an existing cart",
+            "description": {},
+            "url": {
+              "path": [
+                "orders",
+                "pos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "BillingFirstName",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "BillingLastName",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "CartId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "AccessKey",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "BillingPostalCode",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ContactEmail",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ContactPhone",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "PaymentMethodId",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "TransactionId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_0",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "CardName",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "CardNumber",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "CardCsc",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "CardMonth",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "CardYear",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "RoutingNumber",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "AccountNumber",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "CheckPONumber",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "PaidInFull",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "CreditCode",
+                  "value": "<string>",
+                  "description": "The event credit code to apply to the order."
+                },
+                {
+                  "disabled": false,
+                  "key": "Notes",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "IsKiosk",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "SendEmail",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "Via",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "IsInvoice",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "InvoiceDue",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ExchangeId",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "OriginalOrderId",
+                  "value": "<uuid>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9c5f70f6-ad17-4b45-b1a0-2e85363d3763",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "pos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "BillingFirstName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "BillingLastName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "CartId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "AccessKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "BillingPostalCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ContactEmail",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ContactPhone",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "PaymentMethodId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "TransactionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_0",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_1",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CardName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CardNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CardCsc",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CardMonth",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CardYear",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "RoutingNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "AccountNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CheckPONumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "PaidInFull",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The event credit code to apply to the order.",
+                        "type": "text/plain"
+                      },
+                      "key": "CreditCode",
+                      "value": "1234-5678-9012"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Notes",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "IsKiosk",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "SendEmail",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Via",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "IsInvoice",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "InvoiceDue",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ExchangeId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "OriginalOrderId",
+                      "value": "<uuid>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"RequiresAction\": true,\n  \"ActionInfo\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"Results\": [\n    {\n      \"OrderKey\": \"string\",\n      \"OrderId\": \"60e2d458-1858-d6bc-4340-55f145e25571\",\n      \"ObjectNumber\": 637,\n      \"OrderTotal\": 989.6796062658109,\n      \"Quantity\": 2551,\n      \"AttendeeCount\": 5500,\n      \"AddonCount\": 1587,\n      \"Summary\": \"string\",\n      \"Type\": \"string\",\n      \"ContactEmail\": \"string\",\n      \"AnyGeneratesTicket\": false\n    },\n    {\n      \"OrderKey\": \"string\",\n      \"OrderId\": \"fd14e5ba-a4ce-01ea-3f90-1f2316589f86\",\n      \"ObjectNumber\": 3164,\n      \"OrderTotal\": 1008.1879014172035,\n      \"Quantity\": 9481,\n      \"AttendeeCount\": 9945,\n      \"AddonCount\": 254,\n      \"Summary\": \"string\",\n      \"Type\": \"string\",\n      \"ContactEmail\": \"string\",\n      \"AnyGeneratesTicket\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8de937e8-eaa3-4d85-a33d-652cde9ee970",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "pos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "BillingFirstName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "BillingLastName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "CartId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "AccessKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "BillingPostalCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ContactEmail",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ContactPhone",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "PaymentMethodId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "TransactionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_0",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_1",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CardName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CardNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CardCsc",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CardMonth",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CardYear",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "RoutingNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "AccountNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CheckPONumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "PaidInFull",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The event credit code to apply to the order.",
+                        "type": "text/plain"
+                      },
+                      "key": "CreditCode",
+                      "value": "1234-5678-9012"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Notes",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "IsKiosk",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "SendEmail",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Via",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "IsInvoice",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "InvoiceDue",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ExchangeId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "OriginalOrderId",
+                      "value": "<uuid>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5cd34789-4fdf-4c06-a2fc-93555574fc4f",
+          "name": "Retrieve the printable resources for multiple orders",
+          "request": {
+            "name": "Retrieve the printable resources for multiple orders",
+            "description": {},
+            "url": {
+              "path": [
+                "orders",
+                "print"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "Orders",
+                  "value": "<uuid>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Orders",
+                  "value": "<uuid>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Type",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Format",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ImageDpi",
+                  "value": "<integer>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "571fdc2a-cb41-4d91-b9bd-abbb08c51ff5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "print"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Orders",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Orders",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Format",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ImageDpi",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cfb769cb-8621-4bcc-b33f-4acf4f285ea0",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "print"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Orders",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Orders",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "Type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Format",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ImageDpi",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e441dfe8-cea7-4794-a534-3e6ef42f1bb2",
+          "name": "Prepares an order to be paid for with a Square or Stripe Reader.",
+          "request": {
+            "name": "Prepares an order to be paid for with a Square or Stripe Reader.",
+            "description": {},
+            "url": {
+              "path": [
+                "orders",
+                "reader",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "BillingFirstName",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "BillingLastName",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "CartId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "AccessKey",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ContactEmail",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ContactPhone",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "Notes",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "IsKiosk",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "SendEmail",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "Via",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "78355836-76a5-4556-b98d-9b702a668413",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "reader",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "BillingFirstName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "BillingLastName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "CartId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "AccessKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ContactEmail",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ContactPhone",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Notes",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "IsKiosk",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "SendEmail",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Via",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ReferenceId\": \"5941c19d-8773-bb30-926e-4fc649eaa43a\",\n  \"CartId\": \"string\",\n  \"ExternalId\": \"string\",\n  \"AppFee\": 795.0506561380033,\n  \"Description\": \"string\",\n  \"Metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c828a39f-818f-44f8-861b-f61c76b5435d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "reader",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "BillingFirstName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "BillingLastName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "CartId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "AccessKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ContactEmail",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ContactPhone",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Notes",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "IsKiosk",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "SendEmail",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Via",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f11afc2a-db85-412c-8da1-56fcc0d62ede",
+          "name": "Sends SMS messages to the provided phone number (only US and Canada)",
+          "request": {
+            "name": "Sends SMS messages to the provided phone number (only US and Canada)",
+            "description": {},
+            "url": {
+              "path": [
+                "orders",
+                "sms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "OrderId",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "PhoneNumber",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "004a62a2-f6a2-4341-9823-75d193c59d45",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "sms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "OrderId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "PhoneNumber",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "true",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "12abe0bb-5c0e-4870-a883-7bfdf434c365",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "sms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "OrderId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "PhoneNumber",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.brushfire.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a0f17b73-0672-43fa-81e7-31b8a2523cf6",
+    "name": "Brushfire API: Version 2025-07-22 AccessCodes Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform. It covers events, ticket types, sections and seats, attendees, orders, the shopping cart and checkout flow, groups, sessions and check-in, promotions and access codes, payment profiles, and webhooks (Hooks). Authenticate by sending your App Key (requested at https://developer.brushfire.com/key) in the Authorization header. The API is date-versioned: send the desired version in the api-version request header (for example, 2025-07-22). This document is the live specification published at api.brushfire.com/swagger.\n\nContact Support:\n Name: Brushfire Developers",
+      "type": "text/plain"
+    }
+  }
+}

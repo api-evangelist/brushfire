@@ -1,0 +1,883 @@
+{
+  "item": [
+    {
+      "id": "b3580aa6-6ef8-42de-98e2-30a8a2167ae3",
+      "name": "PaymentProfiles",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4b75be26-242a-4000-83a8-0f093254441b",
+          "name": "Returns all payment profiles for the specified client",
+          "request": {
+            "name": "Returns all payment profiles for the specified client",
+            "description": {},
+            "url": {
+              "path": [
+                "paymentprofiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "clientId",
+                  "value": "<string>",
+                  "description": "A string, a GUID, or an integer that corresponds to a specific client"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "24818f31-3a96-4b56-8767-30e419c4b48d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "paymentprofiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": \"ae5db60a-4c30-a775-9f8c-fc568ba80adb\",\n    \"Name\": \"string\",\n    \"AccountName\": \"string\",\n    \"GatewayId\": \"b354d4ba-ac90-2a79-36df-679e78d34092\",\n    \"GatewayName\": \"string\",\n    \"SupportsAutoFees\": false,\n    \"SupportsSideloading\": false,\n    \"AllowsReferenceSales\": false,\n    \"AllowsStandaloneCredits\": false,\n    \"ReferenceDayLimit\": 475,\n    \"Options\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\",\n      \"key_3\": \"string\"\n    },\n    \"ElectronicPaymentMethods\": [\n      {\n        \"Id\": \"3a7c1377-0743-832f-d4c8-cabb8f929e50\",\n        \"Name\": \"string\",\n        \"IsEnabled\": false\n      },\n      {\n        \"Id\": \"9c2a7e8c-8270-8e1c-e601-9ad310c7996e\",\n        \"Name\": \"string\",\n        \"IsEnabled\": false\n      }\n    ],\n    \"Config\": {\n      \"LocationId\": \"string\",\n      \"LocationName\": \"string\",\n      \"MerchantId\": \"string\",\n      \"MerchantName\": \"string\",\n      \"AccessToken\": \"string\",\n      \"Currency\": \"string\",\n      \"InternalDescription\": \"string\",\n      \"Invoice\": {\n        \"AllowAdmin\": true,\n        \"AllowInternet\": true,\n        \"RelativeDays\": 2658\n      },\n      \"Scopes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"Status\": \"string\",\n      \"AllowCards\": false,\n      \"AllowWallets\": true,\n      \"AllowAch\": true,\n      \"AllowAfterpay\": false,\n      \"AllowCashApp\": false,\n      \"AllowGiftCards\": false\n    }\n  },\n  {\n    \"Id\": \"b8e8fb7d-298d-7969-1af6-695021b5703f\",\n    \"Name\": \"string\",\n    \"AccountName\": \"string\",\n    \"GatewayId\": \"ca00dcf9-4564-2fa8-8fd9-e2c1adc55160\",\n    \"GatewayName\": \"string\",\n    \"SupportsAutoFees\": true,\n    \"SupportsSideloading\": false,\n    \"AllowsReferenceSales\": false,\n    \"AllowsStandaloneCredits\": true,\n    \"ReferenceDayLimit\": 1609,\n    \"Options\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\",\n      \"key_3\": \"string\"\n    },\n    \"ElectronicPaymentMethods\": [\n      {\n        \"Id\": \"24d3b72e-db1f-2cc1-866d-2ff6a314c58f\",\n        \"Name\": \"string\",\n        \"IsEnabled\": true\n      },\n      {\n        \"Id\": \"a520b7a8-77bc-3bce-610d-e7173d2b9336\",\n        \"Name\": \"string\",\n        \"IsEnabled\": true\n      }\n    ],\n    \"Config\": {\n      \"LocationId\": \"string\",\n      \"LocationName\": \"string\",\n      \"MerchantId\": \"string\",\n      \"MerchantName\": \"string\",\n      \"AccessToken\": \"string\",\n      \"Currency\": \"string\",\n      \"InternalDescription\": \"string\",\n      \"Invoice\": {\n        \"AllowAdmin\": true,\n        \"AllowInternet\": false,\n        \"RelativeDays\": 7954\n      },\n      \"Scopes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"Status\": \"string\",\n      \"AllowCards\": true,\n      \"AllowWallets\": false,\n      \"AllowAch\": false,\n      \"AllowAfterpay\": false,\n      \"AllowCashApp\": true,\n      \"AllowGiftCards\": false\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ff9dffe-735b-4b78-b3f6-d7ea8b7dd2c5",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "paymentprofiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a0f83ed7-6511-4caf-8f91-59a493329f64",
+          "name": "Returns the details of the specified payment profile",
+          "request": {
+            "name": "Returns the details of the specified payment profile",
+            "description": {},
+            "url": {
+              "path": [
+                "paymentprofiles",
+                ":paymentProfileId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentProfileId",
+                  "description": "(Required) A GUID that corresponds to a specific payment profile"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7970be40-36a5-4333-a39d-75c11f47721a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "paymentprofiles",
+                    ":paymentProfileId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentProfileId",
+                      "description": "(Required) A GUID that corresponds to a specific payment profile"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"768581a5-d4f8-cb0f-a5b6-9db1eebec015\",\n  \"Name\": \"string\",\n  \"AccountName\": \"string\",\n  \"GatewayId\": \"49e888b8-85a4-a652-a1a7-fc10da4d658b\",\n  \"GatewayName\": \"string\",\n  \"SupportsAutoFees\": false,\n  \"SupportsSideloading\": false,\n  \"AllowsReferenceSales\": false,\n  \"AllowsStandaloneCredits\": true,\n  \"ReferenceDayLimit\": 2968,\n  \"Options\": {\n    \"key_0\": \"string\"\n  },\n  \"ElectronicPaymentMethods\": [\n    {\n      \"Id\": \"b5cabab6-d62a-736c-dbfa-075767379e04\",\n      \"Name\": \"string\",\n      \"IsEnabled\": true\n    },\n    {\n      \"Id\": \"6fe81531-fa1b-58f1-18f3-94a59d5848d9\",\n      \"Name\": \"string\",\n      \"IsEnabled\": true\n    }\n  ],\n  \"Config\": {\n    \"LocationId\": \"string\",\n    \"LocationName\": \"string\",\n    \"MerchantId\": \"string\",\n    \"MerchantName\": \"string\",\n    \"AccessToken\": \"string\",\n    \"Currency\": \"string\",\n    \"InternalDescription\": \"string\",\n    \"Invoice\": {\n      \"AllowAdmin\": true,\n      \"AllowInternet\": true,\n      \"RelativeDays\": 3532\n    },\n    \"Scopes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"Status\": \"string\",\n    \"AllowCards\": false,\n    \"AllowWallets\": true,\n    \"AllowAch\": false,\n    \"AllowAfterpay\": false,\n    \"AllowCashApp\": true,\n    \"AllowGiftCards\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1602e51-f396-4eff-91eb-31b2b8de6942",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "paymentprofiles",
+                    ":paymentProfileId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentProfileId",
+                      "description": "(Required) A GUID that corresponds to a specific payment profile"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8e788c76-eef0-4b29-a3d2-c6d9d9455440",
+          "name": "Returns the locations associated with the merchant ID of a given payment profile.",
+          "request": {
+            "name": "Returns the locations associated with the merchant ID of a given payment profile.",
+            "description": {},
+            "url": {
+              "path": [
+                "paymentprofiles",
+                ":paymentProfileId",
+                "locations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentProfileId",
+                  "description": "(Required) A GUID that corresponds to a specific payment profile"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "26752c70-6768-4bf5-83df-b220ed59a118",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "paymentprofiles",
+                    ":paymentProfileId",
+                    "locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentProfileId",
+                      "description": "(Required) A GUID that corresponds to a specific payment profile"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": \"string\",\n    \"Name\": \"string\",\n    \"Address\": \"string\",\n    \"IsSelected\": true,\n    \"IsActive\": true\n  },\n  {\n    \"Id\": \"string\",\n    \"Name\": \"string\",\n    \"Address\": \"string\",\n    \"IsSelected\": false,\n    \"IsActive\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf60ef3b-f288-4766-af37-423c6414b97a",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "paymentprofiles",
+                    ":paymentProfileId",
+                    "locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentProfileId",
+                      "description": "(Required) A GUID that corresponds to a specific payment profile"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "652c8c55-26ed-489c-a28d-6cb671e8a76b",
+          "name": "Returns all terminals registered to the account associated with the supplied payment profile",
+          "request": {
+            "name": "Returns all terminals registered to the account associated with the supplied payment profile",
+            "description": {},
+            "url": {
+              "path": [
+                "paymentprofiles",
+                ":paymentProfileId",
+                "terminals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentProfileId",
+                  "description": "(Required) A GUID that corresponds to a specific payment profile"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a563be0a-9e35-4882-b1c8-207e882ed440",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "paymentprofiles",
+                    ":paymentProfileId",
+                    "terminals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentProfileId",
+                      "description": "(Required) A GUID that corresponds to a specific payment profile"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": \"string\",\n    \"SerialNumber\": \"string\",\n    \"Name\": \"string\",\n    \"Display\": \"string\"\n  },\n  {\n    \"Id\": \"string\",\n    \"SerialNumber\": \"string\",\n    \"Name\": \"string\",\n    \"Display\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "54266d90-ff0a-4b62-8514-26293809e032",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "paymentprofiles",
+                    ":paymentProfileId",
+                    "terminals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentProfileId",
+                      "description": "(Required) A GUID that corresponds to a specific payment profile"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7fd2eb9f-36df-4e28-a240-10d4db4d6ce1",
+          "name": "Add a terminal to the supplied payment profile",
+          "request": {
+            "name": "Add a terminal to the supplied payment profile",
+            "description": {},
+            "url": {
+              "path": [
+                "paymentprofiles",
+                ":paymentProfileId",
+                "terminals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentProfileId",
+                  "description": "(Required) A GUID that corresponds to a specific payment profile"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "LocationId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "PairingCode",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b28ce2bb-2f70-469e-9fcf-44da478afc40",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "paymentprofiles",
+                    ":paymentProfileId",
+                    "terminals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentProfileId",
+                      "description": "(Required) A GUID that corresponds to a specific payment profile"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "LocationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "PairingCode",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"string\",\n  \"SerialNumber\": \"string\",\n  \"PairingCode\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab063066-c421-4751-adeb-b4b15c7a3171",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "paymentprofiles",
+                    ":paymentProfileId",
+                    "terminals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentProfileId",
+                      "description": "(Required) A GUID that corresponds to a specific payment profile"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "LocationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "PairingCode",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.brushfire.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4562de6e-fe35-4e1d-9d6a-af5103cd44a9",
+    "name": "Brushfire API: Version 2025-07-22 AccessCodes PaymentProfiles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform. It covers events, ticket types, sections and seats, attendees, orders, the shopping cart and checkout flow, groups, sessions and check-in, promotions and access codes, payment profiles, and webhooks (Hooks). Authenticate by sending your App Key (requested at https://developer.brushfire.com/key) in the Authorization header. The API is date-versioned: send the desired version in the api-version request header (for example, 2025-07-22). This document is the live specification published at api.brushfire.com/swagger.\n\nContact Support:\n Name: Brushfire Developers",
+      "type": "text/plain"
+    }
+  }
+}

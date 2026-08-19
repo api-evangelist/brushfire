@@ -1,0 +1,525 @@
+{
+  "item": [
+    {
+      "id": "d3d8a91e-fd8e-4471-a594-705681a3c32e",
+      "name": "Clients",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2be6a5b6-0687-40a3-b238-ca4f8bdd3a6a",
+          "name": "Get a list of all clients available to this application",
+          "request": {
+            "name": "Get a list of all clients available to this application",
+            "description": {},
+            "url": {
+              "path": [
+                "clients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "accessKey",
+                  "value": "<string>",
+                  "description": "Optional Access Key for the user context"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d4af5bfa-9362-43d7-b198-118aeb95c3a7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accessKey",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": \"a311f5fa-4792-4870-ce9d-88b3ff92cbf9\",\n    \"ClientNumber\": 9555,\n    \"ClientKey\": \"string\",\n    \"Name\": \"string\",\n    \"CreatedAt\": \"2000-08-12T23:20:57.219Z\",\n    \"City\": \"string\",\n    \"Region\": \"string\",\n    \"Country\": \"string\",\n    \"IsLive\": false,\n    \"IsDeleted\": true\n  },\n  {\n    \"Id\": \"08aafc81-ca18-c39c-7080-14937314e37e\",\n    \"ClientNumber\": 5438,\n    \"ClientKey\": \"string\",\n    \"Name\": \"string\",\n    \"CreatedAt\": \"1963-01-19T18:38:49.489Z\",\n    \"City\": \"string\",\n    \"Region\": \"string\",\n    \"Country\": \"string\",\n    \"IsLive\": true,\n    \"IsDeleted\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab0381e6-9330-4c71-8f53-0355d4857531",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accessKey",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e453e103-1b6c-46f1-a7ce-0de5eeec2fbf",
+          "name": "Get the details for a specific client",
+          "request": {
+            "name": "Get the details for a specific client",
+            "description": {},
+            "url": {
+              "path": [
+                "clients",
+                ":clientId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientId",
+                  "description": "(Required) An string, a GUID, or an integer that corresponds to a specific client"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "548d7ac0-4813-4ecd-a41f-0a967b89f886",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) An string, a GUID, or an integer that corresponds to a specific client"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"1cd16a91-e397-7c1e-0026-c8dc5d9ee35e\",\n  \"Name\": \"string\",\n  \"City\": \"string\",\n  \"Region\": \"string\",\n  \"Country\": \"string\",\n  \"Coordinates\": \"string\",\n  \"ClientKey\": \"string\",\n  \"ClientNumber\": 8921,\n  \"OwnerUserId\": \"9a2a3968-c98c-d169-bf4c-54875174719f\",\n  \"BillingUserId\": \"4a2a85c2-e156-1c1e-0968-9e2f0fa290cf\",\n  \"CrmId\": \"string\",\n  \"Culture\": \"string\",\n  \"TimeZoneId\": \"string\",\n  \"LegacyClientId\": 5591,\n  \"PartnerId\": \"734abdef-7a5c-9fad-4175-0fe4663a5814\",\n  \"HubSpotCompanyId\": \"string\",\n  \"ChmsVendor\": \"string\",\n  \"ChmsQualifier\": \"string\",\n  \"ChmsAuthToken\": \"string\",\n  \"ChmsAuthSecret\": \"string\",\n  \"ChmsUserToken\": \"string\",\n  \"ChmsUserSecret\": \"string\",\n  \"ChmsServiceName\": \"string\",\n  \"ChmsHtmlTemplate\": \"string\",\n  \"ChmsOauthConnect\": true,\n  \"ChmsIsLive\": true,\n  \"CreatedAt\": \"1955-02-06T06:58:50.078Z\",\n  \"IsLive\": true,\n  \"PayVia\": \"string\",\n  \"MissingPaymentInfo\": false,\n  \"FailedPaymentDetails\": \"string\",\n  \"CardExpire\": \"string\",\n  \"IsDeleted\": true,\n  \"LastPaidAt\": \"1989-08-24T23:58:43.672Z\",\n  \"CurrentBalance\": 7149.62874549145,\n  \"BillingTotal\": 4315.221986134561\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d64627fb-0041-4ffb-89df-f44b6a07c903",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) An string, a GUID, or an integer that corresponds to a specific client"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8301ddb6-5212-48e3-81a8-a83113403c4a",
+          "name": "Get the theme for a specific client",
+          "request": {
+            "name": "Get the theme for a specific client",
+            "description": {},
+            "url": {
+              "path": [
+                "clients",
+                ":clientId",
+                "theme"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "urlKey",
+                  "value": "<string>",
+                  "description": "An optional string that corresponds to a specific urlKey"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientId",
+                  "description": "(Required) A string, a GUID, or an integer that corresponds to a specific client"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5f5c3f00-b7d8-4669-aace-bc338d414f31",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients",
+                    ":clientId",
+                    "theme"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "urlKey",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) A string, a GUID, or an integer that corresponds to a specific client"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"LogoUrl\": \"string\",\n  \"LogoPosition\": \"string\",\n  \"HeaderUrlLarge\": \"string\",\n  \"HeaderUrlMobile\": \"string\",\n  \"BackgroundCss\": \"string\",\n  \"TextColor\": \"string\",\n  \"LinkColor\": \"string\",\n  \"HomeUrl\": \"string\",\n  \"HeaderHtml\": \"string\",\n  \"ClientKey\": \"string\",\n  \"ClientName\": \"string\",\n  \"UrlKey\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3df2bcce-f2e6-40e4-85d5-242d360a70fb",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients",
+                    ":clientId",
+                    "theme"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "urlKey",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) A string, a GUID, or an integer that corresponds to a specific client"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Errors\": [\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    },\n    {\n      \"Key\": \"string\",\n      \"Value\": \"string\"\n    }\n  ],\n  \"Message\": \"string\",\n  \"Data\": {},\n  \"StackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.brushfire.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "acf3fc1f-2b3a-4aab-9a5e-44110b414df8",
+    "name": "Brushfire API: Version 2025-07-22 AccessCodes Clients API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform. It covers events, ticket types, sections and seats, attendees, orders, the shopping cart and checkout flow, groups, sessions and check-in, promotions and access codes, payment profiles, and webhooks (Hooks). Authenticate by sending your App Key (requested at https://developer.brushfire.com/key) in the Authorization header. The API is date-versioned: send the desired version in the api-version request header (for example, 2025-07-22). This document is the live specification published at api.brushfire.com/swagger.\n\nContact Support:\n Name: Brushfire Developers",
+      "type": "text/plain"
+    }
+  }
+}

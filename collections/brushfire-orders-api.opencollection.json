@@ -1,0 +1,375 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brushfire API: Version 2025-07-22 AccessCodes Orders API",
+    "version": "2025-07-22"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets list of orders by eventId and/or a date range.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/orders",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "query",
+                "description": "An integer or a GUID that corresponds to a specific event. Only required if there is no startsAt or endsAt."
+              },
+              {
+                "name": "startsAt",
+                "value": "",
+                "type": "query",
+                "description": "Optional start date to filter list"
+              },
+              {
+                "name": "endsAt",
+                "value": "",
+                "type": "query",
+                "description": "Optional end date to filter list"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Gets list of orders by eventId and/or a date range."
+        },
+        {
+          "info": {
+            "name": "Create an order from an existing cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create an order from an existing cart"
+        },
+        {
+          "info": {
+            "name": "Retrieve a single order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/orders/:orderId",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "A string (orderKey) or a GUID representing a specific order"
+              },
+              {
+                "name": "accessKey",
+                "value": "",
+                "type": "query",
+                "description": "The Access Key for the user context"
+              },
+              {
+                "name": "qrSize",
+                "value": "",
+                "type": "query",
+                "description": "The width and height of the QR Code. If blank, no QR will be sent."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve a single order"
+        },
+        {
+          "info": {
+            "name": "Retrieve fields for an order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/orders/:orderId/fields",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "A string (orderKey) or a GUID representing a specific order"
+              },
+              {
+                "name": "accessKey",
+                "value": "",
+                "type": "query",
+                "description": "The Access Key for the user context"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve fields for an order"
+        },
+        {
+          "info": {
+            "name": "Update fields for an order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/orders/:orderId/fields",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "A string (orderKey) or a GUID representing a specific order"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update fields for an order"
+        },
+        {
+          "info": {
+            "name": "Retrieve the printable resources for a single order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/orders/:orderId/print",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "A string (orderKey) or a GUID representing a specific order"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "A string that is one of \"Ticket\", \"ETicket\", or \"Namebadge\""
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "A string that is one of \"PDF\", \"PNG\", \"JPG\", \"GIF\", \"BMP\" or \"TIFF\""
+              },
+              {
+                "name": "imageDpi",
+                "value": "",
+                "type": "query",
+                "description": "An int representing the dots per inch of the images produced that is 72, 96, 150, 300 or 600. 0 for PDF"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve the printable resources for a single order"
+        },
+        {
+          "info": {
+            "name": "Resend a confirmation for a single order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/orders/:orderId/resend",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "A string (orderKey) or a GUID representing a specific order"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Resend a confirmation for a single order"
+        },
+        {
+          "info": {
+            "name": "Create cart-less order for free, general admission events with no fields.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/orders/direct",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create cart-less order for free, general admission events with no fields."
+        },
+        {
+          "info": {
+            "name": "Retrieve orders that match provided email",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/orders/helpdesk/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path",
+                "description": "An email to search across order email fields"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve orders that match provided email"
+        },
+        {
+          "info": {
+            "name": "Create a point of sale order from an existing cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/orders/pos",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a point of sale order from an existing cart"
+        },
+        {
+          "info": {
+            "name": "Retrieve the printable resources for multiple orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/orders/print",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve the printable resources for multiple orders"
+        },
+        {
+          "info": {
+            "name": "Prepares an order to be paid for with a Square or Stripe Reader.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/orders/reader/start",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Prepares an order to be paid for with a Square or Stripe Reader."
+        },
+        {
+          "info": {
+            "name": "Sends SMS messages to the provided phone number (only US and Canada)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/orders/sms",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Sends SMS messages to the provided phone number (only US and Canada)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

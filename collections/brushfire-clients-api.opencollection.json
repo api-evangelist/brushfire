@@ -1,0 +1,99 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brushfire API: Version 2025-07-22 AccessCodes Clients API",
+    "version": "2025-07-22"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Clients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of all clients available to this application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/clients",
+            "params": [
+              {
+                "name": "accessKey",
+                "value": "",
+                "type": "query",
+                "description": "Optional Access Key for the user context"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a list of all clients available to this application"
+        },
+        {
+          "info": {
+            "name": "Get the details for a specific client",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/clients/:clientId",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "An string, a GUID, or an integer that corresponds to a specific client"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get the details for a specific client"
+        },
+        {
+          "info": {
+            "name": "Get the theme for a specific client",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/clients/:clientId/theme",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "A string, a GUID, or an integer that corresponds to a specific client"
+              },
+              {
+                "name": "urlKey",
+                "value": "",
+                "type": "query",
+                "description": "An optional string that corresponds to a specific urlKey"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get the theme for a specific client"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

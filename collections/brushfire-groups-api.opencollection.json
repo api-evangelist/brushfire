@@ -1,0 +1,275 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brushfire API: Version 2025-07-22 AccessCodes Groups API",
+    "version": "2025-07-22"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/groups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a group"
+        },
+        {
+          "info": {
+            "name": "Update a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.brushfire.com/groups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update a group"
+        },
+        {
+          "info": {
+            "name": "Retrieve information about a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/groups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "A GUID or an integer representing a group"
+              },
+              {
+                "name": "accessKey",
+                "value": "",
+                "type": "query",
+                "description": "The Access Key for the user context"
+              },
+              {
+                "name": "qrSize",
+                "value": "",
+                "type": "query",
+                "description": "The width and height of the QR Code. If blank, no QR will be sent."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve information about a group"
+        },
+        {
+          "info": {
+            "name": "Set or clear the community for the specified group and all of its attendees",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/groups/:groupId/community",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "A GUID or an integer representing a group"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Set or clear the community for the specified group and all of its attendees"
+        },
+        {
+          "info": {
+            "name": "Retrieve fields for a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/groups/:groupId/fields",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "A GUID or an integer representing a group"
+              },
+              {
+                "name": "accessKey",
+                "value": "",
+                "type": "query",
+                "description": "The Access Key for the user context"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve fields for a group"
+        },
+        {
+          "info": {
+            "name": "Update fields for a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/groups/:groupId/fields",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "A GUID or an integer representing a group"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update fields for a group"
+        },
+        {
+          "info": {
+            "name": "Retrieve the printable resources for a single group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/groups/:groupId/print",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "A GUID or an integer representing a group"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "A string that is one of \"Ticket\", \"ETicket\", or \"Namebadge\""
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "A string that is one of \"PDF\", \"PNG\", \"JPG\", \"GIF\", \"BMP\" or \"TIFF\""
+              },
+              {
+                "name": "imageDpi",
+                "value": "",
+                "type": "query",
+                "description": "An int representing the dots per inch of the images produced that is 72, 96, 150, 300 or 600. 0 for PDF"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve the printable resources for a single group"
+        },
+        {
+          "info": {
+            "name": "Retrieve groups that match provided email",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/groups/helpdesk/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path",
+                "description": "An email to search across group email fields"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve groups that match provided email"
+        },
+        {
+          "info": {
+            "name": "Retrieve the printable resources for multiple groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/groups/print",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve the printable resources for multiple groups"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

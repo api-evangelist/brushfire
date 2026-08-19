@@ -1,0 +1,107 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brushfire API: Version 2025-07-22 AccessCodes API",
+    "version": "2025-07-22"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AccessCodes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all access codes for a specific client (and additional parameters)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/accesscodes",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "query",
+                "description": "A string, a GUID, or an integer that corresponds to a specific client"
+              },
+              {
+                "name": "kind",
+                "value": "",
+                "type": "query",
+                "description": "An option string value from \"Standard\", \"Template\", or \"Dynamic\" that represents the kind of access code"
+              },
+              {
+                "name": "isRedeemed",
+                "value": "",
+                "type": "query",
+                "description": "An optional boolean value if the access code has been redeemed"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "An option string to filter access codes by name"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List all access codes for a specific client (and additional parameters)"
+        },
+        {
+          "info": {
+            "name": "Get details of a single access code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/accesscodes/:accessCodeId",
+            "params": [
+              {
+                "name": "accessCodeId",
+                "value": "",
+                "type": "path",
+                "description": "A GUID that corresponds to a specific access code"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get details of a single access code"
+        },
+        {
+          "info": {
+            "name": "Creates the specified quantity of dynamic access codes based upon the provided template code",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/accesscodes/dynamic",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates the specified quantity of dynamic access codes based upon the provided template code"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

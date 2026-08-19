@@ -1,0 +1,200 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brushfire API: Version 2025-07-22 AccessCodes Lookups API",
+    "version": "2025-07-22"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Lookups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit email to look up and create magic link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/lookups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Submit email to look up and create magic link"
+        },
+        {
+          "info": {
+            "name": "Get matching events for a lookup ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/lookups/:lookupId",
+            "params": [
+              {
+                "name": "lookupId",
+                "value": "",
+                "type": "path",
+                "description": "A Guid retrieved from performing a post to /"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get matching events for a lookup ID"
+        },
+        {
+          "info": {
+            "name": "Get matching single event for a lookup ID and eventNumber",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/lookups/:lookupId/events/:eventNumber",
+            "params": [
+              {
+                "name": "lookupId",
+                "value": "",
+                "type": "path",
+                "description": "A Guid retrieved from performing a post to /"
+              },
+              {
+                "name": "eventNumber",
+                "value": "",
+                "type": "path",
+                "description": "An integer representing a single event"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get matching single event for a lookup ID and eventNumber"
+        },
+        {
+          "info": {
+            "name": "Get attendees for the selected lookup ID and eventNumber. This optionally looks across groups and orders also",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/lookups/:lookupId/events/:eventNumber/attendees",
+            "params": [
+              {
+                "name": "lookupId",
+                "value": "",
+                "type": "path",
+                "description": "A Guid retrieved from performing a post to /"
+              },
+              {
+                "name": "eventNumber",
+                "value": "",
+                "type": "path",
+                "description": "An integer representing a single event"
+              },
+              {
+                "name": "includeGroups",
+                "value": "",
+                "type": "query",
+                "description": "Boolean to include group emails in search. Defaults to false."
+              },
+              {
+                "name": "includeOrders",
+                "value": "",
+                "type": "query",
+                "description": "Boolean to include buyer emails in search. Defaults to false."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get attendees for the selected lookup ID and eventNumber. This optionally looks across groups and orders also"
+        },
+        {
+          "info": {
+            "name": "Get group for the selected lookup ID and eventNumber",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/lookups/:lookupId/events/:eventNumber/group",
+            "params": [
+              {
+                "name": "lookupId",
+                "value": "",
+                "type": "path",
+                "description": "A Guid retrieved from performing a post to /"
+              },
+              {
+                "name": "eventNumber",
+                "value": "",
+                "type": "path",
+                "description": "An integer representing a single event"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get group for the selected lookup ID and eventNumber"
+        },
+        {
+          "info": {
+            "name": "Get orders for the selected lookup ID and eventNumber",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/lookups/:lookupId/events/:eventNumber/orders",
+            "params": [
+              {
+                "name": "lookupId",
+                "value": "",
+                "type": "path",
+                "description": "A Guid retrieved from performing a post to /"
+              },
+              {
+                "name": "eventNumber",
+                "value": "",
+                "type": "path",
+                "description": "An integer representing a single event"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get orders for the selected lookup ID and eventNumber"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,173 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brushfire API: Version 2025-07-22 AccessCodes Hooks API",
+    "version": "2025-07-22"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Hooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "For 3rd party and custom integrations to list hooks subscribed by appKey",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/hooks/list",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "For 3rd party and custom integrations to list hooks subscribed by appKey"
+        },
+        {
+          "info": {
+            "name": "For 3rd party and custom integrations to test connectivity after authentication",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/hooks/ping",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "For 3rd party and custom integrations to test connectivity after authentication"
+        },
+        {
+          "info": {
+            "name": "For 3rd party and custom integrations to view shape for `data` property of POST from Brushfire",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/hooks/poll",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "For 3rd party and custom integrations to view shape for `data` property of POST from Brushfire"
+        },
+        {
+          "info": {
+            "name": "For 3rd party and custom integrations to view shape for `data` property of POST from Brushfire",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/hooks/sample",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "For 3rd party and custom integrations to view shape for `data` property of POST from Brushfire"
+        },
+        {
+          "info": {
+            "name": "For 3rd party and custom integrations to subscribe to our notifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/hooks/subscribe",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "For 3rd party and custom integrations to subscribe to our notifications"
+        },
+        {
+          "info": {
+            "name": "For 3rd party and custom integrations to unsubscribe from our notifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brushfire.com/hooks/unsubscribe",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "For 3rd party and custom integrations to unsubscribe from our notifications"
+        },
+        {
+          "info": {
+            "name": "For 3rd party and custom integrations to update objects on existing subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.brushfire.com/hooks/update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "For 3rd party and custom integrations to update objects on existing subscriptions"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

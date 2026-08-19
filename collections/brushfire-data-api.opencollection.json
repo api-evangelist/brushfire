@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brushfire API: Version 2025-07-22 AccessCodes Data API",
+    "version": "2025-07-22"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns specialized data from custom-written queries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brushfire.com/data/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The GUID for the query you are running"
+              },
+              {
+                "name": "eventNumber",
+                "value": "",
+                "type": "query",
+                "description": "If present, an integer representing the event number"
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query",
+                "description": "If present, one of the following string values \"hour\", \"minute\", or \"day\""
+              },
+              {
+                "name": "startsAt",
+                "value": "",
+                "type": "query",
+                "description": "If present, the date/time in UTC to start data"
+              },
+              {
+                "name": "endsAt",
+                "value": "",
+                "type": "query",
+                "description": "If present, the date/time in UTC to end data"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns specialized data from custom-written queries"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
