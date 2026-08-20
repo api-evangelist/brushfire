@@ -27,6 +27,14 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/brushfire.
 tags:
 - Event Ticketing
 - Registration
+- Event
+- Ticketing
+- Check-in
+- Churches
+- Payments
+tags_raw:
+- Event Ticketing
+- Registration
 - Events
 - Ticketing
 - Check-In
@@ -42,6 +50,8 @@ apis:
   humanURL: https://developer.brushfire.com
   baseURL: https://api.brushfire.com
   tags:
+  - Access Codes
+  tags_raw:
   - AccessCodes
   properties:
   - type: OpenAPI
@@ -56,6 +66,8 @@ apis:
   humanURL: https://developer.brushfire.com
   baseURL: https://api.brushfire.com
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -126,6 +138,8 @@ apis:
   humanURL: https://developer.brushfire.com
   baseURL: https://api.brushfire.com
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -154,6 +168,8 @@ apis:
   humanURL: https://developer.brushfire.com
   baseURL: https://api.brushfire.com
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
@@ -196,6 +212,8 @@ apis:
   humanURL: https://developer.brushfire.com
   baseURL: https://api.brushfire.com
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
