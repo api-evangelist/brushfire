@@ -10,6 +10,18 @@ description: Brushfire is an event ticketing, registration, and virtual event pl
   sessions and check-in, promotions and access codes, payment profiles, and webhooks.
   The API is date-versioned through an api-version request header and authenticated
   with an App Key requested from developer.brushfire.com.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
