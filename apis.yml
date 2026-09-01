@@ -41,7 +41,7 @@ tags:
 - Registration
 - Event
 - Ticketing
-- Check-In
+- Check-in
 - Churches
 - Payments
 tags_raw:
@@ -62,7 +62,7 @@ apis:
   humanURL: https://developer.brushfire.com
   baseURL: https://api.brushfire.com
   tags:
-  - AccessCodes
+  - Access Codes
   tags_raw:
   - AccessCodes
   properties:
