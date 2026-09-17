@@ -57,22 +57,6 @@ created: '2026-07-05'
 modified: '2026-07-05'
 specificationVersion: '0.23'
 apis:
-- aid: brushfire:brushfire-accesscodes-api
-  name: Brushfire AccessCodes API
-  description: The AccessCodes API from Brushfire — 3 operation(s) for accesscodes.
-  humanURL: https://developer.brushfire.com
-  baseURL: https://api.brushfire.com
-  tags:
-  - Access Codes
-  tags_raw:
-  - AccessCodes
-  properties:
-  - type: OpenAPI
-    url: openapi/brushfire-accesscodes-api-openapi.yml
-  - type: Documentation
-    url: https://developer.brushfire.com
-  - type: APIReference
-    url: https://api.brushfire.com/swagger/index.html
 - aid: brushfire:brushfire-accounts-api
   name: Brushfire Accounts API
   description: The Accounts API from Brushfire — 3 operation(s) for accounts.
@@ -287,6 +271,20 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/brushfire-sessions-api-openapi.yml
+  - type: Documentation
+    url: https://developer.brushfire.com
+  - type: APIReference
+    url: https://api.brushfire.com/swagger/index.html
+- aid: brushfire:brushfire-access-codes-api
+  name: Brushfire Access Codes API
+  description: The Access Codes API from Brushfire — 3 operation(s) for access codes.
+  humanURL: https://developer.brushfire.com
+  baseURL: https://api.brushfire.com
+  tags:
+  - Access Codes
+  properties:
+  - type: OpenAPI
+    url: openapi/brushfire-access-codes-api-openapi.yml
   - type: Documentation
     url: https://developer.brushfire.com
   - type: APIReference
