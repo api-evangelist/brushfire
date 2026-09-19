@@ -151,6 +151,8 @@ apis:
   humanURL: https://developer.brushfire.com
   baseURL: https://api.brushfire.com
   tags:
+  - Exchange
+  tags_raw:
   - Exchanges
   properties:
   - type: OpenAPI
