@@ -1,22 +1,7 @@
 {
   "provider": "brushfire",
   "sources": [
-    "brushfire-accesscodes-api-openapi.yml",
-    "brushfire-accounts-api-openapi.yml",
-    "brushfire-attendees-api-openapi.yml",
-    "brushfire-cart-api-openapi.yml",
-    "brushfire-clients-api-openapi.yml",
-    "brushfire-data-api-openapi.yml",
-    "brushfire-events-api-openapi.yml",
-    "brushfire-exchanges-api-openapi.yml",
-    "brushfire-groups-api-openapi.yml",
-    "brushfire-hooks-api-openapi.yml",
-    "brushfire-lookups-api-openapi.yml",
-    "brushfire-orders-api-openapi.yml",
-    "brushfire-paymentprofiles-api-openapi.yml",
-    "brushfire-promotions-api-openapi.yml",
-    "brushfire-regions-api-openapi.yml",
-    "brushfire-sessions-api-openapi.yml"
+    "_original/brushfire-openapi.json"
   ],
   "outputs": [
     "brushfire-accesscodes-api-openapi.yml",
@@ -36,9 +21,49 @@
     "brushfire-regions-api-openapi.yml",
     "brushfire-sessions-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "brushfire-openapi.json: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "brushfire-openapi.json: declared missing tag: AccessCodes",
+    "brushfire-openapi.json: declared missing tag: Accounts",
+    "brushfire-openapi.json: declared missing tag: Attendees",
+    "brushfire-openapi.json: declared missing tag: Cart",
+    "brushfire-openapi.json: declared missing tag: Clients",
+    "brushfire-openapi.json: declared missing tag: Data",
+    "brushfire-openapi.json: declared missing tag: Events",
+    "brushfire-openapi.json: declared missing tag: Exchanges",
+    "brushfire-openapi.json: declared missing tag: Groups",
+    "brushfire-openapi.json: declared missing tag: Hooks",
+    "brushfire-openapi.json: declared missing tag: Lookups",
+    "brushfire-openapi.json: declared missing tag: Orders",
+    "brushfire-openapi.json: declared missing tag: PaymentProfiles",
+    "brushfire-openapi.json: declared missing tag: Promotions",
+    "brushfire-openapi.json: declared missing tag: Regions",
+    "brushfire-openapi.json: declared missing tag: Sessions",
+    "superseded outputs removed: brushfire-access-codes-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 16 total)"
+  ],
+  "skipped": [
+    "brushfire-access-codes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "brushfire-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "brushfire-attendees-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "brushfire-cart-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "brushfire-clients-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "brushfire-data-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "brushfire-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "brushfire-exchanges-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "brushfire-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "brushfire-hooks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "brushfire-lookups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "brushfire-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "brushfire-paymentprofiles-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "brushfire-promotions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "brushfire-regions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "brushfire-sessions-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: 'Brushfire API: Version 2025-07-22 AccessCodes Accounts API'
+  title: 'Brushfire API: Version 2025-07-22 Accounts API'
   version: '2025-07-22'
-  description: 'The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform. It covers events, ticket types, sections and seats, attendees, orders, the shopping cart and checkout flow, groups, sessions and check-in, promotions and access codes, payment profiles, and webhooks (Hooks). Authenticate by sending your App Key (requested at https://developer.brushfire.com/key) in the Authorization header. The API is date-versioned: send the desired version in the api-version request header (for example, 2025-07-22). This document is the live specification published at api.brushfire.com/swagger.'
+  description: The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform.
   contact:
     name: Brushfire Developers
     url: https://developer.brushfire.com
@@ -72,6 +72,8 @@ paths:
                 $ref: '#/components/schemas/ApiError'
       security:
       - apiKey: []
+      operationId: getAccountsByAccountId
+      x-operation-id-source: derived
   /accounts/auth:
     post:
       tags:
@@ -137,6 +139,8 @@ paths:
                 $ref: '#/components/schemas/ApiError'
       security:
       - apiKey: []
+      operationId: postAccountsAuth
+      x-operation-id-source: derived
   /accounts/helpdesk/{email}:
     get:
       tags:
@@ -197,8 +201,54 @@ paths:
                 $ref: '#/components/schemas/ApiError'
       security:
       - apiKey: []
+      operationId: getAccountsHelpdeskByEmail
+      x-operation-id-source: derived
 components:
   schemas:
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        Key:
+          type:
+          - string
+          - 'null'
+        Value:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ApiModelError:
+      type: object
+      properties:
+        Errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+        Message:
+          type:
+          - string
+          - 'null'
+        Data: {}
+        StackTrace:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ApiError:
+      type: object
+      properties:
+        Message:
+          type:
+          - string
+          - 'null'
+        Data: {}
+        StackTrace:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     AccountAuthOutput:
       type: object
       properties:
@@ -206,25 +256,30 @@ components:
           type: string
           format: uuid
         FirstName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         LastName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         Email:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         AccountNumber:
           type: integer
           format: int64
         AccessKey:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         IsUser:
           type: boolean
         AvatarUrl:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         IsBrushfireStaff:
           type: boolean
       additionalProperties: false
@@ -235,118 +290,32 @@ components:
           type: string
           format: uuid
         ClientKey:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         ClientNumber:
           type: integer
           format: int64
         ClientName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         ClientCity:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         ClientRegion:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         ClientCountry:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         Level:
-          type: string
-          nullable: true
-      additionalProperties: false
-    StringStringKeyValuePair:
-      type: object
-      properties:
-        Key:
-          type: string
-          nullable: true
-        Value:
-          type: string
-          nullable: true
-      additionalProperties: false
-    ApiError:
-      type: object
-      properties:
-        Message:
-          type: string
-          nullable: true
-        Data:
-          nullable: true
-        StackTrace:
-          type: string
-          nullable: true
-      additionalProperties: false
-    AccountSingleOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        AccountNumber:
-          type: integer
-          format: int64
-        Email:
-          type: string
-          nullable: true
-        FirstName:
-          type: string
-          nullable: true
-        LastName:
-          type: string
-          nullable: true
-        Street1:
-          type: string
-          nullable: true
-        Street2:
-          type: string
-          nullable: true
-        City:
-          type: string
-          nullable: true
-        Region:
-          type: string
-          nullable: true
-        Country:
-          type: string
-          nullable: true
-        PostalCode:
-          type: string
-          nullable: true
-        Phone:
-          type: string
-          nullable: true
-        Address:
-          type: string
-          nullable: true
-        CreatedAt:
-          type: string
-          format: date-time
-        IsUser:
-          type: boolean
-        AvatarUrl:
-          type: string
-          nullable: true
-        IsBrushfireStaff:
-          type: boolean
-      additionalProperties: false
-    ApiModelError:
-      type: object
-      properties:
-        Errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/StringStringKeyValuePair'
-          nullable: true
-        Message:
-          type: string
-          nullable: true
-        Data:
-          nullable: true
-        StackTrace:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     AccountAuthInput:
       required:
@@ -372,21 +341,90 @@ components:
           type: integer
           format: int64
         Email:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         FirstName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         LastName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         IsUser:
           type: boolean
         ClientRoles:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/AccountRoleOutput'
-          nullable: true
+      additionalProperties: false
+    AccountSingleOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        AccountNumber:
+          type: integer
+          format: int64
+        Email:
+          type:
+          - string
+          - 'null'
+        FirstName:
+          type:
+          - string
+          - 'null'
+        LastName:
+          type:
+          - string
+          - 'null'
+        Street1:
+          type:
+          - string
+          - 'null'
+        Street2:
+          type:
+          - string
+          - 'null'
+        City:
+          type:
+          - string
+          - 'null'
+        Region:
+          type:
+          - string
+          - 'null'
+        Country:
+          type:
+          - string
+          - 'null'
+        PostalCode:
+          type:
+          - string
+          - 'null'
+        Phone:
+          type:
+          - string
+          - 'null'
+        Address:
+          type:
+          - string
+          - 'null'
+        CreatedAt:
+          type: string
+          format: date-time
+        IsUser:
+          type: boolean
+        AvatarUrl:
+          type:
+          - string
+          - 'null'
+        IsBrushfireStaff:
+          type: boolean
       additionalProperties: false
   securitySchemes:
     apiKey:

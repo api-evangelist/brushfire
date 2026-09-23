@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: 'Brushfire API: Version 2025-07-22 AccessCodes Clients API'
+  title: 'Brushfire API: Version 2025-07-22 Clients API'
   version: '2025-07-22'
-  description: 'The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform. It covers events, ticket types, sections and seats, attendees, orders, the shopping cart and checkout flow, groups, sessions and check-in, promotions and access codes, payment profiles, and webhooks (Hooks). Authenticate by sending your App Key (requested at https://developer.brushfire.com/key) in the Authorization header. The API is date-versioned: send the desired version in the api-version request header (for example, 2025-07-22). This document is the live specification published at api.brushfire.com/swagger.'
+  description: The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform.
   contact:
     name: Brushfire Developers
     url: https://developer.brushfire.com
@@ -48,6 +48,8 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: getClients
+      x-operation-id-source: derived
   /clients/{clientId}:
     get:
       tags:
@@ -81,6 +83,8 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: getClientsByClientId
+      x-operation-id-source: derived
   /clients/{clientId}/theme:
     get:
       tags:
@@ -119,129 +123,61 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: getClientsByClientIdTheme
+      x-operation-id-source: derived
 components:
   schemas:
-    ClientSingleOutput:
+    ThemeOutput:
       type: object
       properties:
-        Id:
-          type: string
-          format: uuid
-        Name:
-          type: string
-          nullable: true
-        City:
-          type: string
-          nullable: true
-        Region:
-          type: string
-          nullable: true
-        Country:
-          type: string
-          nullable: true
-        Coordinates:
-          type: string
-          nullable: true
+        LogoUrl:
+          type:
+          - string
+          - 'null'
+        LogoPosition:
+          type:
+          - string
+          - 'null'
+        HeaderUrlLarge:
+          type:
+          - string
+          - 'null'
+        HeaderUrlMobile:
+          type:
+          - string
+          - 'null'
+        BackgroundCss:
+          type:
+          - string
+          - 'null'
+        TextColor:
+          type:
+          - string
+          - 'null'
+        LinkColor:
+          type:
+          - string
+          - 'null'
+        HomeUrl:
+          type:
+          - string
+          - 'null'
+        HeaderHtml:
+          type:
+          - string
+          - 'null'
         ClientKey:
-          type: string
-          nullable: true
-        ClientNumber:
-          type: integer
-          format: int64
-        OwnerUserId:
-          type: string
-          format: uuid
-        BillingUserId:
-          type: string
-          format: uuid
-        CrmId:
-          type: string
-          nullable: true
-        Culture:
-          type: string
-          nullable: true
-        TimeZoneId:
-          type: string
-          nullable: true
-        LegacyClientId:
-          type: integer
-          format: int64
-          nullable: true
-        PartnerId:
-          type: string
-          format: uuid
-          nullable: true
-        HubSpotCompanyId:
-          type: string
-          nullable: true
-        ChmsVendor:
-          type: string
-          nullable: true
-        ChmsQualifier:
-          type: string
-          nullable: true
-        ChmsAuthToken:
-          type: string
-          nullable: true
-        ChmsAuthSecret:
-          type: string
-          nullable: true
-        ChmsUserToken:
-          type: string
-          nullable: true
-        ChmsUserSecret:
-          type: string
-          nullable: true
-        ChmsServiceName:
-          type: string
-          nullable: true
-        ChmsHtmlTemplate:
-          type: string
-          nullable: true
-        ChmsOauthConnect:
-          type: boolean
-          nullable: true
-        ChmsIsLive:
-          type: boolean
-          nullable: true
-        CreatedAt:
-          type: string
-          format: date-time
-        IsLive:
-          type: boolean
-        PayVia:
-          type: string
-          nullable: true
-        MissingPaymentInfo:
-          type: boolean
-        FailedPaymentDetails:
-          type: string
-          nullable: true
-        CardExpire:
-          type: string
-          nullable: true
-        IsDeleted:
-          type: boolean
-        LastPaidAt:
-          type: string
-          format: date-time
-          nullable: true
-        CurrentBalance:
-          type: number
-          format: double
-        BillingTotal:
-          type: number
-          format: double
-      additionalProperties: false
-    StringStringKeyValuePair:
-      type: object
-      properties:
-        Key:
-          type: string
-          nullable: true
-        Value:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
+        ClientName:
+          type:
+          - string
+          - 'null'
+        UrlKey:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     ClientListOutput:
       type: object
@@ -253,23 +189,28 @@ components:
           type: integer
           format: int64
         ClientKey:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         Name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         CreatedAt:
           type: string
           format: date-time
         City:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         Region:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         Country:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         IsLive:
           type: boolean
         IsDeleted:
@@ -279,58 +220,170 @@ components:
       type: object
       properties:
         Errors:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/StringStringKeyValuePair'
-          nullable: true
         Message:
-          type: string
-          nullable: true
-        Data:
-          nullable: true
+          type:
+          - string
+          - 'null'
+        Data: {}
         StackTrace:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-    ThemeOutput:
+    StringStringKeyValuePair:
       type: object
       properties:
-        LogoUrl:
+        Key:
+          type:
+          - string
+          - 'null'
+        Value:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ClientSingleOutput:
+      type: object
+      properties:
+        Id:
           type: string
-          nullable: true
-        LogoPosition:
-          type: string
-          nullable: true
-        HeaderUrlLarge:
-          type: string
-          nullable: true
-        HeaderUrlMobile:
-          type: string
-          nullable: true
-        BackgroundCss:
-          type: string
-          nullable: true
-        TextColor:
-          type: string
-          nullable: true
-        LinkColor:
-          type: string
-          nullable: true
-        HomeUrl:
-          type: string
-          nullable: true
-        HeaderHtml:
-          type: string
-          nullable: true
+          format: uuid
+        Name:
+          type:
+          - string
+          - 'null'
+        City:
+          type:
+          - string
+          - 'null'
+        Region:
+          type:
+          - string
+          - 'null'
+        Country:
+          type:
+          - string
+          - 'null'
+        Coordinates:
+          type:
+          - string
+          - 'null'
         ClientKey:
+          type:
+          - string
+          - 'null'
+        ClientNumber:
+          type: integer
+          format: int64
+        OwnerUserId:
           type: string
-          nullable: true
-        ClientName:
+          format: uuid
+        BillingUserId:
           type: string
-          nullable: true
-        UrlKey:
+          format: uuid
+        CrmId:
+          type:
+          - string
+          - 'null'
+        Culture:
+          type:
+          - string
+          - 'null'
+        TimeZoneId:
+          type:
+          - string
+          - 'null'
+        LegacyClientId:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        PartnerId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        HubSpotCompanyId:
+          type:
+          - string
+          - 'null'
+        ChmsVendor:
+          type:
+          - string
+          - 'null'
+        ChmsQualifier:
+          type:
+          - string
+          - 'null'
+        ChmsAuthToken:
+          type:
+          - string
+          - 'null'
+        ChmsAuthSecret:
+          type:
+          - string
+          - 'null'
+        ChmsUserToken:
+          type:
+          - string
+          - 'null'
+        ChmsUserSecret:
+          type:
+          - string
+          - 'null'
+        ChmsServiceName:
+          type:
+          - string
+          - 'null'
+        ChmsHtmlTemplate:
+          type:
+          - string
+          - 'null'
+        ChmsOauthConnect:
+          type:
+          - boolean
+          - 'null'
+        ChmsIsLive:
+          type:
+          - boolean
+          - 'null'
+        CreatedAt:
           type: string
-          nullable: true
+          format: date-time
+        IsLive:
+          type: boolean
+        PayVia:
+          type:
+          - string
+          - 'null'
+        MissingPaymentInfo:
+          type: boolean
+        FailedPaymentDetails:
+          type:
+          - string
+          - 'null'
+        CardExpire:
+          type:
+          - string
+          - 'null'
+        IsDeleted:
+          type: boolean
+        LastPaidAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        CurrentBalance:
+          type: number
+          format: double
+        BillingTotal:
+          type: number
+          format: double
       additionalProperties: false
   securitySchemes:
     apiKey:

@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: 'Brushfire API: Version 2025-07-22 AccessCodes Orders API'
+  title: 'Brushfire API: Version 2025-07-22 Orders API'
   version: '2025-07-22'
-  description: 'The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform. It covers events, ticket types, sections and seats, attendees, orders, the shopping cart and checkout flow, groups, sessions and check-in, promotions and access codes, payment profiles, and webhooks (Hooks). Authenticate by sending your App Key (requested at https://developer.brushfire.com/key) in the Authorization header. The API is date-versioned: send the desired version in the api-version request header (for example, 2025-07-22). This document is the live specification published at api.brushfire.com/swagger.'
+  description: The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform.
   contact:
     name: Brushfire Developers
     url: https://developer.brushfire.com
@@ -16,7 +16,7 @@ paths:
     get:
       tags:
       - Orders
-      summary: Gets list of orders by eventId and/or a date range.
+      summary: Gets list of orders by eventId and/or a date range
       parameters:
       - name: eventId
         in: query
@@ -60,6 +60,8 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: getOrders
+      x-operation-id-source: derived
     post:
       tags:
       - Orders
@@ -97,6 +99,8 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: postOrders
+      x-operation-id-source: derived
   /orders/{orderId}:
     get:
       tags:
@@ -141,6 +145,8 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: getOrdersByOrderId
+      x-operation-id-source: derived
   /orders/{orderId}/fields:
     get:
       tags:
@@ -183,6 +189,8 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: getOrdersByOrderIdFields
+      x-operation-id-source: derived
     post:
       tags:
       - Orders
@@ -231,6 +239,8 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: postOrdersByOrderIdFields
+      x-operation-id-source: derived
   /orders/{orderId}/print:
     get:
       tags:
@@ -287,6 +297,8 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: getOrdersByOrderIdPrint
+      x-operation-id-source: derived
   /orders/{orderId}/resend:
     post:
       tags:
@@ -332,11 +344,13 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: postOrdersByOrderIdResend
+      x-operation-id-source: derived
   /orders/direct:
     post:
       tags:
       - Orders
-      summary: Create cart-less order for free, general admission events with no fields.
+      summary: Create cart-less order for free, general admission events with no fields
       requestBody:
         description: ''
         content:
@@ -370,6 +384,8 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: postOrdersDirect
+      x-operation-id-source: derived
   /orders/helpdesk/{email}:
     get:
       tags:
@@ -407,6 +423,8 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: getOrdersHelpdeskByEmail
+      x-operation-id-source: derived
   /orders/pos:
     post:
       tags:
@@ -445,6 +463,8 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: postOrdersPos
+      x-operation-id-source: derived
   /orders/print:
     post:
       tags:
@@ -489,11 +509,13 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: postOrdersPrint
+      x-operation-id-source: derived
   /orders/reader/start:
     post:
       tags:
       - Orders
-      summary: Prepares an order to be paid for with a Square or Stripe Reader.
+      summary: Prepares an order to be paid for with a Square or Stripe Reader
       requestBody:
         description: ''
         content:
@@ -527,6 +549,8 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: postOrdersReaderStart
+      x-operation-id-source: derived
   /orders/sms:
     post:
       tags:
@@ -565,8 +589,398 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: postOrdersSms
+      x-operation-id-source: derived
 components:
   schemas:
+    ApiModelError:
+      type: object
+      properties:
+        Errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+        Message:
+          type:
+          - string
+          - 'null'
+        Data: {}
+        StackTrace:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    OrderRelationshipOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        OrderKey:
+          type:
+          - string
+          - 'null'
+        OrderedAt:
+          type: string
+          format: date-time
+        IsAdjustment:
+          type: boolean
+        Payments:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/OrderRelationshipPaymentOutput'
+        TransactionId:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        TransactionTotal:
+          type: number
+          format: double
+          readOnly: true
+      additionalProperties: false
+    FieldUpdateInput:
+      type: object
+      properties:
+        AccessKey:
+          type:
+          - string
+          - 'null'
+        FieldValues:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/FieldInput'
+        UpdateNewOnly:
+          type: boolean
+      additionalProperties: false
+    OrderPrintInput:
+      required:
+      - Orders
+      - Type
+      type: object
+      properties:
+        Type:
+          $ref: '#/components/schemas/PrintType'
+        Orders:
+          type: array
+          items:
+            type: string
+            format: uuid
+        Format:
+          $ref: '#/components/schemas/PrintFormat'
+        ImageDpi:
+          type: integer
+          format: int32
+      additionalProperties: false
+    OrderResultOutput:
+      type: object
+      properties:
+        OrderKey:
+          type:
+          - string
+          - 'null'
+        OrderId:
+          type: string
+          format: uuid
+        ObjectNumber:
+          type: integer
+          format: int64
+        OrderTotal:
+          type: number
+          format: double
+        Quantity:
+          type: integer
+          format: int32
+        AttendeeCount:
+          type: integer
+          format: int32
+        AddonCount:
+          type: integer
+          format: int32
+        Summary:
+          type:
+          - string
+          - 'null'
+        Type:
+          type:
+          - string
+          - 'null'
+        ContactEmail:
+          type:
+          - string
+          - 'null'
+        AnyGeneratesTicket:
+          type: boolean
+      additionalProperties: false
+    DomainValidationOutput:
+      type: object
+      properties:
+        AllowDomains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        DisallowDomains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    PrintFormat:
+      enum:
+      - PDF
+      - PNG
+      - JPG
+      - GIF
+      - BMP
+      - TIFF
+      - ZPL
+      type: string
+    OrderReaderStartOutput:
+      type: object
+      properties:
+        ReferenceId:
+          type: string
+          format: uuid
+        CartId:
+          type:
+          - string
+          - 'null'
+        ExternalId:
+          type:
+          - string
+          - 'null'
+        AppFee:
+          type: number
+          format: double
+        Description:
+          type:
+          - string
+          - 'null'
+        Metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+      additionalProperties: false
+    FieldInput:
+      required:
+      - Id
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Value: {}
+      additionalProperties: false
+    OrderReaderStartInput:
+      required:
+      - BillingFirstName
+      - BillingLastName
+      - CartId
+      type: object
+      properties:
+        CartId:
+          minLength: 1
+          type: string
+        AccessKey:
+          type:
+          - string
+          - 'null'
+        BillingFirstName:
+          maxLength: 50
+          minLength: 0
+          type: string
+        BillingLastName:
+          maxLength: 50
+          minLength: 0
+          type: string
+        ContactEmail:
+          maxLength: 100
+          minLength: 0
+          pattern: ^([0-9A-Za-zÀ-ÖØ-öø-ÿ']+[-._+&])*[0-9A-Za-zÀ-ÖØ-öø-ÿ_']+@([-0-9A-Za-zÀ-ÖØ-öø-ÿ]+[.])+[a-zA-Z]{2,63}$
+          type:
+          - string
+          - 'null'
+        ContactPhone:
+          maxLength: 50
+          minLength: 0
+          pattern: ^((?:[\.\*\(\)\-\/\s\+]*\d){10,})(.*)$
+          type:
+          - string
+          - 'null'
+        Notes:
+          type:
+          - string
+          - 'null'
+        IsKiosk:
+          type: boolean
+        SendEmail:
+          type: boolean
+        Via:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    OrderAttendeeSummaryOutput:
+      type: object
+      properties:
+        AttendeeId:
+          type: string
+          format: uuid
+        AttendeeNumber:
+          type: integer
+          format: int64
+        AttendeeCode:
+          type:
+          - string
+          - 'null'
+        AcctCode:
+          type:
+          - string
+          - 'null'
+        HasName:
+          type: boolean
+        FirstName:
+          type:
+          - string
+          - 'null'
+        LastName:
+          type:
+          - string
+          - 'null'
+        SectionName:
+          type:
+          - string
+          - 'null'
+        RowName:
+          type:
+          - string
+          - 'null'
+        SeatLabel:
+          type:
+          - string
+          - 'null'
+        CreatedAt:
+          type: string
+          format: date-time
+        TypeId:
+          type: string
+          format: uuid
+        TypeName:
+          type:
+          - string
+          - 'null'
+        GroupId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        GroupName:
+          type:
+          - string
+          - 'null'
+        OrderQuantity:
+          type: integer
+          format: int32
+        Status:
+          type:
+          - string
+          - 'null'
+        IsCompleted:
+          type: boolean
+        IsPreRegistered:
+          type: boolean
+        IsGift:
+          type: boolean
+        ShareEmail:
+          type:
+          - string
+          - 'null'
+        GiftingEnabled:
+          type: boolean
+        GiftLastSentAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        UnitPrice:
+          type: number
+          format: double
+        UnitDiscount:
+          type: number
+          format: double
+        UnitAddons:
+          type: number
+          format: double
+        UnitFee:
+          type: number
+          format: double
+        UnitTax:
+          type: number
+          format: double
+        UnitDelivery:
+          type: number
+          description: Deprecated. Delivery has been folded into API.Models.OrderAttendeeSummaryOutput.UnitFee; this property is kept for backwards compatibility but should be ignored.
+          format: double
+        UnitChange:
+          type: number
+          format: double
+        UnitTotal:
+          type: number
+          format: double
+        UnitFees:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/UnitFeeLineItemOutput'
+        DisplayPrice:
+          type: number
+          format: double
+          readOnly: true
+        DisplayTotal:
+          type: number
+          format: double
+          readOnly: true
+        PriceDescription:
+          type:
+          - string
+          - 'null'
+        IsInclusiveFees:
+          type: boolean
+        IsInclusiveTaxes:
+          type: boolean
+        Refundable:
+          type: boolean
+        Promotions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/OrderPromotionOutput'
+        IsAddon:
+          type: boolean
+        ExternalId:
+          type:
+          - string
+          - 'null'
+        ExternalDescription:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     InvoiceRelativeDays:
       enum:
       - UponReceipt
@@ -578,6 +992,430 @@ components:
       - SevenDaysBeforeEvent
       - DueByEvent
       type: string
+    OrderCreateDirectInput:
+      required:
+      - EventNumber
+      - FirstName
+      - LastName
+      - NumberOfTickets
+      type: object
+      properties:
+        AccessKey:
+          type:
+          - string
+          - 'null'
+        FirstName:
+          maxLength: 50
+          minLength: 0
+          type: string
+        LastName:
+          maxLength: 50
+          minLength: 0
+          type: string
+        Organization:
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        Street1:
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        Street2:
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        City:
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        Region:
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        Country:
+          maxLength: 2
+          minLength: 2
+          type:
+          - string
+          - 'null'
+        PostalCode:
+          maxLength: 20
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        Phone:
+          maxLength: 100
+          minLength: 0
+          pattern: ^((?:[\.\*\(\)\-\/\s\+]*\d){10,})(.*)$
+          type:
+          - string
+          - 'null'
+        Email:
+          maxLength: 100
+          minLength: 0
+          pattern: ^([0-9A-Za-zÀ-ÖØ-öø-ÿ']+[-._+&])*[0-9A-Za-zÀ-ÖØ-öø-ÿ_']+@([-0-9A-Za-zÀ-ÖØ-öø-ÿ]+[.])+[a-zA-Z]{2,63}$
+          type:
+          - string
+          - 'null'
+        IsPOS:
+          type: boolean
+        EventNumber:
+          type: integer
+          format: int64
+        NumberOfTickets:
+          maximum: 200
+          minimum: 1
+          type: integer
+          format: int32
+        Notes:
+          type:
+          - string
+          - 'null'
+        SendEmail:
+          type: boolean
+        ShipMethod:
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+          description: Deprecated. Delivery methods are no longer supported; this field is accepted for backwards compatibility but ignored.
+      additionalProperties: false
+    OrderListPaymentOutput:
+      type: object
+      properties:
+        PaymentMethodId:
+          type: string
+          format: uuid
+        PaymentMethod:
+          type:
+          - string
+          - 'null'
+        PaymentNumber:
+          type:
+          - string
+          - 'null'
+        TransactionId:
+          type:
+          - string
+          - 'null'
+        TransactionTotal:
+          type: number
+          format: double
+        ExternalInvoiceId:
+          type:
+          - string
+          - 'null'
+        CreditNumber:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        PaidInFull:
+          type:
+          - boolean
+          - 'null'
+      additionalProperties: false
+    FeeItemType:
+      enum:
+      - Fee
+      - Tax
+      type: string
+    OrderSmsInput:
+      type: object
+      properties:
+        OrderId:
+          type: string
+          format: uuid
+        PhoneNumber:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    OrderConfirmationResendInput:
+      type: object
+      properties:
+        AccessKey:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    OrderHelpdeskOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        OrderKey:
+          type:
+          - string
+          - 'null'
+        ObjectNumber:
+          type: integer
+          format: int64
+        ObjectTitle:
+          type:
+          - string
+          - 'null'
+        ObjectSubtitle:
+          type:
+          - string
+          - 'null'
+        OrderedAt:
+          type: string
+          format: date-time
+        OrderedAtLocal:
+          type: string
+          format: date-time
+        FirstName:
+          type:
+          - string
+          - 'null'
+        LastName:
+          type:
+          - string
+          - 'null'
+        Amount:
+          type: number
+          format: double
+        IsAdjustment:
+          type: boolean
+        Culture:
+          type:
+          - string
+          - 'null'
+        FlagState:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    OrderSingleOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        OrderKey:
+          type:
+          - string
+          - 'null'
+        ObjectNumber:
+          type: integer
+          format: int64
+        AttendeeCount:
+          type: integer
+          format: int32
+        OrderedAt:
+          type: string
+          format: date-time
+        OrderedAtLocal:
+          type: string
+          format: date-time
+        IsAdjustment:
+          type: boolean
+        IsPOS:
+          type: boolean
+        IsKiosk:
+          type: boolean
+        IsApp:
+          type: boolean
+        AcctCode:
+          type:
+          - string
+          - 'null'
+        BillingName:
+          type:
+          - string
+          - 'null'
+        BillingAddress:
+          type:
+          - string
+          - 'null'
+        BillingFirstName:
+          type:
+          - string
+          - 'null'
+        BillingLastName:
+          type:
+          - string
+          - 'null'
+        BillingOrganization:
+          type:
+          - string
+          - 'null'
+        BillingStreet1:
+          type:
+          - string
+          - 'null'
+        BillingStreet2:
+          type:
+          - string
+          - 'null'
+        BillingCity:
+          type:
+          - string
+          - 'null'
+        BillingRegion:
+          type:
+          - string
+          - 'null'
+        BillingPostal:
+          type:
+          - string
+          - 'null'
+        BillingCountry:
+          type:
+          - string
+          - 'null'
+        ContactPhone:
+          type:
+          - string
+          - 'null'
+        ContactEmail:
+          type:
+          - string
+          - 'null'
+        DeliveryMethod:
+          type:
+          - string
+          - 'null'
+        HostAddress:
+          type:
+          - string
+          - 'null'
+        ThirdPartyCustomerId:
+          type:
+          - string
+          - 'null'
+        SubTotal:
+          type: number
+          format: double
+        Total:
+          type: number
+          format: double
+        Summary:
+          type:
+          - string
+          - 'null'
+        IsAttendeeTypeAdjustment:
+          type: boolean
+        AttendeeTotal:
+          type: number
+          format: double
+        DiscountTotal:
+          type: number
+          format: double
+        OrderFee:
+          type: number
+          description: Deprecated. Order fees have been folded into API.Models.OrderSingleOutput.FeeTotal; this property is kept for backwards compatibility but should be ignored.
+          format: double
+        FeeTotal:
+          type: number
+          format: double
+        TaxTotal:
+          type: number
+          format: double
+        DeliveryTotal:
+          type: number
+          description: Deprecated. Delivery has been folded into API.Models.OrderSingleOutput.FeeTotal; this property is kept for backwards compatibility but should be ignored.
+          format: double
+        TaxLabel:
+          type:
+          - string
+          - 'null'
+        UndistributedFees:
+          type: number
+          format: double
+        FeesTotal:
+          type: number
+          format: double
+        Fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/FieldOutput'
+        Attendees:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/OrderAttendeeSummaryOutput'
+        RelatedOrders:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/OrderRelationshipOutput'
+        Payments:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/OrderListPaymentOutput'
+        PaymentMethod:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        TransactionId:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        TransactionTotal:
+          type: number
+          format: double
+          readOnly: true
+        ExternalInvoiceId:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        QRCode:
+          type:
+          - string
+          - 'null'
+        Notes:
+          type:
+          - string
+          - 'null'
+        ExternalId:
+          type:
+          - string
+          - 'null'
+        PaidInFull:
+          type: boolean
+        ExternalCustomerId:
+          type:
+          - string
+          - 'null'
+        FlagState:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    OrderPromotionOutput:
+      type: object
+      properties:
+        PromotionId:
+          type: string
+          format: uuid
+        DiscountAmount:
+          type: number
+          format: double
+      additionalProperties: false
     OrderListOutput:
       type: object
       properties:
@@ -585,8 +1423,9 @@ components:
           type: string
           format: uuid
         OrderKey:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         OrderedAt:
           type: string
           format: date-time
@@ -600,25 +1439,30 @@ components:
         IsApp:
           type: boolean
         AcctCode:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         ObjectNumber:
           type: integer
           format: int64
         IsAdjustment:
           type: boolean
         BillingFirstName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         BillingLastName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         HostAddress:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         ThirdPartyCustomerId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         SubTotal:
           type: number
           format: double
@@ -648,10 +1492,11 @@ components:
           type: number
           format: double
         Payments:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/OrderListPaymentOutput'
-          nullable: true
         TransactionTotal:
           type: number
           format: double
@@ -661,30 +1506,37 @@ components:
           format: uuid
           readOnly: true
         PaymentMethod:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
         PaymentNumber:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
         TransactionId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
         ExternalInvoiceId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
         Summary:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         ContactEmail:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         ContactPhone:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         OrderFee:
           type: number
           description: Deprecated. Order fees have been folded into API.Models.OrderListOutput.FeeTotal; this property is kept for backwards compatibility but should be ignored.
@@ -693,81 +1545,63 @@ components:
           type: integer
           format: int32
         PlacedThrough:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         CustomerAccountNumber:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int64
-          nullable: true
         Notes:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         ExternalId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         PaidInFull:
           type: boolean
         ExternalCustomerId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         FlagState:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-    FieldOptionFullOutput:
+    StringStringKeyValuePair:
       type: object
       properties:
-        Id:
-          type: string
-          format: uuid
-        Label:
-          type: string
-          nullable: true
-        Capacity:
-          type: integer
-          format: int32
-          nullable: true
-        Quantity:
-          type: integer
-          format: int32
-        HasUnitPrice:
-          type: boolean
-        UnitPrice:
-          type: number
-          format: double
-          nullable: true
-        UnitTax:
-          type: number
-          format: double
-          nullable: true
-        IsInclusiveTaxes:
-          type: boolean
-        DisplayPrice:
-          type: number
-          format: double
-          nullable: true
-        PriceDescription:
-          type: string
-          nullable: true
-        IsSelected:
-          type: boolean
-        HasCapacity:
-          type: boolean
-        SpotsRemaining:
-          type: integer
-          format: int32
-          nullable: true
-        RemainingText:
-          type: string
-          nullable: true
+        Key:
+          type:
+          - string
+          - 'null'
+        Value:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
+    PrintType:
+      enum:
+      - Ticket
+      - ETicket
+      - Receipt
+      - MailingLabel
+      - WillCall
+      - NameBadge
+      - Season
+      type: string
     UnitFeeLineItemOutput:
       type: object
       properties:
         Label:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Display label (e.g. "Service Fee", "Sales Tax").
-          nullable: true
         FeeType:
           $ref: '#/components/schemas/FeeItemType'
         Amount:
@@ -775,37 +1609,168 @@ components:
           description: The evaluated amount for this line item.
           format: double
       additionalProperties: false
-      description: "A single fee or tax line item evaluated for an attendee from the attendee\r\ntype's customFees configuration. On cart outputs this is a live evaluation;\r\non order outputs it is the snapshot of what was collected at purchase time."
-    StringStringKeyValuePair:
+      description: 'A single fee or tax line item evaluated for an attendee from the attendee
+
+        type''s customFees configuration. On cart outputs this is a live evaluation;
+
+        on order outputs it is the snapshot of what was collected at purchase time.'
+    FieldOptionFullOutput:
       type: object
       properties:
-        Key:
+        Id:
           type: string
-          nullable: true
-        Value:
-          type: string
-          nullable: true
+          format: uuid
+        Label:
+          type:
+          - string
+          - 'null'
+        Capacity:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        Quantity:
+          type: integer
+          format: int32
+        HasUnitPrice:
+          type: boolean
+        UnitPrice:
+          type:
+          - number
+          - 'null'
+          format: double
+        UnitTax:
+          type:
+          - number
+          - 'null'
+          format: double
+        IsInclusiveTaxes:
+          type: boolean
+        DisplayPrice:
+          type:
+          - number
+          - 'null'
+          format: double
+        PriceDescription:
+          type:
+          - string
+          - 'null'
+        IsSelected:
+          type: boolean
+        HasCapacity:
+          type: boolean
+        SpotsRemaining:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        RemainingText:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-    OrderPrintInput:
-      required:
-      - Orders
-      - Type
+    FieldOutput:
       type: object
       properties:
+        Id:
+          type: string
+          format: uuid
+        Label:
+          type:
+          - string
+          - 'null'
         Type:
-          $ref: '#/components/schemas/PrintType'
-        Orders:
-          type: array
+          type:
+          - string
+          - 'null'
+        Value: {}
+        DisplayValue:
+          type:
+          - string
+          - 'null'
+        ValidationExpression:
+          type:
+          - string
+          - 'null'
+        IsRequired:
+          type: boolean
+        Notes:
+          type:
+          - string
+          - 'null'
+        ErrorMessage:
+          type:
+          - string
+          - 'null'
+        IsDisabled:
+          type: boolean
+        IsSensitive:
+          type: boolean
+        SpecialFieldId:
+          type: string
+          format: uuid
+        ParentOptionId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        ParentFieldId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        FormObjectId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        Options:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/FieldOptionFullOutput'
+        ParentOptionIsSelected:
+          type: boolean
+        HasError:
+          type: boolean
+        HasRelevantOutput:
+          type: boolean
+        MinDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        MaxDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        AttendeeTypes:
+          type:
+          - array
+          - 'null'
           items:
             type: string
             format: uuid
-        Format:
-          $ref: '#/components/schemas/PrintFormat'
-        ImageDpi:
-          type: integer
-          format: int32
+        RemoteUrl:
+          type:
+          - string
+          - 'null'
+        SelectedOptionId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          readOnly: true
+        Confirm:
+          type: boolean
+        DomainValidation:
+          $ref: '#/components/schemas/DomainValidationOutput'
+        DisplayIsPrimary:
+          type: boolean
       additionalProperties: false
-    OrderReaderStartInput:
+    OrderCreatePOSInput:
       required:
       - BillingFirstName
       - BillingLastName
@@ -816,8 +1781,9 @@ components:
           minLength: 1
           type: string
         AccessKey:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         BillingFirstName:
           maxLength: 50
           minLength: 0
@@ -826,28 +1792,124 @@ components:
           maxLength: 50
           minLength: 0
           type: string
+        BillingPostalCode:
+          maxLength: 20
+          minLength: 0
+          type:
+          - string
+          - 'null'
         ContactEmail:
           maxLength: 100
           minLength: 0
           pattern: ^([0-9A-Za-zÀ-ÖØ-öø-ÿ']+[-._+&])*[0-9A-Za-zÀ-ÖØ-öø-ÿ_']+@([-0-9A-Za-zÀ-ÖØ-öø-ÿ]+[.])+[a-zA-Z]{2,63}$
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         ContactPhone:
           maxLength: 50
           minLength: 0
           pattern: ^((?:[\.\*\(\)\-\/\s\+]*\d){10,})(.*)$
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
+        PaymentMethodId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        TransactionId:
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        TokenInfo:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+        CardName:
+          type:
+          - string
+          - 'null'
+        CardNumber:
+          pattern: ^(\d{4})(?:[- ]?)(\d{4}|\d{6})(?:[- ]?)((\d{4})(?:[- ]?)(\d{4})|(\d{5}))$
+          type:
+          - string
+          - 'null'
+        CardCsc:
+          pattern: ^\d{3,4}$
+          type:
+          - string
+          - 'null'
+        CardMonth:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        CardYear:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        RoutingNumber:
+          pattern: ^\d{9}$
+          type:
+          - string
+          - 'null'
+        AccountNumber:
+          type:
+          - string
+          - 'null'
+        CheckPONumber:
+          type:
+          - string
+          - 'null'
+        PaidInFull:
+          type:
+          - boolean
+          - 'null'
+        CreditCode:
+          pattern: ^\d{4}-\d{4}-\d{4}$
+          type:
+          - string
+          - 'null'
+          description: The event credit code to apply to the order.
+          example: 1234-5678-9012
+        PaymentNumberForStorage:
+          type:
+          - string
+          - 'null'
+          readOnly: true
         Notes:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         IsKiosk:
           type: boolean
         SendEmail:
           type: boolean
         Via:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
+        IsInvoice:
+          type: boolean
+        InvoiceDue:
+          $ref: '#/components/schemas/InvoiceRelativeDays'
+        ExchangeId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        OriginalOrderId:
+          type:
+          - string
+          - 'null'
+          format: uuid
       additionalProperties: false
     OrderCreateOutput:
       type: object
@@ -855,16 +1917,19 @@ components:
         RequiresAction:
           type: boolean
         ActionInfo:
-          type: object
+          type:
+          - object
+          - 'null'
           additionalProperties:
-            type: string
-            nullable: true
-          nullable: true
+            type:
+            - string
+            - 'null'
         Results:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/OrderResultOutput'
-          nullable: true
       additionalProperties: false
     OrderCreateInput:
       required:
@@ -883,12 +1948,14 @@ components:
           minLength: 1
           type: string
         AccessKey:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         CustomerAccountNumber:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int64
-          nullable: true
         BillingFirstName:
           maxLength: 50
           minLength: 0
@@ -904,8 +1971,9 @@ components:
         BillingStreet2:
           maxLength: 100
           minLength: 0
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         BillingCity:
           maxLength: 100
           minLength: 0
@@ -926,970 +1994,127 @@ components:
           maxLength: 100
           minLength: 0
           pattern: ^([0-9A-Za-zÀ-ÖØ-öø-ÿ']+[-._+&])*[0-9A-Za-zÀ-ÖØ-öø-ÿ_']+@([-0-9A-Za-zÀ-ÖØ-öø-ÿ]+[.])+[a-zA-Z]{2,63}$
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         ContactPhone:
           maxLength: 50
           minLength: 0
           pattern: ^((?:[\.\*\(\)\-\/\s\+]*\d){10,})(.*)$
           type: string
         PaymentMethodId:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
         TransactionId:
           maxLength: 255
           minLength: 0
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         TokenInfo:
-          type: object
+          type:
+          - object
+          - 'null'
           additionalProperties:
-            type: string
-            nullable: true
-          nullable: true
+            type:
+            - string
+            - 'null'
         CardName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         CardNumber:
           pattern: ^(\d{4})(?:[- ]?)(\d{4}|\d{6})(?:[- ]?)((\d{4})(?:[- ]?)(\d{4})|(\d{5}))$
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         CardCsc:
           pattern: ^\d{3,4}$
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         CardMonth:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         CardYear:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         RoutingNumber:
           pattern: ^\d{9}$
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         AccountNumber:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         CheckPONumber:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         PaidInFull:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
         CreditCode:
           pattern: ^\d{4}-\d{4}-\d{4}$
-          type: string
+          type:
+          - string
+          - 'null'
           description: The event credit code to apply to the order.
-          nullable: true
           example: 1234-5678-9012
         PaymentNumberForStorage:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
         Notes:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         IsKiosk:
           type: boolean
         SendEmail:
           type: boolean
         Via:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         IsInvoice:
           type: boolean
         InvoiceDue:
           $ref: '#/components/schemas/InvoiceRelativeDays'
         ExchangeId:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
         OriginalOrderId:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
       additionalProperties: false
-    OrderCreateDirectInput:
-      required:
-      - EventNumber
-      - FirstName
-      - LastName
-      - NumberOfTickets
-      type: object
-      properties:
-        AccessKey:
-          type: string
-          nullable: true
-        FirstName:
-          maxLength: 50
-          minLength: 0
-          type: string
-        LastName:
-          maxLength: 50
-          minLength: 0
-          type: string
-        Organization:
-          maxLength: 100
-          minLength: 0
-          type: string
-          nullable: true
-        Street1:
-          maxLength: 100
-          minLength: 0
-          type: string
-          nullable: true
-        Street2:
-          maxLength: 100
-          minLength: 0
-          type: string
-          nullable: true
-        City:
-          maxLength: 100
-          minLength: 0
-          type: string
-          nullable: true
-        Region:
-          maxLength: 100
-          minLength: 0
-          type: string
-          nullable: true
-        Country:
-          maxLength: 2
-          minLength: 2
-          type: string
-          nullable: true
-        PostalCode:
-          maxLength: 20
-          minLength: 0
-          type: string
-          nullable: true
-        Phone:
-          maxLength: 100
-          minLength: 0
-          pattern: ^((?:[\.\*\(\)\-\/\s\+]*\d){10,})(.*)$
-          type: string
-          nullable: true
-        Email:
-          maxLength: 100
-          minLength: 0
-          pattern: ^([0-9A-Za-zÀ-ÖØ-öø-ÿ']+[-._+&])*[0-9A-Za-zÀ-ÖØ-öø-ÿ_']+@([-0-9A-Za-zÀ-ÖØ-öø-ÿ]+[.])+[a-zA-Z]{2,63}$
-          type: string
-          nullable: true
-        IsPOS:
-          type: boolean
-        EventNumber:
-          type: integer
-          format: int64
-        NumberOfTickets:
-          maximum: 200
-          minimum: 1
-          type: integer
-          format: int32
-        Notes:
-          type: string
-          nullable: true
-        SendEmail:
-          type: boolean
-        ShipMethod:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Deprecated. Delivery methods are no longer supported; this field is accepted for backwards compatibility but ignored.
-          nullable: true
-      additionalProperties: false
-    OrderRelationshipOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        OrderKey:
-          type: string
-          nullable: true
-        OrderedAt:
-          type: string
-          format: date-time
-        IsAdjustment:
-          type: boolean
-        Payments:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrderRelationshipPaymentOutput'
-          nullable: true
-        TransactionId:
-          type: string
-          nullable: true
-          readOnly: true
-        TransactionTotal:
-          type: number
-          format: double
-          readOnly: true
-      additionalProperties: false
-    OrderHelpdeskOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        OrderKey:
-          type: string
-          nullable: true
-        ObjectNumber:
-          type: integer
-          format: int64
-        ObjectTitle:
-          type: string
-          nullable: true
-        ObjectSubtitle:
-          type: string
-          nullable: true
-        OrderedAt:
-          type: string
-          format: date-time
-        OrderedAtLocal:
-          type: string
-          format: date-time
-        FirstName:
-          type: string
-          nullable: true
-        LastName:
-          type: string
-          nullable: true
-        Amount:
-          type: number
-          format: double
-        IsAdjustment:
-          type: boolean
-        Culture:
-          type: string
-          nullable: true
-        FlagState:
-          type: string
-          nullable: true
-      additionalProperties: false
-    OrderPromotionOutput:
-      type: object
-      properties:
-        PromotionId:
-          type: string
-          format: uuid
-        DiscountAmount:
-          type: number
-          format: double
-      additionalProperties: false
-    FieldOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        Label:
-          type: string
-          nullable: true
-        Type:
-          type: string
-          nullable: true
-        Value:
-          nullable: true
-        DisplayValue:
-          type: string
-          nullable: true
-        ValidationExpression:
-          type: string
-          nullable: true
-        IsRequired:
-          type: boolean
-        Notes:
-          type: string
-          nullable: true
-        ErrorMessage:
-          type: string
-          nullable: true
-        IsDisabled:
-          type: boolean
-        IsSensitive:
-          type: boolean
-        SpecialFieldId:
-          type: string
-          format: uuid
-        ParentOptionId:
-          type: string
-          format: uuid
-          nullable: true
-        ParentFieldId:
-          type: string
-          format: uuid
-          nullable: true
-        FormObjectId:
-          type: string
-          format: uuid
-          nullable: true
-        Options:
-          type: array
-          items:
-            $ref: '#/components/schemas/FieldOptionFullOutput'
-          nullable: true
-        ParentOptionIsSelected:
-          type: boolean
-        HasError:
-          type: boolean
-        HasRelevantOutput:
-          type: boolean
-        MinDate:
-          type: string
-          format: date-time
-          nullable: true
-        MaxDate:
-          type: string
-          format: date-time
-          nullable: true
-        AttendeeTypes:
-          type: array
-          items:
-            type: string
-            format: uuid
-          nullable: true
-        RemoteUrl:
-          type: string
-          nullable: true
-        SelectedOptionId:
-          type: string
-          format: uuid
-          nullable: true
-          readOnly: true
-        Confirm:
-          type: boolean
-        DomainValidation:
-          $ref: '#/components/schemas/DomainValidationOutput'
-        DisplayIsPrimary:
-          type: boolean
-      additionalProperties: false
-    FieldUpdateInput:
-      type: object
-      properties:
-        AccessKey:
-          type: string
-          nullable: true
-        FieldValues:
-          type: array
-          items:
-            $ref: '#/components/schemas/FieldInput'
-          nullable: true
-        UpdateNewOnly:
-          type: boolean
-      additionalProperties: false
-    ApiModelError:
-      type: object
-      properties:
-        Errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/StringStringKeyValuePair'
-          nullable: true
-        Message:
-          type: string
-          nullable: true
-        Data:
-          nullable: true
-        StackTrace:
-          type: string
-          nullable: true
-      additionalProperties: false
-    OrderCreatePOSInput:
-      required:
-      - BillingFirstName
-      - BillingLastName
-      - CartId
-      type: object
-      properties:
-        CartId:
-          minLength: 1
-          type: string
-        AccessKey:
-          type: string
-          nullable: true
-        BillingFirstName:
-          maxLength: 50
-          minLength: 0
-          type: string
-        BillingLastName:
-          maxLength: 50
-          minLength: 0
-          type: string
-        BillingPostalCode:
-          maxLength: 20
-          minLength: 0
-          type: string
-          nullable: true
-        ContactEmail:
-          maxLength: 100
-          minLength: 0
-          pattern: ^([0-9A-Za-zÀ-ÖØ-öø-ÿ']+[-._+&])*[0-9A-Za-zÀ-ÖØ-öø-ÿ_']+@([-0-9A-Za-zÀ-ÖØ-öø-ÿ]+[.])+[a-zA-Z]{2,63}$
-          type: string
-          nullable: true
-        ContactPhone:
-          maxLength: 50
-          minLength: 0
-          pattern: ^((?:[\.\*\(\)\-\/\s\+]*\d){10,})(.*)$
-          type: string
-          nullable: true
-        PaymentMethodId:
-          type: string
-          format: uuid
-          nullable: true
-        TransactionId:
-          maxLength: 255
-          minLength: 0
-          type: string
-          nullable: true
-        TokenInfo:
-          type: object
-          additionalProperties:
-            type: string
-            nullable: true
-          nullable: true
-        CardName:
-          type: string
-          nullable: true
-        CardNumber:
-          pattern: ^(\d{4})(?:[- ]?)(\d{4}|\d{6})(?:[- ]?)((\d{4})(?:[- ]?)(\d{4})|(\d{5}))$
-          type: string
-          nullable: true
-        CardCsc:
-          pattern: ^\d{3,4}$
-          type: string
-          nullable: true
-        CardMonth:
-          type: integer
-          format: int32
-          nullable: true
-        CardYear:
-          type: integer
-          format: int32
-          nullable: true
-        RoutingNumber:
-          pattern: ^\d{9}$
-          type: string
-          nullable: true
-        AccountNumber:
-          type: string
-          nullable: true
-        CheckPONumber:
-          type: string
-          nullable: true
-        PaidInFull:
-          type: boolean
-          nullable: true
-        CreditCode:
-          pattern: ^\d{4}-\d{4}-\d{4}$
-          type: string
-          description: The event credit code to apply to the order.
-          nullable: true
-          example: 1234-5678-9012
-        PaymentNumberForStorage:
-          type: string
-          nullable: true
-          readOnly: true
-        Notes:
-          type: string
-          nullable: true
-        IsKiosk:
-          type: boolean
-        SendEmail:
-          type: boolean
-        Via:
-          type: string
-          nullable: true
-        IsInvoice:
-          type: boolean
-        InvoiceDue:
-          $ref: '#/components/schemas/InvoiceRelativeDays'
-        ExchangeId:
-          type: string
-          format: uuid
-          nullable: true
-        OriginalOrderId:
-          type: string
-          format: uuid
-          nullable: true
-      additionalProperties: false
-    FeeItemType:
-      enum:
-      - Fee
-      - Tax
-      type: string
     OrderRelationshipPaymentOutput:
       type: object
       properties:
         TransactionId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         TransactionTotal:
           type: number
           format: double
         ExternalInvoiceId:
-          type: string
-          nullable: true
-      additionalProperties: false
-    PrintType:
-      enum:
-      - Ticket
-      - ETicket
-      - Receipt
-      - MailingLabel
-      - WillCall
-      - NameBadge
-      - Season
-      type: string
-    DomainValidationOutput:
-      type: object
-      properties:
-        AllowDomains:
-          type: array
-          items:
-            type: string
-          nullable: true
-        DisallowDomains:
-          type: array
-          items:
-            type: string
-          nullable: true
-      additionalProperties: false
-    OrderListPaymentOutput:
-      type: object
-      properties:
-        PaymentMethodId:
-          type: string
-          format: uuid
-        PaymentMethod:
-          type: string
-          nullable: true
-        PaymentNumber:
-          type: string
-          nullable: true
-        TransactionId:
-          type: string
-          nullable: true
-        TransactionTotal:
-          type: number
-          format: double
-        ExternalInvoiceId:
-          type: string
-          nullable: true
-        CreditNumber:
-          type: integer
-          format: int64
-          nullable: true
-        PaidInFull:
-          type: boolean
-          nullable: true
-      additionalProperties: false
-    OrderAttendeeSummaryOutput:
-      type: object
-      properties:
-        AttendeeId:
-          type: string
-          format: uuid
-        AttendeeNumber:
-          type: integer
-          format: int64
-        AttendeeCode:
-          type: string
-          nullable: true
-        AcctCode:
-          type: string
-          nullable: true
-        HasName:
-          type: boolean
-        FirstName:
-          type: string
-          nullable: true
-        LastName:
-          type: string
-          nullable: true
-        SectionName:
-          type: string
-          nullable: true
-        RowName:
-          type: string
-          nullable: true
-        SeatLabel:
-          type: string
-          nullable: true
-        CreatedAt:
-          type: string
-          format: date-time
-        TypeId:
-          type: string
-          format: uuid
-        TypeName:
-          type: string
-          nullable: true
-        GroupId:
-          type: string
-          format: uuid
-          nullable: true
-        GroupName:
-          type: string
-          nullable: true
-        OrderQuantity:
-          type: integer
-          format: int32
-        Status:
-          type: string
-          nullable: true
-        IsCompleted:
-          type: boolean
-        IsPreRegistered:
-          type: boolean
-        IsGift:
-          type: boolean
-        ShareEmail:
-          type: string
-          nullable: true
-        GiftingEnabled:
-          type: boolean
-        GiftLastSentAt:
-          type: string
-          format: date-time
-          nullable: true
-        UnitPrice:
-          type: number
-          format: double
-        UnitDiscount:
-          type: number
-          format: double
-        UnitAddons:
-          type: number
-          format: double
-        UnitFee:
-          type: number
-          format: double
-        UnitTax:
-          type: number
-          format: double
-        UnitDelivery:
-          type: number
-          description: Deprecated. Delivery has been folded into API.Models.OrderAttendeeSummaryOutput.UnitFee; this property is kept for backwards compatibility but should be ignored.
-          format: double
-        UnitChange:
-          type: number
-          format: double
-        UnitTotal:
-          type: number
-          format: double
-        UnitFees:
-          type: array
-          items:
-            $ref: '#/components/schemas/UnitFeeLineItemOutput'
-          nullable: true
-        DisplayPrice:
-          type: number
-          format: double
-          readOnly: true
-        DisplayTotal:
-          type: number
-          format: double
-          readOnly: true
-        PriceDescription:
-          type: string
-          nullable: true
-        IsInclusiveFees:
-          type: boolean
-        IsInclusiveTaxes:
-          type: boolean
-        Refundable:
-          type: boolean
-        Promotions:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrderPromotionOutput'
-          nullable: true
-        IsAddon:
-          type: boolean
-        ExternalId:
-          type: string
-          nullable: true
-        ExternalDescription:
-          type: string
-          nullable: true
-      additionalProperties: false
-    OrderConfirmationResendInput:
-      type: object
-      properties:
-        AccessKey:
-          type: string
-          nullable: true
-      additionalProperties: false
-    OrderResultOutput:
-      type: object
-      properties:
-        OrderKey:
-          type: string
-          nullable: true
-        OrderId:
-          type: string
-          format: uuid
-        ObjectNumber:
-          type: integer
-          format: int64
-        OrderTotal:
-          type: number
-          format: double
-        Quantity:
-          type: integer
-          format: int32
-        AttendeeCount:
-          type: integer
-          format: int32
-        AddonCount:
-          type: integer
-          format: int32
-        Summary:
-          type: string
-          nullable: true
-        Type:
-          type: string
-          nullable: true
-        ContactEmail:
-          type: string
-          nullable: true
-        AnyGeneratesTicket:
-          type: boolean
-      additionalProperties: false
-    OrderSingleOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        OrderKey:
-          type: string
-          nullable: true
-        ObjectNumber:
-          type: integer
-          format: int64
-        AttendeeCount:
-          type: integer
-          format: int32
-        OrderedAt:
-          type: string
-          format: date-time
-        OrderedAtLocal:
-          type: string
-          format: date-time
-        IsAdjustment:
-          type: boolean
-        IsPOS:
-          type: boolean
-        IsKiosk:
-          type: boolean
-        IsApp:
-          type: boolean
-        AcctCode:
-          type: string
-          nullable: true
-        BillingName:
-          type: string
-          nullable: true
-        BillingAddress:
-          type: string
-          nullable: true
-        BillingFirstName:
-          type: string
-          nullable: true
-        BillingLastName:
-          type: string
-          nullable: true
-        BillingOrganization:
-          type: string
-          nullable: true
-        BillingStreet1:
-          type: string
-          nullable: true
-        BillingStreet2:
-          type: string
-          nullable: true
-        BillingCity:
-          type: string
-          nullable: true
-        BillingRegion:
-          type: string
-          nullable: true
-        BillingPostal:
-          type: string
-          nullable: true
-        BillingCountry:
-          type: string
-          nullable: true
-        ContactPhone:
-          type: string
-          nullable: true
-        ContactEmail:
-          type: string
-          nullable: true
-        DeliveryMethod:
-          type: string
-          nullable: true
-        HostAddress:
-          type: string
-          nullable: true
-        ThirdPartyCustomerId:
-          type: string
-          nullable: true
-        SubTotal:
-          type: number
-          format: double
-        Total:
-          type: number
-          format: double
-        Summary:
-          type: string
-          nullable: true
-        IsAttendeeTypeAdjustment:
-          type: boolean
-        AttendeeTotal:
-          type: number
-          format: double
-        DiscountTotal:
-          type: number
-          format: double
-        OrderFee:
-          type: number
-          description: Deprecated. Order fees have been folded into API.Models.OrderSingleOutput.FeeTotal; this property is kept for backwards compatibility but should be ignored.
-          format: double
-        FeeTotal:
-          type: number
-          format: double
-        TaxTotal:
-          type: number
-          format: double
-        DeliveryTotal:
-          type: number
-          description: Deprecated. Delivery has been folded into API.Models.OrderSingleOutput.FeeTotal; this property is kept for backwards compatibility but should be ignored.
-          format: double
-        TaxLabel:
-          type: string
-          nullable: true
-        UndistributedFees:
-          type: number
-          format: double
-        FeesTotal:
-          type: number
-          format: double
-        Fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/FieldOutput'
-          nullable: true
-        Attendees:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrderAttendeeSummaryOutput'
-          nullable: true
-        RelatedOrders:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrderRelationshipOutput'
-          nullable: true
-        Payments:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrderListPaymentOutput'
-          nullable: true
-        PaymentMethod:
-          type: string
-          nullable: true
-          readOnly: true
-        TransactionId:
-          type: string
-          nullable: true
-          readOnly: true
-        TransactionTotal:
-          type: number
-          format: double
-          readOnly: true
-        ExternalInvoiceId:
-          type: string
-          nullable: true
-          readOnly: true
-        QRCode:
-          type: string
-          nullable: true
-        Notes:
-          type: string
-          nullable: true
-        ExternalId:
-          type: string
-          nullable: true
-        PaidInFull:
-          type: boolean
-        ExternalCustomerId:
-          type: string
-          nullable: true
-        FlagState:
-          type: string
-          nullable: true
-      additionalProperties: false
-    OrderSmsInput:
-      type: object
-      properties:
-        OrderId:
-          type: string
-          format: uuid
-        PhoneNumber:
-          type: string
-          nullable: true
-      additionalProperties: false
-    PrintFormat:
-      enum:
-      - PDF
-      - PNG
-      - JPG
-      - GIF
-      - BMP
-      - TIFF
-      - ZPL
-      type: string
-    OrderReaderStartOutput:
-      type: object
-      properties:
-        ReferenceId:
-          type: string
-          format: uuid
-        CartId:
-          type: string
-          nullable: true
-        ExternalId:
-          type: string
-          nullable: true
-        AppFee:
-          type: number
-          format: double
-        Description:
-          type: string
-          nullable: true
-        Metadata:
-          type: object
-          additionalProperties:
-            type: string
-            nullable: true
-          nullable: true
-      additionalProperties: false
-    FieldInput:
-      required:
-      - Id
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        Value:
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
   securitySchemes:
     apiKey:

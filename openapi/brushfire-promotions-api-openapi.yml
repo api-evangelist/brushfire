@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: 'Brushfire API: Version 2025-07-22 AccessCodes Promotions API'
+  title: 'Brushfire API: Version 2025-07-22 Promotions API'
   version: '2025-07-22'
-  description: 'The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform. It covers events, ticket types, sections and seats, attendees, orders, the shopping cart and checkout flow, groups, sessions and check-in, promotions and access codes, payment profiles, and webhooks (Hooks). Authenticate by sending your App Key (requested at https://developer.brushfire.com/key) in the Authorization header. The API is date-versioned: send the desired version in the api-version request header (for example, 2025-07-22). This document is the live specification published at api.brushfire.com/swagger.'
+  description: The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform.
   contact:
     name: Brushfire Developers
     url: https://developer.brushfire.com
@@ -63,6 +63,8 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: getPromotions
+      x-operation-id-source: derived
   /promotions/{promotionId}:
     get:
       tags:
@@ -96,11 +98,13 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: getPromotionsByPromotionId
+      x-operation-id-source: derived
   /promotions/dynamic:
     post:
       tags:
       - Promotions
-      summary: Creates the specified quantity of dynamic promotions based upon the provided template code
+      summary: Creates the specified quantity of dynamic promotions based upon the provided…
       requestBody:
         description: ''
         content:
@@ -138,6 +142,8 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: postPromotionsDynamic
+      x-operation-id-source: derived
   /promotions/import:
     post:
       tags:
@@ -180,51 +186,40 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: postPromotionsImport
+      x-operation-id-source: derived
 components:
   schemas:
-    PromotionListOutput:
+    StringStringKeyValuePair:
       type: object
       properties:
-        Id:
-          type: string
-          format: uuid
-        Description:
-          type: string
-          nullable: true
-        StartsAt:
-          type: string
-          format: date-time
-          nullable: true
-        EndsAt:
-          type: string
-          format: date-time
-          nullable: true
-        Group:
-          type: string
-          nullable: true
-        Kind:
-          type: string
-          nullable: true
-        IsSingleUse:
-          type: boolean
-        IsRedeemed:
-          type: boolean
-        AdminVisible:
-          type: boolean
-        InternetVisible:
-          type: boolean
-        Amount:
-          type: number
-          format: double
-        IsPercentage:
-          type: boolean
-        AutoCalculate:
-          type: boolean
-        Names:
-          type: array
+        Key:
+          type:
+          - string
+          - 'null'
+        Value:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ApiModelError:
+      type: object
+      properties:
+        Errors:
+          type:
+          - array
+          - 'null'
           items:
-            type: string
-          nullable: true
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+        Message:
+          type:
+          - string
+          - 'null'
+        Data: {}
+        StackTrace:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     PromotionCreateInput:
       required:
@@ -253,12 +248,119 @@ components:
           type: string
           format: uuid
         AttendeeTypes:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
             format: uuid
-          nullable: true
       additionalProperties: false
+    PromotionCreateOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Description:
+          type:
+          - string
+          - 'null'
+        StartsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        EndsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        Group:
+          type:
+          - string
+          - 'null'
+        Kind:
+          type:
+          - string
+          - 'null'
+        IsSingleUse:
+          type: boolean
+        IsRedeemed:
+          type: boolean
+        AdminVisible:
+          type: boolean
+        InternetVisible:
+          type: boolean
+        Amount:
+          type: number
+          format: double
+        IsPercentage:
+          type: boolean
+        AutoCalculate:
+          type: boolean
+        Names:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    PromotionListOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Description:
+          type:
+          - string
+          - 'null'
+        StartsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        EndsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        Group:
+          type:
+          - string
+          - 'null'
+        Kind:
+          type:
+          - string
+          - 'null'
+        IsSingleUse:
+          type: boolean
+        IsRedeemed:
+          type: boolean
+        AdminVisible:
+          type: boolean
+        InternetVisible:
+          type: boolean
+        Amount:
+          type: number
+          format: double
+        IsPercentage:
+          type: boolean
+        AutoCalculate:
+          type: boolean
+        Names:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    PromotionKind:
+      enum:
+      - Standard
+      - Template
+      - Dynamic
+      type: string
     PromotionSingleOutput:
       type: object
       properties:
@@ -266,22 +368,27 @@ components:
           type: string
           format: uuid
         Description:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         StartsAt:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
         EndsAt:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
         Group:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         Kind:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         IsSingleUse:
           type: boolean
         IsRedeemed:
@@ -317,75 +424,24 @@ components:
         AllInGroup:
           type: boolean
         Names:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
-          nullable: true
         RelatedPromotions:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
             format: uuid
-          nullable: true
         Events:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/PromotionEventOutput'
-          nullable: true
-      additionalProperties: false
-    StringStringKeyValuePair:
-      type: object
-      properties:
-        Key:
-          type: string
-          nullable: true
-        Value:
-          type: string
-          nullable: true
-      additionalProperties: false
-    PromotionCreateOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        Description:
-          type: string
-          nullable: true
-        StartsAt:
-          type: string
-          format: date-time
-          nullable: true
-        EndsAt:
-          type: string
-          format: date-time
-          nullable: true
-        Group:
-          type: string
-          nullable: true
-        Kind:
-          type: string
-          nullable: true
-        IsSingleUse:
-          type: boolean
-        IsRedeemed:
-          type: boolean
-        AdminVisible:
-          type: boolean
-        InternetVisible:
-          type: boolean
-        Amount:
-          type: number
-          format: double
-        IsPercentage:
-          type: boolean
-        AutoCalculate:
-          type: boolean
-        Names:
-          type: array
-          items:
-            type: string
-          nullable: true
       additionalProperties: false
     PromotionCreateImportInput:
       required:
@@ -401,29 +457,6 @@ components:
           items:
             type: string
       additionalProperties: false
-    ApiModelError:
-      type: object
-      properties:
-        Errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/StringStringKeyValuePair'
-          nullable: true
-        Message:
-          type: string
-          nullable: true
-        Data:
-          nullable: true
-        StackTrace:
-          type: string
-          nullable: true
-      additionalProperties: false
-    PromotionKind:
-      enum:
-      - Standard
-      - Template
-      - Dynamic
-      type: string
   securitySchemes:
     apiKey:
       type: apiKey

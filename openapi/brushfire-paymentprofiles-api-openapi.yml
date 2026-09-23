@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: 'Brushfire API: Version 2025-07-22 AccessCodes PaymentProfiles API'
+  title: 'Brushfire API: Version 2025-07-22 Payment Profiles API'
   version: '2025-07-22'
-  description: 'The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform. It covers events, ticket types, sections and seats, attendees, orders, the shopping cart and checkout flow, groups, sessions and check-in, promotions and access codes, payment profiles, and webhooks (Hooks). Authenticate by sending your App Key (requested at https://developer.brushfire.com/key) in the Authorization header. The API is date-versioned: send the desired version in the api-version request header (for example, 2025-07-22). This document is the live specification published at api.brushfire.com/swagger.'
+  description: The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform.
   contact:
     name: Brushfire Developers
     url: https://developer.brushfire.com
@@ -48,6 +48,8 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: getPaymentprofiles
+      x-operation-id-source: derived
   /paymentprofiles/{paymentProfileId}:
     get:
       tags:
@@ -81,11 +83,13 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: getPaymentprofilesByPaymentProfileId
+      x-operation-id-source: derived
   /paymentprofiles/{paymentProfileId}/locations:
     get:
       tags:
       - PaymentProfiles
-      summary: Returns the locations associated with the merchant ID of a given payment profile.
+      summary: Returns the locations associated with the merchant ID of a given payment profile
       parameters:
       - name: paymentProfileId
         in: path
@@ -118,11 +122,13 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: getPaymentprofilesByPaymentProfileIdLocations
+      x-operation-id-source: derived
   /paymentprofiles/{paymentProfileId}/terminals:
     get:
       tags:
       - PaymentProfiles
-      summary: Returns all terminals registered to the account associated with the supplied payment profile
+      summary: Returns all terminals registered to the account associated with the supplied…
       parameters:
       - name: paymentProfileId
         in: path
@@ -155,6 +161,8 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: getPaymentprofilesByPaymentProfileIdTerminals
+      x-operation-id-source: derived
     post:
       tags:
       - PaymentProfiles
@@ -199,6 +207,8 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: postPaymentprofilesByPaymentProfileIdTerminals
+      x-operation-id-source: derived
 components:
   schemas:
     PaymentMethodListOutput:
@@ -208,45 +218,75 @@ components:
           type: string
           format: uuid
         Name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         IsEnabled:
           type: boolean
+      additionalProperties: false
+    TerminalOutput:
+      type: object
+      properties:
+        Id:
+          type:
+          - string
+          - 'null'
+        SerialNumber:
+          type:
+          - string
+          - 'null'
+        Name:
+          type:
+          - string
+          - 'null'
+        Display:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     PaymentProfileConfigOutput:
       type: object
       properties:
         LocationId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         LocationName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         MerchantId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         MerchantName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         AccessToken:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         Currency:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         InternalDescription:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         Invoice:
           $ref: '#/components/schemas/PaymentProfileConfigInvoiceItem'
         Scopes:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
-          nullable: true
         Status:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         AllowCards:
           type: boolean
         AllowWallets:
@@ -260,73 +300,27 @@ components:
         AllowGiftCards:
           type: boolean
       additionalProperties: false
-    TerminalOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          nullable: true
-        SerialNumber:
-          type: string
-          nullable: true
-        Name:
-          type: string
-          nullable: true
-        Display:
-          type: string
-          nullable: true
-      additionalProperties: false
-    StringStringKeyValuePair:
-      type: object
-      properties:
-        Key:
-          type: string
-          nullable: true
-        Value:
-          type: string
-          nullable: true
-      additionalProperties: false
-    TerminalCreateOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          nullable: true
-        SerialNumber:
-          type: string
-          nullable: true
-        PairingCode:
-          type: string
-          nullable: true
-      additionalProperties: false
-    TerminalCreateInput:
-      type: object
-      properties:
-        LocationId:
-          type: string
-          nullable: true
-        PairingCode:
-          type: string
-          nullable: true
-      additionalProperties: false
-    PaymentProfileSingleOutput:
+    PaymentProfileListOutput:
       type: object
       properties:
         Id:
           type: string
           format: uuid
         Name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         AccountName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         GatewayId:
           type: string
           format: uuid
         GatewayName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         SupportsAutoFees:
           type: boolean
         SupportsSideloading:
@@ -339,16 +333,19 @@ components:
           type: integer
           format: int32
         Options:
-          type: object
+          type:
+          - object
+          - 'null'
           additionalProperties:
-            type: string
-            nullable: true
-          nullable: true
+            type:
+            - string
+            - 'null'
         ElectronicPaymentMethods:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/PaymentMethodListOutput'
-          nullable: true
         Config:
           $ref: '#/components/schemas/PaymentProfileConfigOutput'
       additionalProperties: false
@@ -356,18 +353,85 @@ components:
       type: object
       properties:
         Errors:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/StringStringKeyValuePair'
-          nullable: true
         Message:
-          type: string
-          nullable: true
-        Data:
-          nullable: true
+          type:
+          - string
+          - 'null'
+        Data: {}
         StackTrace:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    PaymentProfileSingleOutput:
+      type: object
+      properties:
+        Id:
           type: string
-          nullable: true
+          format: uuid
+        Name:
+          type:
+          - string
+          - 'null'
+        AccountName:
+          type:
+          - string
+          - 'null'
+        GatewayId:
+          type: string
+          format: uuid
+        GatewayName:
+          type:
+          - string
+          - 'null'
+        SupportsAutoFees:
+          type: boolean
+        SupportsSideloading:
+          type: boolean
+        AllowsReferenceSales:
+          type: boolean
+        AllowsStandaloneCredits:
+          type: boolean
+        ReferenceDayLimit:
+          type: integer
+          format: int32
+        Options:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+        ElectronicPaymentMethods:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PaymentMethodListOutput'
+        Config:
+          $ref: '#/components/schemas/PaymentProfileConfigOutput'
+      additionalProperties: false
+    TerminalCreateOutput:
+      type: object
+      properties:
+        Id:
+          type:
+          - string
+          - 'null'
+        SerialNumber:
+          type:
+          - string
+          - 'null'
+        PairingCode:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     PaymentProfileConfigInvoiceItem:
       type: object
@@ -380,66 +444,50 @@ components:
           type: integer
           format: int32
       additionalProperties: false
+    TerminalCreateInput:
+      type: object
+      properties:
+        LocationId:
+          type:
+          - string
+          - 'null'
+        PairingCode:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     LocationSingleOutput:
       type: object
       properties:
         Id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         Name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         Address:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
         IsSelected:
           type: boolean
         IsActive:
           type: boolean
       additionalProperties: false
-    PaymentProfileListOutput:
+    StringStringKeyValuePair:
       type: object
       properties:
-        Id:
-          type: string
-          format: uuid
-        Name:
-          type: string
-          nullable: true
-        AccountName:
-          type: string
-          nullable: true
-        GatewayId:
-          type: string
-          format: uuid
-        GatewayName:
-          type: string
-          nullable: true
-        SupportsAutoFees:
-          type: boolean
-        SupportsSideloading:
-          type: boolean
-        AllowsReferenceSales:
-          type: boolean
-        AllowsStandaloneCredits:
-          type: boolean
-        ReferenceDayLimit:
-          type: integer
-          format: int32
-        Options:
-          type: object
-          additionalProperties:
-            type: string
-            nullable: true
-          nullable: true
-        ElectronicPaymentMethods:
-          type: array
-          items:
-            $ref: '#/components/schemas/PaymentMethodListOutput'
-          nullable: true
-        Config:
-          $ref: '#/components/schemas/PaymentProfileConfigOutput'
+        Key:
+          type:
+          - string
+          - 'null'
+        Value:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
   securitySchemes:
     apiKey:

@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: 'Brushfire API: Version 2025-07-22 AccessCodes Lookups API'
+  title: 'Brushfire API: Version 2025-07-22 Lookups API'
   version: '2025-07-22'
-  description: 'The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform. It covers events, ticket types, sections and seats, attendees, orders, the shopping cart and checkout flow, groups, sessions and check-in, promotions and access codes, payment profiles, and webhooks (Hooks). Authenticate by sending your App Key (requested at https://developer.brushfire.com/key) in the Authorization header. The API is date-versioned: send the desired version in the api-version request header (for example, 2025-07-22). This document is the live specification published at api.brushfire.com/swagger.'
+  description: The Brushfire REST API provides programmatic access to the Brushfire event ticketing and registration platform.
   contact:
     name: Brushfire Developers
     url: https://developer.brushfire.com
@@ -50,6 +50,8 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: postLookups
+      x-operation-id-source: derived
   /lookups/{lookupId}:
     get:
       tags:
@@ -83,6 +85,8 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: getLookupsByLookupId
+      x-operation-id-source: derived
   /lookups/{lookupId}/events/{eventNumber}:
     get:
       tags:
@@ -123,11 +127,13 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: getLookupsByLookupIdEventsByEventNumber
+      x-operation-id-source: derived
   /lookups/{lookupId}/events/{eventNumber}/attendees:
     get:
       tags:
       - Lookups
-      summary: Get attendees for the selected lookup ID and eventNumber. This optionally looks across groups and orders also
+      summary: Get attendees for the selected lookup ID and eventNumber.
       parameters:
       - name: lookupId
         in: path
@@ -179,6 +185,8 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: getLookupsByLookupIdEventsByEventNumberAttendees
+      x-operation-id-source: derived
   /lookups/{lookupId}/events/{eventNumber}/group:
     get:
       tags:
@@ -219,6 +227,8 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: getLookupsByLookupIdEventsByEventNumberGroup
+      x-operation-id-source: derived
   /lookups/{lookupId}/events/{eventNumber}/orders:
     get:
       tags:
@@ -263,67 +273,187 @@ paths:
                 $ref: '#/components/schemas/ApiModelError'
       security:
       - apiKey: []
+      operationId: getLookupsByLookupIdEventsByEventNumberOrders
+      x-operation-id-source: derived
 components:
   schemas:
-    EventDateItem:
+    LookupAttendeeResultOutput:
       type: object
       properties:
-        DoorsAt:
+        Id:
           type: string
+          format: uuid
+        AttendeeNumber:
+          type: integer
+          format: int64
+        Status:
+          type:
+          - string
+          - 'null'
+        IsCompleted:
+          type: boolean
+        IsGift:
+          type: boolean
+        IsPreRegistered:
+          type: boolean
+        ShareEmail:
+          type:
+          - string
+          - 'null'
+        GiftingEnabled:
+          type: boolean
+        GiftLastSentAt:
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
-        StartsAt:
+        GiftLastSentAtLocal:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          readOnly: true
+        TimeZoneId:
+          type:
+          - string
+          - 'null'
+        FirstName:
+          type:
+          - string
+          - 'null'
+        LastName:
+          type:
+          - string
+          - 'null'
+        Name:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        AttendeeTypeId:
           type: string
+          format: uuid
+        TypeName:
+          type:
+          - string
+          - 'null'
+        TypeAmount:
+          type: number
+          format: double
+        TypeDisplayAmount:
+          type: number
+          format: double
+        SectionName:
+          type:
+          - string
+          - 'null'
+        RowName:
+          type:
+          - string
+          - 'null'
+        SeatLabel:
+          type:
+          - string
+          - 'null'
+        Amount:
+          type: number
+          format: double
+        Addons:
+          type: number
+          format: double
+        Discounts:
+          type: number
+          format: double
+        SeatInfo:
+          type:
+          - string
+          - 'null'
+        Culture:
+          type:
+          - string
+          - 'null'
+        GroupId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        GroupName:
+          type:
+          - string
+          - 'null'
+        GroupEmail:
+          type:
+          - string
+          - 'null'
+        AttendeeDisplay:
+          $ref: '#/components/schemas/AttendeeDisplayOutput'
+        AttendeeDisplayLines:
+          $ref: '#/components/schemas/AttendeeDisplayOutput'
+        DisplayPrice:
+          type: number
+          format: double
+          readOnly: true
+        DisplayTotal:
+          type: number
+          format: double
+          readOnly: true
+        PriceDescription:
+          type:
+          - string
+          - 'null'
+        HasPaymentsToMake:
+          type: boolean
+        DonatingBackEnabled:
+          type: boolean
+        ChangesAreBlocked:
+          type: boolean
+        ChangesAreBlockedAfter:
+          type:
+          - string
+          - 'null'
           format: date-time
-        EndsAt:
-          type: string
-          format: date-time
-          nullable: true
+        HasPendingSignatures:
+          type: boolean
+        AllSignaturesComplete:
+          type: boolean
+        ShareEnabled:
+          type: boolean
+        TicketInfo:
+          $ref: '#/components/schemas/TicketInfoOutput'
       additionalProperties: false
-    LookupResultOutput:
+    LookupEventResultOutput:
       type: object
       properties:
-        Upcoming:
-          type: array
-          items:
-            $ref: '#/components/schemas/LookupEventResultOutput'
-          nullable: true
-        Past:
-          type: array
-          items:
-            $ref: '#/components/schemas/LookupEventResultOutput'
-          nullable: true
-        Email:
-          type: string
-          nullable: true
+        Event:
+          $ref: '#/components/schemas/EventListOutput'
+        HasGroup:
+          type: boolean
+        HasOrders:
+          type: boolean
+        ShowAttendees:
+          type: boolean
       additionalProperties: false
-    EventDateOutput:
+    DateDisplayOutput:
       type: object
       properties:
-        DoorsAt:
-          type: string
-          format: date-time
-          nullable: true
-        StartsAt:
-          type: string
-          format: date-time
-        EndsAt:
-          type: string
-          format: date-time
-          nullable: true
-      additionalProperties: false
-    AttendeeDisplayOutput:
-      type: object
-      properties:
-        Line1:
-          type: string
-          nullable: true
-        Line2:
-          type: string
-          nullable: true
-        Line3:
-          type: string
-          nullable: true
+        Months:
+          type:
+          - string
+          - 'null'
+        Dates:
+          type:
+          - string
+          - 'null'
+        Days:
+          type:
+          - string
+          - 'null'
+        Times:
+          type:
+          - string
+          - 'null'
+        IsOngoing:
+          type: boolean
       additionalProperties: false
     LookupCreateInput:
       required:
@@ -335,28 +465,368 @@ components:
           pattern: ^([0-9A-Za-zÀ-ÖØ-öø-ÿ']+[-._+&])*[0-9A-Za-zÀ-ÖØ-öø-ÿ_']+@([-0-9A-Za-zÀ-ÖØ-öø-ÿ]+[.])+[a-zA-Z]{2,63}$
           type: string
         EventNumber:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int64
-          nullable: true
         VerrisSubdomain:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         VerrisCode:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         VerrisUid:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-    StringStringKeyValuePair:
+    ApiModelError:
       type: object
       properties:
-        Key:
+        Errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+        Message:
+          type:
+          - string
+          - 'null'
+        Data: {}
+        StackTrace:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    FlexPassCheckinItem:
+      type: object
+      properties:
+        EventId:
           type: string
-          nullable: true
-        Value:
+          format: uuid
+        EventNumber:
+          type: integer
+          format: int64
+        Title:
+          type:
+          - string
+          - 'null'
+        CheckedInAt:
           type: string
-          nullable: true
+          format: date-time
+        SessionName:
+          type:
+          - string
+          - 'null'
+        AttendeeCheckinId:
+          type: string
+          format: uuid
+        EventSessionId:
+          type: string
+          format: uuid
+        SessionNumber:
+          type: integer
+          format: int64
+        TimeZoneId:
+          type:
+          - string
+          - 'null'
+        CheckedInAtLocal:
+          type: string
+          format: date-time
+          readOnly: true
+        Culture:
+          type:
+          - string
+          - 'null'
+        Dates:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EventDateItem'
+        StartsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          readOnly: true
+        TitleInfo:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+      additionalProperties: false
+    AttendeeDisplayOutput:
+      type: object
+      properties:
+        Line1:
+          type:
+          - string
+          - 'null'
+        Line2:
+          type:
+          - string
+          - 'null'
+        Line3:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    TicketInfoOutput:
+      type: object
+      properties:
+        AttendeeTypeName:
+          type:
+          - string
+          - 'null'
+        AttendeeName:
+          type:
+          - string
+          - 'null'
+        Title:
+          type:
+          - string
+          - 'null'
+        Section:
+          type:
+          - string
+          - 'null'
+        RowLabel:
+          type:
+          - string
+          - 'null'
+        Row:
+          type:
+          - string
+          - 'null'
+        Seat:
+          type:
+          - string
+          - 'null'
+        FlexSummary:
+          type:
+          - string
+          - 'null'
+        Field1Label:
+          type:
+          - string
+          - 'null'
+        Field1Value:
+          type:
+          - string
+          - 'null'
+        Field2Label:
+          type:
+          - string
+          - 'null'
+        Field2Value:
+          type:
+          - string
+          - 'null'
+        Field3Label:
+          type:
+          - string
+          - 'null'
+        Field3Value:
+          type:
+          - string
+          - 'null'
+        ImageUrl:
+          type:
+          - string
+          - 'null'
+        TicketRenderType:
+          $ref: '#/components/schemas/TicketRenderType'
+        TicketNotes:
+          type:
+          - string
+          - 'null'
+        TicketAd:
+          type:
+          - string
+          - 'null'
+        EventDate:
+          type:
+          - string
+          - 'null'
+        EventTime:
+          type:
+          - string
+          - 'null'
+        EventDoorTime:
+          type:
+          - string
+          - 'null'
+        EventTitle:
+          type:
+          - string
+          - 'null'
+        QrImageUrl:
+          type:
+          - string
+          - 'null'
+        QrText:
+          type:
+          - string
+          - 'null'
+        PassUrl:
+          type:
+          - string
+          - 'null'
+        WalletUrl:
+          type:
+          - string
+          - 'null'
+        BundledPassUrl:
+          type:
+          - string
+          - 'null'
+        BundledWalletUrl:
+          type:
+          - string
+          - 'null'
+        PrintUrl:
+          type:
+          - string
+          - 'null'
+        BundledPrintUrl:
+          type:
+          - string
+          - 'null'
+        EditUrl:
+          type:
+          - string
+          - 'null'
+        FlexPassRedemptionsUsed:
+          type:
+          - string
+          - 'null'
+        FlexPassRedemptions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/FlexPassCheckinItem'
+        IsFlexOrderOrGroupTicket:
+          type: boolean
+        TicketColor:
+          type:
+          - string
+          - 'null'
+        TicketClassName:
+          type:
+          - string
+          - 'null'
+        EventContactInfo:
+          type:
+          - string
+          - 'null'
+        OrderInfo:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+        AttendeesDescription:
+          type:
+          - string
+          - 'null'
+        TimeSlotName:
+          type:
+          - string
+          - 'null'
+        SharedCapacityName:
+          type:
+          - string
+          - 'null'
+        LocationInfo:
+          type:
+          - string
+          - 'null'
+        DateInfo:
+          type:
+          - string
+          - 'null'
+        BundledTicketUrl:
+          type:
+          - string
+          - 'null'
+        IsBundledTicket:
+          type: boolean
+        StartsEndsSameDay:
+          type: boolean
+        Coordinates:
+          type:
+          - string
+          - 'null'
+        Address:
+          type:
+          - string
+          - 'null'
+        MapAddress:
+          type:
+          - string
+          - 'null'
+        ContactEmail:
+          type:
+          - string
+          - 'null'
+        ContactPhone:
+          type:
+          - string
+          - 'null'
+        IsFlexPass:
+          type: boolean
+      additionalProperties: false
+    LookupGroupResultOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        GroupNumber:
+          type: integer
+          format: int64
+        Name:
+          type:
+          - string
+          - 'null'
+        AttendeeCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    TicketRenderType:
+      enum:
+      - Assigned
+      - AssignedSection
+      - GeneralAdmission
+      - FlexPass
+      - TimeSlot
+      - Groups
+      - Orders
+      type: string
+    EventDateItem:
+      type: object
+      properties:
+        DoorsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        StartsAt:
+          type: string
+          format: date-time
+        EndsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
       additionalProperties: false
     LookupOrderResultOutput:
       type: object
@@ -365,8 +835,9 @@ components:
           type: string
           format: uuid
         OrderKey:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         OrderedAt:
           type: string
           format: date-time
@@ -374,19 +845,22 @@ components:
           type: string
           format: date-time
         TimeZoneId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         BillingName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         Amount:
           type: number
           format: double
         IsAdjustment:
           type: boolean
         Culture:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         AttendeeCount:
           type: integer
           format: int32
@@ -395,31 +869,39 @@ components:
       type: object
       properties:
         Title:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         Subtitle:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         UrlKey:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         ClientKey:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         ClientName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         Culture:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         DateInfo:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         DateInfoList:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
-          nullable: true
         SoldOut:
           type: boolean
         IsSticky:
@@ -430,8 +912,9 @@ components:
         IsAssigned:
           type: boolean
         LocationName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         SessionCount:
           type: integer
           format: int32
@@ -446,57 +929,70 @@ components:
           type: number
           format: double
         MapUrl:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         PromoImageUrl:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         CategoryId:
           type: integer
           format: int32
         CategoryName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         SpotsRemaining:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         SpotsTaken:
           type: integer
           format: int32
         ShowRemaining:
           type: boolean
         RemainingText:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         Verbiage:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         Dates:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/EventDateOutput'
-          nullable: true
         AlternateTitle:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
         TimeZoneId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         AreaName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         AreaKey:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         PaymentProfileId:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
         AcctCode:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         IsHidden:
           type: boolean
         IsFlexPass:
@@ -504,415 +1000,54 @@ components:
         IsExchangeable:
           type: boolean
       additionalProperties: false
-    DateDisplayOutput:
+    EventDateOutput:
       type: object
       properties:
-        Months:
-          type: string
-          nullable: true
-        Dates:
-          type: string
-          nullable: true
-        Days:
-          type: string
-          nullable: true
-        Times:
-          type: string
-          nullable: true
-        IsOngoing:
-          type: boolean
-      additionalProperties: false
-    ApiModelError:
-      type: object
-      properties:
-        Errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/StringStringKeyValuePair'
-          nullable: true
-        Message:
-          type: string
-          nullable: true
-        Data:
-          nullable: true
-        StackTrace:
-          type: string
-          nullable: true
-      additionalProperties: false
-    LookupGroupResultOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        GroupNumber:
-          type: integer
-          format: int64
-        Name:
-          type: string
-          nullable: true
-        AttendeeCount:
-          type: integer
-          format: int32
-      additionalProperties: false
-    LookupEventResultOutput:
-      type: object
-      properties:
-        Event:
-          $ref: '#/components/schemas/EventListOutput'
-        HasGroup:
-          type: boolean
-        HasOrders:
-          type: boolean
-        ShowAttendees:
-          type: boolean
-      additionalProperties: false
-    FlexPassCheckinItem:
-      type: object
-      properties:
-        EventId:
-          type: string
-          format: uuid
-        EventNumber:
-          type: integer
-          format: int64
-        Title:
-          type: string
-          nullable: true
-        CheckedInAt:
-          type: string
+        DoorsAt:
+          type:
+          - string
+          - 'null'
           format: date-time
-        SessionName:
-          type: string
-          nullable: true
-        AttendeeCheckinId:
-          type: string
-          format: uuid
-        EventSessionId:
-          type: string
-          format: uuid
-        SessionNumber:
-          type: integer
-          format: int64
-        TimeZoneId:
-          type: string
-          nullable: true
-        CheckedInAtLocal:
-          type: string
-          format: date-time
-          readOnly: true
-        Culture:
-          type: string
-          nullable: true
-        Dates:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventDateItem'
-          nullable: true
         StartsAt:
           type: string
           format: date-time
-          nullable: true
-          readOnly: true
-        TitleInfo:
-          type: string
-          nullable: true
-          readOnly: true
+        EndsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
       additionalProperties: false
-    TicketRenderType:
-      enum:
-      - Assigned
-      - AssignedSection
-      - GeneralAdmission
-      - FlexPass
-      - TimeSlot
-      - Groups
-      - Orders
-      type: string
-    TicketInfoOutput:
+    StringStringKeyValuePair:
       type: object
       properties:
-        AttendeeTypeName:
-          type: string
-          nullable: true
-        AttendeeName:
-          type: string
-          nullable: true
-        Title:
-          type: string
-          nullable: true
-        Section:
-          type: string
-          nullable: true
-        RowLabel:
-          type: string
-          nullable: true
-        Row:
-          type: string
-          nullable: true
-        Seat:
-          type: string
-          nullable: true
-        FlexSummary:
-          type: string
-          nullable: true
-        Field1Label:
-          type: string
-          nullable: true
-        Field1Value:
-          type: string
-          nullable: true
-        Field2Label:
-          type: string
-          nullable: true
-        Field2Value:
-          type: string
-          nullable: true
-        Field3Label:
-          type: string
-          nullable: true
-        Field3Value:
-          type: string
-          nullable: true
-        ImageUrl:
-          type: string
-          nullable: true
-        TicketRenderType:
-          $ref: '#/components/schemas/TicketRenderType'
-        TicketNotes:
-          type: string
-          nullable: true
-        TicketAd:
-          type: string
-          nullable: true
-        EventDate:
-          type: string
-          nullable: true
-        EventTime:
-          type: string
-          nullable: true
-        EventDoorTime:
-          type: string
-          nullable: true
-        EventTitle:
-          type: string
-          nullable: true
-        QrImageUrl:
-          type: string
-          nullable: true
-        QrText:
-          type: string
-          nullable: true
-        PassUrl:
-          type: string
-          nullable: true
-        WalletUrl:
-          type: string
-          nullable: true
-        BundledPassUrl:
-          type: string
-          nullable: true
-        BundledWalletUrl:
-          type: string
-          nullable: true
-        PrintUrl:
-          type: string
-          nullable: true
-        BundledPrintUrl:
-          type: string
-          nullable: true
-        EditUrl:
-          type: string
-          nullable: true
-        FlexPassRedemptionsUsed:
-          type: string
-          nullable: true
-        FlexPassRedemptions:
-          type: array
+        Key:
+          type:
+          - string
+          - 'null'
+        Value:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    LookupResultOutput:
+      type: object
+      properties:
+        Upcoming:
+          type:
+          - array
+          - 'null'
           items:
-            $ref: '#/components/schemas/FlexPassCheckinItem'
-          nullable: true
-        IsFlexOrderOrGroupTicket:
-          type: boolean
-        TicketColor:
-          type: string
-          nullable: true
-        TicketClassName:
-          type: string
-          nullable: true
-        EventContactInfo:
-          type: string
-          nullable: true
-        OrderInfo:
-          type: object
-          additionalProperties:
-            type: string
-            nullable: true
-          nullable: true
-        AttendeesDescription:
-          type: string
-          nullable: true
-        TimeSlotName:
-          type: string
-          nullable: true
-        SharedCapacityName:
-          type: string
-          nullable: true
-        LocationInfo:
-          type: string
-          nullable: true
-        DateInfo:
-          type: string
-          nullable: true
-        BundledTicketUrl:
-          type: string
-          nullable: true
-        IsBundledTicket:
-          type: boolean
-        StartsEndsSameDay:
-          type: boolean
-        Coordinates:
-          type: string
-          nullable: true
-        Address:
-          type: string
-          nullable: true
-        MapAddress:
-          type: string
-          nullable: true
-        ContactEmail:
-          type: string
-          nullable: true
-        ContactPhone:
-          type: string
-          nullable: true
-        IsFlexPass:
-          type: boolean
-      additionalProperties: false
-    LookupAttendeeResultOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        AttendeeNumber:
-          type: integer
-          format: int64
-        Status:
-          type: string
-          nullable: true
-        IsCompleted:
-          type: boolean
-        IsGift:
-          type: boolean
-        IsPreRegistered:
-          type: boolean
-        ShareEmail:
-          type: string
-          nullable: true
-        GiftingEnabled:
-          type: boolean
-        GiftLastSentAt:
-          type: string
-          format: date-time
-          nullable: true
-        GiftLastSentAtLocal:
-          type: string
-          format: date-time
-          nullable: true
-          readOnly: true
-        TimeZoneId:
-          type: string
-          nullable: true
-        FirstName:
-          type: string
-          nullable: true
-        LastName:
-          type: string
-          nullable: true
-        Name:
-          type: string
-          nullable: true
-          readOnly: true
-        AttendeeTypeId:
-          type: string
-          format: uuid
-        TypeName:
-          type: string
-          nullable: true
-        TypeAmount:
-          type: number
-          format: double
-        TypeDisplayAmount:
-          type: number
-          format: double
-        SectionName:
-          type: string
-          nullable: true
-        RowName:
-          type: string
-          nullable: true
-        SeatLabel:
-          type: string
-          nullable: true
-        Amount:
-          type: number
-          format: double
-        Addons:
-          type: number
-          format: double
-        Discounts:
-          type: number
-          format: double
-        SeatInfo:
-          type: string
-          nullable: true
-        Culture:
-          type: string
-          nullable: true
-        GroupId:
-          type: string
-          format: uuid
-          nullable: true
-        GroupName:
-          type: string
-          nullable: true
-        GroupEmail:
-          type: string
-          nullable: true
-        AttendeeDisplay:
-          $ref: '#/components/schemas/AttendeeDisplayOutput'
-        AttendeeDisplayLines:
-          $ref: '#/components/schemas/AttendeeDisplayOutput'
-        DisplayPrice:
-          type: number
-          format: double
-          readOnly: true
-        DisplayTotal:
-          type: number
-          format: double
-          readOnly: true
-        PriceDescription:
-          type: string
-          nullable: true
-        HasPaymentsToMake:
-          type: boolean
-        DonatingBackEnabled:
-          type: boolean
-        ChangesAreBlocked:
-          type: boolean
-        ChangesAreBlockedAfter:
-          type: string
-          format: date-time
-          nullable: true
-        HasPendingSignatures:
-          type: boolean
-        AllSignaturesComplete:
-          type: boolean
-        ShareEnabled:
-          type: boolean
-        TicketInfo:
-          $ref: '#/components/schemas/TicketInfoOutput'
+            $ref: '#/components/schemas/LookupEventResultOutput'
+        Past:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/LookupEventResultOutput'
+        Email:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
   securitySchemes:
     apiKey:
