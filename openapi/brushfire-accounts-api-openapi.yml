@@ -205,36 +205,35 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    StringStringKeyValuePair:
+    AccountHelpdeskOutput:
       type: object
       properties:
-        Key:
+        Id:
+          type: string
+          format: uuid
+        AccountNumber:
+          type: integer
+          format: int64
+        Email:
           type:
           - string
           - 'null'
-        Value:
+        FirstName:
           type:
           - string
           - 'null'
-      additionalProperties: false
-    ApiModelError:
-      type: object
-      properties:
-        Errors:
+        LastName:
+          type:
+          - string
+          - 'null'
+        IsUser:
+          type: boolean
+        ClientRoles:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/StringStringKeyValuePair'
-        Message:
-          type:
-          - string
-          - 'null'
-        Data: {}
-        StackTrace:
-          type:
-          - string
-          - 'null'
+            $ref: '#/components/schemas/AccountRoleOutput'
       additionalProperties: false
     ApiError:
       type: object
@@ -248,40 +247,6 @@ components:
           type:
           - string
           - 'null'
-      additionalProperties: false
-    AccountAuthOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        FirstName:
-          type:
-          - string
-          - 'null'
-        LastName:
-          type:
-          - string
-          - 'null'
-        Email:
-          type:
-          - string
-          - 'null'
-        AccountNumber:
-          type: integer
-          format: int64
-        AccessKey:
-          type:
-          - string
-          - 'null'
-        IsUser:
-          type: boolean
-        AvatarUrl:
-          type:
-          - string
-          - 'null'
-        IsBrushfireStaff:
-          type: boolean
       additionalProperties: false
     AccountRoleOutput:
       type: object
@@ -317,49 +282,17 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    AccountAuthInput:
-      required:
-      - Email
-      - Password
+    StringStringKeyValuePair:
       type: object
       properties:
-        Email:
-          minLength: 1
-          type: string
-        Password:
-          maxLength: 64
-          minLength: 8
-          type: string
-      additionalProperties: false
-    AccountHelpdeskOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        AccountNumber:
-          type: integer
-          format: int64
-        Email:
+        Key:
           type:
           - string
           - 'null'
-        FirstName:
+        Value:
           type:
           - string
           - 'null'
-        LastName:
-          type:
-          - string
-          - 'null'
-        IsUser:
-          type: boolean
-        ClientRoles:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/AccountRoleOutput'
       additionalProperties: false
     AccountSingleOutput:
       type: object
@@ -425,6 +358,73 @@ components:
           - 'null'
         IsBrushfireStaff:
           type: boolean
+      additionalProperties: false
+    AccountAuthOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        FirstName:
+          type:
+          - string
+          - 'null'
+        LastName:
+          type:
+          - string
+          - 'null'
+        Email:
+          type:
+          - string
+          - 'null'
+        AccountNumber:
+          type: integer
+          format: int64
+        AccessKey:
+          type:
+          - string
+          - 'null'
+        IsUser:
+          type: boolean
+        AvatarUrl:
+          type:
+          - string
+          - 'null'
+        IsBrushfireStaff:
+          type: boolean
+      additionalProperties: false
+    ApiModelError:
+      type: object
+      properties:
+        Errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+        Message:
+          type:
+          - string
+          - 'null'
+        Data: {}
+        StackTrace:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    AccountAuthInput:
+      required:
+      - Email
+      - Password
+      type: object
+      properties:
+        Email:
+          minLength: 1
+          type: string
+        Password:
+          maxLength: 64
+          minLength: 8
+          type: string
       additionalProperties: false
   securitySchemes:
     apiKey:

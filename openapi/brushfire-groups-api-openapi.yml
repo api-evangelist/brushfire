@@ -423,45 +423,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    GroupCreateInput:
-      required:
-      - AttendeeTypeId
-      - Email
-      - JoinCode
-      - Name
-      type: object
-      properties:
-        AttendeeTypeId:
-          type: string
-          format: uuid
-        Name:
-          maxLength: 50
-          minLength: 5
-          type: string
-        Email:
-          maxLength: 100
-          minLength: 0
-          type: string
-        JoinCode:
-          maxLength: 20
-          minLength: 4
-          type: string
-        AccessKey:
-          type:
-          - string
-          - 'null'
-        CommunityId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        FieldValues:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/FieldInput'
-      additionalProperties: false
     GroupAttendeeSummaryOutput:
       type: object
       properties:
@@ -497,42 +458,126 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    PrintType:
-      enum:
-      - Ticket
-      - ETicket
-      - Receipt
-      - MailingLabel
-      - WillCall
-      - NameBadge
-      - Season
-      type: string
-    ApiModelError:
+    GroupPrintInput:
+      required:
+      - EventId
+      - Groups
+      - Type
       type: object
       properties:
-        Errors:
+        Type:
+          $ref: '#/components/schemas/PrintType'
+        Groups:
+          type: array
+          items:
+            type: string
+        EventId:
+          minLength: 1
+          type: string
+        Format:
+          $ref: '#/components/schemas/PrintFormat'
+        ImageDpi:
+          type: integer
+          format: int32
+      additionalProperties: false
+    PrintFormat:
+      enum:
+      - PDF
+      - PNG
+      - JPG
+      - GIF
+      - BMP
+      - TIFF
+      - ZPL
+      type: string
+    GroupCreateOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        GroupNumber:
+          type: integer
+          format: int64
+        Name:
+          type:
+          - string
+          - 'null'
+        Email:
+          type:
+          - string
+          - 'null'
+        AttendeeTypeId:
+          type: string
+          format: uuid
+        JoinCode:
+          type:
+          - string
+          - 'null'
+        TypeName:
+          type:
+          - string
+          - 'null'
+        CommunityId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        CommunityPartition:
+          type:
+          - string
+          - 'null'
+        CommunityName:
+          type:
+          - string
+          - 'null'
+        AttendeeCount:
+          type: integer
+          format: int32
+        Fields:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/StringStringKeyValuePair'
-        Message:
-          type:
-          - string
-          - 'null'
-        Data: {}
-        StackTrace:
-          type:
-          - string
-          - 'null'
+            $ref: '#/components/schemas/FieldOutput'
       additionalProperties: false
-    FieldUpdateInput:
+    GroupUpdateInput:
+      required:
+      - Email
+      - GroupId
+      - JoinCode
+      - Name
       type: object
       properties:
+        GroupId:
+          type: string
+          format: uuid
+        AttendeeTypeId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        Name:
+          maxLength: 50
+          minLength: 5
+          type: string
+        Email:
+          minLength: 1
+          pattern: ^([0-9A-Za-zÀ-ÖØ-öø-ÿ']+[-._+&])*[0-9A-Za-zÀ-ÖØ-öø-ÿ_']+@([-0-9A-Za-zÀ-ÖØ-öø-ÿ]+[.])+[a-zA-Z]{2,63}$
+          type: string
+        JoinCode:
+          maxLength: 20
+          minLength: 4
+          type: string
         AccessKey:
           type:
           - string
           - 'null'
+        CommunityId:
+          type:
+          - string
+          - 'null'
+          format: uuid
         FieldValues:
           type:
           - array
@@ -540,6 +585,10 @@ components:
           items:
             $ref: '#/components/schemas/FieldInput'
         UpdateNewOnly:
+          type: boolean
+        OverrideCapacity:
+          type: boolean
+        DontFollowRules:
           type: boolean
       additionalProperties: false
     FieldOptionFullOutput:
@@ -597,7 +646,35 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    GroupCreateOutput:
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        Key:
+          type:
+          - string
+          - 'null'
+        Value:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    FieldUpdateInput:
+      type: object
+      properties:
+        AccessKey:
+          type:
+          - string
+          - 'null'
+        FieldValues:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/FieldInput'
+        UpdateNewOnly:
+          type: boolean
+      additionalProperties: false
+    GroupSingleOutput:
       type: object
       properties:
         Id:
@@ -606,6 +683,12 @@ components:
         GroupNumber:
           type: integer
           format: int64
+        EventNumber:
+          type: integer
+          format: int64
+        EventId:
+          type: string
+          format: uuid
         Name:
           type:
           - string
@@ -625,6 +708,9 @@ components:
           type:
           - string
           - 'null'
+        AttendeeCount:
+          type: integer
+          format: int32
         CommunityId:
           type:
           - string
@@ -638,48 +724,82 @@ components:
           type:
           - string
           - 'null'
-        AttendeeCount:
-          type: integer
-          format: int32
         Fields:
           type:
           - array
           - 'null'
           items:
             $ref: '#/components/schemas/FieldOutput'
+        Attendees:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GroupAttendeeSummaryOutput'
+        QRCode:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-    GroupHelpdeskOutput:
+    GroupCreateInput:
+      required:
+      - AttendeeTypeId
+      - Email
+      - JoinCode
+      - Name
+      type: object
+      properties:
+        AttendeeTypeId:
+          type: string
+          format: uuid
+        Name:
+          maxLength: 50
+          minLength: 5
+          type: string
+        Email:
+          maxLength: 100
+          minLength: 0
+          type: string
+        JoinCode:
+          maxLength: 20
+          minLength: 4
+          type: string
+        AccessKey:
+          type:
+          - string
+          - 'null'
+        CommunityId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        FieldValues:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/FieldInput'
+      additionalProperties: false
+    FieldInput:
+      required:
+      - Id
       type: object
       properties:
         Id:
           type: string
           format: uuid
-        GroupNumber:
-          type: integer
-          format: int64
-        Name:
-          type:
-          - string
-          - 'null'
-        JoinCode:
-          type:
-          - string
-          - 'null'
-        AttendeeCount:
-          type: integer
-          format: int32
-        EventNumber:
-          type: integer
-          format: int64
-        EventTitle:
-          type:
-          - string
-          - 'null'
-        EventSubtitle:
-          type:
-          - string
-          - 'null'
+        Value: {}
       additionalProperties: false
+    PrintType:
+      enum:
+      - Ticket
+      - ETicket
+      - Receipt
+      - MailingLabel
+      - WillCall
+      - NameBadge
+      - Season
+      type: string
     FieldOutput:
       type: object
       properties:
@@ -781,132 +901,18 @@ components:
         DisplayIsPrimary:
           type: boolean
       additionalProperties: false
-    GroupUpdateInput:
-      required:
-      - Email
-      - GroupId
-      - JoinCode
-      - Name
+    GroupCommunityInput:
       type: object
       properties:
-        GroupId:
-          type: string
-          format: uuid
-        AttendeeTypeId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        Name:
-          maxLength: 50
-          minLength: 5
-          type: string
-        Email:
-          minLength: 1
-          pattern: ^([0-9A-Za-zÀ-ÖØ-öø-ÿ']+[-._+&])*[0-9A-Za-zÀ-ÖØ-öø-ÿ_']+@([-0-9A-Za-zÀ-ÖØ-öø-ÿ]+[.])+[a-zA-Z]{2,63}$
-          type: string
-        JoinCode:
-          maxLength: 20
-          minLength: 4
-          type: string
-        AccessKey:
-          type:
-          - string
-          - 'null'
         CommunityId:
           type:
           - string
           - 'null'
           format: uuid
-        FieldValues:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/FieldInput'
-        UpdateNewOnly:
-          type: boolean
         OverrideCapacity:
           type: boolean
         DontFollowRules:
           type: boolean
-      additionalProperties: false
-    FieldInput:
-      required:
-      - Id
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        Value: {}
-      additionalProperties: false
-    GroupSingleOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        GroupNumber:
-          type: integer
-          format: int64
-        EventNumber:
-          type: integer
-          format: int64
-        EventId:
-          type: string
-          format: uuid
-        Name:
-          type:
-          - string
-          - 'null'
-        Email:
-          type:
-          - string
-          - 'null'
-        AttendeeTypeId:
-          type: string
-          format: uuid
-        JoinCode:
-          type:
-          - string
-          - 'null'
-        TypeName:
-          type:
-          - string
-          - 'null'
-        AttendeeCount:
-          type: integer
-          format: int32
-        CommunityId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        CommunityPartition:
-          type:
-          - string
-          - 'null'
-        CommunityName:
-          type:
-          - string
-          - 'null'
-        Fields:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/FieldOutput'
-        Attendees:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/GroupAttendeeSummaryOutput'
-        QRCode:
-          type:
-          - string
-          - 'null'
       additionalProperties: false
     DomainValidationOutput:
       type: object
@@ -924,62 +930,56 @@ components:
           items:
             type: string
       additionalProperties: false
-    GroupPrintInput:
-      required:
-      - EventId
-      - Groups
-      - Type
+    ApiModelError:
       type: object
       properties:
-        Type:
-          $ref: '#/components/schemas/PrintType'
-        Groups:
-          type: array
+        Errors:
+          type:
+          - array
+          - 'null'
           items:
-            type: string
-        EventId:
-          minLength: 1
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+        Message:
+          type:
+          - string
+          - 'null'
+        Data: {}
+        StackTrace:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GroupHelpdeskOutput:
+      type: object
+      properties:
+        Id:
           type: string
-        Format:
-          $ref: '#/components/schemas/PrintFormat'
-        ImageDpi:
+          format: uuid
+        GroupNumber:
+          type: integer
+          format: int64
+        Name:
+          type:
+          - string
+          - 'null'
+        JoinCode:
+          type:
+          - string
+          - 'null'
+        AttendeeCount:
           type: integer
           format: int32
-      additionalProperties: false
-    PrintFormat:
-      enum:
-      - PDF
-      - PNG
-      - JPG
-      - GIF
-      - BMP
-      - TIFF
-      - ZPL
-      type: string
-    StringStringKeyValuePair:
-      type: object
-      properties:
-        Key:
+        EventNumber:
+          type: integer
+          format: int64
+        EventTitle:
           type:
           - string
           - 'null'
-        Value:
+        EventSubtitle:
           type:
           - string
           - 'null'
-      additionalProperties: false
-    GroupCommunityInput:
-      type: object
-      properties:
-        CommunityId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        OverrideCapacity:
-          type: boolean
-        DontFollowRules:
-          type: boolean
       additionalProperties: false
   securitySchemes:
     apiKey:

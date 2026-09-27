@@ -471,52 +471,48 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    SessionFlexPassCheckoutOutput:
+    EventSessionOutput:
       type: object
       properties:
-        Success:
+        SessionNumber:
+          type: integer
+          format: int64
+        Name:
+          type:
+          - string
+          - 'null'
+        AttendeeTotal:
+          type: integer
+          format: int32
+        CheckedInCount:
+          type: integer
+          format: int32
+        Type:
+          type:
+          - string
+          - 'null'
+        IsHidden:
           type: boolean
-        Message:
+        AllowFlex:
           type:
-          - string
+          - boolean
           - 'null'
-        FlexRedemptions:
-          type:
-          - integer
-          - 'null'
+        FlexPassCount:
+          type: integer
           format: int32
-        FlexRedemptionsText:
-          type:
-          - string
-          - 'null'
-        EventRedemptions:
-          type:
-          - integer
-          - 'null'
+        FlexAttendeeTotal:
+          type: integer
           format: int32
-        EventRedemptionsText:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    ApiModelError:
-      type: object
-      properties:
-        Errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/StringStringKeyValuePair'
-        Message:
-          type:
-          - string
-          - 'null'
-        Data: {}
-        StackTrace:
-          type:
-          - string
-          - 'null'
+        IsTimeSlot:
+          type: boolean
+        MinutesBefore:
+          type: integer
+          format: int32
+        MinutesAfter:
+          type: integer
+          format: int32
+        AllowPasses:
+          type: boolean
       additionalProperties: false
     SessionFlexPassAttendeeOutput:
       type: object
@@ -543,50 +539,137 @@ components:
         IsAddon:
           type: boolean
       additionalProperties: false
-    SessionAttendeeListOutput:
+    SessionCheckoutMultipleInput:
       type: object
       properties:
-        SessionAttendees:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SessionAttendeeOutput'
-        FlexAttendees:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SessionFlexPassAttendeeOutput'
-      additionalProperties: false
-    FieldDisplayOutput:
-      type: object
-      properties:
-        Id:
-          type:
-          - string
-          - 'null'
-        Label:
-          type:
-          - string
-          - 'null'
-        Value:
-          type:
-          - string
-          - 'null'
-        Type:
-          type:
-          - string
-          - 'null'
-        IsSensitive:
-          type: boolean
-        OptionIds:
+        Codes:
           type:
           - array
           - 'null'
           items:
             type: string
-            format: uuid
+      additionalProperties: false
+    SessionCheckinEntryItem:
+      required:
+      - CheckedInAt
+      - Code
+      type: object
+      properties:
+        Code:
+          minLength: 1
+          type: string
+        CheckedInAt:
+          type: string
+          format: date-time
+      additionalProperties: false
+    SessionOrderDetailOutput:
+      type: object
+      properties:
+        OrderKey:
+          type:
+          - string
+          - 'null'
+        ObjectNumber:
+          type: integer
+          format: int64
+        AttendeeCount:
+          type: integer
+          format: int32
+        OrderedAt:
+          type: string
+          format: date-time
+        BillingName:
+          type:
+          - string
+          - 'null'
+        BillingAddress:
+          type:
+          - string
+          - 'null'
+        BillingFirstName:
+          type:
+          - string
+          - 'null'
+        BillingLastName:
+          type:
+          - string
+          - 'null'
+        BillingOrganization:
+          type:
+          - string
+          - 'null'
+        BillingStreet1:
+          type:
+          - string
+          - 'null'
+        BillingStreet2:
+          type:
+          - string
+          - 'null'
+        BillingCity:
+          type:
+          - string
+          - 'null'
+        BillingRegion:
+          type:
+          - string
+          - 'null'
+        BillingPostal:
+          type:
+          - string
+          - 'null'
+        BillingCountry:
+          type:
+          - string
+          - 'null'
+        ContactPhone:
+          type:
+          - string
+          - 'null'
+        ContactEmail:
+          type:
+          - string
+          - 'null'
+        PaymentMethods:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        PaymentMethod:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        DeliveryMethod:
+          type:
+          - string
+          - 'null'
+        Fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/FieldDisplayOutput'
+        Attendees:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SessionAttendeeOutput'
+      additionalProperties: false
+    SessionFlexPassCheckoutInput:
+      required:
+      - AttendeeCheckinId
+      - AttendeeId
+      type: object
+      properties:
+        AttendeeCheckinId:
+          type: string
+          format: uuid
+        AttendeeId:
+          minLength: 1
+          type: string
       additionalProperties: false
     SessionFlexPassCheckinOutput:
       type: object
@@ -628,50 +711,89 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    SessionAttendeeOutput:
+    AttendeeFlexPassOutput:
       type: object
       properties:
-        AttendeeNumber:
+        FlexTotal:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        FlexPer:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        FlexStartsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        FlexEndsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        FlexSummary:
+          type:
+          - string
+          - 'null'
+        FlexRedemptions:
           type: integer
-          format: int64
-        FirstName:
+          format: int32
+        FlexRedemptionsText:
           type:
           - string
           - 'null'
-        LastName:
+        FlexRelativeDays:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        EventRedemptions:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        EventRedemptionsText:
           type:
           - string
           - 'null'
-        SectionName:
-          type:
-          - string
-          - 'null'
-        RowName:
-          type:
-          - string
-          - 'null'
-        SeatLabel:
-          type:
-          - string
-          - 'null'
-        TypeName:
-          type:
-          - string
-          - 'null'
-        CheckedIn:
+      additionalProperties: false
+    SessionCheckoutMultipleOutput:
+      type: object
+      properties:
+        Success:
           type: boolean
         CheckedInAt:
           type:
           - string
           - 'null'
           format: date-time
-        SeatInfo:
+        Message:
           type:
           - string
           - 'null'
-          readOnly: true
-        IsAddon:
-          type: boolean
+        Code:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    AttendeeDisplayOutput:
+      type: object
+      properties:
+        Line1:
+          type:
+          - string
+          - 'null'
+        Line2:
+          type:
+          - string
+          - 'null'
+        Line3:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     SessionGroupDetailOutput:
       type: object
@@ -726,6 +848,91 @@ components:
           items:
             $ref: '#/components/schemas/SessionAttendeeOutput'
       additionalProperties: false
+    FieldDisplayOutput:
+      type: object
+      properties:
+        Id:
+          type:
+          - string
+          - 'null'
+        Label:
+          type:
+          - string
+          - 'null'
+        Value:
+          type:
+          - string
+          - 'null'
+        Type:
+          type:
+          - string
+          - 'null'
+        IsSensitive:
+          type: boolean
+        OptionIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: uuid
+      additionalProperties: false
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        Key:
+          type:
+          - string
+          - 'null'
+        Value:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SessionAttendeeListOutput:
+      type: object
+      properties:
+        SessionAttendees:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SessionAttendeeOutput'
+        FlexAttendees:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SessionFlexPassAttendeeOutput'
+      additionalProperties: false
+    AttendeeFlexPassCheckinOutput:
+      type: object
+      properties:
+        Name:
+          type:
+          - string
+          - 'null'
+        SessionNumber:
+          type: integer
+          format: int64
+        CheckedInAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        AttendeeCheckinId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        EventNumber:
+          type: integer
+          format: int64
+        TitleInfo:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     AttendeeCheckinOutput:
       type: object
       properties:
@@ -746,18 +953,72 @@ components:
         IsHidden:
           type: boolean
       additionalProperties: false
-    SessionFlexPassCheckoutInput:
-      required:
-      - AttendeeCheckinId
-      - AttendeeId
+    SessionCheckinMultipleInput:
       type: object
       properties:
-        AttendeeCheckinId:
-          type: string
-          format: uuid
-        AttendeeId:
-          minLength: 1
-          type: string
+        Codes:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        Entries:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SessionCheckinEntryItem'
+        IsVerified:
+          type: boolean
+      additionalProperties: false
+    SessionFlexPassCheckoutOutput:
+      type: object
+      properties:
+        Success:
+          type: boolean
+        Message:
+          type:
+          - string
+          - 'null'
+        FlexRedemptions:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        FlexRedemptionsText:
+          type:
+          - string
+          - 'null'
+        EventRedemptions:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        EventRedemptionsText:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SessionCheckinMultipleOutput:
+      type: object
+      properties:
+        Success:
+          type: boolean
+        CheckedInAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        Message:
+          type:
+          - string
+          - 'null'
+        Code:
+          type:
+          - string
+          - 'null'
+        RequiresVerification:
+          type: boolean
       additionalProperties: false
     AttendeeDetailsOutput:
       type: object
@@ -960,330 +1221,69 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    SessionCheckinMultipleInput:
+    SessionAttendeeOutput:
       type: object
       properties:
-        Codes:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        Entries:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SessionCheckinEntryItem'
-        IsVerified:
-          type: boolean
-      additionalProperties: false
-    AttendeeDisplayOutput:
-      type: object
-      properties:
-        Line1:
-          type:
-          - string
-          - 'null'
-        Line2:
-          type:
-          - string
-          - 'null'
-        Line3:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    AttendeeFlexPassCheckinOutput:
-      type: object
-      properties:
-        Name:
-          type:
-          - string
-          - 'null'
-        SessionNumber:
+        AttendeeNumber:
           type: integer
           format: int64
-        CheckedInAt:
+        FirstName:
           type:
           - string
           - 'null'
-          format: date-time
-        AttendeeCheckinId:
+        LastName:
           type:
           - string
           - 'null'
-          format: uuid
-        EventNumber:
-          type: integer
-          format: int64
-        TitleInfo:
+        SectionName:
           type:
           - string
           - 'null'
-      additionalProperties: false
-    StringStringKeyValuePair:
-      type: object
-      properties:
-        Key:
+        RowName:
           type:
           - string
           - 'null'
-        Value:
+        SeatLabel:
           type:
           - string
           - 'null'
-      additionalProperties: false
-    SessionCheckinMultipleOutput:
-      type: object
-      properties:
-        Success:
+        TypeName:
+          type:
+          - string
+          - 'null'
+        CheckedIn:
           type: boolean
         CheckedInAt:
           type:
           - string
           - 'null'
           format: date-time
-        Message:
-          type:
-          - string
-          - 'null'
-        Code:
-          type:
-          - string
-          - 'null'
-        RequiresVerification:
-          type: boolean
-      additionalProperties: false
-    SessionOrderDetailOutput:
-      type: object
-      properties:
-        OrderKey:
-          type:
-          - string
-          - 'null'
-        ObjectNumber:
-          type: integer
-          format: int64
-        AttendeeCount:
-          type: integer
-          format: int32
-        OrderedAt:
-          type: string
-          format: date-time
-        BillingName:
-          type:
-          - string
-          - 'null'
-        BillingAddress:
-          type:
-          - string
-          - 'null'
-        BillingFirstName:
-          type:
-          - string
-          - 'null'
-        BillingLastName:
-          type:
-          - string
-          - 'null'
-        BillingOrganization:
-          type:
-          - string
-          - 'null'
-        BillingStreet1:
-          type:
-          - string
-          - 'null'
-        BillingStreet2:
-          type:
-          - string
-          - 'null'
-        BillingCity:
-          type:
-          - string
-          - 'null'
-        BillingRegion:
-          type:
-          - string
-          - 'null'
-        BillingPostal:
-          type:
-          - string
-          - 'null'
-        BillingCountry:
-          type:
-          - string
-          - 'null'
-        ContactPhone:
-          type:
-          - string
-          - 'null'
-        ContactEmail:
-          type:
-          - string
-          - 'null'
-        PaymentMethods:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        PaymentMethod:
+        SeatInfo:
           type:
           - string
           - 'null'
           readOnly: true
-        DeliveryMethod:
-          type:
-          - string
-          - 'null'
-        Fields:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/FieldDisplayOutput'
-        Attendees:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SessionAttendeeOutput'
+        IsAddon:
+          type: boolean
       additionalProperties: false
-    SessionCheckoutMultipleOutput:
+    ApiModelError:
       type: object
       properties:
-        Success:
-          type: boolean
-        CheckedInAt:
+        Errors:
           type:
-          - string
+          - array
           - 'null'
-          format: date-time
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
         Message:
           type:
           - string
           - 'null'
-        Code:
+        Data: {}
+        StackTrace:
           type:
           - string
           - 'null'
-      additionalProperties: false
-    EventSessionOutput:
-      type: object
-      properties:
-        SessionNumber:
-          type: integer
-          format: int64
-        Name:
-          type:
-          - string
-          - 'null'
-        AttendeeTotal:
-          type: integer
-          format: int32
-        CheckedInCount:
-          type: integer
-          format: int32
-        Type:
-          type:
-          - string
-          - 'null'
-        IsHidden:
-          type: boolean
-        AllowFlex:
-          type:
-          - boolean
-          - 'null'
-        FlexPassCount:
-          type: integer
-          format: int32
-        FlexAttendeeTotal:
-          type: integer
-          format: int32
-        IsTimeSlot:
-          type: boolean
-        MinutesBefore:
-          type: integer
-          format: int32
-        MinutesAfter:
-          type: integer
-          format: int32
-        AllowPasses:
-          type: boolean
-      additionalProperties: false
-    AttendeeFlexPassOutput:
-      type: object
-      properties:
-        FlexTotal:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        FlexPer:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        FlexStartsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        FlexEndsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        FlexSummary:
-          type:
-          - string
-          - 'null'
-        FlexRedemptions:
-          type: integer
-          format: int32
-        FlexRedemptionsText:
-          type:
-          - string
-          - 'null'
-        FlexRelativeDays:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        EventRedemptions:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        EventRedemptionsText:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SessionCheckinEntryItem:
-      required:
-      - CheckedInAt
-      - Code
-      type: object
-      properties:
-        Code:
-          minLength: 1
-          type: string
-        CheckedInAt:
-          type: string
-          format: date-time
-      additionalProperties: false
-    SessionCheckoutMultipleInput:
-      type: object
-      properties:
-        Codes:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
       additionalProperties: false
     SessionFlexPassCheckinInput:
       required:

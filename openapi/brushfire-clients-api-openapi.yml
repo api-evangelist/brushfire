@@ -127,6 +127,55 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ClientListOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        ClientNumber:
+          type: integer
+          format: int64
+        ClientKey:
+          type:
+          - string
+          - 'null'
+        Name:
+          type:
+          - string
+          - 'null'
+        CreatedAt:
+          type: string
+          format: date-time
+        City:
+          type:
+          - string
+          - 'null'
+        Region:
+          type:
+          - string
+          - 'null'
+        Country:
+          type:
+          - string
+          - 'null'
+        IsLive:
+          type: boolean
+        IsDeleted:
+          type: boolean
+      additionalProperties: false
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        Key:
+          type:
+          - string
+          - 'null'
+        Value:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     ThemeOutput:
       type: object
       properties:
@@ -179,43 +228,6 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    ClientListOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        ClientNumber:
-          type: integer
-          format: int64
-        ClientKey:
-          type:
-          - string
-          - 'null'
-        Name:
-          type:
-          - string
-          - 'null'
-        CreatedAt:
-          type: string
-          format: date-time
-        City:
-          type:
-          - string
-          - 'null'
-        Region:
-          type:
-          - string
-          - 'null'
-        Country:
-          type:
-          - string
-          - 'null'
-        IsLive:
-          type: boolean
-        IsDeleted:
-          type: boolean
-      additionalProperties: false
     ApiModelError:
       type: object
       properties:
@@ -231,18 +243,6 @@ components:
           - 'null'
         Data: {}
         StackTrace:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    StringStringKeyValuePair:
-      type: object
-      properties:
-        Key:
-          type:
-          - string
-          - 'null'
-        Value:
           type:
           - string
           - 'null'

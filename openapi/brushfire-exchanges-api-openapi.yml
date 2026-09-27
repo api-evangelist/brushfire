@@ -169,99 +169,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ExchangeOutput:
-      type: object
-      properties:
-        ExchangeId:
-          type: string
-          format: uuid
-        ExchangeMethod:
-          $ref: '#/components/schemas/ExchangeMethod'
-        ClientKey:
-          type:
-          - string
-          - 'null'
-        ExchangeAttendees:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ExchangeAttendeeOutput'
-        LastModifiedAt:
-          type: string
-          format: date-time
-        SourceEventId:
-          type: string
-          format: uuid
-        IsExchangeRefundAllowed:
-          type: boolean
-        ExchangeAttendeesTotal:
-          type: number
-          format: double
-          readOnly: true
-      additionalProperties: false
-    StringStringKeyValuePair:
-      type: object
-      properties:
-        Key:
-          type:
-          - string
-          - 'null'
-        Value:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    ApiModelError:
-      type: object
-      properties:
-        Errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/StringStringKeyValuePair'
-        Message:
-          type:
-          - string
-          - 'null'
-        Data: {}
-        StackTrace:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    ExchangeInput:
-      required:
-      - AccessKey
-      - AttendeeNumbers
-      - ClientKey
-      - ExchangeMethod
-      - SourceEventId
-      type: object
-      properties:
-        ClientKey:
-          minLength: 1
-          type: string
-        AttendeeNumbers:
-          type: array
-          items:
-            type: integer
-            format: int64
-        ExchangeMethod:
-          $ref: '#/components/schemas/ExchangeMethod'
-        AccessKey:
-          minLength: 1
-          type: string
-        SourceEventId:
-          type: string
-          format: uuid
-      additionalProperties: false
-    ExchangeMethod:
-      enum:
-      - SameEvent
-      - NewEvent
-      type: string
     ExchangeAttendeeOutput:
       type: object
       properties:
@@ -320,6 +227,99 @@ components:
           type: number
           format: double
           readOnly: true
+      additionalProperties: false
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        Key:
+          type:
+          - string
+          - 'null'
+        Value:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ExchangeInput:
+      required:
+      - AccessKey
+      - AttendeeNumbers
+      - ClientKey
+      - ExchangeMethod
+      - SourceEventId
+      type: object
+      properties:
+        ClientKey:
+          minLength: 1
+          type: string
+        AttendeeNumbers:
+          type: array
+          items:
+            type: integer
+            format: int64
+        ExchangeMethod:
+          $ref: '#/components/schemas/ExchangeMethod'
+        AccessKey:
+          minLength: 1
+          type: string
+        SourceEventId:
+          type: string
+          format: uuid
+      additionalProperties: false
+    ExchangeOutput:
+      type: object
+      properties:
+        ExchangeId:
+          type: string
+          format: uuid
+        ExchangeMethod:
+          $ref: '#/components/schemas/ExchangeMethod'
+        ClientKey:
+          type:
+          - string
+          - 'null'
+        ExchangeAttendees:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ExchangeAttendeeOutput'
+        LastModifiedAt:
+          type: string
+          format: date-time
+        SourceEventId:
+          type: string
+          format: uuid
+        IsExchangeRefundAllowed:
+          type: boolean
+        ExchangeAttendeesTotal:
+          type: number
+          format: double
+          readOnly: true
+      additionalProperties: false
+    ExchangeMethod:
+      enum:
+      - SameEvent
+      - NewEvent
+      type: string
+    ApiModelError:
+      type: object
+      properties:
+        Errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+        Message:
+          type:
+          - string
+          - 'null'
+        Data: {}
+        StackTrace:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
   securitySchemes:
     apiKey:

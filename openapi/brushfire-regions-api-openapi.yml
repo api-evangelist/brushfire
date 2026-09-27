@@ -46,29 +46,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    RegionDetailOutput:
-      type: object
-      properties:
-        Code:
-          type:
-          - string
-          - 'null'
-        Name:
-          type:
-          - string
-          - 'null'
-        ISO:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        Regions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/RegionDetailOutput'
-      additionalProperties: false
     StringStringKeyValuePair:
       type: object
       properties:
@@ -99,6 +76,29 @@ components:
           type:
           - string
           - 'null'
+      additionalProperties: false
+    RegionDetailOutput:
+      type: object
+      properties:
+        Code:
+          type:
+          - string
+          - 'null'
+        Name:
+          type:
+          - string
+          - 'null'
+        ISO:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        Regions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/RegionDetailOutput'
       additionalProperties: false
   securitySchemes:
     apiKey:

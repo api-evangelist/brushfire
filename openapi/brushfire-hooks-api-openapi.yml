@@ -253,6 +253,47 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        Key:
+          type:
+          - string
+          - 'null'
+        Value:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    HookSubscribeOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Url:
+          type:
+          - string
+          - 'null'
+        Type:
+          $ref: '#/components/schemas/WebhookType'
+        Objects:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int64
+      additionalProperties: false
+    HookUnsubscribeInput:
+      required:
+      - Url
+      type: object
+      properties:
+        Url:
+          minLength: 1
+          type: string
+      additionalProperties: false
     HookSubscribeInput:
       required:
       - Type
@@ -273,34 +314,6 @@ components:
             type: integer
             format: int64
           description: This can be Event Numbers, Account Numbers, Client Numbers, etc.
-      additionalProperties: false
-    HookUnsubscribeInput:
-      required:
-      - Url
-      type: object
-      properties:
-        Url:
-          minLength: 1
-          type: string
-      additionalProperties: false
-    ApiModelError:
-      type: object
-      properties:
-        Errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/StringStringKeyValuePair'
-        Message:
-          type:
-          - string
-          - 'null'
-        Data: {}
-        StackTrace:
-          type:
-          - string
-          - 'null'
       additionalProperties: false
     HookUpdateInput:
       required:
@@ -338,37 +351,24 @@ components:
       - Email_Unsubscribe
       - Email_Resubscribe
       type: string
-    StringStringKeyValuePair:
+    ApiModelError:
       type: object
       properties:
-        Key:
-          type:
-          - string
-          - 'null'
-        Value:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    HookSubscribeOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        Url:
-          type:
-          - string
-          - 'null'
-        Type:
-          $ref: '#/components/schemas/WebhookType'
-        Objects:
+        Errors:
           type:
           - array
           - 'null'
           items:
-            type: integer
-            format: int64
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+        Message:
+          type:
+          - string
+          - 'null'
+        Data: {}
+        StackTrace:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
   securitySchemes:
     apiKey:

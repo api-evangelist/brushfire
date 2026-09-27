@@ -71,12 +71,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    CustomQueryGranularity:
-      enum:
-      - Minute
-      - Hour
-      - Day
-      type: string
     StringStringKeyValuePair:
       type: object
       properties:
@@ -108,6 +102,12 @@ components:
           - string
           - 'null'
       additionalProperties: false
+    CustomQueryGranularity:
+      enum:
+      - Minute
+      - Hour
+      - Day
+      type: string
   securitySchemes:
     apiKey:
       type: apiKey

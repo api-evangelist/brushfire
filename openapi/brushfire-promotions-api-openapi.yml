@@ -190,6 +190,26 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    PromotionKind:
+      enum:
+      - Standard
+      - Template
+      - Dynamic
+      type: string
+    PromotionEventOutput:
+      type: object
+      properties:
+        EventId:
+          type: string
+          format: uuid
+        AttendeeTypes:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: uuid
+      additionalProperties: false
     StringStringKeyValuePair:
       type: object
       properties:
@@ -202,24 +222,87 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    ApiModelError:
+    PromotionSingleOutput:
       type: object
       properties:
-        Errors:
+        Id:
+          type: string
+          format: uuid
+        Description:
+          type:
+          - string
+          - 'null'
+        StartsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        EndsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        Group:
+          type:
+          - string
+          - 'null'
+        Kind:
+          type:
+          - string
+          - 'null'
+        IsSingleUse:
+          type: boolean
+        IsRedeemed:
+          type: boolean
+        AdminVisible:
+          type: boolean
+        InternetVisible:
+          type: boolean
+        Amount:
+          type: number
+          format: double
+        IsPercentage:
+          type: boolean
+        AutoCalculate:
+          type: boolean
+        Quantity:
+          type: integer
+          format: int32
+        Limit:
+          type: integer
+          format: int32
+        Exclude:
+          type: integer
+          format: int32
+        IsMultiple:
+          type: boolean
+        SpanChildren:
+          type: boolean
+        InEachChild:
+          type: boolean
+        IncludeAddons:
+          type: boolean
+        AllInGroup:
+          type: boolean
+        Names:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/StringStringKeyValuePair'
-        Message:
+            type: string
+        RelatedPromotions:
           type:
-          - string
+          - array
           - 'null'
-        Data: {}
-        StackTrace:
+          items:
+            type: string
+            format: uuid
+        Events:
           type:
-          - string
+          - array
           - 'null'
+          items:
+            $ref: '#/components/schemas/PromotionEventOutput'
       additionalProperties: false
     PromotionCreateInput:
       required:
@@ -241,19 +324,19 @@ components:
           minLength: 0
           type: string
       additionalProperties: false
-    PromotionEventOutput:
+    PromotionCreateImportInput:
+      required:
+      - Names
+      - TemplateId
       type: object
       properties:
-        EventId:
+        TemplateId:
           type: string
           format: uuid
-        AttendeeTypes:
-          type:
-          - array
-          - 'null'
+        Names:
+          type: array
           items:
             type: string
-            format: uuid
       additionalProperties: false
     PromotionCreateOutput:
       type: object
@@ -355,107 +438,24 @@ components:
           items:
             type: string
       additionalProperties: false
-    PromotionKind:
-      enum:
-      - Standard
-      - Template
-      - Dynamic
-      type: string
-    PromotionSingleOutput:
+    ApiModelError:
       type: object
       properties:
-        Id:
-          type: string
-          format: uuid
-        Description:
-          type:
-          - string
-          - 'null'
-        StartsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        EndsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        Group:
-          type:
-          - string
-          - 'null'
-        Kind:
-          type:
-          - string
-          - 'null'
-        IsSingleUse:
-          type: boolean
-        IsRedeemed:
-          type: boolean
-        AdminVisible:
-          type: boolean
-        InternetVisible:
-          type: boolean
-        Amount:
-          type: number
-          format: double
-        IsPercentage:
-          type: boolean
-        AutoCalculate:
-          type: boolean
-        Quantity:
-          type: integer
-          format: int32
-        Limit:
-          type: integer
-          format: int32
-        Exclude:
-          type: integer
-          format: int32
-        IsMultiple:
-          type: boolean
-        SpanChildren:
-          type: boolean
-        InEachChild:
-          type: boolean
-        IncludeAddons:
-          type: boolean
-        AllInGroup:
-          type: boolean
-        Names:
+        Errors:
           type:
           - array
           - 'null'
           items:
-            type: string
-        RelatedPromotions:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+        Message:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            type: string
-            format: uuid
-        Events:
+        Data: {}
+        StackTrace:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/PromotionEventOutput'
-      additionalProperties: false
-    PromotionCreateImportInput:
-      required:
-      - Names
-      - TemplateId
-      type: object
-      properties:
-        TemplateId:
-          type: string
-          format: uuid
-        Names:
-          type: array
-          items:
-            type: string
       additionalProperties: false
   securitySchemes:
     apiKey:

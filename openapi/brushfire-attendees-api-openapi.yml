@@ -944,124 +944,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    AttendeeNumbersToIdsInput:
-      required:
-      - AttendeeNumbers
-      type: object
-      properties:
-        AttendeeNumbers:
-          type: array
-          items:
-            type: integer
-            format: int64
-          description: List of attendee numbers to convert to unique identifiers
-      additionalProperties: false
-      description: Input model for converting attendee numbers to unique identifiers
-    AttendeeLinkInput:
-      type: object
-      properties:
-        SourceAttendeeId:
-          type:
-          - string
-          - 'null'
-        AccessKey:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    AttendeeCommunityOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        Partition:
-          type:
-          - string
-          - 'null'
-        Name:
-          type:
-          - string
-          - 'null'
-        Capacity:
-          type: integer
-          format: int32
-        AttendeeCount:
-          type: integer
-          format: int32
-        GroupCount:
-          type: integer
-          format: int32
-        Tags:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        RemainingCount:
-          type: integer
-          format: int32
-          readOnly: true
-      additionalProperties: false
-    ApiModelError:
-      type: object
-      properties:
-        Errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/StringStringKeyValuePair'
-        Message:
-          type:
-          - string
-          - 'null'
-        Data: {}
-        StackTrace:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    FieldUpdateInput:
-      type: object
-      properties:
-        AccessKey:
-          type:
-          - string
-          - 'null'
-        FieldValues:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/FieldInput'
-        UpdateNewOnly:
-          type: boolean
-      additionalProperties: false
-    AttendeeUpdateGiftInput:
-      type: object
-      properties:
-        IsGift:
-          type: boolean
-        FromName:
-          type:
-          - string
-          - 'null'
-        FromEmail:
-          pattern: ^([0-9A-Za-zÀ-ÖØ-öø-ÿ']+[-._+&])*[0-9A-Za-zÀ-ÖØ-öø-ÿ_']+@([-0-9A-Za-zÀ-ÖØ-öø-ÿ]+[.])+[a-zA-Z]{2,63}$
-          type:
-          - string
-          - 'null'
-        RecipientEmail:
-          pattern: ^([0-9A-Za-zÀ-ÖØ-öø-ÿ']+[-._+&])*[0-9A-Za-zÀ-ÖØ-öø-ÿ_']+@([-0-9A-Za-zÀ-ÖØ-öø-ÿ]+[.])+[a-zA-Z]{2,63}$
-          type:
-          - string
-          - 'null'
-        RecipientMessage:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     OrderResultOutput:
       type: object
       properties:
@@ -1102,28 +984,61 @@ components:
         AnyGeneratesTicket:
           type: boolean
       additionalProperties: false
-    DomainValidationOutput:
+    AttendeePrintInput:
+      required:
+      - Attendees
+      - EventId
+      - Type
       type: object
       properties:
-        AllowDomains:
-          type:
-          - array
-          - 'null'
+        Type:
+          $ref: '#/components/schemas/PrintType'
+        Attendees:
+          type: array
           items:
-            type: string
-        DisallowDomains:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
+            type: integer
+            format: int64
+        EventId:
+          minLength: 1
+          type: string
+        Format:
+          $ref: '#/components/schemas/PrintFormat'
+        ImageDpi:
+          type: integer
+          format: int32
       additionalProperties: false
-    AttendeeCancelInput:
+    AttendeeNumbersToIdsInput:
+      required:
+      - AttendeeNumbers
       type: object
       properties:
-        Penalty:
-          type: number
-          format: double
+        AttendeeNumbers:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: List of attendee numbers to convert to unique identifiers
+      additionalProperties: false
+      description: Input model for converting attendee numbers to unique identifiers
+    FieldUpdateInput:
+      type: object
+      properties:
+        AccessKey:
+          type:
+          - string
+          - 'null'
+        FieldValues:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/FieldInput'
+        UpdateNewOnly:
+          type: boolean
+      additionalProperties: false
+    AttendeeDonateInput:
+      type: object
+      properties:
         AccessKey:
           type:
           - string
@@ -1136,6 +1051,83 @@ components:
           - 'null'
           format: int32
         Via:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    AttendeeFlexPassOutput:
+      type: object
+      properties:
+        FlexTotal:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        FlexPer:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        FlexStartsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        FlexEndsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        FlexSummary:
+          type:
+          - string
+          - 'null'
+        FlexRedemptions:
+          type: integer
+          format: int32
+        FlexRedemptionsText:
+          type:
+          - string
+          - 'null'
+        FlexRelativeDays:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        EventRedemptions:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        EventRedemptionsText:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    AttendeeCompletedInput:
+      required:
+      - IsCompleted
+      type: object
+      properties:
+        AccessKey:
+          type:
+          - string
+          - 'null'
+        IsCompleted:
+          type: boolean
+      additionalProperties: false
+    AttendeeDisplayOutput:
+      type: object
+      properties:
+        Line1:
+          type:
+          - string
+          - 'null'
+        Line2:
+          type:
+          - string
+          - 'null'
+        Line3:
           type:
           - string
           - 'null'
@@ -1169,45 +1161,279 @@ components:
             type: string
             format: uuid
       additionalProperties: false
-    PrintFormat:
-      enum:
-      - PDF
-      - PNG
-      - JPG
-      - GIF
-      - BMP
-      - TIFF
-      - ZPL
-      type: string
-    AttendeeCommunityInput:
+    AttendeeHelpdeskOutput:
       type: object
       properties:
-        CommunityId:
-          type:
-          - string
-          - 'null'
+        Id:
+          type: string
           format: uuid
-        AccessKey:
+        AttendeeNumber:
+          type: integer
+          format: int64
+        EventNumber:
+          type: integer
+          format: int64
+        EventTitle:
           type:
           - string
           - 'null'
-        OverrideCapacity:
-          type: boolean
-        OverrideGroup:
-          type: boolean
+        EventSubtitle:
+          type:
+          - string
+          - 'null'
+        Status:
+          type:
+          - string
+          - 'null'
+        FirstName:
+          type:
+          - string
+          - 'null'
+        LastName:
+          type:
+          - string
+          - 'null'
+        TypeName:
+          type:
+          - string
+          - 'null'
+        Amount:
+          type: number
+          format: double
+        SeatInfo:
+          type:
+          - string
+          - 'null'
+        Culture:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-    AttendeeCodeInput:
+    StringStringKeyValuePair:
       type: object
       properties:
+        Key:
+          type:
+          - string
+          - 'null'
+        Value:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    AttendeeConversionResult:
+      type: object
+      properties:
+        AttendeeNumber:
+          type: integer
+          description: The original attendee number requested
+          format: int64
+        AttendeeId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier if conversion was successful
+          format: uuid
+        Success:
+          type: boolean
+          description: Whether the conversion was successful
+        Message:
+          type:
+          - string
+          - 'null'
+          description: Reason for failure if unsuccessful
+      additionalProperties: false
+      description: Result of converting an attendee number to a unique identifier
+    AttendeeUpdateGiftOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        AttendeeNumber:
+          type: integer
+          format: int64
+        EventId:
+          type: string
+          format: uuid
+        AttendeeTypeId:
+          type: string
+          format: uuid
         AttendeeCode:
           type:
           - string
           - 'null'
-        AccessKey:
+        GroupId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        IsCompleted:
+          type: boolean
+        CurrentOrderId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        OriginalOrderId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        CartId:
+          type:
+          - string
+          - 'null'
+        IsGift:
+          type: boolean
+        IsPreRegistered:
+          type: boolean
+        RecipientEmail:
           type:
           - string
           - 'null'
       additionalProperties: false
+    FieldOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Label:
+          type:
+          - string
+          - 'null'
+        Type:
+          type:
+          - string
+          - 'null'
+        Value: {}
+        DisplayValue:
+          type:
+          - string
+          - 'null'
+        ValidationExpression:
+          type:
+          - string
+          - 'null'
+        IsRequired:
+          type: boolean
+        Notes:
+          type:
+          - string
+          - 'null'
+        ErrorMessage:
+          type:
+          - string
+          - 'null'
+        IsDisabled:
+          type: boolean
+        IsSensitive:
+          type: boolean
+        SpecialFieldId:
+          type: string
+          format: uuid
+        ParentOptionId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        ParentFieldId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        FormObjectId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        Options:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/FieldOptionFullOutput'
+        ParentOptionIsSelected:
+          type: boolean
+        HasError:
+          type: boolean
+        HasRelevantOutput:
+          type: boolean
+        MinDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        MaxDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        AttendeeTypes:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: uuid
+        RemoteUrl:
+          type:
+          - string
+          - 'null'
+        SelectedOptionId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          readOnly: true
+        Confirm:
+          type: boolean
+        DomainValidation:
+          $ref: '#/components/schemas/DomainValidationOutput'
+        DisplayIsPrimary:
+          type: boolean
+      additionalProperties: false
+    AttendeeFlexPassCheckinOutput:
+      type: object
+      properties:
+        Name:
+          type:
+          - string
+          - 'null'
+        SessionNumber:
+          type: integer
+          format: int64
+        CheckedInAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        AttendeeCheckinId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        EventNumber:
+          type: integer
+          format: int64
+        TitleInfo:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    AttendeeNumbersToIdsOutput:
+      type: object
+      properties:
+        Results:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AttendeeConversionResult'
+          description: List of results for each requested attendee number
+      additionalProperties: false
+      description: Output model containing converted attendee identifiers and status information
     AttendeeCheckinOutput:
       type: object
       properties:
@@ -1228,59 +1454,106 @@ components:
         IsHidden:
           type: boolean
       additionalProperties: false
-    FieldInput:
-      required:
-      - Id
+    DomainValidationOutput:
+      type: object
+      properties:
+        AllowDomains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        DisallowDomains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    AttendeeLinkInput:
+      type: object
+      properties:
+        SourceAttendeeId:
+          type:
+          - string
+          - 'null'
+        AccessKey:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    AttendeeUpdateGiftInput:
+      type: object
+      properties:
+        IsGift:
+          type: boolean
+        FromName:
+          type:
+          - string
+          - 'null'
+        FromEmail:
+          pattern: ^([0-9A-Za-zÀ-ÖØ-öø-ÿ']+[-._+&])*[0-9A-Za-zÀ-ÖØ-öø-ÿ_']+@([-0-9A-Za-zÀ-ÖØ-öø-ÿ]+[.])+[a-zA-Z]{2,63}$
+          type:
+          - string
+          - 'null'
+        RecipientEmail:
+          pattern: ^([0-9A-Za-zÀ-ÖØ-öø-ÿ']+[-._+&])*[0-9A-Za-zÀ-ÖØ-öø-ÿ_']+@([-0-9A-Za-zÀ-ÖØ-öø-ÿ]+[.])+[a-zA-Z]{2,63}$
+          type:
+          - string
+          - 'null'
+        RecipientMessage:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    AttendeeGroupInput:
+      type: object
+      properties:
+        GroupId:
+          type:
+          - string
+          - 'null'
+        OverrideCommunityCapacity:
+          type: boolean
+        AccessKey:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    AttendeeCommunityOutput:
       type: object
       properties:
         Id:
           type: string
           format: uuid
-        Value: {}
-      additionalProperties: false
-    AttendeeDonateInput:
-      type: object
-      properties:
-        AccessKey:
+        Partition:
           type:
           - string
           - 'null'
-        SendEmail:
-          type: boolean
-        ReservedStateId:
+        Name:
           type:
-          - integer
+          - string
           - 'null'
+        Capacity:
+          type: integer
           format: int32
-        Via:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    AttendeeCompletedInput:
-      required:
-      - IsCompleted
-      type: object
-      properties:
-        AccessKey:
-          type:
-          - string
-          - 'null'
-        IsCompleted:
-          type: boolean
-      additionalProperties: false
-    AttendeeNumbersToIdsOutput:
-      type: object
-      properties:
-        Results:
+        AttendeeCount:
+          type: integer
+          format: int32
+        GroupCount:
+          type: integer
+          format: int32
+        Tags:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/AttendeeConversionResult'
-          description: List of results for each requested attendee number
+            type: string
+        RemainingCount:
+          type: integer
+          format: int32
+          readOnly: true
       additionalProperties: false
-      description: Output model containing converted attendee identifiers and status information
     AttendeeDetailsOutput:
       type: object
       properties:
@@ -1482,206 +1755,6 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    AttendeePrintInput:
-      required:
-      - Attendees
-      - EventId
-      - Type
-      type: object
-      properties:
-        Type:
-          $ref: '#/components/schemas/PrintType'
-        Attendees:
-          type: array
-          items:
-            type: integer
-            format: int64
-        EventId:
-          minLength: 1
-          type: string
-        Format:
-          $ref: '#/components/schemas/PrintFormat'
-        ImageDpi:
-          type: integer
-          format: int32
-      additionalProperties: false
-    AttendeeGroupInput:
-      type: object
-      properties:
-        GroupId:
-          type:
-          - string
-          - 'null'
-        OverrideCommunityCapacity:
-          type: boolean
-        AccessKey:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    AttendeeDisplayOutput:
-      type: object
-      properties:
-        Line1:
-          type:
-          - string
-          - 'null'
-        Line2:
-          type:
-          - string
-          - 'null'
-        Line3:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    AttendeeFlexPassCheckinOutput:
-      type: object
-      properties:
-        Name:
-          type:
-          - string
-          - 'null'
-        SessionNumber:
-          type: integer
-          format: int64
-        CheckedInAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        AttendeeCheckinId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        EventNumber:
-          type: integer
-          format: int64
-        TitleInfo:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    StringStringKeyValuePair:
-      type: object
-      properties:
-        Key:
-          type:
-          - string
-          - 'null'
-        Value:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    AttendeeHelpdeskOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        AttendeeNumber:
-          type: integer
-          format: int64
-        EventNumber:
-          type: integer
-          format: int64
-        EventTitle:
-          type:
-          - string
-          - 'null'
-        EventSubtitle:
-          type:
-          - string
-          - 'null'
-        Status:
-          type:
-          - string
-          - 'null'
-        FirstName:
-          type:
-          - string
-          - 'null'
-        LastName:
-          type:
-          - string
-          - 'null'
-        TypeName:
-          type:
-          - string
-          - 'null'
-        Amount:
-          type: number
-          format: double
-        SeatInfo:
-          type:
-          - string
-          - 'null'
-        Culture:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    PrintType:
-      enum:
-      - Ticket
-      - ETicket
-      - Receipt
-      - MailingLabel
-      - WillCall
-      - NameBadge
-      - Season
-      type: string
-    AttendeeFlexPassOutput:
-      type: object
-      properties:
-        FlexTotal:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        FlexPer:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        FlexStartsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        FlexEndsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        FlexSummary:
-          type:
-          - string
-          - 'null'
-        FlexRedemptions:
-          type: integer
-          format: int32
-        FlexRedemptionsText:
-          type:
-          - string
-          - 'null'
-        FlexRelativeDays:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        EventRedemptions:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        EventRedemptionsText:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     FieldOptionFullOutput:
       type: object
       properties:
@@ -1737,130 +1810,55 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    FieldOutput:
+    FieldInput:
+      required:
+      - Id
       type: object
       properties:
         Id:
           type: string
           format: uuid
-        Label:
-          type:
-          - string
-          - 'null'
-        Type:
-          type:
-          - string
-          - 'null'
         Value: {}
-        DisplayValue:
-          type:
-          - string
-          - 'null'
-        ValidationExpression:
-          type:
-          - string
-          - 'null'
-        IsRequired:
-          type: boolean
-        Notes:
-          type:
-          - string
-          - 'null'
-        ErrorMessage:
-          type:
-          - string
-          - 'null'
-        IsDisabled:
-          type: boolean
-        IsSensitive:
-          type: boolean
-        SpecialFieldId:
-          type: string
-          format: uuid
-        ParentOptionId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        ParentFieldId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        FormObjectId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        Options:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/FieldOptionFullOutput'
-        ParentOptionIsSelected:
-          type: boolean
-        HasError:
-          type: boolean
-        HasRelevantOutput:
-          type: boolean
-        MinDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        MaxDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        AttendeeTypes:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            format: uuid
-        RemoteUrl:
-          type:
-          - string
-          - 'null'
-        SelectedOptionId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-          readOnly: true
-        Confirm:
-          type: boolean
-        DomainValidation:
-          $ref: '#/components/schemas/DomainValidationOutput'
-        DisplayIsPrimary:
-          type: boolean
       additionalProperties: false
-    AttendeeConversionResult:
+    PrintType:
+      enum:
+      - Ticket
+      - ETicket
+      - Receipt
+      - MailingLabel
+      - WillCall
+      - NameBadge
+      - Season
+      type: string
+    AttendeeCodeInput:
       type: object
       properties:
-        AttendeeNumber:
-          type: integer
-          description: The original attendee number requested
-          format: int64
-        AttendeeId:
+        AttendeeCode:
           type:
           - string
           - 'null'
-          description: The unique identifier if conversion was successful
-          format: uuid
-        Success:
-          type: boolean
-          description: Whether the conversion was successful
-        Message:
+        AccessKey:
           type:
           - string
           - 'null'
-          description: Reason for failure if unsuccessful
       additionalProperties: false
-      description: Result of converting an attendee number to a unique identifier
+    AttendeeCommunityInput:
+      type: object
+      properties:
+        CommunityId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        AccessKey:
+          type:
+          - string
+          - 'null'
+        OverrideCapacity:
+          type: boolean
+        OverrideGroup:
+          type: boolean
+      additionalProperties: false
     OrderCreateOutput:
       type: object
       properties:
@@ -1880,6 +1878,38 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/OrderResultOutput'
+      additionalProperties: false
+    PrintFormat:
+      enum:
+      - PDF
+      - PNG
+      - JPG
+      - GIF
+      - BMP
+      - TIFF
+      - ZPL
+      type: string
+    AttendeeCancelInput:
+      type: object
+      properties:
+        Penalty:
+          type: number
+          format: double
+        AccessKey:
+          type:
+          - string
+          - 'null'
+        SendEmail:
+          type: boolean
+        ReservedStateId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        Via:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     AttendeeUpdateTypeInput:
       required:
@@ -1909,51 +1939,21 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    AttendeeUpdateGiftOutput:
+    ApiModelError:
       type: object
       properties:
-        Id:
-          type: string
-          format: uuid
-        AttendeeNumber:
-          type: integer
-          format: int64
-        EventId:
-          type: string
-          format: uuid
-        AttendeeTypeId:
-          type: string
-          format: uuid
-        AttendeeCode:
+        Errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+        Message:
           type:
           - string
           - 'null'
-        GroupId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        IsCompleted:
-          type: boolean
-        CurrentOrderId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        OriginalOrderId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        CartId:
-          type:
-          - string
-          - 'null'
-        IsGift:
-          type: boolean
-        IsPreRegistered:
-          type: boolean
-        RecipientEmail:
+        Data: {}
+        StackTrace:
           type:
           - string
           - 'null'

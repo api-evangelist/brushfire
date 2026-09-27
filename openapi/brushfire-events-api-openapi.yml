@@ -1400,2184 +1400,47 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ThemeOutput:
+    EventSessionOutput:
       type: object
       properties:
-        LogoUrl:
-          type:
-          - string
-          - 'null'
-        LogoPosition:
-          type:
-          - string
-          - 'null'
-        HeaderUrlLarge:
-          type:
-          - string
-          - 'null'
-        HeaderUrlMobile:
-          type:
-          - string
-          - 'null'
-        BackgroundCss:
-          type:
-          - string
-          - 'null'
-        TextColor:
-          type:
-          - string
-          - 'null'
-        LinkColor:
-          type:
-          - string
-          - 'null'
-        HomeUrl:
-          type:
-          - string
-          - 'null'
-        HeaderHtml:
-          type:
-          - string
-          - 'null'
-        ClientKey:
-          type:
-          - string
-          - 'null'
-        ClientName:
-          type:
-          - string
-          - 'null'
-        UrlKey:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    EventSharedCapacityCreateInput:
-      type: object
-      properties:
-        SharedCapacityName:
-          type:
-          - string
-          - 'null'
-          description: For time slot events, if the SharedCapacityKind is "Time", you must provide a time here. i.e. "10:00 AM".
-        SharedCapacity:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        SharedCapacityKind:
-          $ref: '#/components/schemas/SharedCapacityKind'
-        IsHidden:
-          type: boolean
-          description: Only for time slot events. If true, attendee types connected to this shared capacity will not be visible.
-        ConnectedTypeNames:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: List of attendee type names or addons names that are connected to this shared capacity. Must not mix and match. Time Slot events allow for attendee types to be connected across multiple shared capacities.
-      additionalProperties: false
-    EventDateOutput:
-      type: object
-      properties:
-        DoorsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        StartsAt:
-          type: string
-          format: date-time
-        EndsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-      additionalProperties: false
-    ApiModelError:
-      type: object
-      properties:
-        Errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/StringStringKeyValuePair'
-        Message:
-          type:
-          - string
-          - 'null'
-        Data: {}
-        StackTrace:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SeatReservedStateOutput:
-      type: object
-      properties:
-        Id:
-          type: integer
-          format: int32
-        Name:
-          type:
-          - string
-          - 'null'
-        BackColor:
-          $ref: '#/components/schemas/ColorOutput'
-        ForeColor:
-          $ref: '#/components/schemas/ColorOutput'
-      additionalProperties: false
-    EventResourceOutput:
-      type: object
-      properties:
-        Category:
-          type:
-          - string
-          - 'null'
-        Name:
-          type:
-          - string
-          - 'null'
-        Url:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    EventGroupFieldCreateInput:
-      type: object
-      properties:
-        IsGroup:
-          type: boolean
-          readOnly: true
-        Label:
-          type:
-          - string
-          - 'null'
-        FieldType:
-          $ref: '#/components/schemas/FieldType'
-        ValidationExpression:
-          type:
-          - string
-          - 'null'
-        StoredValue:
-          type:
-          - string
-          - 'null'
-        Notes:
-          type:
-          - string
-          - 'null'
-        AdminRequired:
-          type: boolean
-        AdminVisible:
-          type: boolean
-        InternetRequired:
-          type: boolean
-        InternetVisible:
-          type: boolean
-        IsSensitive:
-          type: boolean
-        Options:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/EventFieldOptionCreateInput'
-          description: Only set for fields of type Checkbox, Dropdown, Radiobuttons, ItemList, or ItemAmount
-        RemoteUrl:
-          type:
-          - string
-          - 'null'
-          description: Only set for fields of type RemoteFetch or RemoteValidate
-        RequireConfirm:
-          type: boolean
-          description: Only set for fields of type Text, Name, Phone, Email, or Date
-        EmailDomains:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: The list of domains you would like to validate for or against for email fields.
-        DomainValidation:
-          $ref: '#/components/schemas/DomainValidationType'
-      additionalProperties: false
-    EventSectionPriceOutput:
-      type: object
-      properties:
-        TypeId:
-          type: string
-          format: uuid
-        Amount:
-          type: number
-          format: double
-        Fee:
-          type:
-          - number
-          - 'null'
-          format: double
-        IsInclusiveFees:
-          type: boolean
-        ConsecutiveSeats:
-          type: integer
-          format: int32
-        DisplayAmount:
-          type: number
-          format: double
-        PriceDescription:
-          type:
-          - string
-          - 'null'
-        CustomFees:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CustomFeeOutput'
-      additionalProperties: false
-    EventTypeVariationOutput:
-      type: object
-      properties:
-        ItemId:
-          type:
-          - string
-          - 'null'
-        Name:
-          type:
-          - string
-          - 'null'
-        Price:
-          type: number
-          format: double
-        DisplayPrice:
-          type:
-          - number
-          - 'null'
-          format: double
-        PriceDescription:
-          type:
-          - string
-          - 'null'
-        SpotsRemaining:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        RemainingText:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-      additionalProperties: false
-    GroupSummaryOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        GroupNumber:
+        SessionNumber:
           type: integer
           format: int64
         Name:
           type:
           - string
           - 'null'
-        Email:
-          type:
-          - string
-          - 'null'
-        AttendeeTypeId:
-          type: string
-          format: uuid
-        TypeName:
-          type:
-          - string
-          - 'null'
-        AttendeeCount:
+        AttendeeTotal:
           type: integer
           format: int32
-        JoinPasscode:
-          type:
-          - string
-          - 'null'
-        CommunityId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        CommunityPartition:
-          type:
-          - string
-          - 'null'
-        CommunityName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    FieldMetaType:
-      enum:
-      - Order
-      - Group
-      - Attendee
-      type: string
-    EventFieldOptionCreateInput:
-      type: object
-      properties:
-        Label:
-          type:
-          - string
-          - 'null'
-        IsSelected:
-          type: boolean
-        AdminVisible:
-          type: boolean
-        InternetVisible:
-          type: boolean
-        Custom1:
-          type:
-          - string
-          - 'null'
-        UnitPrice:
-          type:
-          - number
-          - 'null'
-          format: double
-        Capacity:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        DependentFields:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/EventFieldCreateInput'
-          description: Use this to create fields that are only visible when this option is selected
-      additionalProperties: false
-    DomainValidationOutput:
-      type: object
-      properties:
-        AllowDomains:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        DisallowDomains:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-      additionalProperties: false
-    EventListOutput:
-      type: object
-      properties:
-        Title:
-          type:
-          - string
-          - 'null'
-        Subtitle:
-          type:
-          - string
-          - 'null'
-        UrlKey:
-          type:
-          - string
-          - 'null'
-        ClientKey:
-          type:
-          - string
-          - 'null'
-        ClientName:
-          type:
-          - string
-          - 'null'
-        Culture:
-          type:
-          - string
-          - 'null'
-        DateInfo:
-          type:
-          - string
-          - 'null'
-        DateInfoList:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        SoldOut:
-          type: boolean
-        IsSticky:
-          type: boolean
-        EventNumber:
-          type: integer
-          format: int64
-        IsAssigned:
-          type: boolean
-        LocationName:
-          type:
-          - string
-          - 'null'
-        SessionCount:
+        CheckedInCount:
           type: integer
           format: int32
-        IsActive:
-          type: boolean
-        DateDisplay:
-          $ref: '#/components/schemas/DateDisplayOutput'
-        Latitude:
-          type: number
-          format: double
-        Longitude:
-          type: number
-          format: double
-        MapUrl:
-          type:
-          - string
-          - 'null'
-        PromoImageUrl:
-          type:
-          - string
-          - 'null'
-        CategoryId:
-          type: integer
-          format: int32
-        CategoryName:
-          type:
-          - string
-          - 'null'
-        SpotsRemaining:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        SpotsTaken:
-          type: integer
-          format: int32
-        ShowRemaining:
-          type: boolean
-        RemainingText:
-          type:
-          - string
-          - 'null'
-        Verbiage:
-          type:
-          - string
-          - 'null'
-        Dates:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/EventDateOutput'
-        AlternateTitle:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        TimeZoneId:
-          type:
-          - string
-          - 'null'
-        AreaName:
-          type:
-          - string
-          - 'null'
-        AreaKey:
-          type:
-          - string
-          - 'null'
-        PaymentProfileId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        AcctCode:
+        Type:
           type:
           - string
           - 'null'
         IsHidden:
           type: boolean
-        IsFlexPass:
-          type: boolean
-        IsExchangeable:
-          type: boolean
-      additionalProperties: false
-    SharedCapacityKind:
-      enum:
-      - Default
-      - Time
-      - Pass
-      type: string
-    EventSectionReservedStateOutput:
-      type: object
-      properties:
-        ReservedState:
-          $ref: '#/components/schemas/SeatReservedStateOutput'
-        SeatCount:
-          type: integer
-          format: int32
-      additionalProperties: false
-    EventDocumentOutput:
-      type: object
-      properties:
-        HasTicket:
-          type: boolean
-        HasETicket:
-          type: boolean
-        HasReceipt:
-          type: boolean
-        HasNamebadge:
-          type: boolean
-        HasCheckIn:
-          type: boolean
-        HasWillCallLabel:
-          type: boolean
-        HasMailLabel:
-          type: boolean
-      additionalProperties: false
-    EventTypeOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        Name:
-          type:
-          - string
-          - 'null'
-        Description:
-          type:
-          - string
-          - 'null'
-        IsAvailable:
-          type: boolean
-        IsFuture:
-          type: boolean
-        IsPast:
-          type: boolean
-        Available:
-          type:
-          - string
-          - 'null'
-        SelectedAmount:
-          type:
-          - number
-          - 'null'
-          format: double
-        Amount:
-          type:
-          - number
-          - 'null'
-          format: double
-        DisplayAmount:
-          type: number
-          format: double
-        PriceDescription:
-          type:
-          - string
-          - 'null'
-        Fee:
-          type: number
-          description: Deprecated. Fees are now set in CustomFees; this property is kept for backwards compatibility but should be ignored.
-          format: double
-        Tax:
-          type:
-          - number
-          - 'null'
-          description: Deprecated. Taxes are now set in CustomFees; this property is kept for backwards compatibility but should be ignored.
-          format: double
-        TaxRate:
-          type:
-          - number
-          - 'null'
-          description: Deprecated. Tax rates are now set in CustomFees; this property is kept for backwards compatibility but should be ignored.
-          format: double
-        OrderFeePercent:
-          type:
-          - number
-          - 'null'
-          description: Deprecated. Fees are now set in CustomFees; this property is kept for backwards compatibility but should be ignored.
-          format: double
-        IsInclusiveFees:
-          type: boolean
-        IsInclusiveTaxes:
-          type: boolean
-        AllowCustomAmount:
-          type: boolean
-        PreRegEnabled:
-          type: boolean
-        GiftingEnabled:
-          type: boolean
-        CopyEnabled:
-          type: boolean
-        AcctCode:
-          type:
-          - string
-          - 'null'
-        PaymentAmounts:
-          type:
-          - string
-          - 'null'
-        PaymentsDueBy:
-          type:
-          - string
-          - 'null'
-        MinQuantity:
-          type: integer
-          format: int32
-        MaxQuantity:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        IsGroup:
-          type: boolean
-        SoldOut:
-          type: boolean
-        YourGroup:
-          type: boolean
-        GroupingText:
-          type:
-          - string
-          - 'null'
-        QuantityRequirements:
-          type:
-          - string
-          - 'null'
-        GroupRequirements:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        IsInaccessibleDueToAccessCode:
-          type: boolean
-        IsAccessibleBecauseOfAccessCode:
-          type: boolean
-        IsAdmin:
-          type: boolean
-        Kind:
-          type:
-          - string
-          - 'null'
-        AllowedPayments:
-          type:
-          - array
-          - 'null'
-          items:
-            type: number
-            format: double
-        AllowedDisplayPayments:
-          type:
-          - array
-          - 'null'
-          items:
-            type: number
-            format: double
-        Sections:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/EventTypeSectionOutput'
-        Prices:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/EventTypePriceOutput'
-        SpotsRemaining:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        RemainingText:
-          type:
-          - string
-          - 'null'
-        SharedCapacityId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        SharedCapacityName:
-          type:
-          - string
-          - 'null'
-        SharedCapacityKind:
-          type:
-          - string
-          - 'null'
-        TimeSlotStartsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        ShareEnabled:
-          type: boolean
-        IsAddon:
-          type: boolean
-        ImageUrl:
-          type:
-          - string
-          - 'null'
-        GeneratesTicket:
-          type: boolean
-        ExternalId:
-          type:
-          - string
-          - 'null'
-        Variations:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/EventTypeVariationOutput'
-        CustomFees:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CustomFeeOutput'
-        FeeLineItems:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/UnitFeeLineItemOutput'
-        FeeBreakdown:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/UnitFeeLineItemOutput'
-          readOnly: true
-        TaxBreakdown:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/UnitFeeLineItemOutput'
-          readOnly: true
-      additionalProperties: false
-    RelatedEventOutput:
-      type: object
-      properties:
-        ClientKey:
-          type:
-          - string
-          - 'null'
-        UrlKey:
-          type:
-          - string
-          - 'null'
-        EventNumber:
-          type: integer
-          format: int64
-        EventTitle:
-          type:
-          - string
-          - 'null'
-        Subtitle:
-          type:
-          - string
-          - 'null'
-        ImageUrl:
-          type:
-          - string
-          - 'null'
-        DateInfo:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    EventMoveInput:
-      required:
-      - AccessKey
-      - TargetClientId
-      - UrlKey
-      type: object
-      properties:
-        AccessKey:
-          minLength: 1
-          type: string
-          description: Your account access key. This is used to authenticate your requests.
-        TargetClientId:
-          type: string
-          description: The ID of the client to move the event to.
-          format: uuid
-        UrlKey:
-          maxLength: 50
-          minLength: 0
-          pattern: ^[0-9A-Za-z_\-]+$
-          type: string
-          description: The URL key the event will have under the target client.
-        PaymentProfileId:
-          type:
-          - string
-          - 'null'
-          description: The payment profile ID to assign to the event in the target client. Leave null to assign no payment profile.
-          format: uuid
-        UseNewClientFeeStructure:
-          type: boolean
-          description: 'Whether to replace the event''s fee structure with the target client''s fee structure. Defaults to true.
-
-            Setting this to false is restricted to Brushfire staff.'
-      additionalProperties: false
-    RemoteFetchResult:
-      type: object
-      properties:
-        Label:
-          type:
-          - string
-          - 'null'
-        Value:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    TypeKind:
-      enum:
-      - InPerson
-      - Donation
-      - Product
-      type: string
-    EventDetailsOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        EventNumber:
-          type: integer
-          format: int64
-        PreRegParentId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        PreRegChildId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        UrlKey:
-          type:
-          - string
-          - 'null'
-        ClientKey:
-          type:
-          - string
-          - 'null'
-        ClientName:
-          type:
-          - string
-          - 'null'
-        ClientCountry:
-          type:
-          - string
-          - 'null'
-        ClientRegion:
-          type:
-          - string
-          - 'null'
-        ClientIsDemo:
-          type: boolean
-        PaymentProfileId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        ClientTheme:
-          type:
-          - string
-          - 'null'
-        EventTheme:
-          type:
-          - string
-          - 'null'
-        AppImageUrl:
-          type:
-          - string
-          - 'null'
-        IsAssigned:
-          type: boolean
-        HasCommunities:
-          type: boolean
-        HasExistingGroups:
-          type: boolean
-        HasGroupTypes:
-          type: boolean
-        LockinGroups:
-          type: boolean
-        IsGroupCentric:
-          type: boolean
-        IsGroupPrivate:
-          type: boolean
-        GroupCentricText:
-          type:
-          - string
-          - 'null'
-        ShowSoldOut:
-          type: boolean
-        HasActiveEventCodes:
-          type: boolean
-        HasActiveSeatCodes:
-          type: boolean
-        HasActiveTypeCodes:
-          type: boolean
-        HasPayments:
-          type: boolean
-        PromoImageUrl:
-          type:
-          - string
-          - 'null'
-        PromoDescription:
-          type:
-          - string
-          - 'null'
-        AccessState:
-          type:
-          - string
-          - 'null'
-        AccessMessage:
-          type:
-          - string
-          - 'null'
-        PreventChanges:
-          type: boolean
-        AccessCodeIsValid:
-          type: boolean
-        PauseText:
-          type:
-          - string
-          - 'null'
-        CategoryId:
-          type: integer
-          format: int32
-        CategoryName:
-          type:
-          - string
-          - 'null'
-        UseMap:
-          type: boolean
-        LocationName:
-          type:
-          - string
-          - 'null'
-        Street:
-          type:
-          - string
-          - 'null'
-        City:
-          type:
-          - string
-          - 'null'
-        Region:
-          type:
-          - string
-          - 'null'
-        Country:
-          type:
-          - string
-          - 'null'
-        PostalCode:
-          type:
-          - string
-          - 'null'
-        LocationDetails:
-          type:
-          - string
-          - 'null'
-        MapAddress:
-          type:
-          - string
-          - 'null'
-        Address:
-          type:
-          - string
-          - 'null'
-        Location:
-          type:
-          - string
-          - 'null'
-        Latitude:
-          type: number
-          format: double
-        Longitude:
-          type: number
-          format: double
-        TimeZoneId:
-          type:
-          - string
-          - 'null'
-        Culture:
-          type:
-          - string
-          - 'null'
-        Currency:
-          type:
-          - string
-          - 'null'
-        ShareUrl:
-          type:
-          - string
-          - 'null'
-        FacebookUrl:
-          type:
-          - string
-          - 'null'
-        TwitterUrl:
-          type:
-          - string
-          - 'null'
-        TwitterRelated:
-          type:
-          - string
-          - 'null'
-        TwitterText:
-          type:
-          - string
-          - 'null'
-        SessionCount:
-          type: integer
-          format: int32
-        Title:
-          type:
-          - string
-          - 'null'
-        AlternateTitle:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        TitleInfo:
-          type:
-          - string
-          - 'null'
-        Subtitle:
-          type:
-          - string
-          - 'null'
-        IsPublished:
-          type: boolean
-        IsHidden:
-          type: boolean
-        OverallCapacity:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        IsSoldOut:
-          type: boolean
-        SpotsTaken:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        SpotsRemaining:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        Types:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/EventTypeOutput'
-        Verbiage:
-          type:
-          - string
-          - 'null'
-        Dates:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/EventDateOutput'
-        DateInfoList:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        DateInfo:
-          type:
-          - string
-          - 'null'
-        StartsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        DoorsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        EndsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        HasParent:
-          type: boolean
-        VenueImage:
-          type:
-          - string
-          - 'null'
-        EventInfoTop:
-          type:
-          - string
-          - 'null'
-        EventInfoBottom:
-          type:
-          - string
-          - 'null'
-        StickyInfo:
-          type:
-          - string
-          - 'null'
-        EventCode:
-          type:
-          - string
-          - 'null'
-        ContactPhone:
-          type:
-          - string
-          - 'null'
-        ContactEmail:
-          type:
-          - string
-          - 'null'
-        Website:
-          type:
-          - string
-          - 'null'
-        CreatedAt:
-          type: string
-          format: date-time
-        SeasonRunAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        IsSeasonMaster:
-          type: boolean
-        IsSeasonChild:
-          type: boolean
-        IsSeasonRunImmediate:
-          type: boolean
-        Sessions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/EventSessionOutput'
-        Documents:
-          $ref: '#/components/schemas/EventDocumentOutput'
-        StreamUrl:
-          type:
-          - string
-          - 'null'
-        PublishShowAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        PublishHideAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        AutoRegTC:
-          type:
-          - string
-          - 'null'
-        AreaName:
-          type:
-          - string
-          - 'null'
-        AreaKey:
-          type:
-          - string
-          - 'null'
-        AreaHeaderLogo:
-          type:
-          - string
-          - 'null'
-        AreaHeaderHtml:
-          type:
-          - string
-          - 'null'
-        AcctCode:
-          type:
-          - string
-          - 'null'
-        ShowStage:
-          type: boolean
-        RelatedEvents:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/RelatedEventOutput'
-        IsFlexPass:
-          type: boolean
-        IsTimeSlot:
-          type: boolean
-        TaxLabel:
-          type:
-          - string
-          - 'null'
-        AddonTitle:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    EventExternalCustomersCreateInput:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-          description: WHether Brushfire should attempt to find/create customersin Square for this event.
-        customerGroups:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: A list of Square Customer Group IDs - if provided, Square Customers for this event will be added to all of these groups.
-        overwriteProfile:
-          type: boolean
-          description: If true, any personal data collected during checkout will overwrite existing customer data in Square. If false, personal data will be added, but existing Square data will not be overwritten.
-      additionalProperties: false
-    EventDateItem:
-      type: object
-      properties:
-        DoorsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        StartsAt:
-          type: string
-          format: date-time
-        EndsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-      additionalProperties: false
-    EventGoogleAnalyticsCreateInput:
-      type: object
-      properties:
-        number:
-          pattern: ^((UA|G)-[-0-9A-Za-z]{4,50})+$
-          type:
-          - string
-          - 'null'
-          description: The Google Analytics tracking number for the event.
-          example: UA-12345678-1
-        domain:
-          type:
-          - string
-          - 'null'
-          description: The Google Analytics domain
-      additionalProperties: false
-    OrderListPaymentOutput:
-      type: object
-      properties:
-        PaymentMethodId:
-          type: string
-          format: uuid
-        PaymentMethod:
-          type:
-          - string
-          - 'null'
-        PaymentNumber:
-          type:
-          - string
-          - 'null'
-        TransactionId:
-          type:
-          - string
-          - 'null'
-        TransactionTotal:
-          type: number
-          format: double
-        ExternalInvoiceId:
-          type:
-          - string
-          - 'null'
-        CreditNumber:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        PaidInFull:
+        AllowFlex:
           type:
           - boolean
           - 'null'
-      additionalProperties: false
-    CopyFeesType:
-      enum:
-      - Client
-      - Original
-      type: string
-    PriceMethod:
-      enum:
-      - Set
-      - Custom
-      - Payments
-      type: string
-    EventFieldCreateInput:
-      type: object
-      properties:
-        Label:
-          type:
-          - string
-          - 'null'
-        FieldType:
-          $ref: '#/components/schemas/FieldType'
-        ValidationExpression:
-          type:
-          - string
-          - 'null'
-        StoredValue:
-          type:
-          - string
-          - 'null'
-        Notes:
-          type:
-          - string
-          - 'null'
-        AdminRequired:
-          type: boolean
-        AdminVisible:
-          type: boolean
-        InternetRequired:
-          type: boolean
-        InternetVisible:
-          type: boolean
-        IsSensitive:
-          type: boolean
-        Options:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/EventFieldOptionCreateInput'
-          description: Only set for fields of type Checkbox, Dropdown, Radiobuttons, ItemList, or ItemAmount
-        RemoteUrl:
-          type:
-          - string
-          - 'null'
-          description: Only set for fields of type RemoteFetch or RemoteValidate
-        RequireConfirm:
-          type: boolean
-          description: Only set for fields of type Text, Name, Phone, Email, or Date
-        EmailDomains:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: The list of domains you would like to validate for or against for email fields.
-        DomainValidation:
-          $ref: '#/components/schemas/DomainValidationType'
-      additionalProperties: false
-    FeeItemType:
-      enum:
-      - Fee
-      - Tax
-      type: string
-    EventAddonCreateInput:
-      type: object
-      properties:
-        Name:
-          type:
-          - string
-          - 'null'
-        Description:
-          type:
-          - string
-          - 'null'
-        AdminShowAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        AdminHideAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        InternetShowAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        InternetHideAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        IsHidden:
-          type: boolean
-        Capacity:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        RoleName:
-          type:
-          - string
-          - 'null'
-        Amount:
-          type: number
-          format: double
-        MinQuantity:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        MaxQuantity:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        NoChangesAfter:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        Custom1:
-          type:
-          - string
-          - 'null'
-        Custom2:
-          type:
-          - string
-          - 'null'
-        Custom3:
-          type:
-          - string
-          - 'null'
-        AcctCode:
-          type:
-          - string
-          - 'null'
-        GroupingText:
-          type:
-          - string
-          - 'null'
-        TypeKind:
-          $ref: '#/components/schemas/TypeKind'
-        FlexTotal:
-          type:
-          - integer
-          - 'null'
-          description: Total number of redemptions. Only applicable for Flex Pass events.
-          format: int32
-        FlexPer:
-          type:
-          - integer
-          - 'null'
-          description: Maximum number of redemptions per event. Only applicable for Flex Pass events.
-          format: int32
-        FlexStartsAt:
-          type:
-          - string
-          - 'null'
-          description: 'When can redemptions start? Only applicable for Flex Pass events without Flex Relative Days.
-
-            If Flex Relative Days is set, this will be ignored.'
-          format: date-time
-        FlexEndsAt:
-          type:
-          - string
-          - 'null'
-          description: 'When will redemptions end? Only applicable for Flex Pass events without Flex Relative Days.
-
-            If Flex Relative Days is set, this will be ignored.'
-          format: date-time
-        ConnectedFlexEventUrlKeys:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: What events can this flex pass be redeemed for? Set "all" to allow all events.
-        FlexRelativeDays:
-          type:
-          - integer
-          - 'null'
-          description: 'For how many days is the flex pass redeemable after purchase? Only applicable for Flex Pass events.
-
-            If Flex Relative Days is set, FlexStartsAt and FlexEndsAt will be ignored.'
-          format: int32
-        CustomHtml:
-          type:
-          - string
-          - 'null'
-        ShareEnabled:
-          type: boolean
-        GeneratesTicket:
-          type: boolean
-        TypeTicketImageUrl:
-          type:
-          - string
-          - 'null'
-        TypeTicketBackgroundColor:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    FeeMethod:
-      enum:
-      - Pass
-      - Absorb
-      type: string
-    EventHeaderStyle:
-      enum:
-      - HTML
-      - Banner
-      - Logo
-      type: string
-    EventType:
-      enum:
-      - GeneralAdmission
-      - FlexPass
-      - TimeSlot
-      type: string
-    EventSingleOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        EventNumber:
-          type: integer
-          format: int64
-        UrlKey:
-          type:
-          - string
-          - 'null'
-        ClientKey:
-          type:
-          - string
-          - 'null'
-        ClientName:
-          type:
-          - string
-          - 'null'
-        ClientIsDemo:
-          type: boolean
-        IsAssigned:
-          type: boolean
-        CategoryId:
+        FlexPassCount:
           type: integer
           format: int32
-        CategoryName:
-          type:
-          - string
-          - 'null'
-        UseMap:
-          type: boolean
-        LocationName:
-          type:
-          - string
-          - 'null'
-        Street:
-          type:
-          - string
-          - 'null'
-        City:
-          type:
-          - string
-          - 'null'
-        Region:
-          type:
-          - string
-          - 'null'
-        Country:
-          type:
-          - string
-          - 'null'
-        PostalCode:
-          type:
-          - string
-          - 'null'
-        LocationDetails:
-          type:
-          - string
-          - 'null'
-        MapAddress:
-          type:
-          - string
-          - 'null'
-        Address:
-          type:
-          - string
-          - 'null'
-        Location:
-          type:
-          - string
-          - 'null'
-        ShowSoldOut:
-          type: boolean
-        PaymentProfileId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        TimeZoneId:
-          type:
-          - string
-          - 'null'
-        Culture:
-          type:
-          - string
-          - 'null'
-        Currency:
-          type:
-          - string
-          - 'null'
-        FacebookUrl:
-          type:
-          - string
-          - 'null'
-        SessionCount:
+        FlexAttendeeTotal:
           type: integer
           format: int32
-        Title:
-          type:
-          - string
-          - 'null'
-        AlternateTitle:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        TitleInfo:
-          type:
-          - string
-          - 'null'
-        Subtitle:
-          type:
-          - string
-          - 'null'
-        IsPublished:
-          type: boolean
-        OverallCapacity:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        IsSoldOut:
-          type: boolean
-        SpotsTaken:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        SpotsRemaining:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        IsHidden:
-          type: boolean
-        Verbiage:
-          type:
-          - string
-          - 'null'
-        Dates:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/EventDateOutput'
-        DateInfoList:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        DateInfo:
-          type:
-          - string
-          - 'null'
-        StartsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        DoorsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        EndsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        HasParent:
-          type: boolean
-        VenueImage:
-          type:
-          - string
-          - 'null'
-        EventInfoTop:
-          type:
-          - string
-          - 'null'
-        EventInfoBottom:
-          type:
-          - string
-          - 'null'
-        StickyInfo:
-          type:
-          - string
-          - 'null'
-        EventCode:
-          type:
-          - string
-          - 'null'
-        ContactPhone:
-          type:
-          - string
-          - 'null'
-        ContactEmail:
-          type:
-          - string
-          - 'null'
-        Website:
-          type:
-          - string
-          - 'null'
-        CreatedAt:
-          type: string
-          format: date-time
-        SeasonRunAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        IsSeasonMaster:
-          type: boolean
-        IsSeasonChild:
-          type: boolean
-        IsSeasonRunImmediate:
-          type: boolean
-        AppImageUrl:
-          type:
-          - string
-          - 'null'
-        StreamUrl:
-          type:
-          - string
-          - 'null'
-        AreaName:
-          type:
-          - string
-          - 'null'
-        AreaKey: {}
-        AcctCode:
-          type:
-          - string
-          - 'null'
-        ShowStage:
-          type: boolean
-        IsFlexPass:
-          type: boolean
-        AttendeeChanges:
-          $ref: '#/components/schemas/AttendeeChangeType'
         IsTimeSlot:
           type: boolean
-        AddonTitle:
-          type:
-          - string
-          - 'null'
-        IsExchangeable:
-          type: boolean
-      additionalProperties: false
-    AttendeeTypeCategory:
-      enum:
-      - All
-      - Standard
-      - Addon
-      type: string
-    LookupAttendeeResultOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        AttendeeNumber:
-          type: integer
-          format: int64
-        Status:
-          type:
-          - string
-          - 'null'
-        IsCompleted:
-          type: boolean
-        IsGift:
-          type: boolean
-        IsPreRegistered:
-          type: boolean
-        ShareEmail:
-          type:
-          - string
-          - 'null'
-        GiftingEnabled:
-          type: boolean
-        GiftLastSentAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        GiftLastSentAtLocal:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          readOnly: true
-        TimeZoneId:
-          type:
-          - string
-          - 'null'
-        FirstName:
-          type:
-          - string
-          - 'null'
-        LastName:
-          type:
-          - string
-          - 'null'
-        Name:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        AttendeeTypeId:
-          type: string
-          format: uuid
-        TypeName:
-          type:
-          - string
-          - 'null'
-        TypeAmount:
-          type: number
-          format: double
-        TypeDisplayAmount:
-          type: number
-          format: double
-        SectionName:
-          type:
-          - string
-          - 'null'
-        RowName:
-          type:
-          - string
-          - 'null'
-        SeatLabel:
-          type:
-          - string
-          - 'null'
-        Amount:
-          type: number
-          format: double
-        Addons:
-          type: number
-          format: double
-        Discounts:
-          type: number
-          format: double
-        SeatInfo:
-          type:
-          - string
-          - 'null'
-        Culture:
-          type:
-          - string
-          - 'null'
-        GroupId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        GroupName:
-          type:
-          - string
-          - 'null'
-        GroupEmail:
-          type:
-          - string
-          - 'null'
-        AttendeeDisplay:
-          $ref: '#/components/schemas/AttendeeDisplayOutput'
-        AttendeeDisplayLines:
-          $ref: '#/components/schemas/AttendeeDisplayOutput'
-        DisplayPrice:
-          type: number
-          format: double
-          readOnly: true
-        DisplayTotal:
-          type: number
-          format: double
-          readOnly: true
-        PriceDescription:
-          type:
-          - string
-          - 'null'
-        HasPaymentsToMake:
-          type: boolean
-        DonatingBackEnabled:
-          type: boolean
-        ChangesAreBlocked:
-          type: boolean
-        ChangesAreBlockedAfter:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        HasPendingSignatures:
-          type: boolean
-        AllSignaturesComplete:
-          type: boolean
-        ShareEnabled:
-          type: boolean
-        TicketInfo:
-          $ref: '#/components/schemas/TicketInfoOutput'
-      additionalProperties: false
-    EventCommunityOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        Partition:
-          type:
-          - string
-          - 'null'
-        Name:
-          type:
-          - string
-          - 'null'
-        Capacity:
+        MinutesBefore:
           type: integer
           format: int32
-        AttendeeCount:
+        MinutesAfter:
           type: integer
           format: int32
-        GroupCount:
-          type: integer
-          format: int32
-        Tags:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        RemainingCount:
-          type: integer
-          format: int32
-          readOnly: true
-      additionalProperties: false
-    EventTypeSectionOutput:
-      type: object
-      properties:
-        SectionId:
-          type: string
-          format: uuid
-        SectionName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    EventSectionOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        Name:
-          type:
-          - string
-          - 'null'
-        Alignment:
-          type:
-          - string
-          - 'null'
-        AislesAfter:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        IsRowAscending:
-          type: boolean
-        IsSeatAscending:
-          type: boolean
-        IsRankAscending:
-          type: boolean
-        IsAssigned:
-          type: boolean
-        Rotation:
-          type: integer
-          format: int32
-        Rank:
-          type: integer
-          format: int32
-        DistanceCount:
-          type: integer
-          format: int32
-        RemainingText:
-          type:
-          - string
-          - 'null'
-        SpotsRemaining:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        PriceBreakdown:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/EventSectionPriceOutput'
-        ReservedStates:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/EventSectionReservedStateOutput'
-      additionalProperties: false
-    EventSeatOutput:
-      type: object
-      properties:
-        SeatId:
-          type: string
-          format: uuid
-        SectionId:
-          type: string
-          format: uuid
-        SectionName:
-          type:
-          - string
-          - 'null'
-        EventId:
-          type: string
-          format: uuid
-        EventNumber:
-          type: integer
-          format: int64
-        RowName:
-          type:
-          - string
-          - 'null'
-        SeatNumber:
-          type: integer
-          format: int32
-        SeatLabel:
-          type:
-          - string
-          - 'null'
-        SeatType:
-          type:
-          - string
-          - 'null'
-        Wheelchair:
-          type: boolean
-        LimitedView:
-          type: boolean
-        Distanced:
-          type: boolean
-        UnitPrice:
-          type: number
-          format: double
-        PriceColor:
-          $ref: '#/components/schemas/ColorOutput'
-        Available:
-          type: boolean
-        ReservedAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        Notes:
-          type:
-          - string
-          - 'null'
-        OrderId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        OrderKey:
-          type:
-          - string
-          - 'null'
-        AttendeeId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        AttendeeNumber:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        State:
-          $ref: '#/components/schemas/SeatReservedStateOutput'
-        InaccessibleDueToAccessCode:
-          type: boolean
-        Types:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            format: uuid
-        Amounts:
-          type:
-          - array
-          - 'null'
-          items:
-            type: number
-            format: double
-      additionalProperties: false
-    DateDisplayOutput:
-      type: object
-      properties:
-        Months:
-          type:
-          - string
-          - 'null'
-        Dates:
-          type:
-          - string
-          - 'null'
-        Days:
-          type:
-          - string
-          - 'null'
-        Times:
-          type:
-          - string
-          - 'null'
-        IsOngoing:
+        AllowPasses:
           type: boolean
       additionalProperties: false
     EventCreateInput:
@@ -4085,211 +1948,109 @@ components:
           type: boolean
           description: Whether to offer Spot refund insurance for this event.
       additionalProperties: false
-    ColorOutput:
+    EventSectionReservedStateOutput:
       type: object
       properties:
-        RGB:
+        ReservedState:
+          $ref: '#/components/schemas/SeatReservedStateOutput'
+        SeatCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    EventSeatOutput:
+      type: object
+      properties:
+        SeatId:
+          type: string
+          format: uuid
+        SectionId:
+          type: string
+          format: uuid
+        SectionName:
           type:
           - string
           - 'null'
-        Hex:
+        EventId:
+          type: string
+          format: uuid
+        EventNumber:
+          type: integer
+          format: int64
+        RowName:
           type:
           - string
           - 'null'
-        Alpha:
+        SeatNumber:
+          type: integer
+          format: int32
+        SeatLabel:
+          type:
+          - string
+          - 'null'
+        SeatType:
+          type:
+          - string
+          - 'null'
+        Wheelchair:
+          type: boolean
+        LimitedView:
+          type: boolean
+        Distanced:
+          type: boolean
+        UnitPrice:
           type: number
           format: double
-      additionalProperties: false
-    AttendeeDisplayOutput:
-      type: object
-      properties:
-        Line1:
+        PriceColor:
+          $ref: '#/components/schemas/ColorOutput'
+        Available:
+          type: boolean
+        ReservedAt:
           type:
           - string
           - 'null'
-        Line2:
+          format: date-time
+        Notes:
           type:
           - string
           - 'null'
-        Line3:
+        OrderId:
           type:
           - string
           - 'null'
-      additionalProperties: false
-    OrderListOutput:
-      type: object
-      properties:
-        Id:
-          type: string
           format: uuid
         OrderKey:
           type:
           - string
           - 'null'
-        OrderedAt:
-          type: string
-          format: date-time
-        OrderedAtLocal:
-          type: string
-          format: date-time
-        IsPOS:
-          type: boolean
-        IsKiosk:
-          type: boolean
-        IsApp:
-          type: boolean
-        AcctCode:
+        AttendeeId:
           type:
           - string
           - 'null'
-        ObjectNumber:
-          type: integer
-          format: int64
-        IsAdjustment:
-          type: boolean
-        BillingFirstName:
-          type:
-          - string
-          - 'null'
-        BillingLastName:
-          type:
-          - string
-          - 'null'
-        HostAddress:
-          type:
-          - string
-          - 'null'
-        ThirdPartyCustomerId:
-          type:
-          - string
-          - 'null'
-        SubTotal:
-          type: number
-          format: double
-        UndistributedFees:
-          type: number
-          format: double
-        OrderTotal:
-          type: number
-          format: double
-        AttendeeTotal:
-          type: number
-          format: double
-        DiscountTotal:
-          type: number
-          format: double
-        FeeTotal:
-          type: number
-          format: double
-        TaxTotal:
-          type: number
-          format: double
-        DeliveryTotal:
-          type: number
-          description: Deprecated. Delivery has been folded into API.Models.OrderListOutput.FeeTotal; this property is kept for backwards compatibility but should be ignored.
-          format: double
-        FeesTotal:
-          type: number
-          format: double
-        Payments:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/OrderListPaymentOutput'
-        TransactionTotal:
-          type: number
-          format: double
-          readOnly: true
-        PaymentMethodId:
-          type: string
           format: uuid
-          readOnly: true
-        PaymentMethod:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        PaymentNumber:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        TransactionId:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        ExternalInvoiceId:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        Summary:
-          type:
-          - string
-          - 'null'
-        ContactEmail:
-          type:
-          - string
-          - 'null'
-        ContactPhone:
-          type:
-          - string
-          - 'null'
-        OrderFee:
-          type: number
-          description: Deprecated. Order fees have been folded into API.Models.OrderListOutput.FeeTotal; this property is kept for backwards compatibility but should be ignored.
-          format: double
-        AttendeeCount:
-          type: integer
-          format: int32
-        PlacedThrough:
-          type:
-          - string
-          - 'null'
-        CustomerAccountNumber:
+        AttendeeNumber:
           type:
           - integer
           - 'null'
           format: int64
-        Notes:
-          type:
-          - string
-          - 'null'
-        ExternalId:
-          type:
-          - string
-          - 'null'
-        PaidInFull:
+        State:
+          $ref: '#/components/schemas/SeatReservedStateOutput'
+        InaccessibleDueToAccessCode:
           type: boolean
-        ExternalCustomerId:
+        Types:
           type:
-          - string
+          - array
           - 'null'
-        FlagState:
+          items:
+            type: string
+            format: uuid
+        Amounts:
           type:
-          - string
+          - array
           - 'null'
+          items:
+            type: number
+            format: double
       additionalProperties: false
-    StringStringKeyValuePair:
-      type: object
-      properties:
-        Key:
-          type:
-          - string
-          - 'null'
-        Value:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    FieldUpdateType:
-      enum:
-      - Attendees
-      - Groups
-      - Buyer
-      type: string
     FieldMetaOutput:
       type: object
       properties:
@@ -4310,54 +2071,87 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    EventSessionOutput:
+    EventDateItem:
       type: object
       properties:
-        SessionNumber:
-          type: integer
-          format: int64
-        Name:
+        DoorsAt:
           type:
           - string
           - 'null'
-        AttendeeTotal:
-          type: integer
-          format: int32
-        CheckedInCount:
-          type: integer
-          format: int32
-        Type:
+          format: date-time
+        StartsAt:
+          type: string
+          format: date-time
+        EndsAt:
           type:
           - string
           - 'null'
-        IsHidden:
-          type: boolean
-        AllowFlex:
-          type:
-          - boolean
-          - 'null'
-        FlexPassCount:
-          type: integer
-          format: int32
-        FlexAttendeeTotal:
-          type: integer
-          format: int32
-        IsTimeSlot:
-          type: boolean
-        MinutesBefore:
-          type: integer
-          format: int32
-        MinutesAfter:
-          type: integer
-          format: int32
-        AllowPasses:
-          type: boolean
+          format: date-time
       additionalProperties: false
-    AttendeeChangeType:
+    EventAttendeeFieldCreateInput:
+      type: object
+      properties:
+        IsPrimaryEmail:
+          type: boolean
+          description: This is used to mark the field as primary email field for the attendee.
+        Label:
+          type:
+          - string
+          - 'null'
+        FieldType:
+          $ref: '#/components/schemas/FieldType'
+        ValidationExpression:
+          type:
+          - string
+          - 'null'
+        StoredValue:
+          type:
+          - string
+          - 'null'
+        Notes:
+          type:
+          - string
+          - 'null'
+        AdminRequired:
+          type: boolean
+        AdminVisible:
+          type: boolean
+        InternetRequired:
+          type: boolean
+        InternetVisible:
+          type: boolean
+        IsSensitive:
+          type: boolean
+        Options:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EventFieldOptionCreateInput'
+          description: Only set for fields of type Checkbox, Dropdown, Radiobuttons, ItemList, or ItemAmount
+        RemoteUrl:
+          type:
+          - string
+          - 'null'
+          description: Only set for fields of type RemoteFetch or RemoteValidate
+        RequireConfirm:
+          type: boolean
+          description: Only set for fields of type Text, Name, Phone, Email, or Date
+        EmailDomains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: The list of domains you would like to validate for or against for email fields.
+        DomainValidation:
+          $ref: '#/components/schemas/DomainValidationType'
+      additionalProperties: false
+    FieldMetaType:
       enum:
-      - All
-      - Positive
-      - None
+      - Order
+      - Group
+      - Attendee
       type: string
     UnitFeeLineItemOutput:
       type: object
@@ -4379,64 +2173,132 @@ components:
         type''s customFees configuration. On cart outputs this is a live evaluation;
 
         on order outputs it is the snapshot of what was collected at purchase time.'
-    FlexPassCheckinItem:
+    ThemeOutput:
       type: object
       properties:
-        EventId:
+        LogoUrl:
+          type:
+          - string
+          - 'null'
+        LogoPosition:
+          type:
+          - string
+          - 'null'
+        HeaderUrlLarge:
+          type:
+          - string
+          - 'null'
+        HeaderUrlMobile:
+          type:
+          - string
+          - 'null'
+        BackgroundCss:
+          type:
+          - string
+          - 'null'
+        TextColor:
+          type:
+          - string
+          - 'null'
+        LinkColor:
+          type:
+          - string
+          - 'null'
+        HomeUrl:
+          type:
+          - string
+          - 'null'
+        HeaderHtml:
+          type:
+          - string
+          - 'null'
+        ClientKey:
+          type:
+          - string
+          - 'null'
+        ClientName:
+          type:
+          - string
+          - 'null'
+        UrlKey:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    PriceMethod:
+      enum:
+      - Set
+      - Custom
+      - Payments
+      type: string
+    EventDocumentOutput:
+      type: object
+      properties:
+        HasTicket:
+          type: boolean
+        HasETicket:
+          type: boolean
+        HasReceipt:
+          type: boolean
+        HasNamebadge:
+          type: boolean
+        HasCheckIn:
+          type: boolean
+        HasWillCallLabel:
+          type: boolean
+        HasMailLabel:
+          type: boolean
+      additionalProperties: false
+    EventGoogleAnalyticsCreateInput:
+      type: object
+      properties:
+        number:
+          pattern: ^((UA|G)-[-0-9A-Za-z]{4,50})+$
+          type:
+          - string
+          - 'null'
+          description: The Google Analytics tracking number for the event.
+          example: UA-12345678-1
+        domain:
+          type:
+          - string
+          - 'null'
+          description: The Google Analytics domain
+      additionalProperties: false
+    OrderListPaymentOutput:
+      type: object
+      properties:
+        PaymentMethodId:
           type: string
           format: uuid
-        EventNumber:
-          type: integer
+        PaymentMethod:
+          type:
+          - string
+          - 'null'
+        PaymentNumber:
+          type:
+          - string
+          - 'null'
+        TransactionId:
+          type:
+          - string
+          - 'null'
+        TransactionTotal:
+          type: number
+          format: double
+        ExternalInvoiceId:
+          type:
+          - string
+          - 'null'
+        CreditNumber:
+          type:
+          - integer
+          - 'null'
           format: int64
-        Title:
+        PaidInFull:
           type:
-          - string
+          - boolean
           - 'null'
-        CheckedInAt:
-          type: string
-          format: date-time
-        SessionName:
-          type:
-          - string
-          - 'null'
-        AttendeeCheckinId:
-          type: string
-          format: uuid
-        EventSessionId:
-          type: string
-          format: uuid
-        SessionNumber:
-          type: integer
-          format: int64
-        TimeZoneId:
-          type:
-          - string
-          - 'null'
-        CheckedInAtLocal:
-          type: string
-          format: date-time
-          readOnly: true
-        Culture:
-          type:
-          - string
-          - 'null'
-        Dates:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/EventDateItem'
-        StartsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          readOnly: true
-        TitleInfo:
-          type:
-          - string
-          - 'null'
-          readOnly: true
       additionalProperties: false
     EventDateCreateInput:
       type: object
@@ -4455,98 +2317,119 @@ components:
           - 'null'
           format: date-time
       additionalProperties: false
-    FieldOptionFullOutput:
+    AttendeeDisplayOutput:
       type: object
       properties:
-        Id:
-          type: string
-          format: uuid
-        Label:
+        Line1:
           type:
           - string
           - 'null'
-        Capacity:
+        Line2:
           type:
-          - integer
+          - string
           - 'null'
-          format: int32
-        Quantity:
+        Line3:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    RelatedEventOutput:
+      type: object
+      properties:
+        ClientKey:
+          type:
+          - string
+          - 'null'
+        UrlKey:
+          type:
+          - string
+          - 'null'
+        EventNumber:
           type: integer
-          format: int32
-        HasUnitPrice:
-          type: boolean
-        UnitPrice:
-          type:
-          - number
-          - 'null'
-          format: double
-        UnitTax:
-          type:
-          - number
-          - 'null'
-          format: double
-        IsInclusiveTaxes:
-          type: boolean
-        DisplayPrice:
-          type:
-          - number
-          - 'null'
-          format: double
-        PriceDescription:
+          format: int64
+        EventTitle:
           type:
           - string
           - 'null'
-        IsSelected:
-          type: boolean
-        HasCapacity:
-          type: boolean
-        SpotsRemaining:
+        Subtitle:
           type:
-          - integer
+          - string
           - 'null'
-          format: int32
-        RemainingText:
+        ImageUrl:
+          type:
+          - string
+          - 'null'
+        DateInfo:
           type:
           - string
           - 'null'
       additionalProperties: false
-    EventPaymentMethodOutput:
+    EventHeaderStyle:
+      enum:
+      - HTML
+      - Banner
+      - Logo
+      type: string
+    StringStringKeyValuePair:
       type: object
       properties:
-        Grouping:
+        Key:
           type:
           - string
           - 'null'
-        Id:
-          type: string
-          format: uuid
-        Name:
+        Value:
           type:
           - string
           - 'null'
       additionalProperties: false
-    FieldType:
+    FeeMethod:
       enum:
-      - Text
-      - MultiText
-      - Name
-      - Address
-      - Phone
-      - Email
-      - Dropdown
-      - Checkboxes
-      - Radiobuttons
-      - Date
-      - Accept
-      - ItemList
-      - ItemAmount
-      - Paragraph
-      - SectionHeader
-      - Link
-      - Signature
-      - RemoteValidate
-      - RemoteFetch
+      - Pass
+      - Absorb
       type: string
+    EventType:
+      enum:
+      - GeneralAdmission
+      - FlexPass
+      - TimeSlot
+      type: string
+    DateDisplayOutput:
+      type: object
+      properties:
+        Months:
+          type:
+          - string
+          - 'null'
+        Dates:
+          type:
+          - string
+          - 'null'
+        Days:
+          type:
+          - string
+          - 'null'
+        Times:
+          type:
+          - string
+          - 'null'
+        IsOngoing:
+          type: boolean
+      additionalProperties: false
+    ColorOutput:
+      type: object
+      properties:
+        RGB:
+          type:
+          - string
+          - 'null'
+        Hex:
+          type:
+          - string
+          - 'null'
+        Alpha:
+          type: number
+          format: double
+      additionalProperties: false
     FieldOutput:
       type: object
       properties:
@@ -4648,6 +2531,789 @@ components:
         DisplayIsPrimary:
           type: boolean
       additionalProperties: false
+    EventGroupFieldCreateInput:
+      type: object
+      properties:
+        IsGroup:
+          type: boolean
+          readOnly: true
+        Label:
+          type:
+          - string
+          - 'null'
+        FieldType:
+          $ref: '#/components/schemas/FieldType'
+        ValidationExpression:
+          type:
+          - string
+          - 'null'
+        StoredValue:
+          type:
+          - string
+          - 'null'
+        Notes:
+          type:
+          - string
+          - 'null'
+        AdminRequired:
+          type: boolean
+        AdminVisible:
+          type: boolean
+        InternetRequired:
+          type: boolean
+        InternetVisible:
+          type: boolean
+        IsSensitive:
+          type: boolean
+        Options:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EventFieldOptionCreateInput'
+          description: Only set for fields of type Checkbox, Dropdown, Radiobuttons, ItemList, or ItemAmount
+        RemoteUrl:
+          type:
+          - string
+          - 'null'
+          description: Only set for fields of type RemoteFetch or RemoteValidate
+        RequireConfirm:
+          type: boolean
+          description: Only set for fields of type Text, Name, Phone, Email, or Date
+        EmailDomains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: The list of domains you would like to validate for or against for email fields.
+        DomainValidation:
+          $ref: '#/components/schemas/DomainValidationType'
+      additionalProperties: false
+    EventSectionPriceOutput:
+      type: object
+      properties:
+        TypeId:
+          type: string
+          format: uuid
+        Amount:
+          type: number
+          format: double
+        Fee:
+          type:
+          - number
+          - 'null'
+          format: double
+        IsInclusiveFees:
+          type: boolean
+        ConsecutiveSeats:
+          type: integer
+          format: int32
+        DisplayAmount:
+          type: number
+          format: double
+        PriceDescription:
+          type:
+          - string
+          - 'null'
+        CustomFees:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CustomFeeOutput'
+      additionalProperties: false
+    EventExternalCustomersCreateInput:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: WHether Brushfire should attempt to find/create customersin Square for this event.
+        customerGroups:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: A list of Square Customer Group IDs - if provided, Square Customers for this event will be added to all of these groups.
+        overwriteProfile:
+          type: boolean
+          description: If true, any personal data collected during checkout will overwrite existing customer data in Square. If false, personal data will be added, but existing Square data will not be overwritten.
+      additionalProperties: false
+    AttendeeTypeCategory:
+      enum:
+      - All
+      - Standard
+      - Addon
+      type: string
+    DomainValidationOutput:
+      type: object
+      properties:
+        AllowDomains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        DisallowDomains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    TicketRenderType:
+      enum:
+      - Assigned
+      - AssignedSection
+      - GeneralAdmission
+      - FlexPass
+      - TimeSlot
+      - Groups
+      - Orders
+      type: string
+    EventDetailsOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        EventNumber:
+          type: integer
+          format: int64
+        PreRegParentId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        PreRegChildId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        UrlKey:
+          type:
+          - string
+          - 'null'
+        ClientKey:
+          type:
+          - string
+          - 'null'
+        ClientName:
+          type:
+          - string
+          - 'null'
+        ClientCountry:
+          type:
+          - string
+          - 'null'
+        ClientRegion:
+          type:
+          - string
+          - 'null'
+        ClientIsDemo:
+          type: boolean
+        PaymentProfileId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        ClientTheme:
+          type:
+          - string
+          - 'null'
+        EventTheme:
+          type:
+          - string
+          - 'null'
+        AppImageUrl:
+          type:
+          - string
+          - 'null'
+        IsAssigned:
+          type: boolean
+        HasCommunities:
+          type: boolean
+        HasExistingGroups:
+          type: boolean
+        HasGroupTypes:
+          type: boolean
+        LockinGroups:
+          type: boolean
+        IsGroupCentric:
+          type: boolean
+        IsGroupPrivate:
+          type: boolean
+        GroupCentricText:
+          type:
+          - string
+          - 'null'
+        ShowSoldOut:
+          type: boolean
+        HasActiveEventCodes:
+          type: boolean
+        HasActiveSeatCodes:
+          type: boolean
+        HasActiveTypeCodes:
+          type: boolean
+        HasPayments:
+          type: boolean
+        PromoImageUrl:
+          type:
+          - string
+          - 'null'
+        PromoDescription:
+          type:
+          - string
+          - 'null'
+        AccessState:
+          type:
+          - string
+          - 'null'
+        AccessMessage:
+          type:
+          - string
+          - 'null'
+        PreventChanges:
+          type: boolean
+        AccessCodeIsValid:
+          type: boolean
+        PauseText:
+          type:
+          - string
+          - 'null'
+        CategoryId:
+          type: integer
+          format: int32
+        CategoryName:
+          type:
+          - string
+          - 'null'
+        UseMap:
+          type: boolean
+        LocationName:
+          type:
+          - string
+          - 'null'
+        Street:
+          type:
+          - string
+          - 'null'
+        City:
+          type:
+          - string
+          - 'null'
+        Region:
+          type:
+          - string
+          - 'null'
+        Country:
+          type:
+          - string
+          - 'null'
+        PostalCode:
+          type:
+          - string
+          - 'null'
+        LocationDetails:
+          type:
+          - string
+          - 'null'
+        MapAddress:
+          type:
+          - string
+          - 'null'
+        Address:
+          type:
+          - string
+          - 'null'
+        Location:
+          type:
+          - string
+          - 'null'
+        Latitude:
+          type: number
+          format: double
+        Longitude:
+          type: number
+          format: double
+        TimeZoneId:
+          type:
+          - string
+          - 'null'
+        Culture:
+          type:
+          - string
+          - 'null'
+        Currency:
+          type:
+          - string
+          - 'null'
+        ShareUrl:
+          type:
+          - string
+          - 'null'
+        FacebookUrl:
+          type:
+          - string
+          - 'null'
+        TwitterUrl:
+          type:
+          - string
+          - 'null'
+        TwitterRelated:
+          type:
+          - string
+          - 'null'
+        TwitterText:
+          type:
+          - string
+          - 'null'
+        SessionCount:
+          type: integer
+          format: int32
+        Title:
+          type:
+          - string
+          - 'null'
+        AlternateTitle:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        TitleInfo:
+          type:
+          - string
+          - 'null'
+        Subtitle:
+          type:
+          - string
+          - 'null'
+        IsPublished:
+          type: boolean
+        IsHidden:
+          type: boolean
+        OverallCapacity:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        IsSoldOut:
+          type: boolean
+        SpotsTaken:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        SpotsRemaining:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        Types:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EventTypeOutput'
+        Verbiage:
+          type:
+          - string
+          - 'null'
+        Dates:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EventDateOutput'
+        DateInfoList:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        DateInfo:
+          type:
+          - string
+          - 'null'
+        StartsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        DoorsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        EndsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        HasParent:
+          type: boolean
+        VenueImage:
+          type:
+          - string
+          - 'null'
+        EventInfoTop:
+          type:
+          - string
+          - 'null'
+        EventInfoBottom:
+          type:
+          - string
+          - 'null'
+        StickyInfo:
+          type:
+          - string
+          - 'null'
+        EventCode:
+          type:
+          - string
+          - 'null'
+        ContactPhone:
+          type:
+          - string
+          - 'null'
+        ContactEmail:
+          type:
+          - string
+          - 'null'
+        Website:
+          type:
+          - string
+          - 'null'
+        CreatedAt:
+          type: string
+          format: date-time
+        SeasonRunAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        IsSeasonMaster:
+          type: boolean
+        IsSeasonChild:
+          type: boolean
+        IsSeasonRunImmediate:
+          type: boolean
+        Sessions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EventSessionOutput'
+        Documents:
+          $ref: '#/components/schemas/EventDocumentOutput'
+        StreamUrl:
+          type:
+          - string
+          - 'null'
+        PublishShowAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        PublishHideAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        AutoRegTC:
+          type:
+          - string
+          - 'null'
+        AreaName:
+          type:
+          - string
+          - 'null'
+        AreaKey:
+          type:
+          - string
+          - 'null'
+        AreaHeaderLogo:
+          type:
+          - string
+          - 'null'
+        AreaHeaderHtml:
+          type:
+          - string
+          - 'null'
+        AcctCode:
+          type:
+          - string
+          - 'null'
+        ShowStage:
+          type: boolean
+        RelatedEvents:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/RelatedEventOutput'
+        IsFlexPass:
+          type: boolean
+        IsTimeSlot:
+          type: boolean
+        TaxLabel:
+          type:
+          - string
+          - 'null'
+        AddonTitle:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GroupSummaryOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        GroupNumber:
+          type: integer
+          format: int64
+        Name:
+          type:
+          - string
+          - 'null'
+        Email:
+          type:
+          - string
+          - 'null'
+        AttendeeTypeId:
+          type: string
+          format: uuid
+        TypeName:
+          type:
+          - string
+          - 'null'
+        AttendeeCount:
+          type: integer
+          format: int32
+        JoinPasscode:
+          type:
+          - string
+          - 'null'
+        CommunityId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        CommunityPartition:
+          type:
+          - string
+          - 'null'
+        CommunityName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    DomainValidationType:
+      enum:
+      - All
+      - Only
+      - None
+      type: string
+    EventCommunityOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Partition:
+          type:
+          - string
+          - 'null'
+        Name:
+          type:
+          - string
+          - 'null'
+        Capacity:
+          type: integer
+          format: int32
+        AttendeeCount:
+          type: integer
+          format: int32
+        GroupCount:
+          type: integer
+          format: int32
+        Tags:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        RemainingCount:
+          type: integer
+          format: int32
+          readOnly: true
+      additionalProperties: false
+    EventVerbiage:
+      enum:
+      - Registrations
+      - Tickets
+      type: string
+    FlexPassCheckinItem:
+      type: object
+      properties:
+        EventId:
+          type: string
+          format: uuid
+        EventNumber:
+          type: integer
+          format: int64
+        Title:
+          type:
+          - string
+          - 'null'
+        CheckedInAt:
+          type: string
+          format: date-time
+        SessionName:
+          type:
+          - string
+          - 'null'
+        AttendeeCheckinId:
+          type: string
+          format: uuid
+        EventSessionId:
+          type: string
+          format: uuid
+        SessionNumber:
+          type: integer
+          format: int64
+        TimeZoneId:
+          type:
+          - string
+          - 'null'
+        CheckedInAtLocal:
+          type: string
+          format: date-time
+          readOnly: true
+        Culture:
+          type:
+          - string
+          - 'null'
+        Dates:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EventDateItem'
+        StartsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          readOnly: true
+        TitleInfo:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+      additionalProperties: false
+    FeeItemType:
+      enum:
+      - Fee
+      - Tax
+      type: string
+    FieldOptionFullOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Label:
+          type:
+          - string
+          - 'null'
+        Capacity:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        Quantity:
+          type: integer
+          format: int32
+        HasUnitPrice:
+          type: boolean
+        UnitPrice:
+          type:
+          - number
+          - 'null'
+          format: double
+        UnitTax:
+          type:
+          - number
+          - 'null'
+          format: double
+        IsInclusiveTaxes:
+          type: boolean
+        DisplayPrice:
+          type:
+          - number
+          - 'null'
+          format: double
+        PriceDescription:
+          type:
+          - string
+          - 'null'
+        IsSelected:
+          type: boolean
+        HasCapacity:
+          type: boolean
+        SpotsRemaining:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        RemainingText:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    EventMoveInput:
+      required:
+      - AccessKey
+      - TargetClientId
+      - UrlKey
+      type: object
+      properties:
+        AccessKey:
+          minLength: 1
+          type: string
+          description: Your account access key. This is used to authenticate your requests.
+        TargetClientId:
+          type: string
+          description: The ID of the client to move the event to.
+          format: uuid
+        UrlKey:
+          maxLength: 50
+          minLength: 0
+          pattern: ^[0-9A-Za-z_\-]+$
+          type: string
+          description: The URL key the event will have under the target client.
+        PaymentProfileId:
+          type:
+          - string
+          - 'null'
+          description: The payment profile ID to assign to the event in the target client. Leave null to assign no payment profile.
+          format: uuid
+        UseNewClientFeeStructure:
+          type: boolean
+          description: 'Whether to replace the event''s fee structure with the target client''s fee structure. Defaults to true.
+
+            Setting this to false is restricted to Brushfire staff.'
+      additionalProperties: false
+    AttendeeChangeType:
+      enum:
+      - All
+      - Positive
+      - None
+      type: string
     TicketInfoOutput:
       type: object
       properties:
@@ -4856,16 +3522,973 @@ components:
         IsFlexPass:
           type: boolean
       additionalProperties: false
-    TicketRenderType:
+    EventTypeOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Name:
+          type:
+          - string
+          - 'null'
+        Description:
+          type:
+          - string
+          - 'null'
+        IsAvailable:
+          type: boolean
+        IsFuture:
+          type: boolean
+        IsPast:
+          type: boolean
+        Available:
+          type:
+          - string
+          - 'null'
+        SelectedAmount:
+          type:
+          - number
+          - 'null'
+          format: double
+        Amount:
+          type:
+          - number
+          - 'null'
+          format: double
+        DisplayAmount:
+          type: number
+          format: double
+        PriceDescription:
+          type:
+          - string
+          - 'null'
+        Fee:
+          type: number
+          description: Deprecated. Fees are now set in CustomFees; this property is kept for backwards compatibility but should be ignored.
+          format: double
+        Tax:
+          type:
+          - number
+          - 'null'
+          description: Deprecated. Taxes are now set in CustomFees; this property is kept for backwards compatibility but should be ignored.
+          format: double
+        TaxRate:
+          type:
+          - number
+          - 'null'
+          description: Deprecated. Tax rates are now set in CustomFees; this property is kept for backwards compatibility but should be ignored.
+          format: double
+        OrderFeePercent:
+          type:
+          - number
+          - 'null'
+          description: Deprecated. Fees are now set in CustomFees; this property is kept for backwards compatibility but should be ignored.
+          format: double
+        IsInclusiveFees:
+          type: boolean
+        IsInclusiveTaxes:
+          type: boolean
+        AllowCustomAmount:
+          type: boolean
+        PreRegEnabled:
+          type: boolean
+        GiftingEnabled:
+          type: boolean
+        CopyEnabled:
+          type: boolean
+        AcctCode:
+          type:
+          - string
+          - 'null'
+        PaymentAmounts:
+          type:
+          - string
+          - 'null'
+        PaymentsDueBy:
+          type:
+          - string
+          - 'null'
+        MinQuantity:
+          type: integer
+          format: int32
+        MaxQuantity:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        IsGroup:
+          type: boolean
+        SoldOut:
+          type: boolean
+        YourGroup:
+          type: boolean
+        GroupingText:
+          type:
+          - string
+          - 'null'
+        QuantityRequirements:
+          type:
+          - string
+          - 'null'
+        GroupRequirements:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        IsInaccessibleDueToAccessCode:
+          type: boolean
+        IsAccessibleBecauseOfAccessCode:
+          type: boolean
+        IsAdmin:
+          type: boolean
+        Kind:
+          type:
+          - string
+          - 'null'
+        AllowedPayments:
+          type:
+          - array
+          - 'null'
+          items:
+            type: number
+            format: double
+        AllowedDisplayPayments:
+          type:
+          - array
+          - 'null'
+          items:
+            type: number
+            format: double
+        Sections:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EventTypeSectionOutput'
+        Prices:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EventTypePriceOutput'
+        SpotsRemaining:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        RemainingText:
+          type:
+          - string
+          - 'null'
+        SharedCapacityId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        SharedCapacityName:
+          type:
+          - string
+          - 'null'
+        SharedCapacityKind:
+          type:
+          - string
+          - 'null'
+        TimeSlotStartsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        ShareEnabled:
+          type: boolean
+        IsAddon:
+          type: boolean
+        ImageUrl:
+          type:
+          - string
+          - 'null'
+        GeneratesTicket:
+          type: boolean
+        ExternalId:
+          type:
+          - string
+          - 'null'
+        Variations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EventTypeVariationOutput'
+        CustomFees:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CustomFeeOutput'
+        FeeLineItems:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/UnitFeeLineItemOutput'
+        FeeBreakdown:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/UnitFeeLineItemOutput'
+          readOnly: true
+        TaxBreakdown:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/UnitFeeLineItemOutput'
+          readOnly: true
+      additionalProperties: false
+    EventSectionOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Name:
+          type:
+          - string
+          - 'null'
+        Alignment:
+          type:
+          - string
+          - 'null'
+        AislesAfter:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        IsRowAscending:
+          type: boolean
+        IsSeatAscending:
+          type: boolean
+        IsRankAscending:
+          type: boolean
+        IsAssigned:
+          type: boolean
+        Rotation:
+          type: integer
+          format: int32
+        Rank:
+          type: integer
+          format: int32
+        DistanceCount:
+          type: integer
+          format: int32
+        RemainingText:
+          type:
+          - string
+          - 'null'
+        SpotsRemaining:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        PriceBreakdown:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EventSectionPriceOutput'
+        ReservedStates:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EventSectionReservedStateOutput'
+      additionalProperties: false
+    LookupAttendeeResultOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        AttendeeNumber:
+          type: integer
+          format: int64
+        Status:
+          type:
+          - string
+          - 'null'
+        IsCompleted:
+          type: boolean
+        IsGift:
+          type: boolean
+        IsPreRegistered:
+          type: boolean
+        ShareEmail:
+          type:
+          - string
+          - 'null'
+        GiftingEnabled:
+          type: boolean
+        GiftLastSentAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        GiftLastSentAtLocal:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          readOnly: true
+        TimeZoneId:
+          type:
+          - string
+          - 'null'
+        FirstName:
+          type:
+          - string
+          - 'null'
+        LastName:
+          type:
+          - string
+          - 'null'
+        Name:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        AttendeeTypeId:
+          type: string
+          format: uuid
+        TypeName:
+          type:
+          - string
+          - 'null'
+        TypeAmount:
+          type: number
+          format: double
+        TypeDisplayAmount:
+          type: number
+          format: double
+        SectionName:
+          type:
+          - string
+          - 'null'
+        RowName:
+          type:
+          - string
+          - 'null'
+        SeatLabel:
+          type:
+          - string
+          - 'null'
+        Amount:
+          type: number
+          format: double
+        Addons:
+          type: number
+          format: double
+        Discounts:
+          type: number
+          format: double
+        SeatInfo:
+          type:
+          - string
+          - 'null'
+        Culture:
+          type:
+          - string
+          - 'null'
+        GroupId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        GroupName:
+          type:
+          - string
+          - 'null'
+        GroupEmail:
+          type:
+          - string
+          - 'null'
+        AttendeeDisplay:
+          $ref: '#/components/schemas/AttendeeDisplayOutput'
+        AttendeeDisplayLines:
+          $ref: '#/components/schemas/AttendeeDisplayOutput'
+        DisplayPrice:
+          type: number
+          format: double
+          readOnly: true
+        DisplayTotal:
+          type: number
+          format: double
+          readOnly: true
+        PriceDescription:
+          type:
+          - string
+          - 'null'
+        HasPaymentsToMake:
+          type: boolean
+        DonatingBackEnabled:
+          type: boolean
+        ChangesAreBlocked:
+          type: boolean
+        ChangesAreBlockedAfter:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        HasPendingSignatures:
+          type: boolean
+        AllSignaturesComplete:
+          type: boolean
+        ShareEnabled:
+          type: boolean
+        TicketInfo:
+          $ref: '#/components/schemas/TicketInfoOutput'
+      additionalProperties: false
+    EventTypeVariationOutput:
+      type: object
+      properties:
+        ItemId:
+          type:
+          - string
+          - 'null'
+        Name:
+          type:
+          - string
+          - 'null'
+        Price:
+          type: number
+          format: double
+        DisplayPrice:
+          type:
+          - number
+          - 'null'
+          format: double
+        PriceDescription:
+          type:
+          - string
+          - 'null'
+        SpotsRemaining:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        RemainingText:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+      additionalProperties: false
+    TypeKind:
       enum:
-      - Assigned
-      - AssignedSection
-      - GeneralAdmission
-      - FlexPass
-      - TimeSlot
-      - Groups
-      - Orders
+      - InPerson
+      - Donation
+      - Product
       type: string
+    EventTypeSectionOutput:
+      type: object
+      properties:
+        SectionId:
+          type: string
+          format: uuid
+        SectionName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    EventSingleOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        EventNumber:
+          type: integer
+          format: int64
+        UrlKey:
+          type:
+          - string
+          - 'null'
+        ClientKey:
+          type:
+          - string
+          - 'null'
+        ClientName:
+          type:
+          - string
+          - 'null'
+        ClientIsDemo:
+          type: boolean
+        IsAssigned:
+          type: boolean
+        CategoryId:
+          type: integer
+          format: int32
+        CategoryName:
+          type:
+          - string
+          - 'null'
+        UseMap:
+          type: boolean
+        LocationName:
+          type:
+          - string
+          - 'null'
+        Street:
+          type:
+          - string
+          - 'null'
+        City:
+          type:
+          - string
+          - 'null'
+        Region:
+          type:
+          - string
+          - 'null'
+        Country:
+          type:
+          - string
+          - 'null'
+        PostalCode:
+          type:
+          - string
+          - 'null'
+        LocationDetails:
+          type:
+          - string
+          - 'null'
+        MapAddress:
+          type:
+          - string
+          - 'null'
+        Address:
+          type:
+          - string
+          - 'null'
+        Location:
+          type:
+          - string
+          - 'null'
+        ShowSoldOut:
+          type: boolean
+        PaymentProfileId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        TimeZoneId:
+          type:
+          - string
+          - 'null'
+        Culture:
+          type:
+          - string
+          - 'null'
+        Currency:
+          type:
+          - string
+          - 'null'
+        FacebookUrl:
+          type:
+          - string
+          - 'null'
+        SessionCount:
+          type: integer
+          format: int32
+        Title:
+          type:
+          - string
+          - 'null'
+        AlternateTitle:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        TitleInfo:
+          type:
+          - string
+          - 'null'
+        Subtitle:
+          type:
+          - string
+          - 'null'
+        IsPublished:
+          type: boolean
+        OverallCapacity:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        IsSoldOut:
+          type: boolean
+        SpotsTaken:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        SpotsRemaining:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        IsHidden:
+          type: boolean
+        Verbiage:
+          type:
+          - string
+          - 'null'
+        Dates:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EventDateOutput'
+        DateInfoList:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        DateInfo:
+          type:
+          - string
+          - 'null'
+        StartsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        DoorsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        EndsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        HasParent:
+          type: boolean
+        VenueImage:
+          type:
+          - string
+          - 'null'
+        EventInfoTop:
+          type:
+          - string
+          - 'null'
+        EventInfoBottom:
+          type:
+          - string
+          - 'null'
+        StickyInfo:
+          type:
+          - string
+          - 'null'
+        EventCode:
+          type:
+          - string
+          - 'null'
+        ContactPhone:
+          type:
+          - string
+          - 'null'
+        ContactEmail:
+          type:
+          - string
+          - 'null'
+        Website:
+          type:
+          - string
+          - 'null'
+        CreatedAt:
+          type: string
+          format: date-time
+        SeasonRunAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        IsSeasonMaster:
+          type: boolean
+        IsSeasonChild:
+          type: boolean
+        IsSeasonRunImmediate:
+          type: boolean
+        AppImageUrl:
+          type:
+          - string
+          - 'null'
+        StreamUrl:
+          type:
+          - string
+          - 'null'
+        AreaName:
+          type:
+          - string
+          - 'null'
+        AreaKey: {}
+        AcctCode:
+          type:
+          - string
+          - 'null'
+        ShowStage:
+          type: boolean
+        IsFlexPass:
+          type: boolean
+        AttendeeChanges:
+          $ref: '#/components/schemas/AttendeeChangeType'
+        IsTimeSlot:
+          type: boolean
+        AddonTitle:
+          type:
+          - string
+          - 'null'
+        IsExchangeable:
+          type: boolean
+      additionalProperties: false
+    SharedCapacityKind:
+      enum:
+      - Default
+      - Time
+      - Pass
+      type: string
+    EventResourceOutput:
+      type: object
+      properties:
+        Category:
+          type:
+          - string
+          - 'null'
+        Name:
+          type:
+          - string
+          - 'null'
+        Url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    OrderListOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        OrderKey:
+          type:
+          - string
+          - 'null'
+        OrderedAt:
+          type: string
+          format: date-time
+        OrderedAtLocal:
+          type: string
+          format: date-time
+        IsPOS:
+          type: boolean
+        IsKiosk:
+          type: boolean
+        IsApp:
+          type: boolean
+        AcctCode:
+          type:
+          - string
+          - 'null'
+        ObjectNumber:
+          type: integer
+          format: int64
+        IsAdjustment:
+          type: boolean
+        BillingFirstName:
+          type:
+          - string
+          - 'null'
+        BillingLastName:
+          type:
+          - string
+          - 'null'
+        HostAddress:
+          type:
+          - string
+          - 'null'
+        ThirdPartyCustomerId:
+          type:
+          - string
+          - 'null'
+        SubTotal:
+          type: number
+          format: double
+        UndistributedFees:
+          type: number
+          format: double
+        OrderTotal:
+          type: number
+          format: double
+        AttendeeTotal:
+          type: number
+          format: double
+        DiscountTotal:
+          type: number
+          format: double
+        FeeTotal:
+          type: number
+          format: double
+        TaxTotal:
+          type: number
+          format: double
+        DeliveryTotal:
+          type: number
+          description: Deprecated. Delivery has been folded into API.Models.OrderListOutput.FeeTotal; this property is kept for backwards compatibility but should be ignored.
+          format: double
+        FeesTotal:
+          type: number
+          format: double
+        Payments:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/OrderListPaymentOutput'
+        TransactionTotal:
+          type: number
+          format: double
+          readOnly: true
+        PaymentMethodId:
+          type: string
+          format: uuid
+          readOnly: true
+        PaymentMethod:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        PaymentNumber:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        TransactionId:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        ExternalInvoiceId:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        Summary:
+          type:
+          - string
+          - 'null'
+        ContactEmail:
+          type:
+          - string
+          - 'null'
+        ContactPhone:
+          type:
+          - string
+          - 'null'
+        OrderFee:
+          type: number
+          description: Deprecated. Order fees have been folded into API.Models.OrderListOutput.FeeTotal; this property is kept for backwards compatibility but should be ignored.
+          format: double
+        AttendeeCount:
+          type: integer
+          format: int32
+        PlacedThrough:
+          type:
+          - string
+          - 'null'
+        CustomerAccountNumber:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        Notes:
+          type:
+          - string
+          - 'null'
+        ExternalId:
+          type:
+          - string
+          - 'null'
+        PaidInFull:
+          type: boolean
+        ExternalCustomerId:
+          type:
+          - string
+          - 'null'
+        FlagState:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    EventDateOutput:
+      type: object
+      properties:
+        DoorsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        StartsAt:
+          type: string
+          format: date-time
+        EndsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      additionalProperties: false
+    CopyFeesType:
+      enum:
+      - Client
+      - Original
+      type: string
+    CustomFeeOutput:
+      type: object
+      properties:
+        Label:
+          type:
+          - string
+          - 'null'
+          description: Display label shown to attendees (e.g. "Sales Tax", "Service Fee").
+        FeeType:
+          $ref: '#/components/schemas/FeeItemType'
+        Flat:
+          type:
+          - number
+          - 'null'
+          description: Flat per-attendee amount, if applicable.
+          format: double
+        Percent:
+          type:
+          - number
+          - 'null'
+          description: Percent of base price (0–100). Applies to both Fee and Tax rows.
+          format: double
+      additionalProperties: false
+      description: A single custom fee or tax row from an attendee type's CustomFeesJson.
+    RemoteFetchResult:
+      type: object
+      properties:
+        Label:
+          type:
+          - string
+          - 'null'
+        Value:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     EventTypePriceOutput:
       type: object
       properties:
@@ -4924,180 +4547,129 @@ components:
             $ref: '#/components/schemas/UnitFeeLineItemOutput'
           readOnly: true
       additionalProperties: false
-    EventCopyInput:
-      required:
-      - AccessKey
-      - CopyFees
-      - SourceEventId
-      - Title
-      - UrlKey
+    EventSharedCapacityCreateInput:
       type: object
       properties:
-        AccessKey:
-          minLength: 1
-          type: string
-          description: Your account access key. This is used to authenticate your requests.
-        SourceEventId:
-          type: string
-          format: uuid
-        Title:
-          minLength: 1
-          type: string
-          description: Event title
-          example: My New Event
-        Subtitle:
+        SharedCapacityName:
           type:
           - string
           - 'null'
-          description: Leave null to use the original event's value
-        UrlKey:
-          maxLength: 50
-          minLength: 0
-          pattern: ^[0-9A-Za-z_\-]+$
-          type: string
-        AccountingCode:
+          description: For time slot events, if the SharedCapacityKind is "Time", you must provide a time here. i.e. "10:00 AM".
+        SharedCapacity:
           type:
-          - string
+          - integer
           - 'null'
-        LocationName:
-          type:
-          - string
-          - 'null'
-          description: Leave null to use the original event's value
-        LocationDetails:
-          type:
-          - string
-          - 'null'
-          description: Leave null to use the original event's value
-        Street:
-          type:
-          - string
-          - 'null'
-          description: Leave null to use the original event's value
-        City:
-          type:
-          - string
-          - 'null'
-          description: Leave null to use the original event's value
-        Region:
-          type:
-          - string
-          - 'null'
-          description: Leave null to use the original event's value
-        Country:
-          type:
-          - string
-          - 'null'
-          description: Leave null to use the original event's value
-        PostalCode:
-          type:
-          - string
-          - 'null'
-          description: Leave null to use the original event's value
-        Coordinates:
-          type:
-          - string
-          - 'null'
-          description: Leave null to use the original event's value
-        UseMap:
-          type:
-          - boolean
-          - 'null'
-        MapAddress:
-          type:
-          - string
-          - 'null'
-          description: Leave null to use the original event's value
-        Dates:
+          format: int32
+        SharedCapacityKind:
+          $ref: '#/components/schemas/SharedCapacityKind'
+        IsHidden:
+          type: boolean
+          description: Only for time slot events. If true, attendee types connected to this shared capacity will not be visible.
+        ConnectedTypeNames:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/EventDateCreateInput'
-          description: Leave null to use the original event's value
-        TimeZoneId:
-          type:
-          - string
-          - 'null'
-          description: Leave null to use the original event's value
-        CategoryId:
-          type:
-          - integer
-          - 'null'
-          description: Leave null to use the original event's value
-          format: int32
-        OverallCapacity:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        PaymentProfileId:
-          type:
-          - string
-          - 'null'
-          description: Leave null to use the original event's value
-        CopyReports:
-          type: boolean
-        CopyCheckinOptions:
-          type: boolean
-        CopyGroups:
-          type: boolean
-        CopyWebhooks:
-          type: boolean
-        CopySubscriptions:
-          type: boolean
-        CopyAccessCodes:
-          type: boolean
-        CopyCommunities:
-          type: boolean
-        CopyEmails:
-          type: boolean
-        CopyPromoCodes:
-          type: boolean
-        CopyPrintJobs:
-          type: boolean
-        CopySeatLayoutId:
-          type:
-          - string
-          - 'null'
-          description: This is only if the source event is AST. This is either an event id, or layout id. Leave null to use the original event's value
-        CopyThemeEventId:
-          type:
-          - string
-          - 'null'
-          description: Leave null to use the original event's value
-        CopyFees:
-          $ref: '#/components/schemas/CopyFeesType'
+            type: string
+          description: List of attendee type names or addons names that are connected to this shared capacity. Must not mix and match. Time Slot events allow for attendee types to be connected across multiple shared capacities.
       additionalProperties: false
-    CustomFeeOutput:
+    FieldUpdateType:
+      enum:
+      - Attendees
+      - Groups
+      - Buyer
+      type: string
+    EventFieldOptionCreateInput:
       type: object
       properties:
         Label:
           type:
           - string
           - 'null'
-          description: Display label shown to attendees (e.g. "Sales Tax", "Service Fee").
-        FeeType:
-          $ref: '#/components/schemas/FeeItemType'
-        Flat:
+        IsSelected:
+          type: boolean
+        AdminVisible:
+          type: boolean
+        InternetVisible:
+          type: boolean
+        Custom1:
+          type:
+          - string
+          - 'null'
+        UnitPrice:
           type:
           - number
           - 'null'
-          description: Flat per-attendee amount, if applicable.
           format: double
-        Percent:
+        Capacity:
           type:
-          - number
+          - integer
           - 'null'
-          description: Percent of base price (0–100). Applies to both Fee and Tax rows.
-          format: double
+          format: int32
+        DependentFields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EventFieldCreateInput'
+          description: Use this to create fields that are only visible when this option is selected
       additionalProperties: false
-      description: A single custom fee or tax row from an attendee type's CustomFeesJson.
-    EventVerbiage:
-      enum:
-      - Registrations
-      - Tickets
-      type: string
+    EventFieldCreateInput:
+      type: object
+      properties:
+        Label:
+          type:
+          - string
+          - 'null'
+        FieldType:
+          $ref: '#/components/schemas/FieldType'
+        ValidationExpression:
+          type:
+          - string
+          - 'null'
+        StoredValue:
+          type:
+          - string
+          - 'null'
+        Notes:
+          type:
+          - string
+          - 'null'
+        AdminRequired:
+          type: boolean
+        AdminVisible:
+          type: boolean
+        InternetRequired:
+          type: boolean
+        InternetVisible:
+          type: boolean
+        IsSensitive:
+          type: boolean
+        Options:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EventFieldOptionCreateInput'
+          description: Only set for fields of type Checkbox, Dropdown, Radiobuttons, ItemList, or ItemAmount
+        RemoteUrl:
+          type:
+          - string
+          - 'null'
+          description: Only set for fields of type RemoteFetch or RemoteValidate
+        RequireConfirm:
+          type: boolean
+          description: Only set for fields of type Text, Name, Phone, Email, or Date
+        EmailDomains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: The list of domains you would like to validate for or against for email fields.
+        DomainValidation:
+          $ref: '#/components/schemas/DomainValidationType'
+      additionalProperties: false
     EventAttendeeTypeCreateInput:
       type: object
       properties:
@@ -5284,71 +4856,499 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    EventAttendeeFieldCreateInput:
+    SeatReservedStateOutput:
       type: object
       properties:
-        IsPrimaryEmail:
-          type: boolean
-          description: This is used to mark the field as primary email field for the attendee.
-        Label:
+        Id:
+          type: integer
+          format: int32
+        Name:
           type:
           - string
           - 'null'
-        FieldType:
-          $ref: '#/components/schemas/FieldType'
-        ValidationExpression:
+        BackColor:
+          $ref: '#/components/schemas/ColorOutput'
+        ForeColor:
+          $ref: '#/components/schemas/ColorOutput'
+      additionalProperties: false
+    EventAddonCreateInput:
+      type: object
+      properties:
+        Name:
           type:
           - string
           - 'null'
-        StoredValue:
+        Description:
           type:
           - string
           - 'null'
-        Notes:
+        AdminShowAt:
           type:
           - string
           - 'null'
-        AdminRequired:
-          type: boolean
-        AdminVisible:
-          type: boolean
-        InternetRequired:
-          type: boolean
-        InternetVisible:
-          type: boolean
-        IsSensitive:
-          type: boolean
-        Options:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/EventFieldOptionCreateInput'
-          description: Only set for fields of type Checkbox, Dropdown, Radiobuttons, ItemList, or ItemAmount
-        RemoteUrl:
+          format: date-time
+        AdminHideAt:
           type:
           - string
           - 'null'
-          description: Only set for fields of type RemoteFetch or RemoteValidate
-        RequireConfirm:
+          format: date-time
+        InternetShowAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        InternetHideAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        IsHidden:
           type: boolean
-          description: Only set for fields of type Text, Name, Phone, Email, or Date
-        EmailDomains:
+        Capacity:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        RoleName:
+          type:
+          - string
+          - 'null'
+        Amount:
+          type: number
+          format: double
+        MinQuantity:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        MaxQuantity:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        NoChangesAfter:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        Custom1:
+          type:
+          - string
+          - 'null'
+        Custom2:
+          type:
+          - string
+          - 'null'
+        Custom3:
+          type:
+          - string
+          - 'null'
+        AcctCode:
+          type:
+          - string
+          - 'null'
+        GroupingText:
+          type:
+          - string
+          - 'null'
+        TypeKind:
+          $ref: '#/components/schemas/TypeKind'
+        FlexTotal:
+          type:
+          - integer
+          - 'null'
+          description: Total number of redemptions. Only applicable for Flex Pass events.
+          format: int32
+        FlexPer:
+          type:
+          - integer
+          - 'null'
+          description: Maximum number of redemptions per event. Only applicable for Flex Pass events.
+          format: int32
+        FlexStartsAt:
+          type:
+          - string
+          - 'null'
+          description: 'When can redemptions start? Only applicable for Flex Pass events without Flex Relative Days.
+
+            If Flex Relative Days is set, this will be ignored.'
+          format: date-time
+        FlexEndsAt:
+          type:
+          - string
+          - 'null'
+          description: 'When will redemptions end? Only applicable for Flex Pass events without Flex Relative Days.
+
+            If Flex Relative Days is set, this will be ignored.'
+          format: date-time
+        ConnectedFlexEventUrlKeys:
           type:
           - array
           - 'null'
           items:
             type: string
-          description: The list of domains you would like to validate for or against for email fields.
-        DomainValidation:
-          $ref: '#/components/schemas/DomainValidationType'
+          description: What events can this flex pass be redeemed for? Set "all" to allow all events.
+        FlexRelativeDays:
+          type:
+          - integer
+          - 'null'
+          description: 'For how many days is the flex pass redeemable after purchase? Only applicable for Flex Pass events.
+
+            If Flex Relative Days is set, FlexStartsAt and FlexEndsAt will be ignored.'
+          format: int32
+        CustomHtml:
+          type:
+          - string
+          - 'null'
+        ShareEnabled:
+          type: boolean
+        GeneratesTicket:
+          type: boolean
+        TypeTicketImageUrl:
+          type:
+          - string
+          - 'null'
+        TypeTicketBackgroundColor:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-    DomainValidationType:
+    EventPaymentMethodOutput:
+      type: object
+      properties:
+        Grouping:
+          type:
+          - string
+          - 'null'
+        Id:
+          type: string
+          format: uuid
+        Name:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    EventCopyInput:
+      required:
+      - AccessKey
+      - CopyFees
+      - SourceEventId
+      - Title
+      - UrlKey
+      type: object
+      properties:
+        AccessKey:
+          minLength: 1
+          type: string
+          description: Your account access key. This is used to authenticate your requests.
+        SourceEventId:
+          type: string
+          format: uuid
+        Title:
+          minLength: 1
+          type: string
+          description: Event title
+          example: My New Event
+        Subtitle:
+          type:
+          - string
+          - 'null'
+          description: Leave null to use the original event's value
+        UrlKey:
+          maxLength: 50
+          minLength: 0
+          pattern: ^[0-9A-Za-z_\-]+$
+          type: string
+        AccountingCode:
+          type:
+          - string
+          - 'null'
+        LocationName:
+          type:
+          - string
+          - 'null'
+          description: Leave null to use the original event's value
+        LocationDetails:
+          type:
+          - string
+          - 'null'
+          description: Leave null to use the original event's value
+        Street:
+          type:
+          - string
+          - 'null'
+          description: Leave null to use the original event's value
+        City:
+          type:
+          - string
+          - 'null'
+          description: Leave null to use the original event's value
+        Region:
+          type:
+          - string
+          - 'null'
+          description: Leave null to use the original event's value
+        Country:
+          type:
+          - string
+          - 'null'
+          description: Leave null to use the original event's value
+        PostalCode:
+          type:
+          - string
+          - 'null'
+          description: Leave null to use the original event's value
+        Coordinates:
+          type:
+          - string
+          - 'null'
+          description: Leave null to use the original event's value
+        UseMap:
+          type:
+          - boolean
+          - 'null'
+        MapAddress:
+          type:
+          - string
+          - 'null'
+          description: Leave null to use the original event's value
+        Dates:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EventDateCreateInput'
+          description: Leave null to use the original event's value
+        TimeZoneId:
+          type:
+          - string
+          - 'null'
+          description: Leave null to use the original event's value
+        CategoryId:
+          type:
+          - integer
+          - 'null'
+          description: Leave null to use the original event's value
+          format: int32
+        OverallCapacity:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        PaymentProfileId:
+          type:
+          - string
+          - 'null'
+          description: Leave null to use the original event's value
+        CopyReports:
+          type: boolean
+        CopyCheckinOptions:
+          type: boolean
+        CopyGroups:
+          type: boolean
+        CopyWebhooks:
+          type: boolean
+        CopySubscriptions:
+          type: boolean
+        CopyAccessCodes:
+          type: boolean
+        CopyCommunities:
+          type: boolean
+        CopyEmails:
+          type: boolean
+        CopyPromoCodes:
+          type: boolean
+        CopyPrintJobs:
+          type: boolean
+        CopySeatLayoutId:
+          type:
+          - string
+          - 'null'
+          description: This is only if the source event is AST. This is either an event id, or layout id. Leave null to use the original event's value
+        CopyThemeEventId:
+          type:
+          - string
+          - 'null'
+          description: Leave null to use the original event's value
+        CopyFees:
+          $ref: '#/components/schemas/CopyFeesType'
+      additionalProperties: false
+    FieldType:
       enum:
-      - All
-      - Only
-      - None
+      - Text
+      - MultiText
+      - Name
+      - Address
+      - Phone
+      - Email
+      - Dropdown
+      - Checkboxes
+      - Radiobuttons
+      - Date
+      - Accept
+      - ItemList
+      - ItemAmount
+      - Paragraph
+      - SectionHeader
+      - Link
+      - Signature
+      - RemoteValidate
+      - RemoteFetch
       type: string
+    ApiModelError:
+      type: object
+      properties:
+        Errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+        Message:
+          type:
+          - string
+          - 'null'
+        Data: {}
+        StackTrace:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    EventListOutput:
+      type: object
+      properties:
+        Title:
+          type:
+          - string
+          - 'null'
+        Subtitle:
+          type:
+          - string
+          - 'null'
+        UrlKey:
+          type:
+          - string
+          - 'null'
+        ClientKey:
+          type:
+          - string
+          - 'null'
+        ClientName:
+          type:
+          - string
+          - 'null'
+        Culture:
+          type:
+          - string
+          - 'null'
+        DateInfo:
+          type:
+          - string
+          - 'null'
+        DateInfoList:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        SoldOut:
+          type: boolean
+        IsSticky:
+          type: boolean
+        EventNumber:
+          type: integer
+          format: int64
+        IsAssigned:
+          type: boolean
+        LocationName:
+          type:
+          - string
+          - 'null'
+        SessionCount:
+          type: integer
+          format: int32
+        IsActive:
+          type: boolean
+        DateDisplay:
+          $ref: '#/components/schemas/DateDisplayOutput'
+        Latitude:
+          type: number
+          format: double
+        Longitude:
+          type: number
+          format: double
+        MapUrl:
+          type:
+          - string
+          - 'null'
+        PromoImageUrl:
+          type:
+          - string
+          - 'null'
+        CategoryId:
+          type: integer
+          format: int32
+        CategoryName:
+          type:
+          - string
+          - 'null'
+        SpotsRemaining:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        SpotsTaken:
+          type: integer
+          format: int32
+        ShowRemaining:
+          type: boolean
+        RemainingText:
+          type:
+          - string
+          - 'null'
+        Verbiage:
+          type:
+          - string
+          - 'null'
+        Dates:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EventDateOutput'
+        AlternateTitle:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        TimeZoneId:
+          type:
+          - string
+          - 'null'
+        AreaName:
+          type:
+          - string
+          - 'null'
+        AreaKey:
+          type:
+          - string
+          - 'null'
+        PaymentProfileId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        AcctCode:
+          type:
+          - string
+          - 'null'
+        IsHidden:
+          type: boolean
+        IsFlexPass:
+          type: boolean
+        IsExchangeable:
+          type: boolean
+      additionalProperties: false
   securitySchemes:
     apiKey:
       type: apiKey
