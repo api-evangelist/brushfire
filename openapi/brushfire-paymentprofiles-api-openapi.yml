@@ -211,6 +211,107 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        Key:
+          type:
+          - string
+          - 'null'
+        Value:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    TerminalOutput:
+      type: object
+      properties:
+        Id:
+          type:
+          - string
+          - 'null'
+        SerialNumber:
+          type:
+          - string
+          - 'null'
+        Name:
+          type:
+          - string
+          - 'null'
+        Display:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ApiModelError:
+      type: object
+      properties:
+        Errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+        Message:
+          type:
+          - string
+          - 'null'
+        Data: {}
+        StackTrace:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    TerminalCreateOutput:
+      type: object
+      properties:
+        Id:
+          type:
+          - string
+          - 'null'
+        SerialNumber:
+          type:
+          - string
+          - 'null'
+        PairingCode:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    PaymentMethodListOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Name:
+          type:
+          - string
+          - 'null'
+        IsEnabled:
+          type: boolean
+      additionalProperties: false
+    LocationSingleOutput:
+      type: object
+      properties:
+        Id:
+          type:
+          - string
+          - 'null'
+        Name:
+          type:
+          - string
+          - 'null'
+        Address:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        IsSelected:
+          type: boolean
+        IsActive:
+          type: boolean
+      additionalProperties: false
     PaymentProfileConfigOutput:
       type: object
       properties:
@@ -267,37 +368,65 @@ components:
         AllowGiftCards:
           type: boolean
       additionalProperties: false
-    StringStringKeyValuePair:
-      type: object
-      properties:
-        Key:
-          type:
-          - string
-          - 'null'
-        Value:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    TerminalOutput:
+    PaymentProfileListOutput:
       type: object
       properties:
         Id:
-          type:
-          - string
-          - 'null'
-        SerialNumber:
-          type:
-          - string
-          - 'null'
+          type: string
+          format: uuid
         Name:
           type:
           - string
           - 'null'
-        Display:
+        AccountName:
           type:
           - string
           - 'null'
+        GatewayId:
+          type: string
+          format: uuid
+        GatewayName:
+          type:
+          - string
+          - 'null'
+        SupportsAutoFees:
+          type: boolean
+        SupportsSideloading:
+          type: boolean
+        AllowsReferenceSales:
+          type: boolean
+        AllowsStandaloneCredits:
+          type: boolean
+        ReferenceDayLimit:
+          type: integer
+          format: int32
+        Options:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+        ElectronicPaymentMethods:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PaymentMethodListOutput'
+        Config:
+          $ref: '#/components/schemas/PaymentProfileConfigOutput'
+      additionalProperties: false
+    PaymentProfileConfigInvoiceItem:
+      type: object
+      properties:
+        AllowAdmin:
+          type: boolean
+        AllowInternet:
+          type: boolean
+        RelativeDays:
+          type: integer
+          format: int32
       additionalProperties: false
     PaymentProfileSingleOutput:
       type: object
@@ -348,54 +477,6 @@ components:
         Config:
           $ref: '#/components/schemas/PaymentProfileConfigOutput'
       additionalProperties: false
-    LocationSingleOutput:
-      type: object
-      properties:
-        Id:
-          type:
-          - string
-          - 'null'
-        Name:
-          type:
-          - string
-          - 'null'
-        Address:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        IsSelected:
-          type: boolean
-        IsActive:
-          type: boolean
-      additionalProperties: false
-    PaymentProfileConfigInvoiceItem:
-      type: object
-      properties:
-        AllowAdmin:
-          type: boolean
-        AllowInternet:
-          type: boolean
-        RelativeDays:
-          type: integer
-          format: int32
-      additionalProperties: false
-    TerminalCreateOutput:
-      type: object
-      properties:
-        Id:
-          type:
-          - string
-          - 'null'
-        SerialNumber:
-          type:
-          - string
-          - 'null'
-        PairingCode:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     TerminalCreateInput:
       type: object
       properties:
@@ -404,87 +485,6 @@ components:
           - string
           - 'null'
         PairingCode:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    PaymentMethodListOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        Name:
-          type:
-          - string
-          - 'null'
-        IsEnabled:
-          type: boolean
-      additionalProperties: false
-    PaymentProfileListOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        Name:
-          type:
-          - string
-          - 'null'
-        AccountName:
-          type:
-          - string
-          - 'null'
-        GatewayId:
-          type: string
-          format: uuid
-        GatewayName:
-          type:
-          - string
-          - 'null'
-        SupportsAutoFees:
-          type: boolean
-        SupportsSideloading:
-          type: boolean
-        AllowsReferenceSales:
-          type: boolean
-        AllowsStandaloneCredits:
-          type: boolean
-        ReferenceDayLimit:
-          type: integer
-          format: int32
-        Options:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type:
-            - string
-            - 'null'
-        ElectronicPaymentMethods:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/PaymentMethodListOutput'
-        Config:
-          $ref: '#/components/schemas/PaymentProfileConfigOutput'
-      additionalProperties: false
-    ApiModelError:
-      type: object
-      properties:
-        Errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/StringStringKeyValuePair'
-        Message:
-          type:
-          - string
-          - 'null'
-        Data: {}
-        StackTrace:
           type:
           - string
           - 'null'

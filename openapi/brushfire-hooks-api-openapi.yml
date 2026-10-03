@@ -253,14 +253,40 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    StringStringKeyValuePair:
+    WebhookType:
+      enum:
+      - Attendee_Created
+      - Attendee_Updated
+      - Attendee_Cancelled
+      - Order_Completed
+      - Event_Created
+      - Group_Updated
+      - Group_Created
+      - Group_Deleted
+      - Zapier_Post
+      - Event_Updated
+      - Order_Updated
+      - Client_Created
+      - Client_Activated
+      - Client_Deactivated
+      - Email_Unsubscribe
+      - Email_Resubscribe
+      type: string
+    ApiModelError:
       type: object
       properties:
-        Key:
+        Errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+        Message:
           type:
           - string
           - 'null'
-        Value:
+        Data: {}
+        StackTrace:
           type:
           - string
           - 'null'
@@ -332,40 +358,14 @@ components:
             format: int64
           description: This can be Event Numbers, Account Numbers, Client Numbers, etc.
       additionalProperties: false
-    WebhookType:
-      enum:
-      - Attendee_Created
-      - Attendee_Updated
-      - Attendee_Cancelled
-      - Order_Completed
-      - Event_Created
-      - Group_Updated
-      - Group_Created
-      - Group_Deleted
-      - Zapier_Post
-      - Event_Updated
-      - Order_Updated
-      - Client_Created
-      - Client_Activated
-      - Client_Deactivated
-      - Email_Unsubscribe
-      - Email_Resubscribe
-      type: string
-    ApiModelError:
+    StringStringKeyValuePair:
       type: object
       properties:
-        Errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/StringStringKeyValuePair'
-        Message:
+        Key:
           type:
           - string
           - 'null'
-        Data: {}
-        StackTrace:
+        Value:
           type:
           - string
           - 'null'

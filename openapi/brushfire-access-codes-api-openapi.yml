@@ -146,12 +146,25 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    AccessCodeKind:
-      enum:
-      - Standard
-      - Template
-      - Dynamic
-      type: string
+    ApiModelError:
+      type: object
+      properties:
+        Errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+        Message:
+          type:
+          - string
+          - 'null'
+        Data: {}
+        StackTrace:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     AccessCodeCreateOutput:
       type: object
       properties:
@@ -208,18 +221,12 @@ components:
             type: string
             format: uuid
       additionalProperties: false
-    StringStringKeyValuePair:
-      type: object
-      properties:
-        Key:
-          type:
-          - string
-          - 'null'
-        Value:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
+    AccessCodeKind:
+      enum:
+      - Standard
+      - Template
+      - Dynamic
+      type: string
     AccessCodeOutput:
       type: object
       properties:
@@ -296,21 +303,14 @@ components:
           minLength: 0
           type: string
       additionalProperties: false
-    ApiModelError:
+    StringStringKeyValuePair:
       type: object
       properties:
-        Errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/StringStringKeyValuePair'
-        Message:
+        Key:
           type:
           - string
           - 'null'
-        Data: {}
-        StackTrace:
+        Value:
           type:
           - string
           - 'null'

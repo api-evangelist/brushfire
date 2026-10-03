@@ -972,228 +972,269 @@ components:
         UpdateNewOnly:
           type: boolean
       additionalProperties: false
-    UnitFeeLineItemOutput:
+    EventDateOutput:
       type: object
       properties:
-        Label:
-          type:
-          - string
-          - 'null'
-          description: Display label (e.g. "Service Fee", "Sales Tax").
-        FeeType:
-          $ref: '#/components/schemas/FeeItemType'
-        Amount:
-          type: number
-          description: The evaluated amount for this line item.
-          format: double
-      additionalProperties: false
-      description: 'A single fee or tax line item evaluated for an attendee from the attendee
-
-        type''s customFees configuration. On cart outputs this is a live evaluation;
-
-        on order outputs it is the snapshot of what was collected at purchase time.'
-    PaymentMethodOutput:
-      type: object
-      properties:
-        PaymentMethodId:
-          type: string
-          format: uuid
-        Name:
-          type:
-          - string
-          - 'null'
-        IsElectronic:
-          type: boolean
-        InfoGrouping:
-          type:
-          - string
-          - 'null'
-        Grouping:
-          $ref: '#/components/schemas/InfoGrouping'
-      additionalProperties: false
-    CartDeleteAttendeeOutput:
-      type: object
-      properties:
-        ExpiresAt:
+        DoorsAt:
           type:
           - string
           - 'null'
           format: date-time
-        TotalCount:
-          type: integer
-          format: int32
-        DeletedCount:
-          type: integer
-          format: int32
-      additionalProperties: false
-    CartAddAttendeeOutput:
-      type: object
-      properties:
-        CartId:
-          type:
-          - string
-          - 'null'
-        ExpiresAt:
+        StartsAt:
+          type: string
+          format: date-time
+        EndsAt:
           type:
           - string
           - 'null'
           format: date-time
-        TotalCount:
-          type: integer
-          format: int32
-        AddedCount:
-          type: integer
-          format: int32
-        EventCart:
-          $ref: '#/components/schemas/CartEventOutput'
       additionalProperties: false
-    CartDeletePromotionOutput:
+    CartLookupOutput:
       type: object
       properties:
-        DeletedCount:
-          type: integer
-          format: int32
-      additionalProperties: false
-    AttendeeDisplayOutput:
-      type: object
-      properties:
-        Line1:
-          type:
-          - string
-          - 'null'
-        Line2:
-          type:
-          - string
-          - 'null'
-        Line3:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    FieldDisplayOutput:
-      type: object
-      properties:
-        Id:
-          type:
-          - string
-          - 'null'
-        Label:
-          type:
-          - string
-          - 'null'
-        Value:
-          type:
-          - string
-          - 'null'
-        Type:
-          type:
-          - string
-          - 'null'
-        IsSensitive:
-          type: boolean
-        OptionIds:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            format: uuid
-      additionalProperties: false
-    CartPromotionOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        Names:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        Amount:
-          type: number
-          format: double
-        AutoCalculate:
-          type: boolean
-      additionalProperties: false
-    CartEventDeliveryMethodOutput:
-      type: object
-      properties:
-        ShippingId:
-          type: string
-          format: uuid
-        Method:
-          type:
-          - string
-          - 'null'
-        Description:
-          type:
-          - string
-          - 'null'
-        EventFee:
-          type:
-          - number
-          - 'null'
-          format: double
-        TicketFee:
-          type:
-          - number
-          - 'null'
-          format: double
-        IsElectronic:
-          type: boolean
-        IsPointOfSale:
-          type: boolean
-        PricesVary:
-          type: boolean
-        TicketCount:
+        AccountNumber:
           type:
           - integer
           - 'null'
-          format: int32
-        Fee:
+          format: int64
+        IsLegacy:
+          type: boolean
+        FirstName:
+          type:
+          - string
+          - 'null'
+        LastName:
+          type:
+          - string
+          - 'null'
+        Organization:
+          type:
+          - string
+          - 'null'
+        Street1:
+          type:
+          - string
+          - 'null'
+        Street2:
+          type:
+          - string
+          - 'null'
+        City:
+          type:
+          - string
+          - 'null'
+        Region:
+          type:
+          - string
+          - 'null'
+        Country:
+          type:
+          - string
+          - 'null'
+        PostalCode:
+          type:
+          - string
+          - 'null'
+        Email:
+          type:
+          - string
+          - 'null'
+        Phone:
+          type:
+          - string
+          - 'null'
+        Relevancy:
           type: number
           format: double
-          readOnly: true
       additionalProperties: false
-      description: Deprecated. Delivery has been folded into API.Models.CartAttendeeOutput.UnitFee; this class is kept for backwards compatibility but ignored.
-    StringStringKeyValuePair:
-      type: object
-      properties:
-        Key:
-          type:
-          - string
-          - 'null'
-        Value:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    CartAttendeeFormInput:
+    CartUpdateEventInput:
       type: object
       properties:
         AccessKey:
           type:
           - string
           - 'null'
-        FieldValues:
+        ShippingId:
+          type:
+          - string
+          - 'null'
+          description: Deprecated. Delivery methods are no longer supported; this field is accepted for backwards compatibility but ignored.
+          format: uuid
+        UnitPrice:
+          type:
+          - number
+          - 'null'
+          format: double
+        UnitAddons:
+          type:
+          - number
+          - 'null'
+          format: double
+        UnitDiscount:
+          type:
+          - number
+          - 'null'
+          format: double
+        UnitTax:
+          type:
+          - number
+          - 'null'
+          description: Flat tax amount applied to each attendee. Ignored when API.Models.CartUpdateEventInput.UnitFees is supplied.
+          format: double
+        UnitFee:
+          type:
+          - number
+          - 'null'
+          description: Flat fee amount applied to each attendee. Ignored when API.Models.CartUpdateEventInput.UnitFees is supplied.
+          format: double
+        UnitFees:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/FieldInput'
-        UpdateNewOnly:
-          type: boolean
-        IsPreRegistered:
-          type: boolean
-        IsGift:
-          type: boolean
-        RecipientEmail:
-          pattern: ^([0-9A-Za-zÀ-ÖØ-öø-ÿ']+[-._+&])*[0-9A-Za-zÀ-ÖØ-öø-ÿ_']+@([-0-9A-Za-zÀ-ÖØ-öø-ÿ]+[.])+[a-zA-Z]{2,63}$
+            $ref: '#/components/schemas/UnitFeeLineItemInput'
+          description: 'Itemized fee/tax line items to apply to every attendee in the cart for this event.
+
+            When supplied, this replaces the existing UnitFeesJson on each attendee and takes precedence over API.Models.CartUpdateEventInput.UnitFee and API.Models.CartUpdateEventInput.UnitTax.
+
+            If the existing attendees already have tax applied, the list must include at least one entry with FeeType=Tax.'
+        UnitDelivery:
+          type:
+          - number
+          - 'null'
+          description: Deprecated. Delivery has been folded into API.Models.CartUpdateEventInput.UnitFee; this field is accepted for backwards compatibility but ignored.
+          format: double
+        DeliveryFee:
+          type:
+          - number
+          - 'null'
+          description: Deprecated. Delivery is no longer included in order totals; this field is accepted for backwards compatibility but ignored.
+          format: double
+        Exclude:
           type:
           - string
           - 'null'
+      additionalProperties: false
+    CartUpdateAttendeeInput:
+      type: object
+      properties:
+        AccessKey:
+          type:
+          - string
+          - 'null'
+        AttendeeTypeId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        GroupId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        UnitPrice:
+          type:
+          - number
+          - 'null'
+          format: double
+        UnitAddons:
+          type:
+          - number
+          - 'null'
+          format: double
+        UnitDiscount:
+          type:
+          - number
+          - 'null'
+          format: double
+        UnitTax:
+          type:
+          - number
+          - 'null'
+          description: Flat tax amount applied to this attendee. Ignored when API.Models.CartUpdateAttendeeInput.UnitFees is supplied.
+          format: double
+        UnitFee:
+          type:
+          - number
+          - 'null'
+          description: Flat fee amount applied to this attendee. Ignored when API.Models.CartUpdateAttendeeInput.UnitFees is supplied.
+          format: double
+        UnitFees:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/UnitFeeLineItemInput'
+          description: 'Itemized fee/tax line items to apply to this attendee.
+
+            When supplied, takes precedence over API.Models.CartUpdateAttendeeInput.UnitFee and API.Models.CartUpdateAttendeeInput.UnitTax.'
+        UnitDelivery:
+          type:
+          - number
+          - 'null'
+          description: Deprecated. Delivery has been folded into API.Models.CartUpdateAttendeeInput.UnitFee; this field is accepted for backwards compatibility but ignored.
+          format: double
+        Exclude:
+          type:
+          - string
+          - 'null'
+        ExternalId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    CartAddPromotionInput:
+      required:
+      - CodeName
+      type: object
+      properties:
+        CodeName:
+          minLength: 1
+          type: string
+        AccessKey:
+          type:
+          - string
+          - 'null'
+        Exclude:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    CartIdOutput:
+      type: object
+      properties:
+        CartId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    CartDeleteEventOutput:
+      type: object
+      properties:
+        DeletedCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    EventVerbiage:
+      enum:
+      - Registrations
+      - Tickets
+      type: string
+    DomainValidationOutput:
+      type: object
+      properties:
+        AllowDomains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        DisallowDomains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
       additionalProperties: false
     FieldOutput:
       type: object
@@ -1296,15 +1337,15 @@ components:
         DisplayIsPrimary:
           type: boolean
       additionalProperties: false
-    CartAttendeePromotionOutput:
+    FieldInput:
+      required:
+      - Id
       type: object
       properties:
-        PromotionId:
+        Id:
           type: string
           format: uuid
-        DiscountAmount:
-          type: number
-          format: double
+        Value: {}
       additionalProperties: false
     CartAddAttendeeItemInput:
       required:
@@ -1360,46 +1401,299 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    DomainValidationOutput:
+    CartPromotionOutput:
       type: object
       properties:
-        AllowDomains:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        DisallowDomains:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-      additionalProperties: false
-    CartUpdateEventInput:
-      type: object
-      properties:
-        AccessKey:
-          type:
-          - string
-          - 'null'
-        ShippingId:
-          type:
-          - string
-          - 'null'
-          description: Deprecated. Delivery methods are no longer supported; this field is accepted for backwards compatibility but ignored.
+        Id:
+          type: string
           format: uuid
-        UnitPrice:
+        Names:
           type:
-          - number
+          - array
           - 'null'
+          items:
+            type: string
+        Amount:
+          type: number
           format: double
-        UnitAddons:
+        AutoCalculate:
+          type: boolean
+      additionalProperties: false
+    FeeItemType:
+      enum:
+      - Fee
+      - Tax
+      type: string
+    InfoGrouping:
+      enum:
+      - None
+      - CheckPO
+      - ECheck
+      - Card
+      - AppSideload
+      - Reference
+      - EventCredit
+      - MassCancel
+      type: string
+    UnitFeeLineItemOutput:
+      type: object
+      properties:
+        Label:
           type:
-          - number
+          - string
           - 'null'
+          description: Display label (e.g. "Service Fee", "Sales Tax").
+        FeeType:
+          $ref: '#/components/schemas/FeeItemType'
+        Amount:
+          type: number
+          description: The evaluated amount for this line item.
+          format: double
+      additionalProperties: false
+      description: 'A single fee or tax line item evaluated for an attendee from the attendee
+
+        type''s customFees configuration. On cart outputs this is a live evaluation;
+
+        on order outputs it is the snapshot of what was collected at purchase time.'
+    UnitFeeLineItemInput:
+      required:
+      - Amount
+      - FeeType
+      - Label
+      type: object
+      properties:
+        Label:
+          minLength: 1
+          type: string
+        FeeType:
+          $ref: '#/components/schemas/FeeItemType'
+        Amount:
+          type: number
+          format: double
+      additionalProperties: false
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        Key:
+          type:
+          - string
+          - 'null'
+        Value:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ApiModelError:
+      type: object
+      properties:
+        Errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+        Message:
+          type:
+          - string
+          - 'null'
+        Data: {}
+        StackTrace:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    CartAttendeeOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        EventId:
+          type: string
+          format: uuid
+        AttendeeTypeId:
+          type: string
+          format: uuid
+        AttendeeId:
+          type: string
+          format: uuid
+        AttendeeNumber:
+          type: integer
+          format: int64
+        LinkedAttendeeNumber:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        GroupId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        CartId:
+          type:
+          - string
+          - 'null'
+        UnitPrice:
+          type: number
+          format: double
+        UnitFee:
+          type: number
+          format: double
+        UnitTax:
+          type: number
+          format: double
+        UnitDelivery:
+          type: number
+          description: Deprecated. Delivery has been folded into API.Models.CartAttendeeOutput.UnitFee; this property is kept for backwards compatibility but should be ignored.
           format: double
         UnitDiscount:
+          type: number
+          format: double
+        UnitAddons:
+          type: number
+          format: double
+        UnitTotal:
+          type: number
+          format: double
+        UnitFees:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/UnitFeeLineItemOutput'
+        DisplayPrice:
+          type: number
+          format: double
+        DisplayTotal:
+          type: number
+          format: double
+          readOnly: true
+        TypeDisplayAmount:
+          type: number
+          format: double
+        IsInclusiveFees:
+          type: boolean
+        IsInclusiveTaxes:
+          type: boolean
+        LastAccessedAt:
+          type: string
+          format: date-time
+        TypeName:
+          type:
+          - string
+          - 'null'
+        IsPreRegistered:
+          type: boolean
+        IsCompleted:
+          type: boolean
+        IsGift:
+          type: boolean
+        CanContinue:
+          type: boolean
+        SeatId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        SectionName:
+          type:
+          - string
+          - 'null'
+        RowName:
+          type:
+          - string
+          - 'null'
+        SeatLabel:
+          type:
+          - string
+          - 'null'
+        DistanceCount:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        ShareEmail:
+          type:
+          - string
+          - 'null'
+        SeatInfo:
+          type:
+          - string
+          - 'null'
+        HasFields:
+          type: boolean
+        Promotions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CartAttendeePromotionOutput'
+        Fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/FieldDisplayOutput'
+        FirstName:
+          type:
+          - string
+          - 'null'
+        LastName:
+          type:
+          - string
+          - 'null'
+        HasName:
+          type: boolean
+        HasAddress:
+          type: boolean
+        DisplayName:
+          type:
+          - string
+          - 'null'
+        AttendeeDisplay:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          readOnly: true
+        AttendeeDisplayLines:
+          $ref: '#/components/schemas/AttendeeDisplayOutput'
+        IsAddon:
+          type: boolean
+        TypeKind:
+          $ref: '#/components/schemas/TypeKind'
+        ExternalId:
+          type:
+          - string
+          - 'null'
+        ExternalDescription:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    FieldOptionFullOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Label:
+          type:
+          - string
+          - 'null'
+        Capacity:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        Quantity:
+          type: integer
+          format: int32
+        HasUnitPrice:
+          type: boolean
+        UnitPrice:
           type:
           - number
           - 'null'
@@ -1408,41 +1702,385 @@ components:
           type:
           - number
           - 'null'
-          description: Flat tax amount applied to each attendee. Ignored when API.Models.CartUpdateEventInput.UnitFees is supplied.
           format: double
-        UnitFee:
+        IsInclusiveTaxes:
+          type: boolean
+        DisplayPrice:
           type:
           - number
           - 'null'
-          description: Flat fee amount applied to each attendee. Ignored when API.Models.CartUpdateEventInput.UnitFees is supplied.
           format: double
-        UnitFees:
+        PriceDescription:
+          type:
+          - string
+          - 'null'
+        IsSelected:
+          type: boolean
+        HasCapacity:
+          type: boolean
+        SpotsRemaining:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        RemainingText:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    FormOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        ObjectId:
+          type: string
+          format: uuid
+        IsAttendee:
+          type: boolean
+        AttendeeNumber:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        IsPreRegistered:
+          type: boolean
+        IsGift:
+          type: boolean
+        ShareEmail:
+          type:
+          - string
+          - 'null'
+        CopyEnabled:
+          type: boolean
+        GiftingEnabled:
+          type: boolean
+        PreRegEnabled:
+          type: boolean
+        IsCopySource:
+          type: boolean
+        IsCopyDestination:
+          type: boolean
+          readOnly: true
+        CanContinue:
+          type: boolean
+        AttendeeTypeId:
+          type: string
+          format: uuid
+        AttendeeTypeName:
+          type:
+          - string
+          - 'null'
+        IsCompleted:
+          type: boolean
+        SeatId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        SectionName:
+          type:
+          - string
+          - 'null'
+        RowName:
+          type:
+          - string
+          - 'null'
+        SeatLabel:
+          type:
+          - string
+          - 'null'
+        DistanceCount:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        UnitPrice:
+          type: number
+          format: double
+        UnitAddons:
+          type: number
+          format: double
+        UnitFee:
+          type: number
+          format: double
+        UnitTax:
+          type: number
+          format: double
+        DisplayPrice:
+          type: number
+          format: double
+        PriceDescription:
+          type:
+          - string
+          - 'null'
+        IsInclusiveFees:
+          type: boolean
+        IsInclusiveTaxes:
+          type: boolean
+        Culture:
+          type:
+          - string
+          - 'null'
+        CopyableAttendeeNumbers:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/UnitFeeLineItemInput'
-          description: 'Itemized fee/tax line items to apply to every attendee in the cart for this event.
-
-            When supplied, this replaces the existing UnitFeesJson on each attendee and takes precedence over API.Models.CartUpdateEventInput.UnitFee and API.Models.CartUpdateEventInput.UnitTax.
-
-            If the existing attendees already have tax applied, the list must include at least one entry with FeeType=Tax.'
-        UnitDelivery:
-          type:
-          - number
-          - 'null'
-          description: Deprecated. Delivery has been folded into API.Models.CartUpdateEventInput.UnitFee; this field is accepted for backwards compatibility but ignored.
-          format: double
-        DeliveryFee:
-          type:
-          - number
-          - 'null'
-          description: Deprecated. Delivery is no longer included in order totals; this field is accepted for backwards compatibility but ignored.
-          format: double
-        Exclude:
+            type: integer
+            format: int64
+        DisplayName:
           type:
           - string
           - 'null'
+          readOnly: true
+        AttendeeDisplay:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          readOnly: true
+        Fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/FieldOutput'
+      additionalProperties: false
+    CartAttendeeFormInput:
+      type: object
+      properties:
+        AccessKey:
+          type:
+          - string
+          - 'null'
+        FieldValues:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/FieldInput'
+        UpdateNewOnly:
+          type: boolean
+        IsPreRegistered:
+          type: boolean
+        IsGift:
+          type: boolean
+        RecipientEmail:
+          pattern: ^([0-9A-Za-zÀ-ÖØ-öø-ÿ']+[-._+&])*[0-9A-Za-zÀ-ÖØ-öø-ÿ_']+@([-0-9A-Za-zÀ-ÖØ-öø-ÿ]+[.])+[a-zA-Z]{2,63}$
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    CartEventDeliveryMethodOutput:
+      type: object
+      properties:
+        ShippingId:
+          type: string
+          format: uuid
+        Method:
+          type:
+          - string
+          - 'null'
+        Description:
+          type:
+          - string
+          - 'null'
+        EventFee:
+          type:
+          - number
+          - 'null'
+          format: double
+        TicketFee:
+          type:
+          - number
+          - 'null'
+          format: double
+        IsElectronic:
+          type: boolean
+        IsPointOfSale:
+          type: boolean
+        PricesVary:
+          type: boolean
+        TicketCount:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        Fee:
+          type: number
+          format: double
+          readOnly: true
+      additionalProperties: false
+      description: Deprecated. Delivery has been folded into API.Models.CartAttendeeOutput.UnitFee; this class is kept for backwards compatibility but ignored.
+    PaymentMethodOutput:
+      type: object
+      properties:
+        PaymentMethodId:
+          type: string
+          format: uuid
+        Name:
+          type:
+          - string
+          - 'null'
+        IsElectronic:
+          type: boolean
+        InfoGrouping:
+          type:
+          - string
+          - 'null'
+        Grouping:
+          $ref: '#/components/schemas/InfoGrouping'
+      additionalProperties: false
+    AttendeeDisplayOutput:
+      type: object
+      properties:
+        Line1:
+          type:
+          - string
+          - 'null'
+        Line2:
+          type:
+          - string
+          - 'null'
+        Line3:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    CartAddAttendeeOutput:
+      type: object
+      properties:
+        CartId:
+          type:
+          - string
+          - 'null'
+        ExpiresAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        TotalCount:
+          type: integer
+          format: int32
+        AddedCount:
+          type: integer
+          format: int32
+        EventCart:
+          $ref: '#/components/schemas/CartEventOutput'
+      additionalProperties: false
+    CartAttendeePromotionOutput:
+      type: object
+      properties:
+        PromotionId:
+          type: string
+          format: uuid
+        DiscountAmount:
+          type: number
+          format: double
+      additionalProperties: false
+    TypeKind:
+      enum:
+      - InPerson
+      - Donation
+      - Product
+      type: string
+    CartDeletePromotionOutput:
+      type: object
+      properties:
+        DeletedCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    FieldDisplayOutput:
+      type: object
+      properties:
+        Id:
+          type:
+          - string
+          - 'null'
+        Label:
+          type:
+          - string
+          - 'null'
+        Value:
+          type:
+          - string
+          - 'null'
+        Type:
+          type:
+          - string
+          - 'null'
+        IsSensitive:
+          type: boolean
+        OptionIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: uuid
+      additionalProperties: false
+    CartCheckoutInfoOutput:
+      type: object
+      properties:
+        FirstName:
+          type:
+          - string
+          - 'null'
+        LastName:
+          type:
+          - string
+          - 'null'
+        Phone:
+          type:
+          - string
+          - 'null'
+        Email:
+          type:
+          - string
+          - 'null'
+        Street1:
+          type:
+          - string
+          - 'null'
+        Street2:
+          type:
+          - string
+          - 'null'
+        City:
+          type:
+          - string
+          - 'null'
+        Region:
+          type:
+          - string
+          - 'null'
+        Country:
+          type:
+          - string
+          - 'null'
+        PostalCode:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    CartDeleteAttendeeOutput:
+      type: object
+      properties:
+        ExpiresAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        TotalCount:
+          type: integer
+          format: int32
+        DeletedCount:
+          type: integer
+          format: int32
       additionalProperties: false
     CartAddAttendeeInput:
       required:
@@ -1465,22 +2103,6 @@ components:
           type:
           - string
           - 'null'
-      additionalProperties: false
-    UnitFeeLineItemInput:
-      required:
-      - Amount
-      - FeeType
-      - Label
-      type: object
-      properties:
-        Label:
-          minLength: 1
-          type: string
-        FeeType:
-          $ref: '#/components/schemas/FeeItemType'
-        Amount:
-          type: number
-          format: double
       additionalProperties: false
     CartEventOutput:
       type: object
@@ -1678,628 +2300,6 @@ components:
           type: number
           format: double
           readOnly: true
-      additionalProperties: false
-    EventVerbiage:
-      enum:
-      - Registrations
-      - Tickets
-      type: string
-    CartAddPromotionInput:
-      required:
-      - CodeName
-      type: object
-      properties:
-        CodeName:
-          minLength: 1
-          type: string
-        AccessKey:
-          type:
-          - string
-          - 'null'
-        Exclude:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    FeeItemType:
-      enum:
-      - Fee
-      - Tax
-      type: string
-    FieldOptionFullOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        Label:
-          type:
-          - string
-          - 'null'
-        Capacity:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        Quantity:
-          type: integer
-          format: int32
-        HasUnitPrice:
-          type: boolean
-        UnitPrice:
-          type:
-          - number
-          - 'null'
-          format: double
-        UnitTax:
-          type:
-          - number
-          - 'null'
-          format: double
-        IsInclusiveTaxes:
-          type: boolean
-        DisplayPrice:
-          type:
-          - number
-          - 'null'
-          format: double
-        PriceDescription:
-          type:
-          - string
-          - 'null'
-        IsSelected:
-          type: boolean
-        HasCapacity:
-          type: boolean
-        SpotsRemaining:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        RemainingText:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    CartLookupOutput:
-      type: object
-      properties:
-        AccountNumber:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        IsLegacy:
-          type: boolean
-        FirstName:
-          type:
-          - string
-          - 'null'
-        LastName:
-          type:
-          - string
-          - 'null'
-        Organization:
-          type:
-          - string
-          - 'null'
-        Street1:
-          type:
-          - string
-          - 'null'
-        Street2:
-          type:
-          - string
-          - 'null'
-        City:
-          type:
-          - string
-          - 'null'
-        Region:
-          type:
-          - string
-          - 'null'
-        Country:
-          type:
-          - string
-          - 'null'
-        PostalCode:
-          type:
-          - string
-          - 'null'
-        Email:
-          type:
-          - string
-          - 'null'
-        Phone:
-          type:
-          - string
-          - 'null'
-        Relevancy:
-          type: number
-          format: double
-      additionalProperties: false
-    FieldInput:
-      required:
-      - Id
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        Value: {}
-      additionalProperties: false
-    TypeKind:
-      enum:
-      - InPerson
-      - Donation
-      - Product
-      type: string
-    InfoGrouping:
-      enum:
-      - None
-      - CheckPO
-      - ECheck
-      - Card
-      - AppSideload
-      - Reference
-      - EventCredit
-      - MassCancel
-      type: string
-    EventDateOutput:
-      type: object
-      properties:
-        DoorsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        StartsAt:
-          type: string
-          format: date-time
-        EndsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-      additionalProperties: false
-    CartCheckoutInfoOutput:
-      type: object
-      properties:
-        FirstName:
-          type:
-          - string
-          - 'null'
-        LastName:
-          type:
-          - string
-          - 'null'
-        Phone:
-          type:
-          - string
-          - 'null'
-        Email:
-          type:
-          - string
-          - 'null'
-        Street1:
-          type:
-          - string
-          - 'null'
-        Street2:
-          type:
-          - string
-          - 'null'
-        City:
-          type:
-          - string
-          - 'null'
-        Region:
-          type:
-          - string
-          - 'null'
-        Country:
-          type:
-          - string
-          - 'null'
-        PostalCode:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    CartUpdateAttendeeInput:
-      type: object
-      properties:
-        AccessKey:
-          type:
-          - string
-          - 'null'
-        AttendeeTypeId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        GroupId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        UnitPrice:
-          type:
-          - number
-          - 'null'
-          format: double
-        UnitAddons:
-          type:
-          - number
-          - 'null'
-          format: double
-        UnitDiscount:
-          type:
-          - number
-          - 'null'
-          format: double
-        UnitTax:
-          type:
-          - number
-          - 'null'
-          description: Flat tax amount applied to this attendee. Ignored when API.Models.CartUpdateAttendeeInput.UnitFees is supplied.
-          format: double
-        UnitFee:
-          type:
-          - number
-          - 'null'
-          description: Flat fee amount applied to this attendee. Ignored when API.Models.CartUpdateAttendeeInput.UnitFees is supplied.
-          format: double
-        UnitFees:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/UnitFeeLineItemInput'
-          description: 'Itemized fee/tax line items to apply to this attendee.
-
-            When supplied, takes precedence over API.Models.CartUpdateAttendeeInput.UnitFee and API.Models.CartUpdateAttendeeInput.UnitTax.'
-        UnitDelivery:
-          type:
-          - number
-          - 'null'
-          description: Deprecated. Delivery has been folded into API.Models.CartUpdateAttendeeInput.UnitFee; this field is accepted for backwards compatibility but ignored.
-          format: double
-        Exclude:
-          type:
-          - string
-          - 'null'
-        ExternalId:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    CartDeleteEventOutput:
-      type: object
-      properties:
-        DeletedCount:
-          type: integer
-          format: int32
-      additionalProperties: false
-    FormOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        ObjectId:
-          type: string
-          format: uuid
-        IsAttendee:
-          type: boolean
-        AttendeeNumber:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        IsPreRegistered:
-          type: boolean
-        IsGift:
-          type: boolean
-        ShareEmail:
-          type:
-          - string
-          - 'null'
-        CopyEnabled:
-          type: boolean
-        GiftingEnabled:
-          type: boolean
-        PreRegEnabled:
-          type: boolean
-        IsCopySource:
-          type: boolean
-        IsCopyDestination:
-          type: boolean
-          readOnly: true
-        CanContinue:
-          type: boolean
-        AttendeeTypeId:
-          type: string
-          format: uuid
-        AttendeeTypeName:
-          type:
-          - string
-          - 'null'
-        IsCompleted:
-          type: boolean
-        SeatId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        SectionName:
-          type:
-          - string
-          - 'null'
-        RowName:
-          type:
-          - string
-          - 'null'
-        SeatLabel:
-          type:
-          - string
-          - 'null'
-        DistanceCount:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        UnitPrice:
-          type: number
-          format: double
-        UnitAddons:
-          type: number
-          format: double
-        UnitFee:
-          type: number
-          format: double
-        UnitTax:
-          type: number
-          format: double
-        DisplayPrice:
-          type: number
-          format: double
-        PriceDescription:
-          type:
-          - string
-          - 'null'
-        IsInclusiveFees:
-          type: boolean
-        IsInclusiveTaxes:
-          type: boolean
-        Culture:
-          type:
-          - string
-          - 'null'
-        CopyableAttendeeNumbers:
-          type:
-          - array
-          - 'null'
-          items:
-            type: integer
-            format: int64
-        DisplayName:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        AttendeeDisplay:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          readOnly: true
-        Fields:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/FieldOutput'
-      additionalProperties: false
-    CartAttendeeOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        EventId:
-          type: string
-          format: uuid
-        AttendeeTypeId:
-          type: string
-          format: uuid
-        AttendeeId:
-          type: string
-          format: uuid
-        AttendeeNumber:
-          type: integer
-          format: int64
-        LinkedAttendeeNumber:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        GroupId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        CartId:
-          type:
-          - string
-          - 'null'
-        UnitPrice:
-          type: number
-          format: double
-        UnitFee:
-          type: number
-          format: double
-        UnitTax:
-          type: number
-          format: double
-        UnitDelivery:
-          type: number
-          description: Deprecated. Delivery has been folded into API.Models.CartAttendeeOutput.UnitFee; this property is kept for backwards compatibility but should be ignored.
-          format: double
-        UnitDiscount:
-          type: number
-          format: double
-        UnitAddons:
-          type: number
-          format: double
-        UnitTotal:
-          type: number
-          format: double
-        UnitFees:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/UnitFeeLineItemOutput'
-        DisplayPrice:
-          type: number
-          format: double
-        DisplayTotal:
-          type: number
-          format: double
-          readOnly: true
-        TypeDisplayAmount:
-          type: number
-          format: double
-        IsInclusiveFees:
-          type: boolean
-        IsInclusiveTaxes:
-          type: boolean
-        LastAccessedAt:
-          type: string
-          format: date-time
-        TypeName:
-          type:
-          - string
-          - 'null'
-        IsPreRegistered:
-          type: boolean
-        IsCompleted:
-          type: boolean
-        IsGift:
-          type: boolean
-        CanContinue:
-          type: boolean
-        SeatId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        SectionName:
-          type:
-          - string
-          - 'null'
-        RowName:
-          type:
-          - string
-          - 'null'
-        SeatLabel:
-          type:
-          - string
-          - 'null'
-        DistanceCount:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        ShareEmail:
-          type:
-          - string
-          - 'null'
-        SeatInfo:
-          type:
-          - string
-          - 'null'
-        HasFields:
-          type: boolean
-        Promotions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CartAttendeePromotionOutput'
-        Fields:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/FieldDisplayOutput'
-        FirstName:
-          type:
-          - string
-          - 'null'
-        LastName:
-          type:
-          - string
-          - 'null'
-        HasName:
-          type: boolean
-        HasAddress:
-          type: boolean
-        DisplayName:
-          type:
-          - string
-          - 'null'
-        AttendeeDisplay:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          readOnly: true
-        AttendeeDisplayLines:
-          $ref: '#/components/schemas/AttendeeDisplayOutput'
-        IsAddon:
-          type: boolean
-        TypeKind:
-          $ref: '#/components/schemas/TypeKind'
-        ExternalId:
-          type:
-          - string
-          - 'null'
-        ExternalDescription:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    CartIdOutput:
-      type: object
-      properties:
-        CartId:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    ApiModelError:
-      type: object
-      properties:
-        Errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/StringStringKeyValuePair'
-        Message:
-          type:
-          - string
-          - 'null'
-        Data: {}
-        StackTrace:
-          type:
-          - string
-          - 'null'
       additionalProperties: false
   securitySchemes:
     apiKey:

@@ -190,12 +190,45 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    PromotionKind:
-      enum:
-      - Standard
-      - Template
-      - Dynamic
-      type: string
+    PromotionCreateInput:
+      required:
+      - Prefix
+      - Quantity
+      - TemplateId
+      type: object
+      properties:
+        TemplateId:
+          type: string
+          format: uuid
+        Quantity:
+          maximum: 250
+          minimum: 1
+          type: integer
+          format: int32
+        Prefix:
+          maxLength: 13
+          minLength: 0
+          type: string
+      additionalProperties: false
+    ApiModelError:
+      type: object
+      properties:
+        Errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+        Message:
+          type:
+          - string
+          - 'null'
+        Data: {}
+        StackTrace:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     PromotionEventOutput:
       type: object
       properties:
@@ -210,18 +243,112 @@ components:
             type: string
             format: uuid
       additionalProperties: false
-    StringStringKeyValuePair:
+    PromotionListOutput:
       type: object
       properties:
-        Key:
+        Id:
+          type: string
+          format: uuid
+        Description:
           type:
           - string
           - 'null'
-        Value:
+        StartsAt:
           type:
           - string
           - 'null'
+          format: date-time
+        EndsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        Group:
+          type:
+          - string
+          - 'null'
+        Kind:
+          type:
+          - string
+          - 'null'
+        IsSingleUse:
+          type: boolean
+        IsRedeemed:
+          type: boolean
+        AdminVisible:
+          type: boolean
+        InternetVisible:
+          type: boolean
+        Amount:
+          type: number
+          format: double
+        IsPercentage:
+          type: boolean
+        AutoCalculate:
+          type: boolean
+        Names:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
       additionalProperties: false
+    PromotionCreateOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Description:
+          type:
+          - string
+          - 'null'
+        StartsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        EndsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        Group:
+          type:
+          - string
+          - 'null'
+        Kind:
+          type:
+          - string
+          - 'null'
+        IsSingleUse:
+          type: boolean
+        IsRedeemed:
+          type: boolean
+        AdminVisible:
+          type: boolean
+        InternetVisible:
+          type: boolean
+        Amount:
+          type: number
+          format: double
+        IsPercentage:
+          type: boolean
+        AutoCalculate:
+          type: boolean
+        Names:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    PromotionKind:
+      enum:
+      - Standard
+      - Template
+      - Dynamic
+      type: string
     PromotionSingleOutput:
       type: object
       properties:
@@ -304,26 +431,6 @@ components:
           items:
             $ref: '#/components/schemas/PromotionEventOutput'
       additionalProperties: false
-    PromotionCreateInput:
-      required:
-      - Prefix
-      - Quantity
-      - TemplateId
-      type: object
-      properties:
-        TemplateId:
-          type: string
-          format: uuid
-        Quantity:
-          maximum: 250
-          minimum: 1
-          type: integer
-          format: int32
-        Prefix:
-          maxLength: 13
-          minLength: 0
-          type: string
-      additionalProperties: false
     PromotionCreateImportInput:
       required:
       - Names
@@ -338,121 +445,14 @@ components:
           items:
             type: string
       additionalProperties: false
-    PromotionCreateOutput:
+    StringStringKeyValuePair:
       type: object
       properties:
-        Id:
-          type: string
-          format: uuid
-        Description:
+        Key:
           type:
           - string
           - 'null'
-        StartsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        EndsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        Group:
-          type:
-          - string
-          - 'null'
-        Kind:
-          type:
-          - string
-          - 'null'
-        IsSingleUse:
-          type: boolean
-        IsRedeemed:
-          type: boolean
-        AdminVisible:
-          type: boolean
-        InternetVisible:
-          type: boolean
-        Amount:
-          type: number
-          format: double
-        IsPercentage:
-          type: boolean
-        AutoCalculate:
-          type: boolean
-        Names:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-      additionalProperties: false
-    PromotionListOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        Description:
-          type:
-          - string
-          - 'null'
-        StartsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        EndsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        Group:
-          type:
-          - string
-          - 'null'
-        Kind:
-          type:
-          - string
-          - 'null'
-        IsSingleUse:
-          type: boolean
-        IsRedeemed:
-          type: boolean
-        AdminVisible:
-          type: boolean
-        InternetVisible:
-          type: boolean
-        Amount:
-          type: number
-          format: double
-        IsPercentage:
-          type: boolean
-        AutoCalculate:
-          type: boolean
-        Names:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-      additionalProperties: false
-    ApiModelError:
-      type: object
-      properties:
-        Errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/StringStringKeyValuePair'
-        Message:
-          type:
-          - string
-          - 'null'
-        Data: {}
-        StackTrace:
+        Value:
           type:
           - string
           - 'null'
