@@ -292,6 +292,9 @@ apis:
   - type: APIReference
     url: https://api.brushfire.com/swagger/index.html
 common:
+- type: CapabilityMap
+  url: capabilities/brushfire-capability-edges.yml
+  name: Brushfire Business Capability Map
 - type: AgenticAccess
   url: agentic-access/brushfire-agentic-access.yml
 - type: DomainSecurity

@@ -1,0 +1,37 @@
+slug: brushfire
+provider: Brushfire
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Hooks
+  spec_file: brushfire-hooks-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.9
+  evidence: POST /hooks/subscribe  For 3rd party and custom integrations to subscribe to our notifications
+  reason: Operations are the full lifecycle of outbound webhook subscriptions for third-party integrations
+    (HookSubscribeInput, HookUnsubscribeInput, WebhookType, sample/poll payload shapes), which is exactly
+    Webhook & Event Subscription Management in the developer-platform capability.
+- tag: Promotions
+  spec_file: brushfire-promotions-api-openapi.yml
+  capability_id: BC-440.30
+  capability_id_l1: BC-440
+  capability_name: Discount & Promotion Management
+  confidence: 0.78
+  evidence: POST /promotions/dynamic "Creates the specified quantity of dynamic promotions"; schemas PromotionCreateInput,
+    PromotionKind
+  reason: Operations create and list promotions (promo codes) applied to ticket purchases, which maps
+    to Discount & Promotion Management under Pricing Management. Some residual ambiguity since promotion
+    mechanics could also be read as marketing campaigns, but creation of discount instruments fits BC-440.30
+    best.
