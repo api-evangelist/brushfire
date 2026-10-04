@@ -205,64 +205,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    StringStringKeyValuePair:
-      type: object
-      properties:
-        Key:
-          type:
-          - string
-          - 'null'
-        Value:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    ApiModelError:
-      type: object
-      properties:
-        Errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/StringStringKeyValuePair'
-        Message:
-          type:
-          - string
-          - 'null'
-        Data: {}
-        StackTrace:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    ApiError:
-      type: object
-      properties:
-        Message:
-          type:
-          - string
-          - 'null'
-        Data: {}
-        StackTrace:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    AccountAuthInput:
-      required:
-      - Email
-      - Password
-      type: object
-      properties:
-        Email:
-          minLength: 1
-          type: string
-        Password:
-          maxLength: 64
-          minLength: 8
-          type: string
-      additionalProperties: false
     AccountHelpdeskOutput:
       type: object
       properties:
@@ -292,6 +234,25 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/AccountRoleOutput'
+      additionalProperties: false
+    ApiModelError:
+      type: object
+      properties:
+        Errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+        Message:
+          type:
+          - string
+          - 'null'
+        Data: {}
+        StackTrace:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     AccountSingleOutput:
       type: object
@@ -358,36 +319,41 @@ components:
         IsBrushfireStaff:
           type: boolean
       additionalProperties: false
-    AccountRoleOutput:
+    ApiError:
       type: object
       properties:
-        ClientId:
+        Message:
+          type:
+          - string
+          - 'null'
+        Data: {}
+        StackTrace:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    AccountAuthInput:
+      required:
+      - Email
+      - Password
+      type: object
+      properties:
+        Email:
+          minLength: 1
           type: string
-          format: uuid
-        ClientKey:
+        Password:
+          maxLength: 64
+          minLength: 8
+          type: string
+      additionalProperties: false
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        Key:
           type:
           - string
           - 'null'
-        ClientNumber:
-          type: integer
-          format: int64
-        ClientName:
-          type:
-          - string
-          - 'null'
-        ClientCity:
-          type:
-          - string
-          - 'null'
-        ClientRegion:
-          type:
-          - string
-          - 'null'
-        ClientCountry:
-          type:
-          - string
-          - 'null'
-        Level:
+        Value:
           type:
           - string
           - 'null'
@@ -425,6 +391,40 @@ components:
           - 'null'
         IsBrushfireStaff:
           type: boolean
+      additionalProperties: false
+    AccountRoleOutput:
+      type: object
+      properties:
+        ClientId:
+          type: string
+          format: uuid
+        ClientKey:
+          type:
+          - string
+          - 'null'
+        ClientNumber:
+          type: integer
+          format: int64
+        ClientName:
+          type:
+          - string
+          - 'null'
+        ClientCity:
+          type:
+          - string
+          - 'null'
+        ClientRegion:
+          type:
+          - string
+          - 'null'
+        ClientCountry:
+          type:
+          - string
+          - 'null'
+        Level:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
   securitySchemes:
     apiKey:

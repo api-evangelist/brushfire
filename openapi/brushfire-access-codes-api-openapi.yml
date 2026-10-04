@@ -146,6 +146,62 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    AccessCodeOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Description:
+          type:
+          - string
+          - 'null'
+        StartsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        EndsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        Kind:
+          type:
+          - string
+          - 'null'
+        IsSingleUse:
+          type: boolean
+        IsRedeemed:
+          type: boolean
+        Names:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        Events:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: uuid
+        AttendeeTypes:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: uuid
+        Seats:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: uuid
+      additionalProperties: false
     ApiModelError:
       type: object
       properties:
@@ -164,6 +220,26 @@ components:
           type:
           - string
           - 'null'
+      additionalProperties: false
+    AccessCodeCreateInput:
+      required:
+      - Prefix
+      - Quantity
+      - TemplateId
+      type: object
+      properties:
+        TemplateId:
+          type: string
+          format: uuid
+        Quantity:
+          maximum: 250
+          minimum: 1
+          type: integer
+          format: int32
+        Prefix:
+          maxLength: 13
+          minLength: 0
+          type: string
       additionalProperties: false
     AccessCodeCreateOutput:
       type: object
@@ -221,88 +297,6 @@ components:
             type: string
             format: uuid
       additionalProperties: false
-    AccessCodeKind:
-      enum:
-      - Standard
-      - Template
-      - Dynamic
-      type: string
-    AccessCodeOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        Description:
-          type:
-          - string
-          - 'null'
-        StartsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        EndsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        Kind:
-          type:
-          - string
-          - 'null'
-        IsSingleUse:
-          type: boolean
-        IsRedeemed:
-          type: boolean
-        Names:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        Events:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            format: uuid
-        AttendeeTypes:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            format: uuid
-        Seats:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            format: uuid
-      additionalProperties: false
-    AccessCodeCreateInput:
-      required:
-      - Prefix
-      - Quantity
-      - TemplateId
-      type: object
-      properties:
-        TemplateId:
-          type: string
-          format: uuid
-        Quantity:
-          maximum: 250
-          minimum: 1
-          type: integer
-          format: int32
-        Prefix:
-          maxLength: 13
-          minLength: 0
-          type: string
-      additionalProperties: false
     StringStringKeyValuePair:
       type: object
       properties:
@@ -315,6 +309,12 @@ components:
           - string
           - 'null'
       additionalProperties: false
+    AccessCodeKind:
+      enum:
+      - Standard
+      - Template
+      - Dynamic
+      type: string
   securitySchemes:
     apiKey:
       type: apiKey

@@ -190,26 +190,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    PromotionCreateInput:
-      required:
-      - Prefix
-      - Quantity
-      - TemplateId
-      type: object
-      properties:
-        TemplateId:
-          type: string
-          format: uuid
-        Quantity:
-          maximum: 250
-          minimum: 1
-          type: integer
-          format: int32
-        Prefix:
-          maxLength: 13
-          minLength: 0
-          type: string
-      additionalProperties: false
     ApiModelError:
       type: object
       properties:
@@ -242,56 +222,6 @@ components:
           items:
             type: string
             format: uuid
-      additionalProperties: false
-    PromotionListOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        Description:
-          type:
-          - string
-          - 'null'
-        StartsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        EndsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        Group:
-          type:
-          - string
-          - 'null'
-        Kind:
-          type:
-          - string
-          - 'null'
-        IsSingleUse:
-          type: boolean
-        IsRedeemed:
-          type: boolean
-        AdminVisible:
-          type: boolean
-        InternetVisible:
-          type: boolean
-        Amount:
-          type: number
-          format: double
-        IsPercentage:
-          type: boolean
-        AutoCalculate:
-          type: boolean
-        Names:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
       additionalProperties: false
     PromotionCreateOutput:
       type: object
@@ -343,12 +273,18 @@ components:
           items:
             type: string
       additionalProperties: false
-    PromotionKind:
-      enum:
-      - Standard
-      - Template
-      - Dynamic
-      type: string
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        Key:
+          type:
+          - string
+          - 'null'
+        Value:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     PromotionSingleOutput:
       type: object
       properties:
@@ -431,6 +367,82 @@ components:
           items:
             $ref: '#/components/schemas/PromotionEventOutput'
       additionalProperties: false
+    PromotionListOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Description:
+          type:
+          - string
+          - 'null'
+        StartsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        EndsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        Group:
+          type:
+          - string
+          - 'null'
+        Kind:
+          type:
+          - string
+          - 'null'
+        IsSingleUse:
+          type: boolean
+        IsRedeemed:
+          type: boolean
+        AdminVisible:
+          type: boolean
+        InternetVisible:
+          type: boolean
+        Amount:
+          type: number
+          format: double
+        IsPercentage:
+          type: boolean
+        AutoCalculate:
+          type: boolean
+        Names:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    PromotionCreateInput:
+      required:
+      - Prefix
+      - Quantity
+      - TemplateId
+      type: object
+      properties:
+        TemplateId:
+          type: string
+          format: uuid
+        Quantity:
+          maximum: 250
+          minimum: 1
+          type: integer
+          format: int32
+        Prefix:
+          maxLength: 13
+          minLength: 0
+          type: string
+      additionalProperties: false
+    PromotionKind:
+      enum:
+      - Standard
+      - Template
+      - Dynamic
+      type: string
     PromotionCreateImportInput:
       required:
       - Names
@@ -444,18 +456,6 @@ components:
           type: array
           items:
             type: string
-      additionalProperties: false
-    StringStringKeyValuePair:
-      type: object
-      properties:
-        Key:
-          type:
-          - string
-          - 'null'
-        Value:
-          type:
-          - string
-          - 'null'
       additionalProperties: false
   securitySchemes:
     apiKey:

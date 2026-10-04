@@ -253,25 +253,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    WebhookType:
-      enum:
-      - Attendee_Created
-      - Attendee_Updated
-      - Attendee_Cancelled
-      - Order_Completed
-      - Event_Created
-      - Group_Updated
-      - Group_Created
-      - Group_Deleted
-      - Zapier_Post
-      - Event_Updated
-      - Order_Updated
-      - Client_Created
-      - Client_Activated
-      - Client_Deactivated
-      - Email_Unsubscribe
-      - Email_Resubscribe
-      type: string
     ApiModelError:
       type: object
       properties:
@@ -290,35 +271,6 @@ components:
           type:
           - string
           - 'null'
-      additionalProperties: false
-    HookSubscribeOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        Url:
-          type:
-          - string
-          - 'null'
-        Type:
-          $ref: '#/components/schemas/WebhookType'
-        Objects:
-          type:
-          - array
-          - 'null'
-          items:
-            type: integer
-            format: int64
-      additionalProperties: false
-    HookUnsubscribeInput:
-      required:
-      - Url
-      type: object
-      properties:
-        Url:
-          minLength: 1
-          type: string
       additionalProperties: false
     HookSubscribeInput:
       required:
@@ -341,6 +293,18 @@ components:
             format: int64
           description: This can be Event Numbers, Account Numbers, Client Numbers, etc.
       additionalProperties: false
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        Key:
+          type:
+          - string
+          - 'null'
+        Value:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     HookUpdateInput:
       required:
       - Url
@@ -358,18 +322,54 @@ components:
             format: int64
           description: This can be Event Numbers, Account Numbers, Client Numbers, etc.
       additionalProperties: false
-    StringStringKeyValuePair:
+    HookUnsubscribeInput:
+      required:
+      - Url
       type: object
       properties:
-        Key:
-          type:
-          - string
-          - 'null'
-        Value:
-          type:
-          - string
-          - 'null'
+        Url:
+          minLength: 1
+          type: string
       additionalProperties: false
+    HookSubscribeOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Url:
+          type:
+          - string
+          - 'null'
+        Type:
+          $ref: '#/components/schemas/WebhookType'
+        Objects:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int64
+      additionalProperties: false
+    WebhookType:
+      enum:
+      - Attendee_Created
+      - Attendee_Updated
+      - Attendee_Cancelled
+      - Order_Completed
+      - Event_Created
+      - Group_Updated
+      - Group_Created
+      - Group_Deleted
+      - Zapier_Post
+      - Event_Updated
+      - Order_Updated
+      - Client_Created
+      - Client_Activated
+      - Client_Deactivated
+      - Email_Unsubscribe
+      - Email_Resubscribe
+      type: string
   securitySchemes:
     apiKey:
       type: apiKey

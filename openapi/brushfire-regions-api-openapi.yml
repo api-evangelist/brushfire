@@ -46,21 +46,14 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ApiModelError:
+    StringStringKeyValuePair:
       type: object
       properties:
-        Errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/StringStringKeyValuePair'
-        Message:
+        Key:
           type:
           - string
           - 'null'
-        Data: {}
-        StackTrace:
+        Value:
           type:
           - string
           - 'null'
@@ -88,14 +81,21 @@ components:
           items:
             $ref: '#/components/schemas/RegionDetailOutput'
       additionalProperties: false
-    StringStringKeyValuePair:
+    ApiModelError:
       type: object
       properties:
-        Key:
+        Errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+        Message:
           type:
           - string
           - 'null'
-        Value:
+        Data: {}
+        StackTrace:
           type:
           - string
           - 'null'

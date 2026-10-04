@@ -169,30 +169,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ApiModelError:
-      type: object
-      properties:
-        Errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/StringStringKeyValuePair'
-        Message:
-          type:
-          - string
-          - 'null'
-        Data: {}
-        StackTrace:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    ExchangeMethod:
-      enum:
-      - SameEvent
-      - NewEvent
-      type: string
     ExchangeOutput:
       type: object
       properties:
@@ -224,32 +200,30 @@ components:
           format: double
           readOnly: true
       additionalProperties: false
-    ExchangeInput:
-      required:
-      - AccessKey
-      - AttendeeNumbers
-      - ClientKey
-      - ExchangeMethod
-      - SourceEventId
+    ApiModelError:
       type: object
       properties:
-        ClientKey:
-          minLength: 1
-          type: string
-        AttendeeNumbers:
-          type: array
+        Errors:
+          type:
+          - array
+          - 'null'
           items:
-            type: integer
-            format: int64
-        ExchangeMethod:
-          $ref: '#/components/schemas/ExchangeMethod'
-        AccessKey:
-          minLength: 1
-          type: string
-        SourceEventId:
-          type: string
-          format: uuid
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+        Message:
+          type:
+          - string
+          - 'null'
+        Data: {}
+        StackTrace:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
+    ExchangeMethod:
+      enum:
+      - SameEvent
+      - NewEvent
+      type: string
     ExchangeAttendeeOutput:
       type: object
       properties:
@@ -308,6 +282,32 @@ components:
           type: number
           format: double
           readOnly: true
+      additionalProperties: false
+    ExchangeInput:
+      required:
+      - AccessKey
+      - AttendeeNumbers
+      - ClientKey
+      - ExchangeMethod
+      - SourceEventId
+      type: object
+      properties:
+        ClientKey:
+          minLength: 1
+          type: string
+        AttendeeNumbers:
+          type: array
+          items:
+            type: integer
+            format: int64
+        ExchangeMethod:
+          $ref: '#/components/schemas/ExchangeMethod'
+        AccessKey:
+          minLength: 1
+          type: string
+        SourceEventId:
+          type: string
+          format: uuid
       additionalProperties: false
     StringStringKeyValuePair:
       type: object

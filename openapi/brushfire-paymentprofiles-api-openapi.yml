@@ -211,18 +211,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    StringStringKeyValuePair:
-      type: object
-      properties:
-        Key:
-          type:
-          - string
-          - 'null'
-        Value:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     TerminalOutput:
       type: object
       properties:
@@ -243,6 +231,19 @@ components:
           - string
           - 'null'
       additionalProperties: false
+    PaymentMethodListOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Name:
+          type:
+          - string
+          - 'null'
+        IsEnabled:
+          type: boolean
+      additionalProperties: false
     ApiModelError:
       type: object
       properties:
@@ -262,113 +263,7 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    TerminalCreateOutput:
-      type: object
-      properties:
-        Id:
-          type:
-          - string
-          - 'null'
-        SerialNumber:
-          type:
-          - string
-          - 'null'
-        PairingCode:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    PaymentMethodListOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        Name:
-          type:
-          - string
-          - 'null'
-        IsEnabled:
-          type: boolean
-      additionalProperties: false
-    LocationSingleOutput:
-      type: object
-      properties:
-        Id:
-          type:
-          - string
-          - 'null'
-        Name:
-          type:
-          - string
-          - 'null'
-        Address:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        IsSelected:
-          type: boolean
-        IsActive:
-          type: boolean
-      additionalProperties: false
-    PaymentProfileConfigOutput:
-      type: object
-      properties:
-        LocationId:
-          type:
-          - string
-          - 'null'
-        LocationName:
-          type:
-          - string
-          - 'null'
-        MerchantId:
-          type:
-          - string
-          - 'null'
-        MerchantName:
-          type:
-          - string
-          - 'null'
-        AccessToken:
-          type:
-          - string
-          - 'null'
-        Currency:
-          type:
-          - string
-          - 'null'
-        InternalDescription:
-          type:
-          - string
-          - 'null'
-        Invoice:
-          $ref: '#/components/schemas/PaymentProfileConfigInvoiceItem'
-        Scopes:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        Status:
-          type:
-          - string
-          - 'null'
-        AllowCards:
-          type: boolean
-        AllowWallets:
-          type: boolean
-        AllowAch:
-          type: boolean
-        AllowAfterpay:
-          type: boolean
-        AllowCashApp:
-          type: boolean
-        AllowGiftCards:
-          type: boolean
-      additionalProperties: false
-    PaymentProfileListOutput:
+    PaymentProfileSingleOutput:
       type: object
       properties:
         Id:
@@ -428,7 +323,35 @@ components:
           type: integer
           format: int32
       additionalProperties: false
-    PaymentProfileSingleOutput:
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        Key:
+          type:
+          - string
+          - 'null'
+        Value:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    TerminalCreateOutput:
+      type: object
+      properties:
+        Id:
+          type:
+          - string
+          - 'null'
+        SerialNumber:
+          type:
+          - string
+          - 'null'
+        PairingCode:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    PaymentProfileListOutput:
       type: object
       properties:
         Id:
@@ -477,6 +400,27 @@ components:
         Config:
           $ref: '#/components/schemas/PaymentProfileConfigOutput'
       additionalProperties: false
+    LocationSingleOutput:
+      type: object
+      properties:
+        Id:
+          type:
+          - string
+          - 'null'
+        Name:
+          type:
+          - string
+          - 'null'
+        Address:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        IsSelected:
+          type: boolean
+        IsActive:
+          type: boolean
+      additionalProperties: false
     TerminalCreateInput:
       type: object
       properties:
@@ -488,6 +432,62 @@ components:
           type:
           - string
           - 'null'
+      additionalProperties: false
+    PaymentProfileConfigOutput:
+      type: object
+      properties:
+        LocationId:
+          type:
+          - string
+          - 'null'
+        LocationName:
+          type:
+          - string
+          - 'null'
+        MerchantId:
+          type:
+          - string
+          - 'null'
+        MerchantName:
+          type:
+          - string
+          - 'null'
+        AccessToken:
+          type:
+          - string
+          - 'null'
+        Currency:
+          type:
+          - string
+          - 'null'
+        InternalDescription:
+          type:
+          - string
+          - 'null'
+        Invoice:
+          $ref: '#/components/schemas/PaymentProfileConfigInvoiceItem'
+        Scopes:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        Status:
+          type:
+          - string
+          - 'null'
+        AllowCards:
+          type: boolean
+        AllowWallets:
+          type: boolean
+        AllowAch:
+          type: boolean
+        AllowAfterpay:
+          type: boolean
+        AllowCashApp:
+          type: boolean
+        AllowGiftCards:
+          type: boolean
       additionalProperties: false
   securitySchemes:
     apiKey:

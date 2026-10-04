@@ -71,12 +71,18 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    CustomQueryGranularity:
-      enum:
-      - Minute
-      - Hour
-      - Day
-      type: string
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        Key:
+          type:
+          - string
+          - 'null'
+        Value:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     ApiModelError:
       type: object
       properties:
@@ -96,18 +102,12 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    StringStringKeyValuePair:
-      type: object
-      properties:
-        Key:
-          type:
-          - string
-          - 'null'
-        Value:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
+    CustomQueryGranularity:
+      enum:
+      - Minute
+      - Hour
+      - Day
+      type: string
   securitySchemes:
     apiKey:
       type: apiKey
