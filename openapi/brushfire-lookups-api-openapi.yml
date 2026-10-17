@@ -277,294 +277,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    LookupGroupResultOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        GroupNumber:
-          type: integer
-          format: int64
-        Name:
-          type:
-          - string
-          - 'null'
-        AttendeeCount:
-          type: integer
-          format: int32
-      additionalProperties: false
-    FlexPassCheckinItem:
-      type: object
-      properties:
-        EventId:
-          type: string
-          format: uuid
-        EventNumber:
-          type: integer
-          format: int64
-        Title:
-          type:
-          - string
-          - 'null'
-        CheckedInAt:
-          type: string
-          format: date-time
-        SessionName:
-          type:
-          - string
-          - 'null'
-        AttendeeCheckinId:
-          type: string
-          format: uuid
-        EventSessionId:
-          type: string
-          format: uuid
-        SessionNumber:
-          type: integer
-          format: int64
-        TimeZoneId:
-          type:
-          - string
-          - 'null'
-        CheckedInAtLocal:
-          type: string
-          format: date-time
-          readOnly: true
-        Culture:
-          type:
-          - string
-          - 'null'
-        Dates:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/EventDateItem'
-        StartsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          readOnly: true
-        TitleInfo:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-      additionalProperties: false
-    LookupResultOutput:
-      type: object
-      properties:
-        Upcoming:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/LookupEventResultOutput'
-        Past:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/LookupEventResultOutput'
-        Email:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    ApiModelError:
-      type: object
-      properties:
-        Errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/StringStringKeyValuePair'
-        Message:
-          type:
-          - string
-          - 'null'
-        Data: {}
-        StackTrace:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    EventDateItem:
-      type: object
-      properties:
-        DoorsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        StartsAt:
-          type: string
-          format: date-time
-        EndsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-      additionalProperties: false
-    LookupAttendeeResultOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        AttendeeNumber:
-          type: integer
-          format: int64
-        Status:
-          type:
-          - string
-          - 'null'
-        IsCompleted:
-          type: boolean
-        IsGift:
-          type: boolean
-        IsPreRegistered:
-          type: boolean
-        ShareEmail:
-          type:
-          - string
-          - 'null'
-        GiftingEnabled:
-          type: boolean
-        GiftLastSentAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        GiftLastSentAtLocal:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          readOnly: true
-        TimeZoneId:
-          type:
-          - string
-          - 'null'
-        FirstName:
-          type:
-          - string
-          - 'null'
-        LastName:
-          type:
-          - string
-          - 'null'
-        Name:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        AttendeeTypeId:
-          type: string
-          format: uuid
-        TypeName:
-          type:
-          - string
-          - 'null'
-        TypeAmount:
-          type: number
-          format: double
-        TypeDisplayAmount:
-          type: number
-          format: double
-        SectionName:
-          type:
-          - string
-          - 'null'
-        RowName:
-          type:
-          - string
-          - 'null'
-        SeatLabel:
-          type:
-          - string
-          - 'null'
-        Amount:
-          type: number
-          format: double
-        Addons:
-          type: number
-          format: double
-        Discounts:
-          type: number
-          format: double
-        SeatInfo:
-          type:
-          - string
-          - 'null'
-        Culture:
-          type:
-          - string
-          - 'null'
-        GroupId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        GroupName:
-          type:
-          - string
-          - 'null'
-        GroupEmail:
-          type:
-          - string
-          - 'null'
-        AttendeeDisplay:
-          $ref: '#/components/schemas/AttendeeDisplayOutput'
-        AttendeeDisplayLines:
-          $ref: '#/components/schemas/AttendeeDisplayOutput'
-        DisplayPrice:
-          type: number
-          format: double
-          readOnly: true
-        DisplayTotal:
-          type: number
-          format: double
-          readOnly: true
-        PriceDescription:
-          type:
-          - string
-          - 'null'
-        HasPaymentsToMake:
-          type: boolean
-        DonatingBackEnabled:
-          type: boolean
-        ChangesAreBlocked:
-          type: boolean
-        ChangesAreBlockedAfter:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        HasPendingSignatures:
-          type: boolean
-        AllSignaturesComplete:
-          type: boolean
-        ShareEnabled:
-          type: boolean
-        TicketInfo:
-          $ref: '#/components/schemas/TicketInfoOutput'
-      additionalProperties: false
-    LookupEventResultOutput:
-      type: object
-      properties:
-        Event:
-          $ref: '#/components/schemas/EventListOutput'
-        HasGroup:
-          type: boolean
-        HasOrders:
-          type: boolean
-        ShowAttendees:
-          type: boolean
-      additionalProperties: false
     DateDisplayOutput:
       type: object
       properties:
@@ -586,234 +298,6 @@ components:
           - 'null'
         IsOngoing:
           type: boolean
-      additionalProperties: false
-    EventDateOutput:
-      type: object
-      properties:
-        DoorsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        StartsAt:
-          type: string
-          format: date-time
-        EndsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-      additionalProperties: false
-    LookupCreateInput:
-      required:
-      - Email
-      type: object
-      properties:
-        Email:
-          minLength: 1
-          pattern: ^([0-9A-Za-zÀ-ÖØ-öø-ÿ']+[-._+&])*[0-9A-Za-zÀ-ÖØ-öø-ÿ_']+@([-0-9A-Za-zÀ-ÖØ-öø-ÿ]+[.])+[a-zA-Z]{2,63}$
-          type: string
-        EventNumber:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        VerrisSubdomain:
-          type:
-          - string
-          - 'null'
-        VerrisCode:
-          type:
-          - string
-          - 'null'
-        VerrisUid:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    StringStringKeyValuePair:
-      type: object
-      properties:
-        Key:
-          type:
-          - string
-          - 'null'
-        Value:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    EventListOutput:
-      type: object
-      properties:
-        Title:
-          type:
-          - string
-          - 'null'
-        Subtitle:
-          type:
-          - string
-          - 'null'
-        UrlKey:
-          type:
-          - string
-          - 'null'
-        ClientKey:
-          type:
-          - string
-          - 'null'
-        ClientName:
-          type:
-          - string
-          - 'null'
-        Culture:
-          type:
-          - string
-          - 'null'
-        DateInfo:
-          type:
-          - string
-          - 'null'
-        DateInfoList:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        SoldOut:
-          type: boolean
-        IsSticky:
-          type: boolean
-        EventNumber:
-          type: integer
-          format: int64
-        IsAssigned:
-          type: boolean
-        LocationName:
-          type:
-          - string
-          - 'null'
-        SessionCount:
-          type: integer
-          format: int32
-        IsActive:
-          type: boolean
-        DateDisplay:
-          $ref: '#/components/schemas/DateDisplayOutput'
-        Latitude:
-          type: number
-          format: double
-        Longitude:
-          type: number
-          format: double
-        MapUrl:
-          type:
-          - string
-          - 'null'
-        PromoImageUrl:
-          type:
-          - string
-          - 'null'
-        CategoryId:
-          type: integer
-          format: int32
-        CategoryName:
-          type:
-          - string
-          - 'null'
-        SpotsRemaining:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        SpotsTaken:
-          type: integer
-          format: int32
-        ShowRemaining:
-          type: boolean
-        RemainingText:
-          type:
-          - string
-          - 'null'
-        Verbiage:
-          type:
-          - string
-          - 'null'
-        Dates:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/EventDateOutput'
-        AlternateTitle:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        TimeZoneId:
-          type:
-          - string
-          - 'null'
-        AreaName:
-          type:
-          - string
-          - 'null'
-        AreaKey:
-          type:
-          - string
-          - 'null'
-        PaymentProfileId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        AcctCode:
-          type:
-          - string
-          - 'null'
-        IsHidden:
-          type: boolean
-        IsFlexPass:
-          type: boolean
-        IsExchangeable:
-          type: boolean
-      additionalProperties: false
-    LookupOrderResultOutput:
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        OrderKey:
-          type:
-          - string
-          - 'null'
-        OrderedAt:
-          type: string
-          format: date-time
-        OrderedAtLocal:
-          type: string
-          format: date-time
-        TimeZoneId:
-          type:
-          - string
-          - 'null'
-        BillingName:
-          type:
-          - string
-          - 'null'
-        Amount:
-          type: number
-          format: double
-        IsAdjustment:
-          type: boolean
-        Culture:
-          type:
-          - string
-          - 'null'
-        AttendeeCount:
-          type: integer
-          format: int32
       additionalProperties: false
     TicketInfoOutput:
       type: object
@@ -1023,6 +507,60 @@ components:
         IsFlexPass:
           type: boolean
       additionalProperties: false
+    LookupOrderResultOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        OrderKey:
+          type:
+          - string
+          - 'null'
+        OrderedAt:
+          type: string
+          format: date-time
+        OrderedAtLocal:
+          type: string
+          format: date-time
+        TimeZoneId:
+          type:
+          - string
+          - 'null'
+        BillingName:
+          type:
+          - string
+          - 'null'
+        Amount:
+          type: number
+          format: double
+        IsAdjustment:
+          type: boolean
+        Culture:
+          type:
+          - string
+          - 'null'
+        AttendeeCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    EventDateItem:
+      type: object
+      properties:
+        DoorsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        StartsAt:
+          type: string
+          format: date-time
+        EndsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      additionalProperties: false
     AttendeeDisplayOutput:
       type: object
       properties:
@@ -1049,6 +587,468 @@ components:
       - Groups
       - Orders
       type: string
+    LookupResultOutput:
+      type: object
+      properties:
+        Upcoming:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/LookupEventResultOutput'
+        Past:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/LookupEventResultOutput'
+        Email:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    LookupGroupResultOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        GroupNumber:
+          type: integer
+          format: int64
+        Name:
+          type:
+          - string
+          - 'null'
+        AttendeeCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    FlexPassCheckinItem:
+      type: object
+      properties:
+        EventId:
+          type: string
+          format: uuid
+        EventNumber:
+          type: integer
+          format: int64
+        Title:
+          type:
+          - string
+          - 'null'
+        CheckedInAt:
+          type: string
+          format: date-time
+        SessionName:
+          type:
+          - string
+          - 'null'
+        AttendeeCheckinId:
+          type: string
+          format: uuid
+        EventSessionId:
+          type: string
+          format: uuid
+        SessionNumber:
+          type: integer
+          format: int64
+        TimeZoneId:
+          type:
+          - string
+          - 'null'
+        CheckedInAtLocal:
+          type: string
+          format: date-time
+          readOnly: true
+        Culture:
+          type:
+          - string
+          - 'null'
+        Dates:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EventDateItem'
+        StartsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          readOnly: true
+        TitleInfo:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+      additionalProperties: false
+    LookupCreateInput:
+      required:
+      - Email
+      type: object
+      properties:
+        Email:
+          minLength: 1
+          pattern: ^([0-9A-Za-zÀ-ÖØ-öø-ÿ']+[-._+&])*[0-9A-Za-zÀ-ÖØ-öø-ÿ_']+@([-0-9A-Za-zÀ-ÖØ-öø-ÿ]+[.])+[a-zA-Z]{2,63}$
+          type: string
+        EventNumber:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        VerrisSubdomain:
+          type:
+          - string
+          - 'null'
+        VerrisCode:
+          type:
+          - string
+          - 'null'
+        VerrisUid:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    LookupEventResultOutput:
+      type: object
+      properties:
+        Event:
+          $ref: '#/components/schemas/EventListOutput'
+        HasGroup:
+          type: boolean
+        HasOrders:
+          type: boolean
+        ShowAttendees:
+          type: boolean
+      additionalProperties: false
+    LookupAttendeeResultOutput:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        AttendeeNumber:
+          type: integer
+          format: int64
+        Status:
+          type:
+          - string
+          - 'null'
+        IsCompleted:
+          type: boolean
+        IsGift:
+          type: boolean
+        IsPreRegistered:
+          type: boolean
+        ShareEmail:
+          type:
+          - string
+          - 'null'
+        GiftingEnabled:
+          type: boolean
+        GiftLastSentAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        GiftLastSentAtLocal:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          readOnly: true
+        TimeZoneId:
+          type:
+          - string
+          - 'null'
+        FirstName:
+          type:
+          - string
+          - 'null'
+        LastName:
+          type:
+          - string
+          - 'null'
+        Name:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        AttendeeTypeId:
+          type: string
+          format: uuid
+        TypeName:
+          type:
+          - string
+          - 'null'
+        TypeAmount:
+          type: number
+          format: double
+        TypeDisplayAmount:
+          type: number
+          format: double
+        SectionName:
+          type:
+          - string
+          - 'null'
+        RowName:
+          type:
+          - string
+          - 'null'
+        SeatLabel:
+          type:
+          - string
+          - 'null'
+        Amount:
+          type: number
+          format: double
+        Addons:
+          type: number
+          format: double
+        Discounts:
+          type: number
+          format: double
+        SeatInfo:
+          type:
+          - string
+          - 'null'
+        Culture:
+          type:
+          - string
+          - 'null'
+        GroupId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        GroupName:
+          type:
+          - string
+          - 'null'
+        GroupEmail:
+          type:
+          - string
+          - 'null'
+        AttendeeDisplay:
+          $ref: '#/components/schemas/AttendeeDisplayOutput'
+        AttendeeDisplayLines:
+          $ref: '#/components/schemas/AttendeeDisplayOutput'
+        DisplayPrice:
+          type: number
+          format: double
+          readOnly: true
+        DisplayTotal:
+          type: number
+          format: double
+          readOnly: true
+        PriceDescription:
+          type:
+          - string
+          - 'null'
+        HasPaymentsToMake:
+          type: boolean
+        DonatingBackEnabled:
+          type: boolean
+        ChangesAreBlocked:
+          type: boolean
+        ChangesAreBlockedAfter:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        HasPendingSignatures:
+          type: boolean
+        AllSignaturesComplete:
+          type: boolean
+        ShareEnabled:
+          type: boolean
+        TicketInfo:
+          $ref: '#/components/schemas/TicketInfoOutput'
+      additionalProperties: false
+    EventDateOutput:
+      type: object
+      properties:
+        DoorsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        StartsAt:
+          type: string
+          format: date-time
+        EndsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      additionalProperties: false
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        Key:
+          type:
+          - string
+          - 'null'
+        Value:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ApiModelError:
+      type: object
+      properties:
+        Errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+        Message:
+          type:
+          - string
+          - 'null'
+        Data: {}
+        StackTrace:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    EventListOutput:
+      type: object
+      properties:
+        Title:
+          type:
+          - string
+          - 'null'
+        Subtitle:
+          type:
+          - string
+          - 'null'
+        UrlKey:
+          type:
+          - string
+          - 'null'
+        ClientKey:
+          type:
+          - string
+          - 'null'
+        ClientName:
+          type:
+          - string
+          - 'null'
+        Culture:
+          type:
+          - string
+          - 'null'
+        DateInfo:
+          type:
+          - string
+          - 'null'
+        DateInfoList:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        SoldOut:
+          type: boolean
+        IsSticky:
+          type: boolean
+        EventNumber:
+          type: integer
+          format: int64
+        IsAssigned:
+          type: boolean
+        LocationName:
+          type:
+          - string
+          - 'null'
+        SessionCount:
+          type: integer
+          format: int32
+        IsActive:
+          type: boolean
+        DateDisplay:
+          $ref: '#/components/schemas/DateDisplayOutput'
+        Latitude:
+          type: number
+          format: double
+        Longitude:
+          type: number
+          format: double
+        MapUrl:
+          type:
+          - string
+          - 'null'
+        PromoImageUrl:
+          type:
+          - string
+          - 'null'
+        CategoryId:
+          type: integer
+          format: int32
+        CategoryName:
+          type:
+          - string
+          - 'null'
+        SpotsRemaining:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        SpotsTaken:
+          type: integer
+          format: int32
+        ShowRemaining:
+          type: boolean
+        RemainingText:
+          type:
+          - string
+          - 'null'
+        Verbiage:
+          type:
+          - string
+          - 'null'
+        Dates:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EventDateOutput'
+        AlternateTitle:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        TimeZoneId:
+          type:
+          - string
+          - 'null'
+        AreaName:
+          type:
+          - string
+          - 'null'
+        AreaKey:
+          type:
+          - string
+          - 'null'
+        PaymentProfileId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        AcctCode:
+          type:
+          - string
+          - 'null'
+        IsHidden:
+          type: boolean
+        IsFlexPass:
+          type: boolean
+        IsExchangeable:
+          type: boolean
+      additionalProperties: false
   securitySchemes:
     apiKey:
       type: apiKey

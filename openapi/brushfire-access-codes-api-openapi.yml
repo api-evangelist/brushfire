@@ -202,25 +202,6 @@ components:
             type: string
             format: uuid
       additionalProperties: false
-    ApiModelError:
-      type: object
-      properties:
-        Errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/StringStringKeyValuePair'
-        Message:
-          type:
-          - string
-          - 'null'
-        Data: {}
-        StackTrace:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     AccessCodeCreateInput:
       required:
       - Prefix
@@ -241,6 +222,12 @@ components:
           minLength: 0
           type: string
       additionalProperties: false
+    AccessCodeKind:
+      enum:
+      - Standard
+      - Template
+      - Dynamic
+      type: string
     AccessCodeCreateOutput:
       type: object
       properties:
@@ -309,12 +296,25 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    AccessCodeKind:
-      enum:
-      - Standard
-      - Template
-      - Dynamic
-      type: string
+    ApiModelError:
+      type: object
+      properties:
+        Errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+        Message:
+          type:
+          - string
+          - 'null'
+        Data: {}
+        StackTrace:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
   securitySchemes:
     apiKey:
       type: apiKey

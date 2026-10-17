@@ -205,19 +205,46 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    AccountHelpdeskOutput:
+    AccountRoleOutput:
+      type: object
+      properties:
+        ClientId:
+          type: string
+          format: uuid
+        ClientKey:
+          type:
+          - string
+          - 'null'
+        ClientNumber:
+          type: integer
+          format: int64
+        ClientName:
+          type:
+          - string
+          - 'null'
+        ClientCity:
+          type:
+          - string
+          - 'null'
+        ClientRegion:
+          type:
+          - string
+          - 'null'
+        ClientCountry:
+          type:
+          - string
+          - 'null'
+        Level:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    AccountAuthOutput:
       type: object
       properties:
         Id:
           type: string
           format: uuid
-        AccountNumber:
-          type: integer
-          format: int64
-        Email:
-          type:
-          - string
-          - 'null'
         FirstName:
           type:
           - string
@@ -226,24 +253,43 @@ components:
           type:
           - string
           - 'null'
+        Email:
+          type:
+          - string
+          - 'null'
+        AccountNumber:
+          type: integer
+          format: int64
+        AccessKey:
+          type:
+          - string
+          - 'null'
         IsUser:
           type: boolean
-        ClientRoles:
+        AvatarUrl:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/AccountRoleOutput'
+        IsBrushfireStaff:
+          type: boolean
       additionalProperties: false
-    ApiModelError:
+    AccountAuthInput:
+      required:
+      - Email
+      - Password
       type: object
       properties:
-        Errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/StringStringKeyValuePair'
+        Email:
+          minLength: 1
+          type: string
+        Password:
+          maxLength: 64
+          minLength: 8
+          type: string
+      additionalProperties: false
+    ApiError:
+      type: object
+      properties:
         Message:
           type:
           - string
@@ -319,33 +365,6 @@ components:
         IsBrushfireStaff:
           type: boolean
       additionalProperties: false
-    ApiError:
-      type: object
-      properties:
-        Message:
-          type:
-          - string
-          - 'null'
-        Data: {}
-        StackTrace:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    AccountAuthInput:
-      required:
-      - Email
-      - Password
-      type: object
-      properties:
-        Email:
-          minLength: 1
-          type: string
-        Password:
-          maxLength: 64
-          minLength: 8
-          type: string
-      additionalProperties: false
     StringStringKeyValuePair:
       type: object
       properties:
@@ -358,12 +377,38 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    AccountAuthOutput:
+    ApiModelError:
+      type: object
+      properties:
+        Errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+        Message:
+          type:
+          - string
+          - 'null'
+        Data: {}
+        StackTrace:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    AccountHelpdeskOutput:
       type: object
       properties:
         Id:
           type: string
           format: uuid
+        AccountNumber:
+          type: integer
+          format: int64
+        Email:
+          type:
+          - string
+          - 'null'
         FirstName:
           type:
           - string
@@ -372,59 +417,14 @@ components:
           type:
           - string
           - 'null'
-        Email:
-          type:
-          - string
-          - 'null'
-        AccountNumber:
-          type: integer
-          format: int64
-        AccessKey:
-          type:
-          - string
-          - 'null'
         IsUser:
           type: boolean
-        AvatarUrl:
+        ClientRoles:
           type:
-          - string
+          - array
           - 'null'
-        IsBrushfireStaff:
-          type: boolean
-      additionalProperties: false
-    AccountRoleOutput:
-      type: object
-      properties:
-        ClientId:
-          type: string
-          format: uuid
-        ClientKey:
-          type:
-          - string
-          - 'null'
-        ClientNumber:
-          type: integer
-          format: int64
-        ClientName:
-          type:
-          - string
-          - 'null'
-        ClientCity:
-          type:
-          - string
-          - 'null'
-        ClientRegion:
-          type:
-          - string
-          - 'null'
-        ClientCountry:
-          type:
-          - string
-          - 'null'
-        Level:
-          type:
-          - string
-          - 'null'
+          items:
+            $ref: '#/components/schemas/AccountRoleOutput'
       additionalProperties: false
   securitySchemes:
     apiKey:
