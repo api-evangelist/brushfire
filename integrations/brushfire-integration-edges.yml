@@ -1,0 +1,24 @@
+edges:
+- partner_name: Zendesk (own)
+  partner: zendesk
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.zendesk.com/marketplace/apps/support/96739/brushfire/
+  mirror_of: zendesk/integrations/zendesk-integration-edges.yml
+  apps:
+  - Brushfire
+  listing_count: 1
+  detected: '2026-10-19'
+  detected_by: mirror-platform-listings.py
+  category: eComm and Payments
+generated: '2026-10-19'
+method: searched
+source:
+- zendesk/integrations/zendesk-integration-edges.yml
+checked:
+- zendesk/integrations/zendesk-integration-edges.yml
