@@ -16,9 +16,55 @@ edges:
   detected: '2026-10-19'
   detected_by: mirror-platform-listings.py
   category: eComm and Payments
+- partner_name: Stripe Partner Ecosystem
+  partner: stripe
+  partner_match: register
+  type: register
+  direction: partner-built
+  channel: standard-directory
+  relationship: standard-participant
+  evidence: https://stripe.partners/directory/brushfire
+  category: Stripe ecosystem partner
+  contract_reference:
+    register: Stripe Partner Ecosystem directory (stripe.com/partners/directory -> stripe.partners, PartnerPage
+      SSR __NUXT_DATA__)
+    standard: Stripe Partner Ecosystem
+    spec_file: null
+    role: stripe-partner
+    registered_name: Brushfire
+    register_id: brushfire
+    partner_tier: null
+    matched_domain: brushfire.com
+    matched_by: domain
+    identity_source: the directory's own website field for the partner (no lookup)
+    signal_note: 'participation only: directory listing (verification tier, if any, in partner_tier)'
+    context:
+      callouts:
+      - Booking and scheduling
+      stripe_products:
+      - Connect
+      - Payments
+      - Terminal
+      - Billing
+      - Radar
+      - Sigma
+      - Link
+      - Radar for Fraud Teams
+      location: Fort Worth, United States
+    detected_by: sweep-stripe-app-marketplace.py
+    detected: '2026-10-21'
+  detected_by: sweep-stripe-app-marketplace.py
+  first_seen: '2026-10-21'
 generated: '2026-10-19'
 method: searched
 source:
 - zendesk/integrations/zendesk-integration-edges.yml
 checked:
 - zendesk/integrations/zendesk-integration-edges.yml
+- https://docs.stripe.com/stripe-apps
+- https://docs.stripe.com/stripe-apps/review-requirements
+- https://marketplace.stripe.com/
+- https://marketplace.stripe.com/appm/apps
+- https://stripe.com/partners/directory
+- https://stripe.com/partners/verified-partners
+- https://stripe.partners/sitemap.xml
