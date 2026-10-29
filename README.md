@@ -1,4 +1,4 @@
-# Brushfire (brushfire)
+# Brushfire
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,196 +64,147 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Brushfire is an event ticketing, registration, and virtual event platform used by churches, ministries, conferences, attractions, and large events. Alongside its hosted box office, embeddable event widgets, reserved seating, and mobile check-in apps, Brushfire publishes a documented REST API at `api.brushfire.com` for building custom integrations - synchronizing data with other systems, reserving attendees, and processing transactions.
+Brushfire is an event ticketing, registration, and virtual event platform used by churches, ministries, conferences, attractions, and large events. Alongside its hosted box office, embeddable event widgets, and mobile check-in apps, Brushfire publishes a documented REST API at api.brushfire.com covering events, ticket types, sections and seats, attendees, orders, the shopping cart and checkout flow, groups, sessions and check-in, promotions and access codes, payment profiles, and webhooks. The API is date-versioned through an api-version request header and authenticated with an App Key requested from developer.brushfire.com.
 
-The API is a real, public OpenAPI 3.0.1 surface (118 paths / 135 operations) served from the Swagger UI at [api.brushfire.com/swagger](https://api.brushfire.com/swagger/index.html). It is authenticated with an **App Key** sent in the `Authorization` header (requested free at [developer.brushfire.com/key](https://developer.brushfire.com/key)) and is **date-versioned**: send the desired version in an `api-version` request header (for example `2025-07-22`). A missing version returns `412 Precondition Failed`. Rate limiting is enforced with `429 Too Many Requests` and `X-Rate-Limit-Limit` / `X-Rate-Limit-Remaining` / `X-Rate-Limit-Reset` response headers.
+**Areas:** Event Ticketing · Registration · Event · Ticketing · Check-in · Churches · Payments
 
-**Access model:** Brushfire is a closed-source commercial SaaS. The OpenAPI document is publicly readable, but calling the endpoints requires a Brushfire account and an App Key. The endpoints documented here are taken verbatim from Brushfire's published OpenAPI document; request/response bodies were not exercised live because they require authentication. Pricing is a per-ticket fee (varying by organization type) plus Stripe/Square card processing - the API itself carries no separate fee.
+## Brushfire on APIs.io
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/brushfire/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/brushfire/refs/heads/main/apis.yml)
+Everything profiled for Brushfire is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/brushfire/](https://apis.io/providers/brushfire/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (16)
 
-- Event Ticketing
-- Registration
-- Events
-- Ticketing
-- Check-In
-- Churches
-- Payments
+- [Brushfire Accounts API](https://apis.io/apis/brushfire/brushfire-accounts-api/) — The Accounts API from Brushfire — 3 operation(s) for accounts.
+- [Brushfire Attendees API](https://apis.io/apis/brushfire/brushfire-attendees-api/) — The Attendees API from Brushfire — 18 operation(s) for attendees.
+- [Brushfire Cart API](https://apis.io/apis/brushfire/brushfire-cart-api/) — The Cart API from Brushfire — 11 operation(s) for cart.
+- [Brushfire Clients API](https://apis.io/apis/brushfire/brushfire-clients-api/) — The Clients API from Brushfire — 3 operation(s) for clients.
+- [Brushfire Data API](https://apis.io/apis/brushfire/brushfire-data-api/) — The Data API from Brushfire — 1 operation(s) for data.
+- [Brushfire Events API](https://apis.io/apis/brushfire/brushfire-events-api/) — The Events API from Brushfire — 27 operation(s) for events.
+- [Brushfire Exchanges API](https://apis.io/apis/brushfire/brushfire-exchanges-api/) — The Exchanges API from Brushfire — 2 operation(s) for exchanges.
+- [Brushfire Groups API](https://apis.io/apis/brushfire/brushfire-groups-api/) — The Groups API from Brushfire — 7 operation(s) for groups.
+- [Brushfire Hooks API](https://apis.io/apis/brushfire/brushfire-hooks-api/) — The Hooks API from Brushfire — 7 operation(s) for hooks.
+- [Brushfire Lookups API](https://apis.io/apis/brushfire/brushfire-lookups-api/) — The Lookups API from Brushfire — 6 operation(s) for lookups.
+- [Brushfire Orders API](https://apis.io/apis/brushfire/brushfire-orders-api/) — The Orders API from Brushfire — 11 operation(s) for orders.
+- [Brushfire PaymentProfiles API](https://apis.io/apis/brushfire/brushfire-paymentprofiles-api/) — The PaymentProfiles API from Brushfire — 4 operation(s) for paymentprofiles.
+- [Brushfire Promotions API](https://apis.io/apis/brushfire/brushfire-promotions-api/) — The Promotions API from Brushfire — 4 operation(s) for promotions.
+- [Brushfire Regions API](https://apis.io/apis/brushfire/brushfire-regions-api/) — The Regions API from Brushfire — 1 operation(s) for regions.
+- [Brushfire Sessions API](https://apis.io/apis/brushfire/brushfire-sessions-api/) — The Sessions API from Brushfire — 10 operation(s) for sessions.
+- [Brushfire Access Codes API](https://apis.io/apis/brushfire/brushfire-access-codes-api/) — The Access Codes API from Brushfire — 3 operation(s) for access codes.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-07-05
-- **Modified:** 2026-07-05
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Brushfire Events API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-List, create, retrieve, archive, and restore events, and read their nested resources - ticket types, sections, seats, best-available seating, sessions, fields and field metadata, documents, groups, orders, payment methods, theme, and reports. The core catalog surface for an event's inventory and configuration.
+- [Brushfire Agentic Access](https://apis.io/agentic-access/brushfire/brushfire-agentic-access/)
 
-- **Human URL:** [https://developer.brushfire.com](https://developer.brushfire.com)
-- **Base URL:** `https://api.brushfire.com`
+#### Collections (16)
 
-#### Tags
+Postman and Open Collection request collections.
 
-- Events
-- Types
-- Sections
-- Seats
+- [Brushfire API: Version 2025-07-22 AccessCodes API](https://apis.io/collections/brushfire/open-brushfire-accesscodes-api/)
+- [Brushfire API: Version 2025-07-22 AccessCodes Accounts API](https://apis.io/collections/brushfire/open-brushfire-accounts-api/)
+- [Brushfire API: Version 2025-07-22 AccessCodes Attendees API](https://apis.io/collections/brushfire/open-brushfire-attendees-api/)
+- [Brushfire API: Version 2025-07-22 AccessCodes Cart API](https://apis.io/collections/brushfire/open-brushfire-cart-api/)
+- [Brushfire API: Version 2025-07-22 AccessCodes Clients API](https://apis.io/collections/brushfire/open-brushfire-clients-api/)
+- [Brushfire API: Version 2025-07-22 AccessCodes Data API](https://apis.io/collections/brushfire/open-brushfire-data-api/)
+- [Brushfire API: Version 2025-07-22 AccessCodes Events API](https://apis.io/collections/brushfire/open-brushfire-events-api/)
+- [Brushfire API: Version 2025-07-22 AccessCodes Exchanges API](https://apis.io/collections/brushfire/open-brushfire-exchanges-api/)
+- [Brushfire API: Version 2025-07-22 AccessCodes Groups API](https://apis.io/collections/brushfire/open-brushfire-groups-api/)
+- [Brushfire API: Version 2025-07-22 AccessCodes Hooks API](https://apis.io/collections/brushfire/open-brushfire-hooks-api/)
+- [Brushfire API: Version 2025-07-22 AccessCodes Lookups API](https://apis.io/collections/brushfire/open-brushfire-lookups-api/)
+- [Brushfire API: Version 2025-07-22 AccessCodes Orders API](https://apis.io/collections/brushfire/open-brushfire-orders-api/)
+- [Brushfire API: Version 2025-07-22 AccessCodes PaymentProfiles API](https://apis.io/collections/brushfire/open-brushfire-paymentprofiles-api/)
+- [Brushfire API: Version 2025-07-22 AccessCodes Promotions API](https://apis.io/collections/brushfire/open-brushfire-promotions-api/)
+- [Brushfire API: Version 2025-07-22 AccessCodes Regions API](https://apis.io/collections/brushfire/open-brushfire-regions-api/)
+- [Brushfire API: Version 2025-07-22 AccessCodes Sessions API](https://apis.io/collections/brushfire/open-brushfire-sessions-api/)
 
-#### Properties
+#### Security (2)
 
-- [Documentation](https://developer.brushfire.com)
-- [API Reference](https://api.brushfire.com/swagger/index.html)
-- [OpenAPI](openapi/brushfire-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+Authentication, trust centre, and vulnerability disclosure.
 
-### Brushfire Attendees API
+- [Brushfire Authentication](https://apis.io/security/brushfire/brushfire-authentication/)
+- [Brushfire Domain Security](https://apis.io/security/brushfire/brushfire-domain-security/)
 
-Retrieve and manage individual attendees - read and update buyer and attendee fields (standard and custom), cancel, reassign ticket type, move between groups and communities, gift or link tickets, record donations, generate access codes, and print or batch-print tickets and badges.
+#### Plans and pricing (1)
 
-- **Human URL:** [https://developer.brushfire.com](https://developer.brushfire.com)
-- **Base URL:** `https://api.brushfire.com`
+Published plans, tiers and prices.
 
-#### Tags
+- [Brushfire Plans Pricing](https://apis.io/plans/brushfire/brushfire-plans-pricing/)
 
-- Attendees
-- Registration
-- Check-In
+#### Rate limits (1)
 
-#### Properties
+Published request limits.
 
-- [Documentation](https://developer.brushfire.com)
-- [API Reference](https://api.brushfire.com/swagger/index.html)
-- [OpenAPI](openapi/brushfire-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Brushfire Rate Limits](https://apis.io/rate-limits/brushfire/brushfire-rate-limits/)
 
-### Brushfire Orders API
+#### FinOps (1)
 
-List and retrieve orders, read and update order fields, resend confirmations, and create orders through multiple transaction paths - standard checkout, direct orders, point-of-sale (POS), card-reader (terminal) sales, and SMS orders. Carries Brushfire's order and payment transaction processing.
+What the API costs to run, by operation.
 
-- **Human URL:** [https://developer.brushfire.com](https://developer.brushfire.com)
-- **Base URL:** `https://api.brushfire.com`
+- [Brushfire Finops](https://apis.io/finops/brushfire/brushfire-finops/)
 
-#### Tags
+## Where to find this API
 
-- Orders
-- Transactions
-- Point of Sale
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-#### Properties
-
-- [Documentation](https://developer.brushfire.com)
-- [API Reference](https://api.brushfire.com/swagger/index.html)
-- [OpenAPI](openapi/brushfire-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-
-### Brushfire Cart & Checkout API
-
-Build and manage a shopping cart across events and attendees - add and remove events, reserve and configure attendees, complete registration forms, apply and remove promotions, and look up cart state prior to converting a cart into a paid order.
-
-- **Human URL:** [https://developer.brushfire.com](https://developer.brushfire.com)
-- **Base URL:** `https://api.brushfire.com`
-
-#### Tags
-
-- Cart
-- Checkout
-- Transactions
-
-#### Properties
-
-- [Documentation](https://developer.brushfire.com)
-- [API Reference](https://api.brushfire.com/swagger/index.html)
-- [OpenAPI](openapi/brushfire-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-
-### Brushfire Sessions & Check-In API
-
-Drive on-site attendance for a session - list session attendees, look up by email, check attendees in and out, and run flexible (flex) check-in and checkout for groups and individual attendees, orders, and groups within a session.
-
-- **Human URL:** [https://developer.brushfire.com](https://developer.brushfire.com)
-- **Base URL:** `https://api.brushfire.com`
-
-#### Tags
-
-- Sessions
-- Check-In
-- Attendance
-
-#### Properties
-
-- [Documentation](https://developer.brushfire.com)
-- [API Reference](https://api.brushfire.com/swagger/index.html)
-- [OpenAPI](openapi/brushfire-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-
-### Brushfire Groups API
-
-Create and update groups, read and write group fields, assign a group to a community, and print or batch-print the tickets and badges for everyone in a group - the container for family, team, and organization registrations.
-
-- **Human URL:** [https://developer.brushfire.com](https://developer.brushfire.com)
-- **Base URL:** `https://api.brushfire.com`
-
-#### Tags
-
-- Groups
-- Communities
-- Registration
-
-#### Properties
-
-- [Documentation](https://developer.brushfire.com)
-- [API Reference](https://api.brushfire.com/swagger/index.html)
-- [OpenAPI](openapi/brushfire-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-
-### Brushfire Promotions & Access Codes API
-
-List and retrieve promotions and access codes, bulk-import promotions, and generate dynamic promotions and access codes - the discounting and gated-access controls layered onto an event's ticket types and sections.
-
-- **Human URL:** [https://developer.brushfire.com](https://developer.brushfire.com)
-- **Base URL:** `https://api.brushfire.com`
-
-#### Tags
-
-- Promotions
-- Access Codes
-- Discounts
-
-#### Properties
-
-- [Documentation](https://developer.brushfire.com)
-- [API Reference](https://api.brushfire.com/swagger/index.html)
-- [OpenAPI](openapi/brushfire-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-
-### Brushfire Webhooks (Hooks) API
-
-Subscribe and unsubscribe HTTP webhook endpoints, update subscriptions, list active hooks, send test pings and sample payloads, and poll for events - Brushfire's outbound event-notification surface delivered as HTTP callbacks, not a WebSocket stream.
-
-- **Human URL:** [https://developer.brushfire.com](https://developer.brushfire.com)
-- **Base URL:** `https://api.brushfire.com`
-
-#### Tags
-
-- Webhooks
-- Hooks
-- Events
-
-#### Properties
-
-- [Documentation](https://developer.brushfire.com)
-- [API Reference](https://api.brushfire.com/swagger/index.html)
-- [OpenAPI](openapi/brushfire-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/brushfire-technology)
 - [Website](https://www.brushfire.com)
 - [Documentation](https://developer.brushfire.com)
-- [API Reference](https://api.brushfire.com/swagger/index.html)
-- [Sign Up (App Key)](https://developer.brushfire.com/key)
-- [Plans](plans/brushfire-plans-pricing.yml)
-- [Rate Limits](rate-limits/brushfire-rate-limits.yml)
-- [Fin Ops](finops/brushfire-finops.yml)
+- [API reference](https://api.brushfire.com/swagger/index.html)
+- [Sign up](https://developer.brushfire.com/key)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 25.6** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 48.7 |
+| Contract governance | 0.0 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 19.0 |
+| Access clarity | 7.9 |
+
+**Agent readiness 25.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.7** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/brushfire/](https://apis.io/providers/brushfire/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Brushfire: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/brushfire/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
